@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mandarin Pathways - Daily Lesson</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Mandarin Pathways</h1>
+        <p>Your Journey to Chinese Language Mastery</p>
+    </header>
+
+    <main>
+        <!-- Return to top button -->
+        <div class="return-to-top" id="returnToTop">
+            <i class="fas fa-arrow-up"></i>
+        </div>
+
+        <!-- Visual anchor pattern -->
+        <div class="visual-anchor" style="top: 5%; right: 5%;"></div>
+        
+        <div class="lesson-container">
+            <div class="lesson-header">
+                <div class="lesson-title">
+                    <span class="flag" id="language-flag"></span>
+                    <h2>Day <span id="day-number"></span></h2>
+                </div>
+                <div class="language-selector">
+                    <button class="language-btn" data-lang="zh"><span class="flag">🇨🇳</span> 简体中文</button>
+                    <button class="language-btn" data-lang="pinyin"><span class="flag">🔤</span> Pinyin</button>
+                    <button class="language-btn" data-lang="en"><span class="flag">🇺🇸</span> English</button>
+                </div>
+            </div>
+
+            <div class="navigation">
+                <a href="#" class="nav-btn" id="prev-btn-top">
+                    <i class="fas fa-arrow-left"></i> Previous Day
+                </a>
+                <a href="index.html" class="home-btn">
+                    <i class="fas fa-home"></i> Back to Home
+                </a>
+                <a href="#" class="nav-btn" id="next-btn-top">
+                    Next Day <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+
+            <div class="section-info">
+                <h3 id="section-title"></h3>
+                <p id="section-description"></p>
+            </div>
+
+            <div class="audio-player">
+                <audio controls id="audio-player" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <div id="audio-fallback"></div>
+            </div>
+
+            <div class="text-content" id="text-content">
+                <!-- Text content will be dynamically added here -->
+            </div>
+
+            <div class="lesson-actions">
+                <button id="complete-btn" class="complete-btn">
+                    <i class="fas fa-check"></i> Mark as Complete
+                </button>
+            </div>
+
+            <!-- Section divider with visual anchor -->
+            <div class="section-divider"></div>
+            
+            <div class="navigation">
+                <a href="#" class="nav-btn" id="prev-btn">
+                    <i class="fas fa-arrow-left"></i> Previous Day
+                </a>
+                <a href="index.html" class="home-btn">
+                    <i class="fas fa-home"></i> Back to Home
+                </a>
+                <a href="#" class="nav-btn" id="next-btn">
+                    Next Day <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Visual anchor pattern -->
+        <div class="visual-anchor" style="bottom: 10%; left: 5%;"></div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Mandarin Pathways | Empowering Chinese Language Learning</p>
+    </footer>
+
+    <div class="copy-notification" id="copy-notification">
+        Phrase copied to clipboard!
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const day = parseInt(urlParams.get('day')) || 1;
+            const lang = urlParams.get('lang') || 'zh';
+            
+            // Update day number
+            document.getElementById('day-number').textContent = day;
+
+            // Check if day is completed
+            const completedDays = JSON.parse(localStorage.getItem('completedDays') || '{}');
+            const completeBtn = document.getElementById('complete-btn');
+            
+            if (completedDays[`${day}_${lang}`]) {
+                completeBtn.classList.add('completed');
+                completeBtn.innerHTML = '<i class="fas fa-check-circle"></i> Completed';
+                completeBtn.disabled = true;
+            }
+
+            completeBtn.addEventListener('click', () => {
+                // Mark day as complete
+                completedDays[`${day}_${lang}`] = true;
+                localStorage.setItem('completedDays', JSON.stringify(completedDays));
+                
+                // Update button state
+                completeBtn.classList.add('completed');
+                completeBtn.innerHTML = '<i class="fas fa-check-circle"></i> Completed';
+                completeBtn.disabled = true;
+
+                // Calculate total completed days
+                const totalCompleted = Object.keys(completedDays).filter(key => key.endsWith(`_${lang}`)).length;
+
+                // Update progress in localStorage
+                localStorage.setItem('currentProgress', JSON.stringify({
+                    lang: lang,
+                    completed: totalCompleted
+                }));
+
+                // Update progress on the page
+                updatePageProgress(lang, totalCompleted);
+
+                // Show completion notification
+                const notification = document.getElementById('copy-notification');
+                notification.textContent = 'Day marked as complete!';
+                notification.style.display = 'block';
+                notification.style.animation = 'none';
+                notification.offsetHeight; // Trigger reflow
+                notification.style.animation = 'fadeInOut 2s ease';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                    notification.textContent = 'Phrase copied to clipboard!';
+                }, 2000);
+            });
+
+            // Function to update progress UI
+            function updatePageProgress(lang, completed) {
+                // Update day status icons
+                const dayGrid = document.querySelector('.day-grid');
+                if (dayGrid) {
+                    const dayLinks = dayGrid.querySelectorAll('a');
+                    dayLinks.forEach((link, index) => {
+                        const day = index + 1;
+                        const status = link.querySelector('.day-status i');
+                        if (completedDays[`${day}_${lang}`]) {
+                            status.className = 'fas fa-check-circle';
+                            status.style.color = 'var(--success-color)';
+                        } else {
+                            status.className = 'fas fa-circle';
+                            status.style.color = 'var(--warning-color)';
+                        }
+                    });
+                }
+
+                // Update progress bar and text if on index page
+                const progressContainer = document.querySelector('.progress-container');
+                if (progressContainer) {
+                    const progressText = progressContainer.querySelector('p');
+                    const progressBar = progressContainer.querySelector('.progress-fill');
+                    if (progressText && progressBar) {
+                        progressText.textContent = `Progress: Day ${completed}/40`;
+                        progressBar.style.width = `${(completed / 40) * 100}%`;
+                    }
+                }
+            }
+
+            // Initialize progress on page load
+            const initialCompleted = Object.keys(completedDays).filter(key => key.endsWith(`_${lang}`)).length;
+            updatePageProgress(lang, initialCompleted);
+            
+            // Set active language
+            const languageBtns = document.querySelectorAll('.language-btn');
+            languageBtns.forEach(btn => {
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+                btn.addEventListener('click', () => {
+                    window.location.href = `day.html?day=${day}&lang=${btn.dataset.lang}`;
+                });
+            });
+
+            // Set language flag
+            const flagMap = {
+                'zh': '🇨🇳',
+                'pinyin': '🔤',
+                'en': '🇺🇸'
+            };
+            document.getElementById('language-flag').textContent = flagMap[lang];
+
+            // Update section info
+            const sectionInfo = getSectionInfo(day);
+            document.getElementById('section-title').textContent = sectionInfo.title;
+            document.getElementById('section-description').textContent = sectionInfo.description;
+
+            // Load audio from audio_files directory
+            const audio = document.getElementById('audio-player');
+            // For Pinyin and English, use the same audio file as Mandarin
+            const audioLang = (lang === 'pinyin' || lang === 'en') ? 'zh' : lang;
+            const audioPath = `audio_files/day${day}_${audioLang}.mp3`;
+            audio.src = audioPath;
+            
+            // Add a note for English and Pinyin that they're using Mandarin audio
+            const audioFallback = document.getElementById('audio-fallback');
+            if (lang === 'pinyin' || lang === 'en') {
+                audioFallback.innerHTML = '<p class="note"><i class="fas fa-info-circle"></i> Using Mandarin audio for reference.</p>';
+                audioFallback.style.display = 'block';
+            } else {
+                audioFallback.innerHTML = '';
+                audioFallback.style.display = 'none';
+            }
+            
+            // Load text content from text_files directory
+            console.log(`Attempting to load: text_files/day${day}_${lang}.txt`);
+            fetch(`text_files/day${day}_${lang}.txt`)
+                .then(response => {
+                    console.log('Response status:', response.status);
+                    if (!response.ok) {
+                        throw new Error(`Network response was not ok: ${response.status}`);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('Text loaded successfully, length:', text.length);
+                    console.log('First 100 characters:', text.substring(0, 100));
+                    formatAndDisplayContent(text);
+                })
+                .catch(error => {
+                    console.error('Error loading text:', error);
+                    document.getElementById('text-content').innerHTML = '<p class="error">Text content not available.</p>';
+                });
+
+            // Update navigation
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const prevBtnTop = document.getElementById('prev-btn-top');
+            const nextBtnTop = document.getElementById('next-btn-top');
+
+            if (day > 1) {
+                prevBtn.href = `day.html?day=${day - 1}&lang=${lang}`;
+                prevBtnTop.href = `day.html?day=${day - 1}&lang=${lang}`;
+            } else {
+                prevBtn.classList.add('disabled');
+                prevBtnTop.classList.add('disabled');
+                prevBtn.href = '#';
+                prevBtnTop.href = '#';
+            }
+
+            if (day < 40) {
+                nextBtn.href = `day.html?day=${day + 1}&lang=${lang}`;
+                nextBtnTop.href = `day.html?day=${day + 1}&lang=${lang}`;
+            } else {
+                nextBtn.classList.add('disabled');
+                nextBtnTop.classList.add('disabled');
+                nextBtn.href = '#';
+                nextBtnTop.href = '#';
+            }
+        });
+
+        function formatAndDisplayContent(text) {
+            console.log('Starting to format content');
+            // First, normalize line endings and remove any extra whitespace
+            text = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+            
+            // Split into sections based on titles (lines ending with multiple dashes)
+            const sections = text.split(/\n(?=\w[^\n]+\n-+\n)/);
+            console.log('Number of sections:', sections.length);
+            
+            const contentDiv = document.getElementById('text-content');
+            contentDiv.innerHTML = '';
+
+            sections.forEach((section, index) => {
+                console.log(`Processing section ${index + 1}`);
+                if (section.trim()) {
+                    const lines = section.split('\n');
+                    
+                    // Get the title (first line) and remove any trailing dashes
+                    let title = lines[0].replace(/\s*[-]+\s*$/, '').trim();
+                    
+                    // Skip empty sections or sections that are just separators
+                    if (!title || /^[-\s]+$/.test(title)) {
+                        return;
+                    }
+                    
+                    // Get phrases, skipping empty lines, separator lines, and the line of dashes after the title
+                    let phrases = lines.slice(1).filter(line => {
+                        const trimmed = line.trim();
+                        return trimmed && !/^[-\s]+$/.test(trimmed);
+                    });
+                    
+                    const sectionDiv = document.createElement('div');
+                    sectionDiv.className = 'phrase-section';
+                    
+                    const titleEl = document.createElement('h3');
+                    titleEl.textContent = title;
+                    sectionDiv.appendChild(titleEl);
+                    
+                    const phraseList = document.createElement('div');
+                    phraseList.className = 'phrase-list';
+                    
+                    phrases.forEach(phrase => {
+                        if (phrase.trim()) {
+                            const phraseItem = document.createElement('div');
+                            phraseItem.className = 'phrase-item';
+                            
+                            const phraseText = document.createElement('span');
+                            phraseText.textContent = phrase.trim();
+                            
+                            const copyBtn = document.createElement('button');
+                            copyBtn.className = 'copy-btn';
+                            copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
+                            copyBtn.addEventListener('click', () => copyPhrase(phrase.trim()));
+                            
+                            phraseItem.appendChild(phraseText);
+                            phraseItem.appendChild(copyBtn);
+                            phraseList.appendChild(phraseItem);
+                        }
+                    });
+                    
+                    sectionDiv.appendChild(phraseList);
+                    contentDiv.appendChild(sectionDiv);
+                }
+            });
+        }
+
+        function copyPhrase(phrase) {
+            navigator.clipboard.writeText(phrase).then(() => {
+                const notification = document.getElementById('copy-notification');
+                notification.style.display = 'block';
+                notification.style.animation = 'none';
+                notification.offsetHeight; // Trigger reflow
+                notification.style.animation = 'fadeInOut 2s ease';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 2000);
+            });
+        }
+
+        function getSectionInfo(day) {
+            if (day <= 7) {
+                return {
+                    title: 'Pinyin System & Pronunciation',
+                    description: 'Master the fundamentals of Mandarin pronunciation and tones.'
+                };
+            } else if (day <= 14) {
+                return {
+                    title: 'Essential Daily Phrases',
+                    description: 'Learn practical phrases for everyday communication.'
+                };
+            } else if (day <= 22) {
+                return {
+                    title: 'Cultural Context & Daily Life',
+                    description: 'Understand Chinese culture and daily life communication.'
+                };
+            } else if (day <= 30) {
+                return {
+                    title: 'Professional Mandarin',
+                    description: 'Master business and professional communication.'
+                };
+            } else {
+                return {
+                    title: 'Advanced Fluency',
+                    description: 'Achieve advanced fluency and real-world applications.'
+                };
+            }
+        }
+    </script>
+    
+    <script>
+        // Return to top functionality
+        window.addEventListener('scroll', function() {
+            const returnToTop = document.getElementById('returnToTop');
+            if (window.scrollY > 500) {
+                returnToTop.classList.add('visible');
+            } else {
+                returnToTop.classList.remove('visible');
+            }
+        });
+        
+        document.getElementById('returnToTop').addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>

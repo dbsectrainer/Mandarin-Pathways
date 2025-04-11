@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize language from URL or localStorage
+    initializeLanguage();
+    
     // Generate day grid
     generateDayGrid();
     
@@ -13,12 +16,57 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Add micro-interactions
     initializeMicroInteractions();
+    
+    // Initialize language buttons
+    initializeLanguageButtons();
 });
+
+// Language handling
+function initializeLanguage() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const lang = urlParams.get('lang') || localStorage.getItem('preferredLanguage') || 'zh-CN';
+    setLanguage(lang);
+}
+
+function setLanguage(lang) {
+    // Store the preference
+    localStorage.setItem('preferredLanguage', lang);
+    
+    // Update HTML lang attribute
+    document.documentElement.lang = lang;
+    
+    // Update language buttons
+    const buttons = document.querySelectorAll('.language-btn');
+    buttons.forEach(btn => {
+        if ((btn.dataset.lang === 'zh' && lang === 'zh-CN') ||
+            (btn.dataset.lang === btn.dataset.lang && lang === btn.dataset.lang)) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+}
+
+function initializeLanguageButtons() {
+    const buttons = document.querySelectorAll('.language-btn');
+    buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const lang = btn.dataset.lang;
+            const htmlLang = lang === 'zh' ? 'zh-CN' : lang;
+            setLanguage(htmlLang);
+            
+            // Update URL without reloading
+            const url = new URL(window.location.href);
+            url.searchParams.set('lang', lang);
+            window.history.pushState({}, '', url);
+        });
+    });
+}
 // Global variables for pagination
 let currentDayPage = 1;
 const daysPerPage = 10;
 const totalDays = 40;
-const selectedLanguage = 'zh'; // Default to Simplified Chinese
+let selectedLanguage = localStorage.getItem('preferredLanguage') || 'zh-CN'; // Default to Simplified Chinese
 
 function generateDayGrid() {
     const dayGrid = document.querySelector('.day-grid');
@@ -38,7 +86,9 @@ function generateDayGrid() {
     
     for (let i = startDay; i <= endDay; i++) {
         const dayLink = document.createElement('a');
-        dayLink.href = `day.html?day=${i}&lang=${selectedLanguage}`;
+        // Convert zh-CN to zh for URLs
+        const urlLang = selectedLanguage === 'zh-CN' ? 'zh' : selectedLanguage;
+        dayLink.href = `day.html?day=${i}&lang=${urlLang}`;
         dayLink.className = 'animate-fade-in hover-scale';
         dayLink.style.animationDelay = `${(i - startDay) * 0.05}s`;
         
@@ -113,13 +163,17 @@ function addDayTooltip(element, text) {
 
 function initializeLanguageCards() {
     const cards = document.querySelectorAll('.language-card');
-    const languages = ['zh', 'pinyin', 'en']; // Simplified Chinese, Pinyin, and English
+    const languages = {
+        'zh': 'zh-CN',
+        'pinyin': 'en',
+        'en': 'en'
+    };
     
     cards.forEach((card, index) => {
-        if (index < languages.length) {
+        const language = Object.keys(languages)[index];
+        if (language) {
             card.addEventListener('click', function() {
-                const language = languages[index];
-                const title = this.querySelector('h3').textContent.trim().split(' ')[1].toLowerCase();
+                const htmlLang = languages[language];
                 
                 // Update selected language
                 document.querySelectorAll('.language-card').forEach(c => {
@@ -129,17 +183,17 @@ function initializeLanguageCards() {
                 this.style.opacity = '1';
                 this.style.transform = 'translateY(-10px)';
                 
+                // Set language
+                setLanguage(htmlLang);
+                
                 // Update day grid links
                 updateDayGridLanguage(language);
                 
                 // Scroll to day selection
-                document.querySelector('#day-selection').scrollIntoView({ 
+                document.querySelector('#day-selection').scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
-                
-                // Update section title
-                document.querySelector('#day-selection h2').textContent = `${title} Lessons`;
             });
             
             // Add hover effects
@@ -248,7 +302,8 @@ function updateProgress(day) {
 
 // Helper function to format dates
 function formatDate(date) {
-    return new Intl.DateTimeFormat('en-US', {
+    const lang = document.documentElement.lang;
+    return new Intl.DateTimeFormat(lang === 'zh-CN' ? 'zh-CN' : 'en-US', {
         weekday: 'long',
         year: 'numeric',
         month: 'long',
@@ -262,6 +317,9 @@ function handleError(error) {
     const main = document.querySelector('main');
     const errorDiv = document.createElement('div');
     errorDiv.className = 'error animate-fade-in';
-    errorDiv.textContent = 'An error occurred. Please try again later.';
+    const lang = document.documentElement.lang;
+    errorDiv.innerHTML = lang === 'zh-CN' ?
+        '<span class="zh">发生错误。请稍后再试。</span>' :
+        '<span class="en">An error occurred. Please try again later.</span>';
     main.prepend(errorDiv);
 }

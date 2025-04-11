@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Daily Mandarin Chinese lessons with audio and text - 每日中文课程，配有音频和文本">
     <title>Mandarin Pathways - Daily Lesson</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +14,7 @@
 <body>
     <header>
         <h1>Mandarin Pathways</h1>
-        <p>Your Journey to Chinese Language Mastery</p>
+        <p><span class="zh">开启您的中文学习之旅</span><span class="en">Your Journey to Chinese Language Mastery</span></p>
     </header>
 
     <main>
@@ -29,7 +30,7 @@
             <div class="lesson-header">
                 <div class="lesson-title">
                     <span class="flag" id="language-flag"></span>
-                    <h2>Day <span id="day-number"></span></h2>
+                    <h2><span class="zh">第</span><span class="en">Day </span><span id="day-number"></span><span class="zh">天</span></h2>
                 </div>
                 <div class="language-selector">
                     <button class="language-btn" data-lang="zh"><span class="flag">🇨🇳</span> 简体中文</button>
@@ -40,13 +41,13 @@
 
             <div class="navigation">
                 <a href="#" class="nav-btn" id="prev-btn-top">
-                    <i class="fas fa-arrow-left"></i> Previous Day
+                    <i class="fas fa-arrow-left"></i> <span class="zh">上一天</span><span class="en">Previous Day</span>
                 </a>
                 <a href="index.html" class="home-btn">
-                    <i class="fas fa-home"></i> Back to Home
+                    <i class="fas fa-home"></i> <span class="zh">返回首页</span><span class="en">Back to Home</span>
                 </a>
                 <a href="#" class="nav-btn" id="next-btn-top">
-                    Next Day <i class="fas fa-arrow-right"></i>
+                    <span class="zh">下一天</span><span class="en">Next Day</span> <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
 
@@ -57,7 +58,7 @@
 
             <div class="audio-player">
                 <audio controls id="audio-player" type="audio/mpeg">
-                    Your browser does not support the audio element.
+                    <span class="zh">您的浏览器不支持音频元素。</span><span class="en">Your browser does not support the audio element.</span>
                 </audio>
                 <div id="audio-fallback"></div>
             </div>
@@ -68,7 +69,7 @@
 
             <div class="lesson-actions">
                 <button id="complete-btn" class="complete-btn">
-                    <i class="fas fa-check"></i> Mark as Complete
+                    <i class="fas fa-check"></i> <span class="zh">标记为已完成</span><span class="en">Mark as Complete</span>
                 </button>
             </div>
 
@@ -77,13 +78,13 @@
             
             <div class="navigation">
                 <a href="#" class="nav-btn" id="prev-btn">
-                    <i class="fas fa-arrow-left"></i> Previous Day
+                    <i class="fas fa-arrow-left"></i> <span class="zh">上一天</span><span class="en">Previous Day</span>
                 </a>
                 <a href="index.html" class="home-btn">
-                    <i class="fas fa-home"></i> Back to Home
+                    <i class="fas fa-home"></i> <span class="zh">返回首页</span><span class="en">Back to Home</span>
                 </a>
                 <a href="#" class="nav-btn" id="next-btn">
-                    Next Day <i class="fas fa-arrow-right"></i>
+                    <span class="zh">下一天</span><span class="en">Next Day</span> <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
         </div>
@@ -93,11 +94,11 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 Mandarin Pathways | Empowering Chinese Language Learning</p>
+        <p>&copy; 2025 Mandarin Pathways | <span class="zh">赋能中文学习</span><span class="en">Empowering Chinese Language Learning</span></p>
     </footer>
 
     <div class="copy-notification" id="copy-notification">
-        Phrase copied to clipboard!
+        <span class="zh">短语已复制到剪贴板！</span><span class="en">Phrase copied to clipboard!</span>
     </div>
 
     <script>

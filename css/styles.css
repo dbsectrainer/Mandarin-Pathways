@@ -1,3 +1,6 @@
+/* Add Noto Sans SC font for Chinese text */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+
 :root {
     --primary-color: #2C3E50;
     --secondary-color: #f8f9fa;
@@ -10,7 +13,7 @@
 }
 
 body {
-    font-family: 'Poppins', Arial, sans-serif;
+    font-family: 'Poppins', 'Noto Sans SC', Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: var(--secondary-color);
@@ -498,15 +501,63 @@ footer {
     padding: 25px;
     border-radius: 12px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-decoration: none;
-    color: var(--text-color);
+}
+
+/* Language-specific text display */
+[lang="en"] .zh {
+    display: none;
+}
+
+[lang="zh-CN"] .en {
+    display: none;
+}
+
+/* Chinese text styling */
+.zh {
+    font-family: 'Noto Sans SC', sans-serif;
+}
+
+/* Language selector styles */
+.language-selector {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.language-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
     align-items: center;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+    gap: 5px;
+    font-size: 0.9em;
+}
+
+.language-btn:hover,
+.language-btn.active {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    font-weight: 600;
+}
+
+/* Media queries for language selector */
+@media (max-width: 768px) {
+    .language-selector {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+    
+    .language-btn {
+        padding: 6px 10px;
+        font-size: 0.85em;
+    }
 }
 
 .supplementary-card::before {

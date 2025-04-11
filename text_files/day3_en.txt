@@ -1,0 +1,17 @@
+
+Time Words
+----------
+now
+today
+tomorrow
+yesterday
+morning
+afternoon
+evening
+
+Asking Time
+-----------
+What time is it?
+It's 3 o'clock now
+When?
+What day of the week?

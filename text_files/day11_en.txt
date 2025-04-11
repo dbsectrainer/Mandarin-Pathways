@@ -1,0 +1,20 @@
+
+Direction Words
+---------------
+left side
+right side
+in front
+behind
+above
+below
+inside
+outside
+
+Asking for Directions
+---------------------
+Excuse me, where is the bank?
+How do I get to the train station?
+go straight
+turn left
+turn right
+How far to walk?

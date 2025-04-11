@@ -1,0 +1,21 @@
+
+Subject-Verb-Object
+-------------------
+I eat rice
+He drinks water
+We learn Chinese
+She reads a book
+
+Question Patterns
+-----------------
+Are you a student?
+Do you like Chinese food?
+Can you speak English?
+What is this?
+
+Negation Patterns
+-----------------
+I am not Chinese
+He doesn't have time
+I don't like coffee
+She can't swim

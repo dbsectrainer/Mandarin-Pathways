@@ -1,0 +1,18 @@
+
+Common Radicals
+---------------
+person radical
+mouth radical
+woman radical
+water radical
+tree/wood radical
+fire radical
+heart radical
+
+Character Components
+--------------------
+good = woman + child
+bright = sun + moon
+rest = person + tree
+man = field + strength
+forest = tree + tree + tree

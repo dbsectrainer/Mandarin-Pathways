@@ -215,14 +215,15 @@
 
             // Load audio from audio_files directory
             const audio = document.getElementById('audio-player');
-            // For Pinyin and English, use the same audio file as Mandarin
-            const audioLang = (lang === 'pinyin' || lang === 'en') ? 'zh' : lang;
+            // For Pinyin, use Mandarin audio. For English and Mandarin, use their respective audio files
+            const audioLang = lang === 'pinyin' ? 'zh' : lang;
             const audioPath = `audio_files/day${day}_${audioLang}.mp3`;
+            
             audio.src = audioPath;
             
-            // Add a note for English and Pinyin that they're using Mandarin audio
+            // Add a note only for Pinyin that it's using Mandarin audio
             const audioFallback = document.getElementById('audio-fallback');
-            if (lang === 'pinyin' || lang === 'en') {
+            if (lang === 'pinyin') {
                 audioFallback.innerHTML = '<p class="note"><i class="fas fa-info-circle"></i> Using Mandarin audio for reference.</p>';
                 audioFallback.style.display = 'block';
             } else {

@@ -419,18 +419,26 @@ def generate_text_file(category, format_type):
     
     print(f"✓ Saved to text_files/supplementary/{category}_{format_type}.txt")
 
-async def generate_audio(category, voice="zh-CN-XiaoxiaoNeural"):
+async def generate_audio(category, format_type="zh", voice=None):
     """Generate audio file for a specific category using edge-tts"""
-    print(f"\nGenerating {category} audio file...")
+    # Set default voice based on language
+    if voice is None:
+        voice = "zh-CN-XiaoxiaoNeural" if format_type == "zh" else "en-US-JennyNeural"
+    
+    print(f"\nGenerating {category} {format_type} audio file...")
     start_time = time.time()
     
     phrases_dict = supplementary_phrases[category]
     
-    # Generate text for Mandarin phrases
+    # Generate text for phrases
     text = ""
     for subcategory, phrase_list in phrases_dict.items():
         for phrase in phrase_list:
-            text += phrase['zh'] + "。"  # Add proper Chinese punctuation
+            # Add appropriate punctuation based on language
+            if format_type == "zh":
+                text += phrase['zh'] + "。"
+            else:
+                text += phrase['en'] + ". "
     
     # Ensure the audio_files directory exists
     os.makedirs("audio_files/supplementary", exist_ok=True)
@@ -439,21 +447,23 @@ async def generate_audio(category, voice="zh-CN-XiaoxiaoNeural"):
     communicate = edge_tts.Communicate(text, voice)
     
     # Generate audio
-    await communicate.save(f"audio_files/supplementary/{category}_zh.mp3")
+    await communicate.save(f"audio_files/supplementary/{category}_{format_type}.mp3")
     
     elapsed = time.time() - start_time
-    print(f"✓ Saved to audio_files/supplementary/{category}_zh.mp3 ({elapsed:.2f}s)")
+    print(f"✓ Saved to audio_files/supplementary/{category}_{format_type}.mp3 ({elapsed:.2f}s)")
 
 async def main():
-    parser = argparse.ArgumentParser(description="Generate supplementary Mandarin learning files")
+    parser = argparse.ArgumentParser(description="Generate supplementary Mandarin and English learning files")
     parser.add_argument("--category", "-c", type=str, 
                         choices=["education", "hobbies", "emotions", "daily_life", "comparisons"],
                         default=None,
                         help="Category to generate. If not specified, generates all categories.")
     parser.add_argument("--text-only", "-t", action="store_true", 
                         help="Generate only text files (no audio)")
-    parser.add_argument("--voice", "-v", type=str, default="zh-CN-XiaoxiaoNeural",
-                        help="Voice to use for audio generation (default: zh-CN-XiaoxiaoNeural)")
+    parser.add_argument("--voice", "-v", type=str,
+                        help="Voice to use for audio generation")
+    parser.add_argument("--language", "-l", type=str, choices=["zh", "en", "both"], default="both",
+                        help="Language to generate audio for (zh=Chinese, en=English, both=Both languages)")
     args = parser.parse_args()
     
     # Determine which categories to process
@@ -470,18 +480,29 @@ async def main():
         
         # Generate audio files if not text-only mode
         if not args.text_only:
-            await generate_audio(category, args.voice)
+            if args.language in ["zh", "both"]:
+                await generate_audio(category, "zh", args.voice)
+            if args.language in ["en", "both"]:
+                await generate_audio(category, "en", args.voice)
     
     print("\nAll supplementary files generated successfully!")
     print("\nUsage examples:")
     print("  - Generate text files only: python mandarin_phrases_supplementary.py --text-only")
     print("  - Generate files for just education: python mandarin_phrases_supplementary.py --category education")
-    print("  - Generate with different voice: python mandarin_phrases_supplementary.py --voice zh-CN-YunxiNeural")
+    print("  - Generate Chinese audio only: python mandarin_phrases_supplementary.py --language zh")
+    print("  - Generate English audio only: python mandarin_phrases_supplementary.py --language en")
+    print("  - Generate with different voice: python mandarin_phrases_supplementary.py --voice en-US-JennyNeural")
     print("\nAvailable voices:")
-    print("  - zh-CN-XiaoxiaoNeural (Default, female)")
+    print("Chinese voices:")
+    print("  - zh-CN-XiaoxiaoNeural (Default female)")
     print("  - zh-CN-YunxiNeural (Male)")
     print("  - zh-CN-XiaoyiNeural (Female)")
     print("  - zh-CN-YunyangNeural (Male)")
+    print("\nEnglish voices:")
+    print("  - en-US-JennyNeural (Default female)")
+    print("  - en-US-GuyNeural (Male)")
+    print("  - en-US-AriaNeural (Female)")
+    print("  - en-US-DavisNeural (Male)")
 
 if __name__ == "__main__":
     asyncio.run(main())

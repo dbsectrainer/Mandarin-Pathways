@@ -1,0 +1,16 @@
+
+Travel Dialogue 1
+-----------------
+Tourist: Excuse me, how do I get to the Great Wall?
+Local: You can take the subway to Beijing North Station, then transfer to bus route 916.
+Tourist: Approximately how long will it take?
+Local: About two hours.
+Tourist: Thank you for your help!
+
+Travel Dialogue 2
+-----------------
+Tourist: What time does this attraction close?
+Staff: We close at 8 PM.
+Tourist: How much is the admission ticket?
+Staff: Adult tickets are 100 yuan, student tickets are half price.
+Tourist: I'm a student, here's my student ID.

@@ -1,0 +1,18 @@
+
+Email Vocabulary
+----------------
+email
+recipient
+sender
+subject
+attachment
+CC (carbon copy)
+
+Email Phrases
+-------------
+Dear Sir/Madam
+Thank you for your email
+Please check the attachment
+Looking forward to your reply
+Sincerely
+Regards

@@ -1,0 +1,19 @@
+
+Technical Vocabulary
+--------------------
+software
+hardware
+program
+database
+network
+cloud computing
+artificial intelligence
+
+Technical Phrases
+-----------------
+The system crashed
+Need to update
+Backup data
+Restart the computer
+Download files
+Upload files

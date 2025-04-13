@@ -2,6 +2,7 @@ from googleapiclient.discovery import build
 import json
 import os
 import time
+import re
 
 YOUTUBE_API_KEY = os.getenv('YOUTUBE_API_KEY')
 
@@ -14,71 +15,87 @@ def get_topic(identifier, content_type="day"):
     if content_type == "day":
         topics = {
             # Foundations (Days 1-7)
-            1: "pinyin system pronunciation practice",
-            2: "numbers counting practice",
-            3: "time expressions practice",
-            4: "basic verbs actions practice",
-            5: "basic adjectives practice",
-            6: "question words practice",
-            7: "basic characters radicals practice",
+            1: "mandarin pinyin pronunciation lesson tutorial",
+            2: "mandarin numbers counting lesson tutorial",
+            3: "mandarin time expressions lesson tutorial",
+            4: "mandarin basic verbs actions lesson tutorial",
+            5: "mandarin basic adjectives lesson tutorial",
+            6: "mandarin question words lesson tutorial",
+            7: "mandarin basic characters radicals lesson tutorial",
 
             # Essential Daily Phrases (Days 8-14)
-            8: "shopping transportation practice",
-            9: "dining restaurant practice",
-            10: "directions navigation practice",
-            11: "basic grammar patterns practice",
-            12: "travel survival phrases practice",
-            13: "public transport practice",
-            14: "daily communication practice",
+            8: "mandarin shopping transportation phrases lesson tutorial",
+            9: "mandarin dining restaurant phrases lesson tutorial",
+            10: "mandarin directions navigation phrases lesson tutorial",
+            11: "mandarin basic grammar patterns lesson tutorial",
+            12: "mandarin travel survival phrases lesson tutorial",
+            13: "mandarin public transport phrases lesson tutorial",
+            14: "mandarin daily communication phrases lesson tutorial",
 
             # Cultural Context & Daily Life (Days 15-22)
-            15: "family relationships practice",
-            16: "social interactions practice",
-            17: "chinese etiquette practice",
-            18: "festivals traditions practice",
-            19: "home life practice",
-            20: "public places practice",
-            21: "cultural customs practice",
-            22: "social norms practice",
+            15: "mandarin family relationships vocabulary lesson tutorial",
+            16: "mandarin social interactions phrases lesson tutorial",
+            17: "chinese etiquette culture lesson tutorial",
+            18: "chinese festivals traditions lesson tutorial",
+            19: "mandarin home life vocabulary lesson tutorial",
+            20: "mandarin public places vocabulary lesson tutorial",
+            21: "chinese cultural customs lesson tutorial",
+            22: "chinese social norms lesson tutorial",
 
             # Professional Communication (Days 23-30)
-            23: "workplace vocabulary practice",
-            24: "business etiquette practice",
-            25: "online meetings practice",
-            26: "remote work practice",
-            27: "email writing practice",
-            28: "presentations practice",
-            29: "technical terms practice",
-            30: "professional conduct practice",
+            23: "mandarin workplace vocabulary lesson tutorial",
+            24: "chinese business etiquette lesson tutorial",
+            25: "mandarin online meetings phrases lesson tutorial",
+            26: "mandarin remote work vocabulary lesson tutorial",
+            27: "mandarin email writing phrases lesson tutorial",
+            28: "mandarin presentations phrases lesson tutorial",
+            29: "mandarin technical terms vocabulary lesson tutorial",
+            30: "chinese professional conduct lesson tutorial",
 
             # Advanced Fluency (Days 31-40)
-            31: "chinese idioms practice",
-            32: "formal expressions practice",
-            33: "casual slang practice",
-            34: "debate discussion practice",
-            35: "storytelling practice",
-            36: "persuasive speech practice",
-            37: "advanced dialogue practice",
-            38: "role play scenarios practice",
-            39: "complex conversations practice",
-            40: "fluent communication practice"
+            31: "chinese idioms expressions lesson tutorial",
+            32: "mandarin formal expressions lesson tutorial",
+            33: "mandarin casual slang lesson tutorial",
+            34: "mandarin debate discussion phrases lesson tutorial",
+            35: "mandarin storytelling phrases lesson tutorial",
+            36: "mandarin persuasive speech lesson tutorial",
+            37: "mandarin advanced dialogue lesson tutorial",
+            38: "mandarin role play scenarios lesson tutorial",
+            39: "mandarin complex conversations lesson tutorial",
+            40: "mandarin fluent communication lesson tutorial"
         }
-        return topics.get(identifier, "language practice conversation")
+        return topics.get(identifier, "mandarin chinese lesson tutorial")
     else:  # supplementary content
         topics = {
-            'education': "academic chinese learning practice",
-            'hobbies': "chinese hobbies interests practice",
-            'emotions': "expressing emotions chinese practice",
-            'daily_life': "daily life chinese practice",
-            'comparisons': "making comparisons chinese practice"
+            'education': "mandarin academic vocabulary lesson tutorial",
+            'hobbies': "mandarin hobbies interests vocabulary lesson tutorial",
+            'emotions': "mandarin expressing emotions vocabulary lesson tutorial",
+            'daily_life': "mandarin daily life vocabulary lesson tutorial",
+            'comparisons': "mandarin making comparisons grammar lesson tutorial"
         }
-        return topics.get(identifier, "supplementary chinese practice")
+        return topics.get(identifier, "mandarin supplementary lesson tutorial")
 
-def search_youtube_video(youtube, query, max_results=3):
+# List of preferred Mandarin learning channels
+PREFERRED_CHANNELS = [
+    "Yoyo Chinese",
+    "ChineseFor.Us",
+    "Everyday Chinese",
+    "Mandarin Corner",
+    "Talk Taiwanese Mandarin with Abby",
+    "Li Ziqi",
+    "Xiaomanyc",
+    "小马在纽约",  # Xiaomanyc's Chinese channel name
+    "Chinese with Jessie",
+    "Mandarin Blueprint",
+    "Chinese Zero to Hero",
+    "Peggy Lee Chinese"
+]
+
+def search_youtube_video(youtube, query, max_results=10):
     """Search for a Mandarin video matching criteria"""
     try:
-        # Add Mandarin-specific terms to query
-        full_query = f"中文母语者 {query}"
+        # Add educational terms to query
+        full_query = f"learn {query} 学习中文"
         
         print(f"Searching for: {full_query}")
         
@@ -95,26 +112,58 @@ def search_youtube_video(youtube, query, max_results=3):
         
         # Get video durations to filter
         video_ids = [item['id']['videoId'] for item in response['items']]
+        if not video_ids:
+            print("No videos found in search results")
+            return None
+            
         duration_request = youtube.videos().list(
-            part='contentDetails,statistics',
+            part='contentDetails,statistics,snippet',
             id=','.join(video_ids)
         )
         duration_response = duration_request.execute()
         
-        # Find best video (between 3-10 minutes, most views)
-        best_video = None
-        max_views = 0
+        # First, check for videos from preferred channels
+        preferred_videos = []
+        other_videos = []
         
-        for video in duration_response['items']:
+        for i, video in enumerate(duration_response['items']):
             duration = parse_duration(video['contentDetails']['duration'])
             views = int(video['statistics']['viewCount'])
+            channel_title = video['snippet']['channelTitle']
+            
+            # Check if video is from a preferred channel
+            is_preferred = any(re.search(channel, channel_title, re.IGNORECASE) for channel in PREFERRED_CHANNELS)
             
             # Videos between 3-10 minutes
-            if 180 <= duration <= 600 and views > max_views:
-                best_video = video['id']
-                max_views = views
+            if 180 <= duration <= 600:
+                if is_preferred:
+                    preferred_videos.append((video['id'], views, channel_title))
+                else:
+                    other_videos.append((video['id'], views, channel_title))
         
-        return best_video or video_ids[0]  # Fallback to first result if no ideal video found
+        # Sort preferred videos by views (descending)
+        preferred_videos.sort(key=lambda x: x[1], reverse=True)
+        other_videos.sort(key=lambda x: x[1], reverse=True)
+        
+        # Print information about found videos
+        if preferred_videos:
+            print(f"Found {len(preferred_videos)} videos from preferred channels:")
+            for i, (video_id, views, channel) in enumerate(preferred_videos[:3], 1):
+                print(f"  {i}. {channel} - {views} views - https://youtube.com/watch?v={video_id}")
+            
+            # Return the preferred video with the most views
+            return preferred_videos[0][0]
+        elif other_videos:
+            print(f"No videos from preferred channels found. Using other videos:")
+            for i, (video_id, views, channel) in enumerate(other_videos[:3], 1):
+                print(f"  {i}. {channel} - {views} views - https://youtube.com/watch?v={video_id}")
+            
+            # Return the video with the most views
+            return other_videos[0][0]
+        else:
+            print("No suitable videos found (3-10 minutes duration)")
+            # If no videos match our criteria, return the first video from the search results
+            return video_ids[0] if video_ids else None
         
     except Exception as e:
         print(f"Error searching YouTube: {e}")

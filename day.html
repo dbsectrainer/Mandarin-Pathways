@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/video-player.css">
+    <link rel="stylesheet" href="css/native-speaker.css">
 </head>
 <body>
     <header>
@@ -65,6 +67,22 @@
 
             <div class="text-content" id="text-content">
                 <!-- Text content will be dynamically added here -->
+            </div>
+
+            <!-- Practice with Native Speaker Videos (Mandarin only) -->
+            <div id="video-section" style="display: none;">
+                <div class="section-divider"></div>
+                <h3 class="practice-heading">
+                    <span class="zh">观看视频练习</span>
+                    <span class="en">Watch Practice Videos</span>
+                </h3>
+                <div class="video-player">
+                    <iframe id="youtube-video" frameborder="0" allowfullscreen></iframe>
+                    <div id="video-fallback">
+                        <span class="zh">视频暂时无法使用</span>
+                        <span class="en">Video currently unavailable</span>
+                    </div>
+                </div>
             </div>
 
             <div class="lesson-actions">
@@ -208,6 +226,10 @@
                 'en': '🇺🇸'
             };
             document.getElementById('language-flag').textContent = flagMap[lang];
+
+            // Show video section only for Mandarin content
+            const videoSection = document.getElementById('video-section');
+            videoSection.style.display = lang === 'zh' ? 'block' : 'none';
 
             // Update section info
             const sectionInfo = getSectionInfo(day);
@@ -406,5 +428,6 @@
             });
         });
     </script>
+    <script src="js/video-loader.js"></script>
 </body>
 </html>

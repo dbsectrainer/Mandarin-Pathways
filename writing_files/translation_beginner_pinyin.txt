@@ -1,0 +1,20 @@
+初级翻译练习 / Beginner Translation Exercises
+--------------------
+
+Translate simple sentences between English and Chinese
+
+1. English: My name is Li Ming.
+Translation: Wǒ jiào Lǐ Míng.
+
+2. English: I am a student.
+Translation: Wǒ shì xuésheng.
+
+3. English: I like to eat Chinese food.
+Translation: Wǒ xǐhuan chī zhōngguó cài.
+
+4. English: Where is the bathroom?
+Translation: Xǐshǒujiān zài nǎlǐ?
+
+5. English: How much does this cost?
+Translation: Zhège duōshao qián?
+

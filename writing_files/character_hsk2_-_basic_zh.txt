@@ -1,0 +1,85 @@
+HSK2 基础汉字
+--------------------
+
+Practice common characters from HSK Level 2
+
+学 - to learn
+笔画数: 8
+笔顺: top, left vertical, right vertical, horizontal, left diagonal, right diagonal, horizontal, vertical
+
+Write each character 5 times, paying attention to stroke order:
+
+学: _ _ _ _ _
+
+生 - to be born, life
+笔画数: 5
+笔顺: horizontal, vertical, horizontal, left diagonal, right diagonal
+
+Write each character 5 times, paying attention to stroke order:
+
+生: _ _ _ _ _
+
+工 - work
+笔画数: 3
+笔顺: horizontal, vertical, horizontal
+
+Write each character 5 times, paying attention to stroke order:
+
+工: _ _ _ _ _
+
+作 - to do
+笔画数: 7
+笔顺: left diagonal, right diagonal, horizontal, vertical, horizontal, vertical, horizontal
+
+Write each character 5 times, paying attention to stroke order:
+
+作: _ _ _ _ _
+
+朋 - friend
+笔画数: 8
+笔顺: horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical
+
+Write each character 5 times, paying attention to stroke order:
+
+朋: _ _ _ _ _
+
+友 - friend
+笔画数: 4
+笔顺: left diagonal, right diagonal, horizontal, vertical
+
+Write each character 5 times, paying attention to stroke order:
+
+友: _ _ _ _ _
+
+明 - bright
+笔画数: 8
+笔顺: horizontal, vertical, horizontal, vertical, left diagonal, right diagonal, left diagonal, right diagonal
+
+Write each character 5 times, paying attention to stroke order:
+
+明: _ _ _ _ _
+
+天 - day, sky
+笔画数: 4
+笔顺: horizontal, vertical, left diagonal, right diagonal
+
+Write each character 5 times, paying attention to stroke order:
+
+天: _ _ _ _ _
+
+气 - air, gas
+笔画数: 4
+笔顺: horizontal, vertical, left diagonal, right diagonal
+
+Write each character 5 times, paying attention to stroke order:
+
+气: _ _ _ _ _
+
+很 - very
+笔画数: 9
+笔顺: horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal
+
+Write each character 5 times, paying attention to stroke order:
+
+很: _ _ _ _ _
+

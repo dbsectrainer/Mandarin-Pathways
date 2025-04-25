@@ -1,0 +1,198 @@
+/* Reading page specific styles */
+
+.level-selector,
+.topic-selector {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: var(--bg-light);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.level-buttons,
+.topic-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.level-btn,
+.topic-btn {
+    padding: 10px 15px;
+    background-color: var(--bg-white);
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    color: var(--text-dark);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.level-btn:hover,
+.topic-btn:hover {
+    background-color: var(--primary-light);
+}
+
+.level-btn.active,
+.topic-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.reading-content {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: var(--bg-white);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    line-height: 1.8;
+}
+
+.reading-content p {
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+.vocabulary-section,
+.questions-section {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: var(--bg-light);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.vocabulary-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.vocab-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--bg-white);
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Vocabulary item styling */
+.bullet {
+    color: var(--accent-color);
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+.pinyin {
+    color: #666;
+    font-style: italic;
+    margin: 0 3px;
+}
+
+.separator {
+    margin: 0 5px;
+    color: #999;
+}
+
+.copy-btn {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 5px;
+    transition: color 0.3s ease;
+}
+
+.copy-btn:hover {
+    color: var(--primary-dark);
+}
+
+.questions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.question-item {
+    padding: 15px;
+    background-color: var(--bg-white);
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Question styling */
+.question-number {
+    color: var(--accent-color);
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.question-text {
+    margin-bottom: 15px;
+    font-weight: 500;
+    font-size: 1.05em;
+}
+
+.answer-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.answer-toggle {
+    align-self: flex-start;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.answer-toggle:hover {
+    background-color: var(--hover-color);
+}
+
+.answer-text {
+    background-color: #f8f9fa;
+    border-left: 3px solid var(--success-color);
+    padding: 10px 15px;
+    margin-top: 5px;
+    border-radius: 0 4px 4px 0;
+    font-style: italic;
+}
+
+.answer-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    resize: vertical;
+    min-height: 60px;
+    font-family: inherit;
+}
+
+.answer-input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .vocabulary-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .level-buttons,
+    .topic-buttons {
+        flex-direction: column;
+    }
+}

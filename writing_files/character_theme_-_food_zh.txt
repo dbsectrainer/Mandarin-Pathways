@@ -1,0 +1,85 @@
+主题 - 食物
+--------------------
+
+Practice characters related to food and dining
+
+吃 - to eat
+笔画数: 6
+笔顺: top, right, bottom-left, horizontal, vertical, horizontal
+
+Write each character 5 times, paying attention to stroke order:
+
+吃: _ _ _ _ _
+
+饭 - rice, meal
+笔画数: 7
+笔顺: left vertical, right vertical, horizontal, vertical, horizontal, vertical, horizontal
+
+Write each character 5 times, paying attention to stroke order:
+
+饭: _ _ _ _ _
+
+菜 - dish, vegetable
+笔画数: 11
+笔顺: top, left vertical, right vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical
+
+Write each character 5 times, paying attention to stroke order:
+
+菜: _ _ _ _ _
+
+米 - rice
+笔画数: 6
+笔顺: top, left vertical, right vertical, horizontal, left diagonal, right diagonal
+
+Write each character 5 times, paying attention to stroke order:
+
+米: _ _ _ _ _
+
+面 - noodle, face
+笔画数: 9
+笔顺: horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal
+
+Write each character 5 times, paying attention to stroke order:
+
+面: _ _ _ _ _
+
+茶 - tea
+笔画数: 9
+笔顺: top, left vertical, right vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical
+
+Write each character 5 times, paying attention to stroke order:
+
+茶: _ _ _ _ _
+
+水 - water
+笔画数: 4
+笔顺: left dot, right dot, left diagonal, right diagonal
+
+Write each character 5 times, paying attention to stroke order:
+
+水: _ _ _ _ _
+
+果 - fruit
+笔画数: 8
+笔顺: horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical
+
+Write each character 5 times, paying attention to stroke order:
+
+果: _ _ _ _ _
+
+鱼 - fish
+笔画数: 8
+笔顺: horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical
+
+Write each character 5 times, paying attention to stroke order:
+
+鱼: _ _ _ _ _
+
+肉 - meat
+笔画数: 6
+笔顺: horizontal, vertical, horizontal, vertical, horizontal, vertical
+
+Write each character 5 times, paying attention to stroke order:
+
+肉: _ _ _ _ _
+

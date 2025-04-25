@@ -1,0 +1,25 @@
+高级句子完成 / Advanced Sentence Completion
+--------------------
+
+Complete sentences with appropriate words or phrases
+
+1. 环境保护 ____ 全球关注的重要话题。(become)
+Answer: 已经成为 (yǐjīng chéngwéi)
+Full sentence: 环境保护已经成为全球关注的重要话题。
+
+2. 随着经济的发展，人们的生活水平 ____ 。(improve)
+Answer: 不断提高 (bùduàn tígāo)
+Full sentence: 随着经济的发展，人们的生活水平不断提高。
+
+3. 尽管面临挑战，他们 ____ 取得了成功。(still)
+Answer: 仍然 (réngrán)
+Full sentence: 尽管面临挑战，他们仍然取得了成功。
+
+4. 这个问题 ____ 进一步研究。(need)
+Answer: 需要 (xūyào)
+Full sentence: 这个问题需要进一步研究。
+
+5. 我们应该 ____ 自然资源。(protect)
+Answer: 保护 (bǎohù)
+Full sentence: 我们应该保护自然资源。
+

@@ -1,0 +1,85 @@
+主题 - 食物 / Theme - Food
+--------------------
+
+Practice characters related to food and dining
+
+吃 - chī - to eat
+Stroke count: 6
+Stroke order: top, right, bottom-left, horizontal, vertical, horizontal
+
+Write each character 5 times, paying attention to stroke order:
+
+吃: _ _ _ _ _
+
+饭 - fàn - rice, meal
+Stroke count: 7
+Stroke order: left vertical, right vertical, horizontal, vertical, horizontal, vertical, horizontal
+
+Write each character 5 times, paying attention to stroke order:
+
+饭: _ _ _ _ _
+
+菜 - cài - dish, vegetable
+Stroke count: 11
+Stroke order: top, left vertical, right vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical
+
+Write each character 5 times, paying attention to stroke order:
+
+菜: _ _ _ _ _
+
+米 - mǐ - rice
+Stroke count: 6
+Stroke order: top, left vertical, right vertical, horizontal, left diagonal, right diagonal
+
+Write each character 5 times, paying attention to stroke order:
+
+米: _ _ _ _ _
+
+面 - miàn - noodle, face
+Stroke count: 9
+Stroke order: horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal
+
+Write each character 5 times, paying attention to stroke order:
+
+面: _ _ _ _ _
+
+茶 - chá - tea
+Stroke count: 9
+Stroke order: top, left vertical, right vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical
+
+Write each character 5 times, paying attention to stroke order:
+
+茶: _ _ _ _ _
+
+水 - shuǐ - water
+Stroke count: 4
+Stroke order: left dot, right dot, left diagonal, right diagonal
+
+Write each character 5 times, paying attention to stroke order:
+
+水: _ _ _ _ _
+
+果 - guǒ - fruit
+Stroke count: 8
+Stroke order: horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical
+
+Write each character 5 times, paying attention to stroke order:
+
+果: _ _ _ _ _
+
+鱼 - yú - fish
+Stroke count: 8
+Stroke order: horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical
+
+Write each character 5 times, paying attention to stroke order:
+
+鱼: _ _ _ _ _
+
+肉 - ròu - meat
+Stroke count: 6
+Stroke order: horizontal, vertical, horizontal, vertical, horizontal, vertical
+
+Write each character 5 times, paying attention to stroke order:
+
+肉: _ _ _ _ _
+

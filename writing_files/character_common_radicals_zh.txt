@@ -1,0 +1,45 @@
+常用部首
+--------------------
+
+Practice common radicals that form the building blocks of Chinese characters
+
+口 - mouth
+笔画数: 3
+笔顺: top, right, bottom-left
+
+Write each radical 5 times, paying attention to stroke order:
+
+口: _ _ _ _ _
+
+木 - tree
+笔画数: 4
+笔顺: vertical, horizontal, left diagonal, right diagonal
+
+Write each radical 5 times, paying attention to stroke order:
+
+木: _ _ _ _ _
+
+水 - water
+笔画数: 4
+笔顺: left dot, right dot, left diagonal, right diagonal
+
+Write each radical 5 times, paying attention to stroke order:
+
+水: _ _ _ _ _
+
+火 - fire
+笔画数: 4
+笔顺: dot, left diagonal, right diagonal, vertical
+
+Write each radical 5 times, paying attention to stroke order:
+
+火: _ _ _ _ _
+
+人 - person
+笔画数: 2
+笔顺: left diagonal, right diagonal
+
+Write each radical 5 times, paying attention to stroke order:
+
+人: _ _ _ _ _
+

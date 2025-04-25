@@ -1,0 +1,85 @@
+主题 - 家庭 / Theme - Family
+--------------------
+
+Practice characters related to family members and relationships
+
+家 - jiā - home, family
+Stroke count: 10
+Stroke order: top, left vertical, right vertical, horizontal, left diagonal, right diagonal, horizontal, vertical, horizontal, vertical
+
+Write each character 5 times, paying attention to stroke order:
+
+家: _ _ _ _ _
+
+爸 - bà - father
+Stroke count: 9
+Stroke order: horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal
+
+Write each character 5 times, paying attention to stroke order:
+
+爸: _ _ _ _ _
+
+妈 - mā - mother
+Stroke count: 6
+Stroke order: horizontal, vertical, horizontal, left diagonal, right diagonal, horizontal
+
+Write each character 5 times, paying attention to stroke order:
+
+妈: _ _ _ _ _
+
+哥 - gē - older brother
+Stroke count: 10
+Stroke order: top, right, bottom-left, horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal
+
+Write each character 5 times, paying attention to stroke order:
+
+哥: _ _ _ _ _
+
+姐 - jiě - older sister
+Stroke count: 8
+Stroke order: horizontal, vertical, horizontal, left diagonal, right diagonal, horizontal, vertical, horizontal
+
+Write each character 5 times, paying attention to stroke order:
+
+姐: _ _ _ _ _
+
+弟 - dì - younger brother
+Stroke count: 7
+Stroke order: horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal
+
+Write each character 5 times, paying attention to stroke order:
+
+弟: _ _ _ _ _
+
+妹 - mèi - younger sister
+Stroke count: 8
+Stroke order: horizontal, vertical, horizontal, left diagonal, right diagonal, horizontal, vertical, horizontal
+
+Write each character 5 times, paying attention to stroke order:
+
+妹: _ _ _ _ _
+
+儿 - ér - son, child
+Stroke count: 2
+Stroke order: left diagonal, right diagonal
+
+Write each character 5 times, paying attention to stroke order:
+
+儿: _ _ _ _ _
+
+女 - nǚ - female, daughter
+Stroke count: 3
+Stroke order: left diagonal, right diagonal, horizontal
+
+Write each character 5 times, paying attention to stroke order:
+
+女: _ _ _ _ _
+
+爱 - ài - love
+Stroke count: 10
+Stroke order: horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical
+
+Write each character 5 times, paying attention to stroke order:
+
+爱: _ _ _ _ _
+

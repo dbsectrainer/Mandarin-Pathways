@@ -1,0 +1,25 @@
+Intermediate Sentence Completion
+--------------------
+
+Complete sentences with appropriate words or phrases
+
+1. 如果明天 ____ ，我们就去公园。(good weather)
+Answer: 天气好 (tiānqì hǎo)
+Full sentence: If the weather is good tomorrow, we will go to the park.
+
+2. 虽然很难，但是我 ____ 学好中文。(determined)
+Answer: 决心 (juéxīn)
+Full sentence: Although it's difficult, I am determined to learn Chinese well.
+
+3. 我不但会说中文，____ 会说英文。(but also)
+Answer: 而且 (érqiě)
+Full sentence: I can not only speak Chinese, but also English.
+
+4. 他 ____ 我去机场。(help)
+Answer: 帮助 (bāngzhù)
+Full sentence: He helped me go to the airport.
+
+5. 这本书 ____ 有意思。(very)
+Answer: 非常 (fēicháng)
+Full sentence: This book is very interesting.
+

@@ -1,0 +1,232 @@
+/* Writing page specific styles */
+
+.activity-selector,
+.level-selector {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: var(--bg-light);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.activity-buttons,
+.level-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.activity-btn,
+.level-btn {
+    padding: 10px 15px;
+    background-color: var(--bg-white);
+    border: 2px solid var(--primary-color);
+    border-radius: 5px;
+    color: var(--text-dark);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.activity-btn:hover,
+.level-btn:hover {
+    background-color: var(--primary-light);
+}
+
+.activity-btn.active,
+.level-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.writing-content {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: var(--bg-white);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Character practice styles */
+.character-practice {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.character-info {
+    margin-bottom: 15px;
+}
+
+.character-info p {
+    margin: 5px 0;
+}
+
+.practice-area {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.character-display {
+    font-size: 3rem;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-light);
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.practice-grid {
+    display: flex;
+    gap: 10px;
+}
+
+.practice-cell {
+    width: 60px;
+    height: 60px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--bg-light);
+}
+
+.writing-input {
+    width: 50px;
+    height: 50px;
+    border: 1px dashed var(--border-color);
+    background: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    font-size: 1.5rem;
+    font-family: inherit;
+    cursor: text;
+}
+
+.writing-input:focus {
+    outline: none;
+}
+
+/* Sentence completion and translation styles */
+.exercise-item {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: var(--bg-light);
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.exercise-prompt {
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.exercise-input {
+    margin-bottom: 10px;
+}
+
+.answer-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    font-family: inherit;
+}
+
+.answer-input:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+textarea.answer-input {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.exercise-result {
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+/* Writing tools section */
+.writing-tools {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: var(--bg-light);
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.tools-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.tool-btn {
+    padding: 10px 15px;
+    background-color: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tool-btn:hover {
+    background-color: var(--primary-light);
+    border-color: var(--primary-color);
+}
+
+/* Feedback styles */
+.correct {
+    border-color: var(--success-color) !important;
+    background-color: rgba(40, 167, 69, 0.1);
+}
+
+.incorrect {
+    border-color: var(--danger-color) !important;
+    background-color: rgba(220, 53, 69, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .activity-buttons,
+    .level-buttons,
+    .tools-container {
+        flex-direction: column;
+    }
+    
+    .practice-area {
+        flex-direction: column;
+    }
+    
+    .character-display {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .practice-grid {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .practice-cell {
+        width: 50px;
+        height: 50px;
+    }
+    
+    .writing-input {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+}

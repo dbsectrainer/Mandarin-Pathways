@@ -1,0 +1,45 @@
+Basic Strokes
+--------------------
+
+Practice the fundamental strokes used in Chinese characters
+
+一 - yī - one
+Stroke count: 1
+Stroke order: horizontal
+
+Write each character 5 times, paying attention to stroke order:
+
+一: _ _ _ _ _
+
+丨 - gǔn - vertical stroke
+Stroke count: 1
+Stroke order: vertical
+
+Write each character 5 times, paying attention to stroke order:
+
+丨: _ _ _ _ _
+
+丿 - piě - slash
+Stroke count: 1
+Stroke order: slash
+
+Write each character 5 times, paying attention to stroke order:
+
+丿: _ _ _ _ _
+
+丶 - diǎn - dot
+Stroke count: 1
+Stroke order: dot
+
+Write each character 5 times, paying attention to stroke order:
+
+丶: _ _ _ _ _
+
+乙 - yǐ - second
+Stroke count: 1
+Stroke order: hook
+
+Write each character 5 times, paying attention to stroke order:
+
+乙: _ _ _ _ _
+

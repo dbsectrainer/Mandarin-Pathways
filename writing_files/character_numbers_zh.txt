@@ -1,0 +1,45 @@
+数字
+--------------------
+
+Practice writing Chinese numbers
+
+一 - one
+笔画数: 1
+笔顺: horizontal
+
+Write each number 5 times, paying attention to stroke order:
+
+一: _ _ _ _ _
+
+二 - two
+笔画数: 2
+笔顺: top horizontal, bottom horizontal
+
+Write each number 5 times, paying attention to stroke order:
+
+二: _ _ _ _ _
+
+三 - three
+笔画数: 3
+笔顺: top horizontal, middle horizontal, bottom horizontal
+
+Write each number 5 times, paying attention to stroke order:
+
+三: _ _ _ _ _
+
+四 - four
+笔画数: 5
+笔顺: left horizontal, top horizontal, right vertical, middle horizontal, bottom box
+
+Write each number 5 times, paying attention to stroke order:
+
+四: _ _ _ _ _
+
+五 - five
+笔画数: 4
+笔顺: horizontal, vertical, left horizontal, right horizontal
+
+Write each number 5 times, paying attention to stroke order:
+
+五: _ _ _ _ _
+

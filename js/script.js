@@ -1,4 +1,28 @@
+// Request notification permission and subscribe to push notifications
+async function initializeNotifications() {
+  if ('Notification' in window && 'serviceWorker' in navigator && 'PushManager' in window) {
+    try {
+      const permission = await Notification.requestPermission();
+      if (permission === 'granted') {
+        const registration = await navigator.serviceWorker.ready;
+        const subscription = await registration.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: 'YOUR_VAPID_PUBLIC_KEY' // You'll need to replace this with your actual VAPID key
+        });
+        
+        // Here you would typically send the subscription to your server
+        console.log('Push notification subscription:', subscription);
+      }
+    } catch (error) {
+      console.error('Error setting up push notifications:', error);
+    }
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize notifications
+    initializeNotifications();
+    
     // Initialize language from URL or localStorage
     initializeLanguage();
     
@@ -19,6 +43,25 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize language buttons
     initializeLanguageButtons();
+
+    // Load hero section background image
+    const heroSection = document.querySelector('.hero-section');
+    if (heroSection) {
+        const img = new Image();
+        img.onload = function() {
+            heroSection.classList.add('loaded');
+        };
+        img.src = 'https://images.unsplash.com/photo-1546410531-89436e5b419a?auto=format&fit=crop&w=900&q=75';
+    }
+
+    // Use content-visibility for better performance
+    const sections = document.querySelectorAll('section');
+    sections.forEach(section => {
+        if (!section.classList.contains('hero-section')) {
+            section.style.contentVisibility = 'auto';
+            section.style.containIntrinsicSize = '500px';
+        }
+    });
 });
 
 // Language handling

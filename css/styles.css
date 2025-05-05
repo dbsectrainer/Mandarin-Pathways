@@ -1,15 +1,23 @@
-/* Add Noto Sans SC font for Chinese text */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+/* Preload fonts to prevent layout shifts */
+@font-face {
+    font-family: 'Noto Sans SC';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Noto Sans SC Regular'), local('NotoSansSC-Regular'),
+         url('https://fonts.gstatic.com/s/notosanssc/v12/k3kXo84MPvpLmixcA63oeALhLOCT-xWNm8Hqd37g1OkDRZe7lR4sg1IzSy-MNbE9VH8V.119.woff2') format('woff2');
+    unicode-range: U+4E00-9FFF;
+}
 
 :root {
-    --primary-color: #2C3E50;
+    --primary-color: #1a2733;
     --secondary-color: #f8f9fa;
-    --accent-color: #3498db;
-    --text-color: #2C3E50;
-    --hover-color: #2980b9;
-    --success-color: #2ecc71;
-    --warning-color: #f1c40f;
-    --danger-color: #e74c3c;
+    --accent-color: #1a5c8f;
+    --text-color: #1a2733;
+    --hover-color: #134166;
+    --success-color: #1e8449;
+    --warning-color: #996600;
+    --danger-color: #c0392b;
 }
 
 body {
@@ -44,11 +52,19 @@ header p {
 }
 
 .hero-section {
-    background: url('https://images.unsplash.com/photo-1546410531-89436e5b419a?auto=format&fit=crop&w=1920&q=80') center/cover;
+    background-color: var(--primary-color);
+    min-height: 400px;
     padding: 100px 20px;
     text-align: center;
     color: white;
     position: relative;
+    content-visibility: auto;
+    contain-intrinsic-size: 400px;
+}
+
+/* Load hero image after page load to prevent layout shift */
+.hero-section.loaded {
+    background: url('https://images.unsplash.com/photo-1546410531-89436e5b419a?auto=format&fit=crop&w=900&q=75') center/cover;
 }
 
 .hero-section::before {
@@ -205,7 +221,7 @@ main {
 
 .stat-label {
     font-size: 0.9em;
-    color: #7f8c8d;
+    color: #444;
 }
 
 /* Section dividers */
@@ -283,7 +299,7 @@ main {
 
 .section-card p {
     margin: 0;
-    color: #666;
+    color: #444;
     font-size: 0.95em;
     line-height: 1.5;
 }
@@ -391,7 +407,7 @@ main {
 
 .day-status {
     font-size: 0.8em;
-    color: #7f8c8d;
+    color: #444;
 }
 
 /* Return to top button */
@@ -493,7 +509,7 @@ footer {
     text-align: center;
     max-width: 800px;
     margin: 0 auto 30px;
-    color: #666;
+    color: #444;
     font-size: 1.1em;
     line-height: 1.5;
 }
@@ -724,7 +740,7 @@ footer {
 
 .supplementary-card p {
     margin: 0;
-    color: #666;
+    color: #444;
     font-size: 0.95em;
     line-height: 1.5;
     position: relative;
@@ -1201,7 +1217,7 @@ footer {
 
 .section-info p {
     margin: 0;
-    color: #666;
+    color: #444;
     position: relative;
     z-index: 1;
 }

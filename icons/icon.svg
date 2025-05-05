@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <rect width="512" height="512" fill="#ffffff"/>
+    <path d="M256 50 C142 50 50 142 50 256 C50 370 142 462 256 462 C370 462 462 370 462 256 C462 142 370 50 256 50 Z" fill="#e74c3c" opacity="0.1"/>
+    <g transform="translate(106,106) scale(0.6,0.6)" fill="#e74c3c">
+        <!-- Simplified character 学 (xué) -->
+        <path d="M150 50 L350 50 L350 100 L270 100 L270 150 L330 150 L330 200 L270 200 L270 250 L350 250 L350 300 L150 300 L150 250 L230 250 L230 200 L170 200 L170 150 L230 150 L230 100 L150 100 Z"/>
+        <path d="M150 320 L350 320 L350 370 L270 370 L270 420 L330 420 L330 470 L170 470 L170 420 L230 420 L230 370 L150 370 Z"/>
+    </g>
+</svg>

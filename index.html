@@ -2,21 +2,36 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="description" content="Learn Mandarin Chinese with structured daily lessons and supplementary materials - 通过结构化的每日课程和补充材料学习中文">
+    <meta name="theme-color" content="#e74c3c">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Mandarin Pathways">
     <title>Mandarin Pathways - Your Journey to Chinese Language Mastery</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <link rel="stylesheet" href="css/styles.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="css/styles.min.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    </noscript>
 </head>
 <body>
     <header>
         <div class="language-selector">
-            <button class="language-btn" data-lang="zh"><span class="flag">🇨🇳</span> 简体中文</button>
-            <button class="language-btn" data-lang="pinyin"><span class="flag">🔤</span> Pinyin</button>
-            <button class="language-btn" data-lang="en"><span class="flag">🇺🇸</span> English</button>
+            <button class="language-btn" data-lang="zh" aria-label="Switch to Simplified Chinese"><span class="flag">🇨🇳</span> 简体中文</button>
+            <button class="language-btn" data-lang="pinyin" aria-label="Switch to Pinyin"><span class="flag">🔤</span> Pinyin</button>
+            <button class="language-btn" data-lang="en" aria-label="Switch to English"><span class="flag">🇺🇸</span> English</button>
         </div>
         <h1>Mandarin Pathways</h1>
         <p><span class="zh">开启您的中文学习之旅</span><span class="en">Your Journey to Chinese Language Mastery</span></p>
@@ -157,9 +172,9 @@
             
             <!-- Day grid pagination controls -->
             <div class="day-controls">
-                <button id="prevDays" class="hover-scale"><i class="fas fa-chevron-left"></i> <span class="zh">上一页</span><span class="en">Previous</span></button>
-                <div class="day-range"><span class="zh">第</span><span class="en">Days </span><span id="dayRangeStart">1</span>-<span id="dayRangeEnd">10</span><span class="zh">天</span></div>
-                <button id="nextDays" class="hover-scale"><span class="zh">下一页</span><span class="en">Next</span> <i class="fas fa-chevron-right"></i></button>
+                <button id="prevDays" class="hover-scale" aria-label="Previous page"><i class="fas fa-chevron-left"></i> <span class="zh">上一页</span><span class="en">Previous</span></button>
+                <div class="day-range" role="status" aria-live="polite"><span class="zh">第</span><span class="en">Days </span><span id="dayRangeStart">1</span>-<span id="dayRangeEnd">10</span><span class="zh">天</span></div>
+                <button id="nextDays" class="hover-scale" aria-label="Next page"><span class="zh">下一页</span><span class="en">Next</span> <i class="fas fa-chevron-right"></i></button>
             </div>
             
             <div class="day-grid">
@@ -313,6 +328,19 @@
     </footer>
 
     <script>
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize progress tracking
             function initializeProgress() {
@@ -371,7 +399,85 @@
             }
         }
     </script>
-    <script src="js/script.js"></script>
+    <script src="js/script.min.js" defer></script>
+    <script src="js/notifications.js" defer></script>
+
+    <!-- Notification Settings Modal -->
+    <div id="notification-settings-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h3>Notification Settings</h3>
+            <div class="settings-form">
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="notifications-enabled" checked>
+                        Enable Daily Reminders
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>Reminder Time:
+                        <input type="time" id="reminder-time" value="09:00">
+                    </label>
+                </div>
+                <div class="button-group">
+                <button id="save-notification-settings" class="primary-btn" aria-label="Save notification settings">Save Settings</button>
+                <button id="close-notification-settings" class="secondary-btn" aria-label="Close settings modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 400px;
+            width: 90%;
+        }
+        .settings-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 1rem;
+        }
+        .primary-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .secondary-btn {
+            background: #f0f0f0;
+            border: 1px solid #ddd;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
     
     <script>
         // Return to top functionality

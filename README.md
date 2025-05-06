@@ -71,6 +71,11 @@ A focused Mandarin Chinese learning platform designed to take learners from foun
   - English (`day{n}_en.txt`)
 - `reading_files/`: Text content for reading practice exercises
 - `writing_files/`: Character practice content and writing exercises
+- `manifest.json`: PWA configuration for installable app features
+- `sw.js`: Service Worker for offline functionality and caching
+- `icons/`: PWA icons for various device sizes and resolutions
+  - `icon-72x72.png` to `icon-512x512.png`: Progressive sizes for different devices
+  - `icon.svg`: Scalable vector icon
 - `videos.json`: YouTube video IDs for each daily lesson
 - `videos_supplementary.json`: YouTube video IDs for supplementary content
 - Python content generation scripts:
@@ -112,6 +117,16 @@ A focused Mandarin Chinese learning platform designed to take learners from foun
 - Practice dialogues and role-play
 
 ## Features
+
+### Progressive Web App (PWA)
+- Install as a standalone app on desktop and mobile devices
+- Offline access to lessons, audio, and practice materials
+- Push notifications for daily lesson reminders
+- Automatic updates when new content is available
+- Fast loading and smooth performance
+- Home screen icon for quick access
+- Full-screen immersive experience
+- Works across all modern browsers and devices
 
 ### Interactive Learning Interface
 - Dual audio tracks (English explanation + native Mandarin pronunciation)
@@ -185,7 +200,19 @@ python mandarin_phrases_supplementary.py
 ```
 
 ### Run the Site
-Simply open `index.html` in any modern browser. No server setup required.
+For basic usage and PWA features:
+```bash
+# Using Python's built-in server
+python -m http.server 8000
+```
+Then open `http://localhost:8000` in your browser.
+
+Note: Running through a local server is required to enable PWA features:
+1. Use Chrome or another modern browser that supports PWAs
+2. Look for the install prompt in the address bar to install as a standalone app
+3. Test offline functionality by disabling network in DevTools
+4. Enable notifications in your browser to receive daily reminders
+5. Clear site data in browser settings to test the service worker update process
 
 ## Usage Guide
 1. Open `index.html` and select your lesson

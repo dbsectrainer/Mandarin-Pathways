@@ -1,5 +1,10 @@
 # Mandarin Pathways
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.12%2B-blue.svg)](https://www.python.org/)
+[![Open Issues](https://img.shields.io/github/issues/dbsectrainer/Mandarin-Pathways)](https://github.com/dbsectrainer/Mandarin-Pathways/issues)
+[![Last Commit](https://img.shields.io/github/last-commit/dbsectrainer/Mandarin-Pathways)](https://github.com/dbsectrainer/Mandarin-Pathways/commits/main)
+
 ## Overview
 
 A focused Mandarin Chinese learning platform designed to take learners from foundational phrases to advanced professional fluency. The program offers a modular 40-day journey through interactive audio-visual lessons, YouTube video demonstrations, real-world conversation practice, reading comprehension exercises, character writing practice, and culturally relevant topics—ideal for travelers, professionals, and global citizens.
@@ -213,6 +218,17 @@ Note: Running through a local server is required to enable PWA features:
 3. Test offline functionality by disabling network in DevTools
 4. Enable notifications in your browser to receive daily reminders
 5. Clear site data in browser settings to test the service worker update process
+
+## Project Standards & Best Practices
+This project follows industry best practices for open source repositories:
+- [x] MIT License ([LICENSE](LICENSE))
+- [x] Contribution guidelines ([CONTRIBUTING.md](CONTRIBUTING.md))
+- [x] Code of Conduct ([CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md))
+- [x] Changelog ([CHANGELOG.md](CHANGELOG.md))
+- [x] Issue and PR templates ([.github/ISSUE_TEMPLATE/](.github/ISSUE_TEMPLATE/), [.github/PULL_REQUEST_TEMPLATE.md](.github/PULL_REQUEST_TEMPLATE.md))
+- [x] EditorConfig ([.editorconfig](.editorconfig))
+- [x] .gitignore and Dependabot ([.gitignore](.gitignore), [.github/dependabot.yml](.github/dependabot.yml))
+- [x] Funding options ([.github/FUNDING.yml](.github/FUNDING.yml))
 
 ## Usage Guide
 1. Open `index.html` and select your lesson

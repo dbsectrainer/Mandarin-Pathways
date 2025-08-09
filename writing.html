@@ -521,6 +521,27 @@
                     completedWritings[`${activityType}_${level}_${lang}`] = true;
                     localStorage.setItem('completedWritings', JSON.stringify(completedWritings));
                     
+                    // Award XP for writing completion
+                    if (typeof window.gamificationSystem !== 'undefined') {
+                        const xpResult = window.gamificationSystem.completeWriting();
+                        
+                        if (xpResult) {
+                            // Show XP notification
+                            setTimeout(() => {
+                                window.gamificationSystem.showNotification(
+                                    `✍️ +${xpResult.xpAwarded} XP for writing!`, 
+                                    'success'
+                                );
+                            }, 500);
+                        }
+                    }
+                    
+                    // Update challenge progress
+                    if (typeof window.challengeSystem !== 'undefined') {
+                        window.challengeSystem.updateProgress('writing_exercise', 1);
+                        window.challengeSystem.updateProgress('character_writing', 5); // Assume 5 characters per exercise
+                    }
+                    
                     // Update button state
                     completeBtn.classList.add('completed');
                     
@@ -995,5 +1016,8 @@
             });
         });
     </script>
+    <script src="js/gamification.js"></script>
+    <script src="js/achievements.js"></script>
+    <script src="js/challenges.js"></script>
 </body>
 </html>

@@ -162,6 +162,28 @@
                 completedDays[`${day}_${lang}`] = true;
                 localStorage.setItem('completedDays', JSON.stringify(completedDays));
                 
+                // Award XP for lesson completion
+                if (typeof window.gamificationSystem !== 'undefined') {
+                    const perfect = false; // TODO: Add logic to detect perfect completion
+                    const xpResult = window.gamificationSystem.completeLesson(day, lang, perfect);
+                    
+                    if (xpResult) {
+                        // Show XP notification
+                        setTimeout(() => {
+                            window.gamificationSystem.showNotification(
+                                `🎉 +${xpResult.xpAwarded} XP earned!`, 
+                                'success'
+                            );
+                        }, 500);
+                    }
+                }
+                
+                // Update challenge progress
+                if (typeof window.challengeSystem !== 'undefined') {
+                    window.challengeSystem.updateProgress('lesson_complete', 1);
+                    window.challengeSystem.updateProgress('study_time', 5); // Assume 5 minutes per lesson
+                }
+                
                 // Update button state
                 completeBtn.classList.add('completed');
                 completeBtn.innerHTML = '<i class="fas fa-check-circle"></i> Completed';
@@ -448,5 +470,8 @@
         });
     </script>
     <script src="js/video-loader.js"></script>
+    <script src="js/gamification.js"></script>
+    <script src="js/achievements.js"></script>
+    <script src="js/challenges.js"></script>
 </body>
 </html>

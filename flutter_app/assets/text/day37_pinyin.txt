@@ -1,0 +1,16 @@
+
+Restaurant Dialogue 1
+---------------------
+Fúwùyuán: Nín hǎo, jǐ wèi?
+Gùkè: Liǎng wèi, xièxie.
+Fúwùyuán: Qǐng gēn wǒ lái.
+Gùkè: Yǒu càidān ma?
+Fúwùyuán: Gěi nín, qǐng màn yòng.
+
+Restaurant Dialogue 2
+---------------------
+Gùkè: Wǒ xiǎng diǎn cài.
+Fúwùyuán: Nín xiǎng diǎn shénme?
+Gùkè: Wǒ yào yī fèn gōngbǎo jīdīng hé yī wǎn mǐfàn.
+Fúwùyuán: Hǎo de, hái xūyào shénme ma?
+Gùkè: Zài lái yī bēi chá, xièxie.

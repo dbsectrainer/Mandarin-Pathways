@@ -1,0 +1,26 @@
+
+Weather Conditions
+------------------
+sunny day
+raining
+cloudy
+windy
+snowing
+humid
+
+Daily Routines
+--------------
+get up
+brush teeth
+take a shower
+eat breakfast
+go to work
+get off work
+
+Shopping Types
+--------------
+clothing store
+bookstore
+pharmacy
+bakery
+fruit store

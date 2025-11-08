@@ -1,0 +1,16 @@
+
+Restaurant Dialogue 1
+---------------------
+Waiter: Hello, how many people?
+Customer: Two people, thank you.
+Waiter: Please follow me.
+Customer: Do you have a menu?
+Waiter: Here you are, please take your time.
+
+Restaurant Dialogue 2
+---------------------
+Customer: I'd like to order.
+Waiter: What would you like to order?
+Customer: I want one Kung Pao Chicken and a bowl of rice.
+Waiter: OK, anything else?
+Customer: Also a cup of tea, thank you.

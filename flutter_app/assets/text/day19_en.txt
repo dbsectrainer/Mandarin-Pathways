@@ -1,0 +1,19 @@
+
+Rooms and Areas
+---------------
+living room
+bedroom
+kitchen
+bathroom
+balcony
+garden
+
+Household Items
+---------------
+table
+chair
+bed
+sofa
+television
+refrigerator
+air conditioner

@@ -1,0 +1,16 @@
+
+Shopping Dialogue 1
+-------------------
+Customer: How much is this piece of clothing?
+Clerk: 200 yuan.
+Customer: That's too expensive. Can you make it cheaper?
+Clerk: 180 yuan, can't go any lower.
+Customer: OK, I'll take it.
+
+Shopping Dialogue 2
+-------------------
+Customer: Excuse me, where is the fitting room?
+Clerk: Over there, turn right.
+Customer: Do you have this in a larger size?
+Clerk: Let me check. Yes, here's an XL.
+Customer: Thanks, I'll try it on.

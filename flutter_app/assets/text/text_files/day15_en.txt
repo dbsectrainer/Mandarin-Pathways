@@ -1,0 +1,22 @@
+
+Immediate Family
+----------------
+father
+mother
+older brother
+older sister
+younger brother
+younger sister
+son
+daughter
+
+Extended Family
+---------------
+paternal grandfather
+paternal grandmother
+maternal grandfather
+maternal grandmother
+uncle (father's younger brother)
+aunt (mother's sister)
+male paternal cousin
+male maternal cousin

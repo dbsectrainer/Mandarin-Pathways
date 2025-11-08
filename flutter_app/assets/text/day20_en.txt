@@ -1,0 +1,18 @@
+
+Common Places
+-------------
+hospital
+school
+library
+park
+bank
+post office
+restaurant
+
+Public Communication
+--------------------
+Can I take photos here?
+Where is the restroom?
+Is there WiFi here?
+What are the business hours?
+I need help

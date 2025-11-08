@@ -1,0 +1,24 @@
+
+Sports
+------
+football/soccer
+basketball
+swimming
+tennis
+running
+
+Arts & Entertainment
+--------------------
+watch movies
+listen to music
+painting
+photography
+play piano
+
+Reading & Literature
+--------------------
+novel
+poetry
+magazine
+comics
+science fiction

@@ -2,12 +2,37 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.12%2B-blue.svg)](https://www.python.org/)
+[![Flutter](https://img.shields.io/badge/Flutter-3.0%2B-blue.svg)](https://flutter.dev/)
 [![Open Issues](https://img.shields.io/github/issues/dbsectrainer/Mandarin-Pathways)](https://github.com/dbsectrainer/Mandarin-Pathways/issues)
 [![Last Commit](https://img.shields.io/github/last-commit/dbsectrainer/Mandarin-Pathways)](https://github.com/dbsectrainer/Mandarin-Pathways/commits/main)
 
 ## Overview
 
 A focused Mandarin Chinese learning platform designed to take learners from foundational phrases to advanced professional fluency. The program offers a modular 40-day journey through interactive audio-visual lessons, YouTube video demonstrations, real-world conversation practice, reading comprehension exercises, character writing practice, and culturally relevant topics—ideal for travelers, professionals, and global citizens.
+
+### 🚀 Now Available as a Flutter Mobile App!
+
+**Mandarin Pathways** has been converted to a native Flutter application! The Flutter version provides:
+
+- ✅ **Cross-platform support**: iOS, Android, Web, Desktop (Windows, macOS, Linux)
+- ✅ **Native mobile performance** with smooth animations
+- ✅ **Offline-first architecture** with all content cached locally
+- ✅ **Enhanced audio controls** (speed adjustment, looping, seeking)
+- ✅ **Native notifications** for daily reminders
+- ✅ **Modern Material Design 3** UI
+- ✅ **App Store/Play Store ready** for distribution
+
+**[📱 Get Started with Flutter App →](flutter_app/README.md)**
+
+### Two Versions Available
+
+1. **Flutter Mobile/Desktop App** (recommended) - Native performance, cross-platform
+   - Located in: `flutter_app/`
+   - See: [Flutter App Documentation](flutter_app/README.md)
+
+2. **Progressive Web App (PWA)** - Original web-based version
+   - Located in: Root directory
+   - Access via local server: `python server.py`
 
 ## Technical Skills Demonstrated
 

@@ -1,0 +1,16 @@
+
+Shopping Dialogue 1
+-------------------
+Gùkè: Zhè jiàn yīfu duōshao qián?
+Diànyuán: Liǎng bǎi yuán.
+Gùkè: Tài guì le, néng piányi yīdiǎn ma?
+Diànyuán: Yī bǎi bā shí yuán, bù néng zài dī le.
+Gùkè: Hǎo ba, wǒ mǎi le.
+
+Shopping Dialogue 2
+-------------------
+Gùkè: Qǐngwèn, shì yī jiān zài nǎlǐ?
+Diànyuán: Zài nàbiān, yòu zhuǎn.
+Gùkè: Zhè jiàn yǒu méiyǒu dà yīdiǎn de chǐmǎ?
+Diànyuán: Ràng wǒ kànkan. Yǒu de, zhè shì XL hào de.
+Gùkè: Xièxie, wǒ shì shìkan.

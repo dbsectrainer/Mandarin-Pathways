@@ -1,0 +1,16 @@
+
+Shopping Places
+---------------
+store
+supermarket
+market
+department store
+shopping mall
+
+Shopping Phrases
+----------------
+How much money?
+Too expensive
+A little cheaper
+I want this one
+I'm just looking

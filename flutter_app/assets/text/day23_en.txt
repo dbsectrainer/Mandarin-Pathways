@@ -1,0 +1,19 @@
+
+Job Titles
+----------
+manager
+boss
+colleague
+secretary
+engineer
+sales
+human resources
+
+Office Items
+------------
+computer
+printer
+document
+meeting room
+office
+business card

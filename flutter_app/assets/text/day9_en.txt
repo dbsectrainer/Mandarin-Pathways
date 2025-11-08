@@ -1,0 +1,17 @@
+
+Transportation Types
+--------------------
+bus
+subway
+taxi
+train
+airplane
+bicycle
+
+Transportation Phrases
+----------------------
+How do I get to the airport?
+Where is the bus stop?
+Please take me to this address
+How much is one ticket?
+When does the next bus come?

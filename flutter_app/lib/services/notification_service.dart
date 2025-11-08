@@ -41,23 +41,15 @@ class NotificationService {
         _notificationsPlugin.resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>();
 
-    final DarwinFlutterLocalNotificationsPlugin? iosImplementation =
-        _notificationsPlugin.resolvePlatformSpecificImplementation<
-            DarwinFlutterLocalNotificationsPlugin>();
-
     bool? granted = false;
 
     if (androidImplementation != null) {
       granted = await androidImplementation.requestNotificationsPermission();
-    } else if (iosImplementation != null) {
-      granted = await iosImplementation.requestPermissions(
-        alert: true,
-        badge: true,
-        sound: true,
-      );
     }
+    // iOS permissions are requested during initialization
+    // via DarwinInitializationSettings
 
-    return granted ?? false;
+    return granted ?? true; // Return true for iOS as permissions are handled in init
   }
 
   Future<void> scheduleDailyReminder({

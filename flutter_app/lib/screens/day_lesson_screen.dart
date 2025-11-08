@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:audioplayers/audioplayers.dart';
+import 'package:audioplayers/audioplayers.dart' as ap;
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../models/lesson.dart';
 import '../services/app_state.dart';
@@ -18,7 +18,7 @@ class _DayLessonScreenState extends State<DayLessonScreen> {
   late Lesson _lesson;
   String _lessonText = '';
   bool _isLoadingText = true;
-  PlayerState _audioState = PlayerState.stopped;
+  ap.PlayerState _audioState = ap.PlayerState.stopped;
   Duration _audioDuration = Duration.zero;
   Duration _audioPosition = Duration.zero;
   YoutubePlayerController? _youtubeController;
@@ -182,7 +182,7 @@ class _DayLessonScreenState extends State<DayLessonScreen> {
                 IconButton(
                   iconSize: 48,
                   icon: Icon(
-                    _audioState == PlayerState.playing
+                    _audioState == ap.PlayerState.playing
                         ? Icons.pause_circle_filled
                         : Icons.play_circle_filled,
                   ),
@@ -371,7 +371,7 @@ class _DayLessonScreenState extends State<DayLessonScreen> {
   }
 
   Future<void> _toggleAudio(AppState appState) async {
-    if (_audioState == PlayerState.playing) {
+    if (_audioState == ap.PlayerState.playing) {
       await appState.audioService.pause();
     } else {
       final audioPath = _lesson.audioFiles[appState.currentLanguage.code];

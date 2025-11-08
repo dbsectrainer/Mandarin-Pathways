@@ -1,0 +1,24 @@
+
+Basic Emotions
+--------------
+happy
+sad
+angry
+afraid
+nervous
+excited
+
+Complex Feelings
+----------------
+disappointed
+proud
+moved/touched
+confused
+worried
+
+Expressing Feelings
+-------------------
+I feel very...
+makes me happy
+I'm a bit...
+in a bad mood

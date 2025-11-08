@@ -37,6 +37,43 @@
         <p><span class="zh">开启您的中文学习之旅</span><span class="en">Your Journey to Chinese Language Mastery</span></p>
     </header>
 
+    <!-- Gamification Dashboard -->
+    <div class="gamification-dashboard" id="gamification-dashboard">
+        <div class="gamification-header">
+            <div class="level-progress">
+                <div class="level-info">
+                    <span class="level-number">Level <span id="user-level">1</span></span>
+                    <span class="xp-info"><span id="current-xp">0</span> / <span id="next-level-xp">100</span> XP</span>
+                </div>
+                <div class="xp-progress-bar">
+                    <div class="xp-progress-fill" id="xp-progress-fill"></div>
+                </div>
+            </div>
+            
+            <div class="gamification-stats">
+                <div class="stat-card">
+                    <span class="stat-value" id="total-xp">0</span>
+                    <span class="stat-label"><span class="zh">总经验</span><span class="en">Total XP</span></span>
+                </div>
+                <div class="stat-card">
+                    <div class="streak-display">
+                        <span class="streak-flame">🔥</span>
+                        <span class="stat-value" id="current-streak">0</span>
+                    </div>
+                    <span class="stat-label"><span class="zh">连击</span><span class="en">Day Streak</span></span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="badges-earned">0</span>
+                    <span class="stat-label"><span class="zh">徽章</span><span class="en">Badges</span></span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value" id="weekly-xp">0</span>
+                    <span class="stat-label"><span class="zh">本周经验</span><span class="en">Weekly XP</span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <section class="hero-section">
         <div class="hero-content animate-fade-in">
             <h2><span class="zh">掌握中文</span><span class="en">Master Mandarin Chinese</span></h2>
@@ -181,6 +218,18 @@
                 <!-- Days will be dynamically added here -->
             </div>
         </section>
+
+        <!-- Section divider with visual anchor -->
+        <div class="section-divider"></div>
+
+        <!-- Daily Challenges Section -->
+        <div id="challenges-container"></div>
+
+        <!-- Section divider with visual anchor -->
+        <div class="section-divider"></div>
+
+        <!-- Achievement Badges Section -->
+        <div id="achievements-container"></div>
 
         <!-- Section divider with visual anchor -->
         <div class="section-divider"></div>
@@ -360,9 +409,112 @@
                 }
             });
 
+            // Initialize gamification
+            initializeGamificationDashboard();
+
             // Initialize progress
             initializeProgress();
         });
+
+        // Initialize gamification dashboard
+        function initializeGamificationDashboard() {
+            if (typeof window.gamificationSystem !== 'undefined') {
+                updateGamificationDisplay();
+                
+                // Listen for gamification updates
+                window.addEventListener('gamificationUpdate', function(event) {
+                    updateGamificationDisplay();
+                });
+                
+                // Initialize challenges and achievements
+                setTimeout(() => {
+                    if (typeof window.challengeSystem !== 'undefined') {
+                        renderChallenges();
+                    }
+                    if (typeof window.achievementSystem !== 'undefined') {
+                        renderAchievements();
+                    }
+                }, 100);
+            }
+        }
+
+        // Update gamification dashboard display
+        function updateGamificationDisplay() {
+            if (typeof window.gamificationSystem === 'undefined') return;
+            
+            const userData = window.gamificationSystem.getUserData();
+            
+            // Update level and XP
+            document.getElementById('user-level').textContent = userData.level;
+            document.getElementById('current-xp').textContent = userData.xp;
+            document.getElementById('total-xp').textContent = userData.xp;
+            
+            // Update XP to next level
+            const xpForNext = window.gamificationSystem.getXPForNextLevel();
+            if (xpForNext !== null) {
+                document.getElementById('next-level-xp').textContent = userData.xp + xpForNext;
+                const progress = window.gamificationSystem.getProgressToNextLevel();
+                document.getElementById('xp-progress-fill').style.width = progress + '%';
+            } else {
+                document.getElementById('next-level-xp').textContent = 'MAX';
+                document.getElementById('xp-progress-fill').style.width = '100%';
+            }
+            
+            // Update streak
+            document.getElementById('current-streak').textContent = userData.currentStreak;
+            
+            // Update badges count
+            document.getElementById('badges-earned').textContent = userData.badges.length;
+            
+            // Update weekly XP
+            document.getElementById('weekly-xp').textContent = userData.weeklyXP;
+        }
+
+        // Render challenges section
+        function renderChallenges() {
+            if (typeof window.challengeSystem === 'undefined') return;
+            
+            const container = document.getElementById('challenges-container');
+            if (container) {
+                container.innerHTML = window.challengeSystem.renderChallengesSection();
+            }
+        }
+
+        // Render achievements section
+        function renderAchievements() {
+            if (typeof window.achievementSystem === 'undefined' || typeof window.gamificationSystem === 'undefined') return;
+            
+            const container = document.getElementById('achievements-container');
+            const userData = window.gamificationSystem.getUserData();
+            
+            if (container) {
+                container.innerHTML = `
+                    <div class="achievement-section">
+                        ${window.achievementSystem.renderCategoryTabs()}
+                        ${window.achievementSystem.renderBadgeGrid(userData, true)}
+                    </div>
+                `;
+                
+                // Add category tab functionality
+                const categoryTabs = container.querySelectorAll('.category-tab');
+                categoryTabs.forEach(tab => {
+                    tab.addEventListener('click', function() {
+                        categoryTabs.forEach(t => t.classList.remove('active'));
+                        this.classList.add('active');
+                        
+                        const category = this.dataset.category;
+                        const achievementGrid = container.querySelector('.achievement-grid');
+                        
+                        if (category === 'all') {
+                            achievementGrid.innerHTML = window.achievementSystem.renderBadgeGrid(userData, true).split('achievement-grid">')[1].split('</div>')[0];
+                        } else {
+                            const filteredHTML = window.achievementSystem.renderBadgeGrid(userData, true, category);
+                            achievementGrid.innerHTML = filteredHTML.split('achievement-grid">')[1].split('</div>')[0];
+                        }
+                    });
+                });
+            }
+        }
 
         function updateLanguageProgress(lang, completed, completedDays) {
             // Find the language card
@@ -401,6 +553,9 @@
     </script>
     <script src="js/script.min.js" defer></script>
     <script src="js/notifications.js" defer></script>
+    <script src="js/gamification.js" defer></script>
+    <script src="js/achievements.js" defer></script>
+    <script src="js/challenges.js" defer></script>
 
     <!-- Notification Settings Modal -->
     <div id="notification-settings-modal" class="modal" style="display: none;">

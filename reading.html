@@ -300,6 +300,26 @@
                     completedReadings[`${level}_${topic}_${lang}`] = true;
                     localStorage.setItem('completedReadings', JSON.stringify(completedReadings));
                     
+                    // Award XP for reading completion
+                    if (typeof window.gamificationSystem !== 'undefined') {
+                        const xpResult = window.gamificationSystem.completeReading();
+                        
+                        if (xpResult) {
+                            // Show XP notification
+                            setTimeout(() => {
+                                window.gamificationSystem.showNotification(
+                                    `📚 +${xpResult.xpAwarded} XP for reading!`, 
+                                    'success'
+                                );
+                            }, 500);
+                        }
+                    }
+                    
+                    // Update challenge progress
+                    if (typeof window.challengeSystem !== 'undefined') {
+                        window.challengeSystem.updateProgress('reading_exercise', 1);
+                    }
+                    
                     // Update button state
                     completeBtn.classList.add('completed');
                     completeBtn.innerHTML = '<i class="fas fa-check-circle"></i> Completed';
@@ -540,5 +560,8 @@
             });
         });
     </script>
+    <script src="js/gamification.js"></script>
+    <script src="js/achievements.js"></script>
+    <script src="js/challenges.js"></script>
 </body>
 </html>

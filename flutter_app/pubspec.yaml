@@ -43,6 +43,29 @@ dependencies:
   intl: ^0.18.1
   url_launcher: ^6.2.2
 
+  # Charts & Analytics
+  fl_chart: ^0.66.0
+
+  # Animations & Effects
+  lottie: ^3.0.0
+  flutter_animate: ^4.5.0
+  confetti: ^0.7.0
+
+  # Onboarding
+  smooth_page_indicator: ^1.1.0
+  introduction_screen: ^3.1.12
+
+  # Profile & Images
+  image_picker: ^1.0.7
+  cached_network_image: ^3.3.1
+
+  # Better Icons
+  iconsax: ^0.0.8
+
+  # Enhanced UI Components
+  fl_toast: ^3.2.0
+  shimmer: ^3.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

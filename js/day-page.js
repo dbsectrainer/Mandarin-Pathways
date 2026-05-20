@@ -100,9 +100,6 @@ document.addEventListener('DOMContentLoaded', function () {
   };
   document.getElementById('language-flag').textContent = flagMap[lang];
 
-  const videoSection = document.getElementById('video-section');
-  videoSection.style.display = lang === 'zh' ? 'block' : 'none';
-
   const sectionInfo = getSectionInfo(day);
   document.getElementById('section-title').textContent = sectionInfo.title;
   document.getElementById('section-description').textContent =

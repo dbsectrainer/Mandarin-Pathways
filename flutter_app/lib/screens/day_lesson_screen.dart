@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:audioplayers/audioplayers.dart' as ap;
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../models/lesson.dart';
 import '../services/app_state.dart';
 
@@ -21,7 +20,6 @@ class _DayLessonScreenState extends State<DayLessonScreen> {
   ap.PlayerState _audioState = ap.PlayerState.stopped;
   Duration _audioDuration = Duration.zero;
   Duration _audioPosition = Duration.zero;
-  YoutubePlayerController? _youtubeController;
 
   @override
   void didChangeDependencies() {
@@ -30,7 +28,6 @@ class _DayLessonScreenState extends State<DayLessonScreen> {
     final appState = context.read<AppState>();
     _lesson = appState.getLesson(_dayNumber);
     _loadLessonText();
-    _initializeVideo();
     _setupAudioListeners();
   }
 
@@ -79,24 +76,6 @@ class _DayLessonScreenState extends State<DayLessonScreen> {
     }
   }
 
-  void _initializeVideo() {
-    if (_lesson.videoId != null && _lesson.videoId!.isNotEmpty) {
-      _youtubeController = YoutubePlayerController(
-        initialVideoId: _lesson.videoId!,
-        flags: const YoutubePlayerFlags(
-          autoPlay: false,
-          mute: false,
-        ),
-      );
-    }
-  }
-
-  @override
-  void dispose() {
-    _youtubeController?.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -125,7 +104,6 @@ class _DayLessonScreenState extends State<DayLessonScreen> {
                 _buildSectionInfo(),
                 _buildAudioPlayer(appState),
                 _buildLessonContent(),
-                if (_youtubeController != null) _buildVideoPlayer(),
                 _buildCompletionButton(appState),
                 _buildNavigation(),
               ],
@@ -269,33 +247,6 @@ class _DayLessonScreenState extends State<DayLessonScreen> {
                       fontSize: 18,
                     ),
               ),
-      ),
-    );
-  }
-
-  Widget _buildVideoPlayer() {
-    if (_youtubeController == null) return const SizedBox.shrink();
-
-    return Card(
-      margin: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(
-              'Practice with Native Speaker',
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-            ),
-          ),
-          YoutubePlayer(
-            controller: _youtubeController!,
-            showVideoProgressIndicator: true,
-            progressIndicatorColor: Theme.of(context).colorScheme.primary,
-          ),
-        ],
       ),
     );
   }

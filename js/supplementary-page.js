@@ -58,10 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 'en': '🇺🇸'
             };
             document.getElementById('language-flag').textContent = flagMap[lang];
-            
-            // Show video section only for Mandarin content
-            const videoSection = document.getElementById('video-section');
-            videoSection.style.display = lang === 'zh' ? 'block' : 'none';
 
             // Update section info based on category
             const sectionInfo = getSectionInfo(category);

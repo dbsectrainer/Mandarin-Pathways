@@ -1,4 +1,4 @@
-const CACHE_VERSION = '4';
+const CACHE_VERSION = '5';
 const CACHE_NAME = `mandarin-pathways-v${CACHE_VERSION}`;
 
 // Cache groups for different types of resources
@@ -16,8 +16,6 @@ const STATIC_ASSETS = [
   'review.html',
   'manifest.json',
   'css/styles.min.css',
-  'css/video-player.css',
-  'css/native-speaker.css',
   'css/reading.css',
   'css/writing.css',
   'js/script.min.js',
@@ -31,8 +29,6 @@ const STATIC_ASSETS = [
   'js/supplementary-page.js',
   'js/data-portability.js',
   'js/review-page.js',
-  'js/video-loader.js',
-  'js/video-loader-supplementary.js',
   'js/character-drawing.js',
   'js/notifications.js',
   'icons/icon-72x72.png',

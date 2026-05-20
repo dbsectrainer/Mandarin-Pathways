@@ -24,10 +24,6 @@ dependencies:
   # Audio Playback
   audioplayers: ^6.6.0
 
-  # Video Player (YouTube)
-  youtube_player_flutter: ^9.1.3
-  webview_flutter: ^4.4.2
-
   # Networking
   http: ^1.1.2
 
@@ -50,5 +46,3 @@ flutter:
     - assets/audio/
     - assets/icons/
     - assets/text/
-    - assets/videos.json
-    - assets/videos_supplementary.json

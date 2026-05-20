@@ -81,25 +81,48 @@ document.addEventListener('DOMContentLoaded', function() {
                 audioFallback.innerHTML = '';
                 audioFallback.style.display = 'none';
             }
-            
-            // Load text content from text_files/supplementary directory
-            fetch(`text_files/supplementary/${category}_${lang}.txt`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Network response was not ok: ${response.status}`);
+
+            const txtUrl = `text_files/supplementary/${category}_${lang}.txt`;
+            const timingUrl = `timing/supplementary/${category}_${audioLang}.json`;
+
+            const textFetch = fetch(txtUrl).then((response) => {
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.status}`);
+                }
+                return response.text();
+            });
+
+            const timingFetch = fetch(timingUrl)
+                .then(async (response) => {
+                    if (!response.ok) return null;
+                    try {
+                        return await response.json();
+                    } catch (e) {
+                        console.warn('Supplementary timing manifest invalid JSON:', e);
+                        return null;
                     }
-                    return response.text();
                 })
-                .then(text => {
-                    formatAndDisplayContent(text);
+                .catch(() => null);
+
+            Promise.all([textFetch, timingFetch])
+                .then(([text, timing]) => {
+                    formatAndDisplayContent(text, lang, timing);
+                    LessonAudioSync.attachCueHighlighting(
+                        document.getElementById('audio-player'),
+                        timing?.phrases,
+                        (cue) =>
+                            document.querySelector(
+                                `#text-content .phrase-item[data-cue-i="${cue.i}"]`
+                            ) || null
+                    );
                 })
-                .catch(error => {
+                .catch((error) => {
                     console.error('Error loading text:', error);
                     showContentError(document.getElementById('text-content'));
                 });
         });
 
-        function formatAndDisplayContent(text) {
+        function formatAndDisplayContent(text, lang, timingManifest) {
             // First, normalize line endings and remove any extra whitespace
             text = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
             
@@ -108,6 +131,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const contentDiv = document.getElementById('text-content');
             contentDiv.innerHTML = '';
+
+            let phraseCount = 0;
 
             sections.forEach(section => {
                 if (section.trim()) {
@@ -139,18 +164,24 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     phrases.forEach(phrase => {
                         if (phrase.trim()) {
+                            const trimmed = phrase.trim();
                             const phraseItem = document.createElement('div');
                             phraseItem.className = 'phrase-item';
-                            
-                            const phraseText = document.createElement('span');
-                            phraseText.textContent = phrase.trim();
-                            
+                            phraseItem.dataset.cueI = String(phraseCount);
+                            phraseCount += 1;
+
+                            const phraseReading = document.createElement('span');
+                            phraseReading.className = 'phrase-reading';
+                            phraseReading.appendChild(
+                                LessonAudioSync.appendPhraseSpansToFragment(trimmed, lang)
+                            );
+
                             const copyBtn = document.createElement('button');
                             copyBtn.className = 'copy-btn';
                             copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
-                            copyBtn.addEventListener('click', () => copyPhrase(phrase.trim()));
-                            
-                            phraseItem.appendChild(phraseText);
+                            copyBtn.addEventListener('click', () => copyPhrase(trimmed));
+
+                            phraseItem.appendChild(phraseReading);
                             phraseItem.appendChild(copyBtn);
                             phraseList.appendChild(phraseItem);
                         }
@@ -160,6 +191,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     contentDiv.appendChild(sectionDiv);
                 }
             });
+
+            if (
+                timingManifest &&
+                Array.isArray(timingManifest.phrases) &&
+                timingManifest.phrases.length !== phraseCount
+            ) {
+                console.warn(
+                    `[supplementary timings] Manifest has ${timingManifest.phrases.length} cues but ${phraseCount} phrases`
+                );
+            }
         }
 
         function copyPhrase(phrase) {

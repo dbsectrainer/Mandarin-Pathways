@@ -1128,6 +1128,27 @@ footer {
     pointer-events: none;
 }
 
+.reading-sync-line {
+    margin: 0.75rem 0;
+    line-height: 1.65;
+}
+
+.reading-sync-line.audio-sync-active,
+.writing-sync-cue.audio-sync-active {
+    background-color: rgba(249, 252, 255, 0.95);
+    box-shadow: 0 0 0 2px rgba(26, 92, 143, 0.3);
+    border-radius: 4px;
+}
+
+.writing-sync-cue {
+    display: block;
+    margin-bottom: 0.35rem;
+}
+
+.reading-passage-reading {
+    display: inline;
+}
+
 .phrase-item:hover {
     transform: translateX(5px);
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);

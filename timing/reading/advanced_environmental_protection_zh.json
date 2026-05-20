@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "phrases": [
+    {
+      "section": "reading",
+      "i": 0,
+      "start": 0.0,
+      "end": 5.016
+    },
+    {
+      "section": "reading",
+      "i": 1,
+      "start": 5.016,
+      "end": 12.936
+    },
+    {
+      "section": "reading",
+      "i": 2,
+      "start": 12.936,
+      "end": 20.568
+    },
+    {
+      "section": "reading",
+      "i": 3,
+      "start": 20.568,
+      "end": 29.736
+    },
+    {
+      "section": "reading",
+      "i": 4,
+      "start": 29.736,
+      "end": 34.632
+    }
+  ],
+  "level": "advanced",
+  "topic": "environmental_protection",
+  "lang": "zh",
+  "kind": "reading"
+}

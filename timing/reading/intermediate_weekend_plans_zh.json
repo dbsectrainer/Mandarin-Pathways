@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "phrases": [
+    {
+      "section": "reading",
+      "i": 0,
+      "start": 0.0,
+      "end": 2.688
+    },
+    {
+      "section": "reading",
+      "i": 1,
+      "start": 2.688,
+      "end": 6.48
+    },
+    {
+      "section": "reading",
+      "i": 2,
+      "start": 6.48,
+      "end": 9.504
+    },
+    {
+      "section": "reading",
+      "i": 3,
+      "start": 9.504,
+      "end": 12.384
+    },
+    {
+      "section": "reading",
+      "i": 4,
+      "start": 12.384,
+      "end": 15.672
+    },
+    {
+      "section": "reading",
+      "i": 5,
+      "start": 15.672,
+      "end": 20.688
+    }
+  ],
+  "level": "intermediate",
+  "topic": "weekend_plans",
+  "lang": "zh",
+  "kind": "reading"
+}

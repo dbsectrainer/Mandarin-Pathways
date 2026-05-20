@@ -1,8 +1,13 @@
 import argparse
 import os
-import time
 import asyncio
-import edge_tts
+import sys
+from pathlib import Path
+
+_scripts_dir = Path(__file__).resolve().parent / "scripts"
+if str(_scripts_dir) not in sys.path:
+    sys.path.insert(0, str(_scripts_dir))
+import audio_timings  # noqa: E402
 
 # Define reading activities by level and topic
 
@@ -229,38 +234,34 @@ def generate_reading_file(level, topic, format_type):
                 f.write(f"Answer: {question['answer']}\n\n")
 
 async def generate_audio(level, topic, format_type="zh", voice=None):
-    """Generate audio file for reading content"""
+    """Generate stitched reading narration with per-sentence timings."""
     print(f"Generating {level} level {topic} {format_type} audio file...")
-    
+
     readings_dict = all_readings[level]
     if topic not in readings_dict:
         print(f"Topic {topic} not found in {level} level readings")
         return
-    
+
     reading_content = readings_dict[topic]
-    
-    # Select text based on format type
+
     if format_type == "zh":
-        text = reading_content["text_zh"]
+        passage = reading_content["text_zh"]
         if not voice:
             voice = "zh-CN-XiaoxiaoNeural"
     elif format_type == "en":
-        text = reading_content["text_en"]
+        passage = reading_content["text_en"]
         if not voice:
             voice = "en-US-AriaNeural"
     else:
         print(f"Audio generation not supported for {format_type}")
         return
-    
-    # Ensure the audio_files/reading directory exists
-    os.makedirs("audio_files/reading", exist_ok=True)
-    
-    output_file = f"audio_files/reading/{level}_{topic.lower().replace(' ', '_')}_{format_type}.mp3"
-    
-    communicate = edge_tts.Communicate(text, voice)
-    await communicate.save(output_file)
-    
-    print(f"Audio saved to {output_file}")
+
+    await audio_timings.generate_reading_audio_with_timings(
+        passage, level, topic, format_type, voice
+    )
+
+    slug = topic.lower().replace(" ", "_")
+    print(f"✓ Saved audio_files/reading/{level}_{slug}_{format_type}.mp3 and timing manifest")
 
 async def main():
     parser = argparse.ArgumentParser(description="Generate reading activity files")

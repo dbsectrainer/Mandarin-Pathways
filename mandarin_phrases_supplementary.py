@@ -1,8 +1,14 @@
 import argparse
 import os
+import sys
 import time
 import asyncio
-import edge_tts
+from pathlib import Path
+
+_scripts_dir = Path(__file__).resolve().parent / "scripts"
+if str(_scripts_dir) not in sys.path:
+    sys.path.insert(0, str(_scripts_dir))
+import audio_timings  # noqa: E402
 
 # Define supplementary phrases by category
 
@@ -420,37 +426,23 @@ def generate_text_file(category, format_type):
     print(f"✓ Saved to text_files/supplementary/{category}_{format_type}.txt")
 
 async def generate_audio(category, format_type="zh", voice=None):
-    """Generate audio file for a specific category using edge-tts"""
-    # Set default voice based on language
+    """Generate per-phrase supplementary audio plus timing cues for highlight sync."""
     if voice is None:
         voice = "zh-CN-XiaoxiaoNeural" if format_type == "zh" else "en-US-JennyNeural"
-    
+
     print(f"\nGenerating {category} {format_type} audio file...")
     start_time = time.time()
-    
+
     phrases_dict = supplementary_phrases[category]
-    
-    # Generate text for phrases
-    text = ""
-    for subcategory, phrase_list in phrases_dict.items():
-        for phrase in phrase_list:
-            # Add appropriate punctuation based on language
-            if format_type == "zh":
-                text += phrase['zh'] + "。"
-            else:
-                text += phrase['en'] + ". "
-    
-    # Ensure the audio_files directory exists
-    os.makedirs("audio_files/supplementary", exist_ok=True)
-    
-    # Configure edge-tts
-    communicate = edge_tts.Communicate(text, voice)
-    
-    # Generate audio
-    await communicate.save(f"audio_files/supplementary/{category}_{format_type}.mp3")
-    
+
+    await audio_timings.generate_supplementary_audio_with_timings(
+        phrases_dict, category, format_type, voice
+    )
+
     elapsed = time.time() - start_time
-    print(f"✓ Saved to audio_files/supplementary/{category}_{format_type}.mp3 ({elapsed:.2f}s)")
+    print(
+        f"✓ Saved supplementary audio + timing/supplementary/{category}_{format_type}.json ({elapsed:.2f}s)"
+    )
 
 async def main():
     parser = argparse.ArgumentParser(description="Generate supplementary Mandarin and English learning files")

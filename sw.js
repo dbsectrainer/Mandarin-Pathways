@@ -1,4 +1,4 @@
-const CACHE_VERSION = '6';
+const CACHE_VERSION = '8';
 const CACHE_NAME = `mandarin-pathways-v${CACHE_VERSION}`;
 
 // Cache groups for different types of resources
@@ -22,6 +22,7 @@ const STATIC_ASSETS = [
   'js/sw-register.js',
   'js/return-to-top.js',
   'js/content-error.js',
+  'js/lesson-audio-sync.js',
   'js/starred-phrases.js',
   'js/day-page.js',
   'js/reading-page.js',

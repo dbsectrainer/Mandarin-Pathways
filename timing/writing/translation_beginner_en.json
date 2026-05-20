@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "phrases": [
+    {
+      "section": "title",
+      "i": 0,
+      "start": 0.0,
+      "end": 3.096
+    },
+    {
+      "section": "description",
+      "i": 1,
+      "start": 3.096,
+      "end": 7.224
+    }
+  ],
+  "activity_type": "translation",
+  "level": "beginner",
+  "lang": "en",
+  "kind": "writing"
+}

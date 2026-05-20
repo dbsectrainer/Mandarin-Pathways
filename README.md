@@ -94,7 +94,12 @@ A focused Mandarin Chinese learning platform designed to take learners from foun
   - Simplified Chinese (`day{n}_zh.txt`)
   - Pinyin (`day{n}_pinyin.txt`)
   - English (`day{n}_en.txt`)
-- `timing/`: Per-phrase timestamps for karaoke-style highlighting during daily lesson playback (`day{n}_zh.json`, `day{n}_en.json`) — regenerated when you rebuild lesson audio
+- `timing/`: Karaoke-style cue files for synced playback with transcripts:
+  - Daily lessons: `timing/day{n}_zh.json`, `timing/day{n}_en.json`
+  - Supplementary categories: `timing/supplementary/{category}_zh.json` (and `_en`)
+  - Reading passages: `timing/reading/{level}_{topic_slug}_zh.json` (and `_en`)
+  - Writing activity intros (title + description): `timing/writing/{type}_{level_slug}_zh.json` (and `_en`)
+  All are regenerated alongside their matching MP3 files when you run the Python generators.
 - `reading_files/`: Text content for reading practice exercises
 - `writing_files/`: Character practice content and writing exercises
 - `manifest.json`: PWA configuration for installable app features

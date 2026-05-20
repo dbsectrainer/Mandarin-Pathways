@@ -174,28 +174,22 @@
 
         function loadReadingContent(level, topic, lang) {
             const topicInfo = readingData[level][topic];
-            
-            // Set section info
+
             document.getElementById('section-title').textContent = topicInfo.title;
             document.getElementById('section-description').textContent = topicInfo.description;
-            
-            // Show content sections
+
             document.querySelector('.audio-player').style.display = 'block';
             document.getElementById('vocabulary-section').style.display = 'block';
             document.getElementById('questions-section').style.display = 'block';
             document.getElementById('complete-btn').style.display = 'block';
-            
-            // Load audio if available
+
             const audio = document.getElementById('audio-player');
             const audioFallback = document.getElementById('audio-fallback');
-            
+            const topicSlug = topic.toLowerCase().replace(/ /g, '_');
+            const audioLang = lang === 'pinyin' ? 'zh' : lang;
+
             if (topicInfo.hasAudio) {
-                // For Pinyin, use Mandarin audio file
-                const audioLang = lang === 'pinyin' ? 'zh' : lang;
-                const audioPath = `audio_files/reading/${level}_${topic.toLowerCase().replace(/ /g, '_')}_${audioLang}.mp3`;
-                audio.src = audioPath;
-                
-                // Add a note only for Pinyin that it's using Mandarin audio
+                audio.src = `audio_files/reading/${level}_${topicSlug}_${audioLang}.mp3`;
                 if (lang === 'pinyin') {
                     audioFallback.innerHTML = '<p class="note"><i class="fas fa-info-circle"></i> Using Mandarin audio for reference.</p>';
                     audioFallback.style.display = 'block';
@@ -207,19 +201,45 @@
                 audioFallback.innerHTML = '<p class="note"><i class="fas fa-info-circle"></i> Audio not available for this reading.</p>';
                 audioFallback.style.display = 'block';
             }
-            
-            // Load text content
-            fetch(`reading_files/${level}_${topic.toLowerCase().replace(/ /g, '_')}_${lang}.txt`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Network response was not ok: ${response.status}`);
+
+            const textUrl = `reading_files/${level}_${topicSlug}_${lang}.txt`;
+            const timingUrl = topicInfo.hasAudio ? `timing/reading/${level}_${topicSlug}_${audioLang}.json` : '';
+
+            const textFetch = fetch(textUrl).then((response) => {
+                if (!response.ok) throw new Error(`Network response was not ok: ${response.status}`);
+                return response.text();
+            });
+
+            const timingFetch =
+                timingUrl
+                    ? fetch(timingUrl)
+                          .then(async (response) => {
+                              if (!response.ok) return null;
+                              try {
+                                  return await response.json();
+                              } catch (e) {
+                                  console.warn('Reading timing manifest invalid JSON:', e);
+                                  return null;
+                              }
+                          })
+                          .catch(() => null)
+                    : Promise.resolve(null);
+
+            Promise.all([textFetch, timingFetch])
+                .then(([text, timing]) => {
+                    formatAndDisplayReadingContent(text, lang, timing);
+                    if (topicInfo.hasAudio && lang !== 'pinyin') {
+                        LessonAudioSync.attachCueHighlighting(
+                            audio,
+                            timing?.phrases,
+                            (cue) =>
+                                document.querySelector(
+                                    `#reading-content p[data-cue-i="${cue.i}"]`
+                                ) || null
+                        );
                     }
-                    return response.text();
                 })
-                .then(text => {
-                    formatAndDisplayReadingContent(text);
-                })
-                .catch(error => {
+                .catch((error) => {
                     console.error('Error loading reading content:', error);
                     showContentError(document.getElementById('reading-content'));
                     document.getElementById('vocabulary-section').style.display = 'none';
@@ -227,29 +247,55 @@
                 });
         }
 
-        function formatAndDisplayReadingContent(text) {
+        function formatAndDisplayReadingContent(text, lang, timingManifest) {
             // Split the text into sections (main text, vocabulary, questions)
             const sections = text.split(/\n(?=\w[^\n]+\n-+\n)/);
-            
+
             if (sections.length >= 1) {
-                // Main reading text
                 const mainTextSection = sections[0];
                 const mainTextLines = mainTextSection.split('\n');
-                
-                // Skip title and separator lines
-                const mainText = mainTextLines.slice(2).join('\n');
-                
+                const mainTextNormalized = mainTextLines.slice(2).join('\n').trim();
+
                 const readingContentDiv = document.getElementById('reading-content');
                 readingContentDiv.innerHTML = '';
-                
-                const textParagraphs = mainText.split('\n\n');
-                textParagraphs.forEach(paragraph => {
-                    if (paragraph.trim()) {
-                        const p = document.createElement('p');
-                        p.textContent = paragraph.trim();
-                        readingContentDiv.appendChild(p);
+
+                if (lang === 'pinyin') {
+                    mainTextNormalized.split(/\n\n+/).forEach((paragraph) => {
+                        const t = paragraph.trim();
+                        if (t) {
+                            const p = document.createElement('p');
+                            p.textContent = t;
+                            readingContentDiv.appendChild(p);
+                        }
+                    });
+                } else {
+                    const sentences = LessonAudioSync.splitReadingSegments(
+                        mainTextNormalized,
+                        lang
+                    );
+                    if (
+                        timingManifest &&
+                        Array.isArray(timingManifest.phrases) &&
+                        timingManifest.phrases.length !== sentences.length
+                    ) {
+                        console.warn(
+                            `[reading timings] Manifest has ${timingManifest.phrases.length} cues but transcript split into ${sentences.length} segments`
+                        );
                     }
-                });
+
+                    sentences.forEach((sent, i) => {
+                        const p = document.createElement('p');
+                        p.className = 'reading-sync-line';
+                        p.dataset.cueI = String(i);
+                        const phraseReading = document.createElement('span');
+                        phraseReading.className = 'phrase-reading reading-passage-reading';
+                        phraseReading.appendChild(
+                            LessonAudioSync.appendPhraseSpansToFragment(sent, lang)
+                        );
+                        p.appendChild(phraseReading);
+                        readingContentDiv.appendChild(p);
+                    });
+                }
             }
             
             if (sections.length >= 2) {

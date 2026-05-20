@@ -1,8 +1,13 @@
 import argparse
 import os
-import time
 import asyncio
-import edge_tts
+import sys
+from pathlib import Path
+
+_scripts_dir = Path(__file__).resolve().parent / "scripts"
+if str(_scripts_dir) not in sys.path:
+    sys.path.insert(0, str(_scripts_dir))
+import audio_timings  # noqa: E402
 
 # Define writing activities by level and type
 
@@ -1329,41 +1334,29 @@ def generate_writing_file(activity_type, level, format_type):
                     f.write(f"Translation: {exercise['en']}\n\n")
 
 async def generate_audio(activity_type, level, format_type="zh", voice=None):
-    """Generate audio file for writing instructions"""
+    """Generate intro narration (title + description) with per-line timings."""
     print(f"Generating {activity_type} {level} {format_type} audio file...")
-    
+
     activities_dict = all_writing_activities[activity_type]
     if level not in activities_dict:
         print(f"Level {level} not found in {activity_type} activities")
         return
-    
+
     activity_content = activities_dict[level]
-    
-    # Select text based on format type
-    if format_type == "zh":
-        title_parts = activity_content["title"].split(" / ")
-        text = f"{title_parts[0]}. {activity_content['description']}"
-        if not voice:
-            voice = "zh-CN-XiaoxiaoNeural"
-    elif format_type == "en":
-        title_parts = activity_content["title"].split(" / ")
-        title = title_parts[1] if len(title_parts) > 1 else title_parts[0]
-        text = f"{title}. {activity_content['description']}"
-        if not voice:
-            voice = "en-US-AriaNeural"
-    else:
+
+    if format_type not in ("zh", "en"):
         print(f"Audio generation not supported for {format_type}")
         return
-    
-    # Ensure the audio_files/writing directory exists
-    os.makedirs("audio_files/writing", exist_ok=True)
-    
-    output_file = f"audio_files/writing/{activity_type}_{level.lower().replace(' ', '_')}_{format_type}.mp3"
-    
-    communicate = edge_tts.Communicate(text, voice)
-    await communicate.save(output_file)
-    
-    print(f"Audio saved to {output_file}")
+
+    await audio_timings.generate_writing_audio_with_timings(
+        activity_content, activity_type, level, format_type, voice
+    )
+
+    slug = level.lower().replace(" ", "_")
+    print(
+        f"✓ Saved audio_files/writing/{activity_type}_{slug}_{format_type}.mp3 "
+        "and timing manifest"
+    )
 
 async def main():
     parser = argparse.ArgumentParser(description="Generate writing activity files")

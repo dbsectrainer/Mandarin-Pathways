@@ -1,0 +1,109 @@
+{
+  "version": 1,
+  "phrases": [
+    {
+      "section": "Weather Conditions",
+      "i": 0,
+      "start": 0.0,
+      "end": 1.776
+    },
+    {
+      "section": "Weather Conditions",
+      "i": 1,
+      "start": 1.776,
+      "end": 3.288
+    },
+    {
+      "section": "Weather Conditions",
+      "i": 2,
+      "start": 3.288,
+      "end": 4.824
+    },
+    {
+      "section": "Weather Conditions",
+      "i": 3,
+      "start": 4.824,
+      "end": 6.36
+    },
+    {
+      "section": "Weather Conditions",
+      "i": 4,
+      "start": 6.36,
+      "end": 7.968
+    },
+    {
+      "section": "Weather Conditions",
+      "i": 5,
+      "start": 7.968,
+      "end": 9.456
+    },
+    {
+      "section": "Daily Routines",
+      "i": 6,
+      "start": 9.456,
+      "end": 10.944
+    },
+    {
+      "section": "Daily Routines",
+      "i": 7,
+      "start": 10.944,
+      "end": 12.744
+    },
+    {
+      "section": "Daily Routines",
+      "i": 8,
+      "start": 12.744,
+      "end": 14.592
+    },
+    {
+      "section": "Daily Routines",
+      "i": 9,
+      "start": 14.592,
+      "end": 16.536
+    },
+    {
+      "section": "Daily Routines",
+      "i": 10,
+      "start": 16.536,
+      "end": 18.288
+    },
+    {
+      "section": "Daily Routines",
+      "i": 11,
+      "start": 18.288,
+      "end": 20.088
+    },
+    {
+      "section": "Shopping Types",
+      "i": 12,
+      "start": 20.088,
+      "end": 21.984
+    },
+    {
+      "section": "Shopping Types",
+      "i": 13,
+      "start": 21.984,
+      "end": 23.664
+    },
+    {
+      "section": "Shopping Types",
+      "i": 14,
+      "start": 23.664,
+      "end": 25.416
+    },
+    {
+      "section": "Shopping Types",
+      "i": 15,
+      "start": 25.416,
+      "end": 27.024
+    },
+    {
+      "section": "Shopping Types",
+      "i": 16,
+      "start": 27.024,
+      "end": 28.824
+    }
+  ],
+  "category": "daily_life",
+  "lang": "en"
+}

@@ -434,54 +434,64 @@
             }
         }
 
+        /**
+         * Section header aligns with stitched TTS cues (Chinese title clause + English description for zh audio).
+         * Pinyin UI uses plain text — no karaoke spans (audio is still Mandarin/instruction English).
+         * @returns {boolean} Whether DOM has cue elements for LessonAudioSync
+         */
+        function setupWritingSectionHeader(activityInfo, lang) {
+            const titleEl = document.getElementById('section-title');
+            const descEl = document.getElementById('section-description');
+            if (lang === 'pinyin') {
+                titleEl.textContent = activityInfo.titlePinyin || activityInfo.title;
+                descEl.textContent = activityInfo.descriptionPinyin || activityInfo.description;
+                return false;
+            }
+
+            const parts = activityInfo.title.split(' / ').map((s) => s.trim()).filter(Boolean);
+            const zhTitle = parts[0] || activityInfo.title;
+            const enTitle = parts.length > 1 ? parts.slice(1).join(' / ') : parts[0] || activityInfo.title;
+            const titleCueText = lang === 'zh' ? zhTitle : enTitle;
+            const descriptionCueText = activityInfo.description;
+
+            const titleSpanLang = /[\u4e00-\u9fff]/.test(titleCueText) ? 'zh' : 'en';
+            titleEl.innerHTML = '';
+            descEl.innerHTML = '';
+
+            const titleCue = document.createElement('span');
+            titleCue.className = 'writing-sync-cue';
+            titleCue.dataset.cueI = '0';
+            titleCue.appendChild(
+                LessonAudioSync.appendPhraseSpansToFragment(titleCueText, titleSpanLang)
+            );
+            titleEl.appendChild(titleCue);
+
+            const descCue = document.createElement('span');
+            descCue.className = 'writing-sync-cue';
+            descCue.dataset.cueI = '1';
+            descCue.appendChild(
+                LessonAudioSync.appendPhraseSpansToFragment(descriptionCueText, 'en')
+            );
+            descEl.appendChild(descCue);
+            return true;
+        }
+
         function loadWritingContent(activityType, level, lang) {
             const activityInfo = writingData[activityType][level];
-            
-            // Set section info with language-specific content
-            if (lang === 'zh' && activityInfo.titleZh) {
-                document.getElementById('section-title').textContent = activityInfo.titleZh;
-                document.getElementById('section-description').textContent = activityInfo.descriptionZh;
-            } else if (lang === 'pinyin' && activityInfo.titlePinyin) {
-                document.getElementById('section-title').textContent = activityInfo.titlePinyin;
-                document.getElementById('section-description').textContent = activityInfo.descriptionPinyin;
-            } else {
-                document.getElementById('section-title').textContent = activityInfo.title;
-                document.getElementById('section-description').textContent = activityInfo.description;
-            }
-            
-            // Show content sections
+
+            const headerSynced = setupWritingSectionHeader(activityInfo, lang);
+
             document.querySelector('.audio-player').style.display = 'block';
             document.querySelector('.writing-tools').style.display = 'block';
             document.getElementById('complete-btn').style.display = 'block';
-            
-            // Pass the language parameter to the content formatting functions
-            fetch(`writing_files/${activityType}_${level.toLowerCase().replace(/ /g, '_')}_${lang}.txt`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Network response was not ok: ${response.status}`);
-                    }
-                    return response.text();
-                })
-                .then(text => {
-                    formatAndDisplayWritingContent(text, activityType);
-                })
-                .catch(error => {
-                    console.error('Error loading writing content:', error);
-                    showContentError(document.getElementById('writing-content'));
-                    document.querySelector('.writing-tools').style.display = 'none';
-                });
-                
-            // Load audio if available
+
             const audio = document.getElementById('audio-player');
             const audioFallback = document.getElementById('audio-fallback');
-            
+            const audioLang = lang === 'pinyin' ? 'zh' : lang;
+            const levelSlug = level.toLowerCase().replace(/ /g, '_');
+
             if (activityInfo.hasAudio) {
-                // For Pinyin, use Mandarin audio file
-                const audioLang = lang === 'pinyin' ? 'zh' : lang;
-                const audioPath = `audio_files/writing/${activityType}_${level.toLowerCase().replace(/ /g, '_')}_${audioLang}.mp3`;
-                audio.src = audioPath;
-                
-                // Add a note only for Pinyin that it's using Mandarin audio
+                audio.src = `audio_files/writing/${activityType}_${levelSlug}_${audioLang}.mp3`;
                 if (lang === 'pinyin') {
                     audioFallback.innerHTML = '<p class="note"><i class="fas fa-info-circle"></i> Using Mandarin audio for reference.</p>';
                     audioFallback.style.display = 'block';
@@ -493,6 +503,49 @@
                 audioFallback.innerHTML = '<p class="note"><i class="fas fa-info-circle"></i> Audio not available for this activity.</p>';
                 audioFallback.style.display = 'block';
             }
+
+            const txtUrl = `writing_files/${activityType}_${levelSlug}_${lang}.txt`;
+            const timingUrl =
+                activityInfo.hasAudio ? `timing/writing/${activityType}_${levelSlug}_${audioLang}.json` : '';
+
+            const textFetch = fetch(txtUrl).then((response) => {
+                if (!response.ok) throw new Error(`Network response was not ok: ${response.status}`);
+                return response.text();
+            });
+
+            const timingFetch = timingUrl
+                ? fetch(timingUrl)
+                      .then(async (response) => {
+                          if (!response.ok) return null;
+                          try {
+                              return await response.json();
+                          } catch (e) {
+                              console.warn('Writing timing manifest invalid JSON:', e);
+                              return null;
+                          }
+                      })
+                      .catch(() => null)
+                : Promise.resolve(null);
+
+            Promise.all([textFetch, timingFetch])
+                .then(([text, timing]) => {
+                    formatAndDisplayWritingContent(text, activityType);
+                    if (activityInfo.hasAudio && headerSynced) {
+                        LessonAudioSync.attachCueHighlighting(
+                            audio,
+                            timing?.phrases,
+                            (cue) =>
+                                document.querySelector(
+                                    `.writing-sync-cue[data-cue-i="${cue.i}"]`
+                                ) || null
+                        );
+                    }
+                })
+                .catch((error) => {
+                    console.error('Error loading writing content:', error);
+                    showContentError(document.getElementById('writing-content'));
+                    document.querySelector('.writing-tools').style.display = 'none';
+                });
         }
 
         function formatAndDisplayWritingContent(text, activityType) {

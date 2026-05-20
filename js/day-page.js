@@ -143,7 +143,14 @@ document.addEventListener('DOMContentLoaded', function () {
   Promise.all([textFetch, timingFetch])
     .then(([text, timing]) => {
       formatAndDisplayContent(text, day, lang, timing);
-      attachLessonAudioHighlighting(audio, timing);
+      LessonAudioSync.attachCueHighlighting(
+        audio,
+        timing?.phrases,
+        (cue) =>
+          document
+            .getElementById('text-content')
+            ?.querySelector(`.phrase-item[data-cue-i="${cue.i}"]`) || null
+      );
     })
     .catch((error) => {
       console.error('Error loading text:', error);
@@ -175,62 +182,6 @@ document.addEventListener('DOMContentLoaded', function () {
     nextBtnTop.href = '#';
   }
 });
-
-/**
- * Builds highlightable spans inside a phrase. Timings are interpolated evenly per span (see attachLessonAudioHighlighting).
- */
-function buildPhraseReadingSpans(trimmedPhrase, lang) {
-  const frag = document.createDocumentFragment();
-  if (!trimmedPhrase) {
-    return frag;
-  }
-
-  if (lang === 'zh') {
-    for (const ch of trimmedPhrase) {
-      const span = document.createElement('span');
-      span.className = 'lesson-token';
-      span.textContent = ch;
-      frag.appendChild(span);
-    }
-    return frag;
-  }
-
-  if (lang === 'en') {
-    const parts = trimmedPhrase.split(/(\s+)/);
-    parts.forEach((tok) => {
-      if (!tok) return;
-      const span = document.createElement('span');
-      span.className = tok.trim() === '' ? 'lesson-space' : 'lesson-token';
-      span.textContent = tok;
-      frag.appendChild(span);
-    });
-    return frag;
-  }
-
-  /* pinyin: whitespace-separated chunks */
-  const chunks = trimmedPhrase.trim().split(/\s+/);
-  if (chunks.length === 1 && chunks[0] === trimmedPhrase.trim()) {
-    const span = document.createElement('span');
-    span.className = 'lesson-token';
-    span.textContent = trimmedPhrase.trim();
-    frag.appendChild(span);
-    return frag;
-  }
-
-  chunks.forEach((chunk, idx) => {
-    const span = document.createElement('span');
-    span.className = 'lesson-token';
-    span.textContent = chunk;
-    frag.appendChild(span);
-    if (idx < chunks.length - 1) {
-      const ws = document.createElement('span');
-      ws.className = 'lesson-space';
-      ws.textContent = ' ';
-      frag.appendChild(ws);
-    }
-  });
-  return frag;
-}
 
 function formatAndDisplayContent(text, day, lang, timingManifest) {
   text = text.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
@@ -271,7 +222,9 @@ function formatAndDisplayContent(text, day, lang, timingManifest) {
 
       const phraseReading = document.createElement('span');
       phraseReading.className = 'phrase-reading';
-      phraseReading.appendChild(buildPhraseReadingSpans(trimmedPhrase, lang));
+      phraseReading.appendChild(
+        LessonAudioSync.appendPhraseSpansToFragment(trimmedPhrase, lang)
+      );
 
       const starBtn = document.createElement('button');
       starBtn.type = 'button';
@@ -322,126 +275,6 @@ function formatAndDisplayContent(text, day, lang, timingManifest) {
       `[day lesson timings] Manifest has ${timingManifest.phrases.length} cues but transcript has ${phraseCount} phrases`
     );
   }
-}
-
-function attachLessonAudioHighlighting(audioEl, timing) {
-  if (!timing || !Array.isArray(timing.phrases) || !timing.phrases.length) {
-    return;
-  }
-
-  const root = document.getElementById('text-content');
-  if (!root) return;
-
-  const cues = timing.phrases.slice().sort((a, b) => a.i - b.i);
-
-  /** @type {{ phraseEl: HTMLElement | null; tokenEl: HTMLElement | null }} */
-  let last = { phraseEl: null, tokenEl: null };
-
-  function cueForTime(t) {
-    for (let qi = 0; qi < cues.length; qi++) {
-      const cue = cues[qi];
-      if (t >= cue.start && t < cue.end) {
-        return cue;
-      }
-    }
-    return null;
-  }
-
-  function clearHighlight() {
-    if (last.tokenEl) last.tokenEl.classList.remove('audio-sync-reading');
-    if (last.phraseEl) last.phraseEl.classList.remove('audio-sync-active');
-    last = { phraseEl: null, tokenEl: null };
-  }
-
-  function phraseElForCue(cue) {
-    const el = root.querySelector(`.phrase-item[data-cue-i="${cue.i}"]`);
-    return el || null;
-  }
-
-  /**
-   * @param {HTMLElement} phraseEl
-   * @param {number} cueStart
-   * @param {number} cueEnd
-   * @param {number} t
-   */
-  function pickTokenHighlight(phraseEl, cueStart, cueEnd, t) {
-    const tokens = phraseEl.querySelectorAll('.lesson-token');
-    const n = tokens.length;
-    if (n === 0) return null;
-
-    const duration = cueEnd - cueStart;
-    if (duration <= 0) return tokens.length ? tokens[0] : null;
-
-    const clampedLocal = Math.max(0, Math.min(duration, t - cueStart));
-    const slice = duration / n;
-    const idx = Math.min(n - 1, Math.floor(clampedLocal / slice));
-    return tokens[idx];
-  }
-
-  /** @type {number | null} */
-  let rafId = null;
-
-  function refreshAt(t) {
-    const cue = cueForTime(t);
-    if (!cue) {
-      clearHighlight();
-      return;
-    }
-
-    const phraseEl = phraseElForCue(cue);
-    if (!phraseEl) return;
-
-    const tokenEl = pickTokenHighlight(phraseEl, cue.start, cue.end, t);
-
-    if (last.phraseEl !== phraseEl) {
-      if (last.tokenEl) last.tokenEl.classList.remove('audio-sync-reading');
-      if (last.phraseEl) last.phraseEl.classList.remove('audio-sync-active');
-      phraseEl.classList.add('audio-sync-active');
-    }
-
-    if (tokenEl && last.tokenEl !== tokenEl) {
-      if (last.tokenEl) last.tokenEl.classList.remove('audio-sync-reading');
-      tokenEl.classList.add('audio-sync-reading');
-    }
-
-    last = {
-      phraseEl,
-      tokenEl: tokenEl || null,
-    };
-
-  }
-
-  function syncFrame() {
-    if (audioEl.paused || audioEl.ended) {
-      rafId = null;
-      return;
-    }
-    refreshAt(audioEl.currentTime);
-    rafId = requestAnimationFrame(syncFrame);
-  }
-
-  function kickIfPlaying() {
-    if (!audioEl.paused && !audioEl.ended) {
-      if (rafId == null) {
-        syncFrame();
-      }
-    }
-  }
-
-  audioEl.addEventListener('play', kickIfPlaying);
-  audioEl.addEventListener('seeked', () => {
-    refreshAt(audioEl.currentTime);
-  });
-  audioEl.addEventListener('pause', () => {
-    if (rafId != null) cancelAnimationFrame(rafId);
-    rafId = null;
-    refreshAt(audioEl.currentTime);
-  });
-  audioEl.addEventListener('ended', () => {
-    if (rafId != null) cancelAnimationFrame(rafId);
-    rafId = null;
-    clearHighlight();
-  });
 }
 
 function copyPhrase(phrase) {

@@ -322,7 +322,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildSkillCard(String title, IconData icon, String route) {
+  Widget _buildSkillCard(String title, FaIconData icon, String route) {
     return Card(
       child: InkWell(
         onTap: () => Navigator.pushNamed(context, route),
@@ -351,7 +351,7 @@ class _HomeScreenState extends State<HomeScreen> {
       {'title': 'Hobbies & Interests', 'icon': FontAwesomeIcons.palette, 'category': 'hobbies'},
       {'title': 'Emotions & Feelings', 'icon': FontAwesomeIcons.heart, 'category': 'emotions'},
       {'title': 'Weather & Daily Life', 'icon': FontAwesomeIcons.cloudSun, 'category': 'daily_life'},
-      {'title': 'Comparison Structures', 'icon': FontAwesomeIcons.balanceScale, 'category': 'comparisons'},
+      {'title': 'Comparison Structures', 'icon': FontAwesomeIcons.scaleBalanced, 'category': 'comparisons'},
     ];
 
     return Padding(
@@ -394,7 +394,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         FaIcon(
-                          cat['icon'] as IconData,
+                          cat['icon'] as FaIconData,
                           size: 32,
                           color: Theme.of(context).colorScheme.primary,
                         ),

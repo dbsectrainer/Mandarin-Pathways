@@ -1,28 +1,7 @@
-// Request notification permission and subscribe to push notifications
-async function initializeNotifications() {
-  if ('Notification' in window && 'serviceWorker' in navigator && 'PushManager' in window) {
-    try {
-      const permission = await Notification.requestPermission();
-      if (permission === 'granted') {
-        const registration = await navigator.serviceWorker.ready;
-        const subscription = await registration.pushManager.subscribe({
-          userVisibleOnly: true,
-          applicationServerKey: 'YOUR_VAPID_PUBLIC_KEY' // You'll need to replace this with your actual VAPID key
-        });
-        
-        // Here you would typically send the subscription to your server
-        console.log('Push notification subscription:', subscription);
-      }
-    } catch (error) {
-      console.error('Error setting up push notifications:', error);
-    }
-  }
-}
+// Daily reminders use NotificationManager in notifications.js (showNotification via service worker).
+// Web Push (PushManager + VAPID) is intentionally not used — it requires a backend.
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize notifications
-    initializeNotifications();
-    
     // Initialize language from URL or localStorage
     initializeLanguage();
     

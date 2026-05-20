@@ -31,7 +31,7 @@ python writing_activities.py
 ### Local Development Server
 ```bash
 # Enhanced server with compression and caching (recommended)
-python server.py
+python3 server.py
 
 # Basic server (alternative)
 python -m http.server 8000
@@ -46,6 +46,18 @@ python test_social_media_automation.py
 
 # Social media tools (if using social features)
 ./social_media_tools.sh help
+
+# Web PWA smoke tests (Playwright starts `python3 server.py` automatically unless CI=true reuseExistingServer)
+npm install
+npx playwright install chromium
+npm test
+```
+
+### Asset builds (optional)
+After editing uncompressed sources, regenerate minified bundles used in production HTML:
+```bash
+npx terser js/script.js -c -m -o js/script.min.js
+npx clean-css-cli -o css/styles.min.css css/styles.css
 ```
 
 ## Content Architecture

@@ -1131,6 +1131,70 @@ footer {
     transform: scale(1.1);
 }
 
+.phrase-star-btn {
+    background: none;
+    border: none;
+    color: var(--warning-color);
+    cursor: pointer;
+    padding: 5px;
+    opacity: 0.85;
+    transition: all 0.3s ease;
+}
+
+.phrase-star-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.phrase-star-btn[aria-pressed="true"] {
+    color: #f39c12;
+}
+
+.review-card {
+    border: 1px solid var(--secondary-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background: #fff;
+}
+
+.review-phrase {
+    font-size: 1.15rem;
+    margin: 0 0 0.5rem;
+}
+
+.review-meta {
+    margin: 0 0 0.75rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.review-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.secondary-btn {
+    background: #f0f0f0;
+    border: 1px solid #ddd;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.site-nav-links {
+    margin: 0.5rem 0 0;
+    text-align: center;
+}
+
+.site-nav-links a {
+    color: inherit;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
 .navigation {
     display: flex;
     justify-content: space-between;

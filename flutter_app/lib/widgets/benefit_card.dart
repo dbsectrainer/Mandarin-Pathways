@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BenefitCard extends StatelessWidget {
   final String title;
-  final IconData icon;
+  final FaIconData icon;
   final List<String> benefits;
 
   const BenefitCard({

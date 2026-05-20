@@ -54,7 +54,7 @@ class SectionCard extends StatelessWidget {
     );
   }
 
-  IconData _getSectionIcon(LessonSection section) {
+  FaIconData _getSectionIcon(LessonSection section) {
     switch (section) {
       case LessonSection.basics:
         return FontAwesomeIcons.star;

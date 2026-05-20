@@ -1,4 +1,4 @@
-const CACHE_VERSION = '5';
+const CACHE_VERSION = '6';
 const CACHE_NAME = `mandarin-pathways-v${CACHE_VERSION}`;
 
 // Cache groups for different types of resources
@@ -180,7 +180,8 @@ self.addEventListener('fetch', (event) => {
     event.request.url.includes('/audio_files/') ||
     event.request.url.includes('/text_files/') ||
     event.request.url.includes('/reading_files/') ||
-    event.request.url.includes('/writing_files/')
+    event.request.url.includes('/writing_files/') ||
+    event.request.url.includes('/timing/')
   ) {
     event.respondWith(
       caches.match(event.request)

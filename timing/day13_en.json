@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "day": 13,
+  "lang": "en",
+  "phrases": [
+    {
+      "i": 0,
+      "section": "Emergency Phrases",
+      "start": 0.0,
+      "end": 3.168
+    },
+    {
+      "i": 1,
+      "section": "Emergency Phrases",
+      "start": 3.168,
+      "end": 4.944
+    },
+    {
+      "i": 2,
+      "section": "Emergency Phrases",
+      "start": 4.944,
+      "end": 6.672
+    },
+    {
+      "i": 3,
+      "section": "Emergency Phrases",
+      "start": 6.672,
+      "end": 8.376
+    },
+    {
+      "i": 4,
+      "section": "Emergency Phrases",
+      "start": 8.376,
+      "end": 10.584
+    },
+    {
+      "i": 5,
+      "section": "Emergency Phrases",
+      "start": 10.584,
+      "end": 12.792
+    },
+    {
+      "i": 6,
+      "section": "Hotel Phrases",
+      "start": 12.792,
+      "end": 15.0
+    },
+    {
+      "i": 7,
+      "section": "Hotel Phrases",
+      "start": 15.0,
+      "end": 17.016
+    },
+    {
+      "i": 8,
+      "section": "Hotel Phrases",
+      "start": 17.016,
+      "end": 18.72
+    },
+    {
+      "i": 9,
+      "section": "Hotel Phrases",
+      "start": 18.72,
+      "end": 20.4
+    },
+    {
+      "i": 10,
+      "section": "Hotel Phrases",
+      "start": 20.4,
+      "end": 22.08
+    }
+  ]
+}

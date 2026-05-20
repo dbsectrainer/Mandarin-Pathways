@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "day": 23,
+  "lang": "zh",
+  "phrases": [
+    {
+      "i": 0,
+      "section": "Job Titles",
+      "start": 0.0,
+      "end": 1.248
+    },
+    {
+      "i": 1,
+      "section": "Job Titles",
+      "start": 1.248,
+      "end": 2.496
+    },
+    {
+      "i": 2,
+      "section": "Job Titles",
+      "start": 2.496,
+      "end": 3.792
+    },
+    {
+      "i": 3,
+      "section": "Job Titles",
+      "start": 3.792,
+      "end": 5.064
+    },
+    {
+      "i": 4,
+      "section": "Job Titles",
+      "start": 5.064,
+      "end": 6.528
+    },
+    {
+      "i": 5,
+      "section": "Job Titles",
+      "start": 6.528,
+      "end": 7.872
+    },
+    {
+      "i": 6,
+      "section": "Job Titles",
+      "start": 7.872,
+      "end": 9.552
+    },
+    {
+      "i": 7,
+      "section": "Office Items",
+      "start": 9.552,
+      "end": 10.776
+    },
+    {
+      "i": 8,
+      "section": "Office Items",
+      "start": 10.776,
+      "end": 12.216
+    },
+    {
+      "i": 9,
+      "section": "Office Items",
+      "start": 12.216,
+      "end": 13.464
+    },
+    {
+      "i": 10,
+      "section": "Office Items",
+      "start": 13.464,
+      "end": 14.928
+    },
+    {
+      "i": 11,
+      "section": "Office Items",
+      "start": 14.928,
+      "end": 16.368
+    },
+    {
+      "i": 12,
+      "section": "Office Items",
+      "start": 16.368,
+      "end": 17.664
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "day": 32,
+  "lang": "en",
+  "phrases": [
+    {
+      "i": 0,
+      "section": "Internet Slang",
+      "start": 0.0,
+      "end": 3.168
+    },
+    {
+      "i": 1,
+      "section": "Internet Slang",
+      "start": 3.168,
+      "end": 5.28
+    },
+    {
+      "i": 2,
+      "section": "Internet Slang",
+      "start": 5.28,
+      "end": 7.176
+    },
+    {
+      "i": 3,
+      "section": "Internet Slang",
+      "start": 7.176,
+      "end": 9.96
+    },
+    {
+      "i": 4,
+      "section": "Internet Slang",
+      "start": 9.96,
+      "end": 12.84
+    },
+    {
+      "i": 5,
+      "section": "Internet Slang",
+      "start": 12.84,
+      "end": 17.28
+    },
+    {
+      "i": 6,
+      "section": "Youth Expressions",
+      "start": 17.28,
+      "end": 19.656
+    },
+    {
+      "i": 7,
+      "section": "Youth Expressions",
+      "start": 19.656,
+      "end": 22.2
+    },
+    {
+      "i": 8,
+      "section": "Youth Expressions",
+      "start": 22.2,
+      "end": 24.576
+    },
+    {
+      "i": 9,
+      "section": "Youth Expressions",
+      "start": 24.576,
+      "end": 27.096
+    },
+    {
+      "i": 10,
+      "section": "Youth Expressions",
+      "start": 27.096,
+      "end": 30.384
+    },
+    {
+      "i": 11,
+      "section": "Youth Expressions",
+      "start": 30.384,
+      "end": 32.928
+    }
+  ]
+}

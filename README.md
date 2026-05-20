@@ -94,6 +94,7 @@ A focused Mandarin Chinese learning platform designed to take learners from foun
   - Simplified Chinese (`day{n}_zh.txt`)
   - Pinyin (`day{n}_pinyin.txt`)
   - English (`day{n}_en.txt`)
+- `timing/`: Per-phrase timestamps for karaoke-style highlighting during daily lesson playback (`day{n}_zh.json`, `day{n}_en.json`) — regenerated when you rebuild lesson audio
 - `reading_files/`: Text content for reading practice exercises
 - `writing_files/`: Character practice content and writing exercises
 - `manifest.json`: PWA configuration for installable app features
@@ -198,10 +199,20 @@ A focused Mandarin Chinese learning platform designed to take learners from foun
 
 ### Requirements
 - Python 3.12+
+- **ffmpeg** on your PATH (required by ``pydub`` when stitching per-phrase TTS into `audio_files/day{n}_*.mp3` and writing `timing/day{n}_*.json`)
 - Required Python packages:
   ```bash
-  pip install gtts edge-tts pandas
+  pip install gtts edge-tts pandas pydub
   ```
+
+  Or install from the pinned list:
+
+  ```bash
+  pip install -r requirements.txt
+  ```
+
+  Regenerating Mandarin lesson audio builds **one stitched MP3 per day/voice plus** cue files under `timing/` so the web day lesson can sync highlights with playback.
+
 
 ### Generate Lessons
 ```bash

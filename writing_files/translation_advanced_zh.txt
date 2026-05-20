@@ -1,7 +1,7 @@
 高级翻译练习
 --------------------
 
-Translate complex sentences and paragraphs between English and Chinese
+翻译英文和中文之间的复杂句子和段落
 
 1. 英文: The rapid development of technology has greatly changed our way of life.
 翻译: 科技的快速发展极大地改变了我们的生活方式。

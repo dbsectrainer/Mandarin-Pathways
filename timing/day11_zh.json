@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "day": 11,
+  "lang": "zh",
+  "phrases": [
+    {
+      "i": 0,
+      "section": "Direction Words",
+      "start": 0.0,
+      "end": 1.248
+    },
+    {
+      "i": 1,
+      "section": "Direction Words",
+      "start": 1.248,
+      "end": 2.496
+    },
+    {
+      "i": 2,
+      "section": "Direction Words",
+      "start": 2.496,
+      "end": 3.792
+    },
+    {
+      "i": 3,
+      "section": "Direction Words",
+      "start": 3.792,
+      "end": 5.04
+    },
+    {
+      "i": 4,
+      "section": "Direction Words",
+      "start": 5.04,
+      "end": 6.36
+    },
+    {
+      "i": 5,
+      "section": "Direction Words",
+      "start": 6.36,
+      "end": 7.656
+    },
+    {
+      "i": 6,
+      "section": "Direction Words",
+      "start": 7.656,
+      "end": 8.88
+    },
+    {
+      "i": 7,
+      "section": "Direction Words",
+      "start": 8.88,
+      "end": 10.104
+    },
+    {
+      "i": 8,
+      "section": "Asking for Directions",
+      "start": 10.104,
+      "end": 12.504
+    },
+    {
+      "i": 9,
+      "section": "Asking for Directions",
+      "start": 12.504,
+      "end": 14.304
+    },
+    {
+      "i": 10,
+      "section": "Asking for Directions",
+      "start": 14.304,
+      "end": 15.576
+    },
+    {
+      "i": 11,
+      "section": "Asking for Directions",
+      "start": 15.576,
+      "end": 17.04
+    },
+    {
+      "i": 12,
+      "section": "Asking for Directions",
+      "start": 17.04,
+      "end": 18.504
+    },
+    {
+      "i": 13,
+      "section": "Asking for Directions",
+      "start": 18.504,
+      "end": 19.968
+    }
+  ]
+}

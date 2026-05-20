@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "phrases": [
+    {
+      "section": "title",
+      "i": 0,
+      "start": 0.0,
+      "end": 1.872
+    },
+    {
+      "section": "description",
+      "i": 1,
+      "start": 1.872,
+      "end": 5.352
+    }
+  ],
+  "activity_type": "character",
+  "level": "theme_-_travel",
+  "lang": "zh",
+  "kind": "writing"
+}

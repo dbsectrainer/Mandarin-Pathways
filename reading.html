@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <meta name="description" content="Mandarin Chinese reading practice - 中文阅读练习">
     <meta name="theme-color" content="#e74c3c">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -15,7 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.min.css">
     <link rel="stylesheet" href="css/reading.css">
 </head>
 <body>
@@ -32,7 +32,7 @@
 
         <!-- Visual anchor pattern -->
         <div class="visual-anchor" style="top: 5%; right: 5%;"></div>
-        
+
         <div class="lesson-container">
             <div class="lesson-header">
                 <div class="lesson-title">
@@ -40,9 +40,9 @@
                     <h2><span class="zh">阅读练习：</span><span class="en">Reading Practice: </span><span id="reading-level"></span></h2>
                 </div>
                 <div class="language-selector">
-                    <button class="language-btn" data-lang="zh"><span class="flag">🇨🇳</span> 简体中文</button>
-                    <button class="language-btn" data-lang="pinyin"><span class="flag">🔤</span> Pinyin</button>
-                    <button class="language-btn" data-lang="en"><span class="flag">🇺🇸</span> English</button>
+                    <button type="button" class="language-btn" data-lang="zh" aria-label="Switch to Simplified Chinese"><span class="flag">🇨🇳</span> 简体中文</button>
+                    <button type="button" class="language-btn" data-lang="pinyin" aria-label="Switch to Pinyin"><span class="flag">🔤</span> Pinyin</button>
+                    <button type="button" class="language-btn" data-lang="en" aria-label="Switch to English"><span class="flag">🇺🇸</span> English</button>
                 </div>
             </div>
 
@@ -112,7 +112,7 @@
 
             <!-- Section divider with visual anchor -->
             <div class="section-divider"></div>
-            
+
             <div class="navigation">
                 <a href="index.html" class="home-btn">
                     <i class="fas fa-home"></i> <span class="zh">返回首页</span><span class="en">Back to Home</span>
@@ -125,420 +125,17 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 Mandarin Pathways | <span class="zh">赋能中文学习</span><span class="en">Empowering Chinese Language Learning</span></p>
+        <p>&copy; 2026 Mandarin Pathways | <span class="zh">赋能中文学习</span><span class="en">Empowering Chinese Language Learning</span></p>
     </footer>
 
     <div class="copy-notification" id="copy-notification">
         <span class="zh">短语已复制到剪贴板！</span><span class="en">Phrase copied to clipboard!</span>
     </div>
 
-    <script>
-        // Register Service Worker
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registration successful');
-                    })
-                    .catch(err => {
-                        console.log('ServiceWorker registration failed: ', err);
-                    });
-            });
-        }
-
-        // Reading content data structure
-        const readingData = {
-            beginner: {
-                "Self Introduction": {
-                    title: "Self Introduction",
-                    description: "A simple self-introduction in Mandarin",
-                    hasAudio: true
-                },
-                "Daily Routine": {
-                    title: "Daily Routine",
-                    description: "Learn vocabulary related to daily activities",
-                    hasAudio: true
-                }
-            },
-            intermediate: {
-                "At the Restaurant": {
-                    title: "At the Restaurant",
-                    description: "Vocabulary and phrases for dining out",
-                    hasAudio: true
-                },
-                "Weekend Plans": {
-                    title: "Weekend Plans",
-                    description: "Discussing weekend activities and plans",
-                    hasAudio: true
-                }
-            },
-            advanced: {
-                "Environmental Protection": {
-                    title: "Environmental Protection",
-                    description: "Advanced vocabulary related to environmental issues",
-                    hasAudio: true
-                }
-            }
-        };
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const level = urlParams.get('level') || '';
-            const topic = urlParams.get('topic') || '';
-            const lang = urlParams.get('lang') || 'zh';
-            
-            // Set active language and update HTML lang attribute
-            const languageBtns = document.querySelectorAll('.language-btn');
-            languageBtns.forEach(btn => {
-                if (btn.dataset.lang === lang) {
-                    btn.classList.add('active');
-                    // Set HTML lang attribute based on selected language
-                    if (lang === 'en') {
-                        document.documentElement.setAttribute('lang', 'en');
-                    } else if (lang === 'zh') {
-                        document.documentElement.setAttribute('lang', 'zh-CN');
-                    } else {
-                        // For pinyin, we'll use English as the base language
-                        document.documentElement.setAttribute('lang', 'en');
-                    }
-                }
-                btn.addEventListener('click', () => {
-                    const currentLevel = urlParams.get('level') || '';
-                    const currentTopic = urlParams.get('topic') || '';
-                    let newUrl = `reading.html?lang=${btn.dataset.lang}`;
-                    if (currentLevel) {
-                        newUrl += `&level=${currentLevel}`;
-                        if (currentTopic) {
-                            newUrl += `&topic=${currentTopic}`;
-                        }
-                    }
-                    window.location.href = newUrl;
-                });
-            });
-
-            // Set language flag
-            const flagMap = {
-                'zh': '🇨🇳',
-                'pinyin': '🔤',
-                'en': '🇺🇸'
-            };
-            document.getElementById('language-flag').textContent = flagMap[lang];
-
-            // Set up level buttons
-            const levelBtns = document.querySelectorAll('.level-btn');
-            levelBtns.forEach(btn => {
-                if (btn.dataset.level === level) {
-                    btn.classList.add('active');
-                }
-                btn.addEventListener('click', () => {
-                    window.location.href = `reading.html?level=${btn.dataset.level}&lang=${lang}`;
-                });
-            });
-
-            // If level is selected, show topics
-            if (level && readingData[level]) {
-                document.querySelector('.topic-selector').style.display = 'block';
-                document.getElementById('reading-level').textContent = level.charAt(0).toUpperCase() + level.slice(1);
-                
-                // Populate topics
-                const topicButtons = document.getElementById('topic-buttons');
-                topicButtons.innerHTML = '';
-                
-                Object.keys(readingData[level]).forEach(topicName => {
-                    const btn = document.createElement('button');
-                    btn.className = 'topic-btn';
-                    if (topicName === topic) {
-                        btn.classList.add('active');
-                    }
-                    btn.dataset.topic = topicName;
-                    
-                    const icon = document.createElement('i');
-                    icon.className = 'fas fa-book';
-                    btn.appendChild(icon);
-                    
-                    const space = document.createTextNode(' ');
-                    btn.appendChild(space);
-                    
-                    const text = document.createTextNode(topicName);
-                    btn.appendChild(text);
-                    
-                    btn.addEventListener('click', () => {
-                        window.location.href = `reading.html?level=${level}&topic=${topicName}&lang=${lang}`;
-                    });
-                    
-                    topicButtons.appendChild(btn);
-                });
-            }
-
-            // If both level and topic are selected, load content
-            if (level && topic && readingData[level] && readingData[level][topic]) {
-                loadReadingContent(level, topic, lang);
-            } else {
-                // Hide content sections if no topic selected
-                document.getElementById('section-title').textContent = '';
-                document.getElementById('section-description').textContent = '';
-                document.querySelector('.audio-player').style.display = 'none';
-                document.getElementById('reading-content').innerHTML = '';
-                document.getElementById('vocabulary-section').style.display = 'none';
-                document.getElementById('questions-section').style.display = 'none';
-                document.getElementById('complete-btn').style.display = 'none';
-            }
-
-            // Mark as complete functionality
-            const completeBtn = document.getElementById('complete-btn');
-            const completedReadings = JSON.parse(localStorage.getItem('completedReadings') || '{}');
-            
-            if (level && topic && completedReadings[`${level}_${topic}_${lang}`]) {
-                completeBtn.classList.add('completed');
-                completeBtn.innerHTML = '<i class="fas fa-check-circle"></i> Completed';
-                completeBtn.disabled = true;
-            }
-
-            completeBtn.addEventListener('click', () => {
-                if (level && topic) {
-                    // Mark reading as complete
-                    completedReadings[`${level}_${topic}_${lang}`] = true;
-                    localStorage.setItem('completedReadings', JSON.stringify(completedReadings));
-                    
-                    // Update button state
-                    completeBtn.classList.add('completed');
-                    completeBtn.innerHTML = '<i class="fas fa-check-circle"></i> Completed';
-                    completeBtn.disabled = true;
-
-                    // Show completion notification
-                    const notification = document.getElementById('copy-notification');
-                    notification.textContent = 'Reading marked as complete!';
-                    notification.style.display = 'block';
-                    notification.style.animation = 'none';
-                    notification.offsetHeight; // Trigger reflow
-                    notification.style.animation = 'fadeInOut 2s ease';
-                    setTimeout(() => {
-                        notification.style.display = 'none';
-                        notification.textContent = 'Phrase copied to clipboard!';
-                    }, 2000);
-                }
-            });
-        });
-
-        function loadReadingContent(level, topic, lang) {
-            const topicInfo = readingData[level][topic];
-            
-            // Set section info
-            document.getElementById('section-title').textContent = topicInfo.title;
-            document.getElementById('section-description').textContent = topicInfo.description;
-            
-            // Show content sections
-            document.querySelector('.audio-player').style.display = 'block';
-            document.getElementById('vocabulary-section').style.display = 'block';
-            document.getElementById('questions-section').style.display = 'block';
-            document.getElementById('complete-btn').style.display = 'block';
-            
-            // Load audio if available
-            const audio = document.getElementById('audio-player');
-            const audioFallback = document.getElementById('audio-fallback');
-            
-            if (topicInfo.hasAudio) {
-                // For Pinyin, use Mandarin audio file
-                const audioLang = lang === 'pinyin' ? 'zh' : lang;
-                const audioPath = `audio_files/reading/${level}_${topic.toLowerCase().replace(/ /g, '_')}_${audioLang}.mp3`;
-                audio.src = audioPath;
-                
-                // Add a note only for Pinyin that it's using Mandarin audio
-                if (lang === 'pinyin') {
-                    audioFallback.innerHTML = '<p class="note"><i class="fas fa-info-circle"></i> Using Mandarin audio for reference.</p>';
-                    audioFallback.style.display = 'block';
-                } else {
-                    audioFallback.style.display = 'none';
-                }
-            } else {
-                audio.src = '';
-                audioFallback.innerHTML = '<p class="note"><i class="fas fa-info-circle"></i> Audio not available for this reading.</p>';
-                audioFallback.style.display = 'block';
-            }
-            
-            // Load text content
-            fetch(`reading_files/${level}_${topic.toLowerCase().replace(/ /g, '_')}_${lang}.txt`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`Network response was not ok: ${response.status}`);
-                    }
-                    return response.text();
-                })
-                .then(text => {
-                    formatAndDisplayReadingContent(text);
-                })
-                .catch(error => {
-                    console.error('Error loading reading content:', error);
-                    document.getElementById('reading-content').innerHTML = '<p class="error">Reading content not available. Please try another topic or language.</p>';
-                    document.getElementById('vocabulary-section').style.display = 'none';
-                    document.getElementById('questions-section').style.display = 'none';
-                });
-        }
-
-        function formatAndDisplayReadingContent(text) {
-            // Split the text into sections (main text, vocabulary, questions)
-            const sections = text.split(/\n(?=\w[^\n]+\n-+\n)/);
-            
-            if (sections.length >= 1) {
-                // Main reading text
-                const mainTextSection = sections[0];
-                const mainTextLines = mainTextSection.split('\n');
-                
-                // Skip title and separator lines
-                const mainText = mainTextLines.slice(2).join('\n');
-                
-                const readingContentDiv = document.getElementById('reading-content');
-                readingContentDiv.innerHTML = '';
-                
-                const textParagraphs = mainText.split('\n\n');
-                textParagraphs.forEach(paragraph => {
-                    if (paragraph.trim()) {
-                        const p = document.createElement('p');
-                        p.textContent = paragraph.trim();
-                        readingContentDiv.appendChild(p);
-                    }
-                });
-            }
-            
-            if (sections.length >= 2) {
-                // Vocabulary section
-                const vocabSection = sections[1];
-                const vocabLines = vocabSection.split('\n');
-                
-                // Skip title and separator lines
-                const vocabItems = vocabLines.slice(2).filter(line => line.trim());
-                
-                const vocabListDiv = document.getElementById('vocabulary-list');
-                vocabListDiv.innerHTML = '';
-                
-                vocabItems.forEach(item => {
-                    if (item.trim()) {
-                        const vocabItem = document.createElement('div');
-                        vocabItem.className = 'vocab-item';
-                        
-                        // Parse the item to extract the parts (bullet point, word, pinyin, translation)
-                        // Format: • word (pinyin) - translation
-                        const itemText = document.createElement('span');
-                        itemText.innerHTML = item.trim()
-                            .replace(/•/, '<span class="bullet">•</span>')
-                            .replace(/\(([^)]+)\)/, '<span class="pinyin">($1)</span>')
-                            .replace(/-/, '<span class="separator">-</span>');
-                        
-                        const copyBtn = document.createElement('button');
-                        copyBtn.className = 'copy-btn';
-                        copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
-                        copyBtn.addEventListener('click', () => copyText(item.trim()));
-                        
-                        vocabItem.appendChild(itemText);
-                        vocabItem.appendChild(copyBtn);
-                        vocabListDiv.appendChild(vocabItem);
-                    }
-                });
-            } else {
-                document.getElementById('vocabulary-section').style.display = 'none';
-            }
-            
-            if (sections.length >= 3) {
-                // Questions section
-                const questionsSection = sections[2];
-                const questionLines = questionsSection.split('\n');
-                
-                // Skip title and separator lines
-                const questions = questionLines.slice(2).filter(line => line.trim());
-                
-                const questionsListDiv = document.getElementById('questions-list');
-                questionsListDiv.innerHTML = '';
-                
-                // Group questions and answers (every two lines)
-                const questionAnswerPairs = [];
-                for (let i = 0; i < questions.length; i += 2) {
-                    if (questions[i] && questions[i].trim()) {
-                        const questionText = questions[i].trim();
-                        const answerText = (i + 1 < questions.length) ? questions[i + 1].trim() : '';
-                        questionAnswerPairs.push({ question: questionText, answer: answerText });
-                    }
-                }
-                
-                questionAnswerPairs.forEach(pair => {
-                    const questionItem = document.createElement('div');
-                    questionItem.className = 'question-item';
-                    
-                    // Parse the question to extract the question number and text
-                    // Format: 【Question #】 Question text
-                    const questionText = document.createElement('p');
-                    questionText.className = 'question-text';
-                    questionText.innerHTML = pair.question
-                        .replace(/【([^】]+)】/, '<span class="question-number">【$1】</span>');
-                    
-                    // Create answer section with toggle functionality
-                    const answerSection = document.createElement('div');
-                    answerSection.className = 'answer-section';
-                    
-                    const answerInput = document.createElement('textarea');
-                    answerInput.className = 'answer-input';
-                    answerInput.placeholder = 'Write your answer here...';
-                    
-                    const answerToggle = document.createElement('button');
-                    answerToggle.className = 'answer-toggle';
-                    answerToggle.innerHTML = '<i class="fas fa-eye"></i> Show Answer';
-                    
-                    const answerText = document.createElement('div');
-                    answerText.className = 'answer-text';
-                    answerText.textContent = pair.answer.replace(/^答案: |^Answer: /, '');
-                    answerText.style.display = 'none';
-                    
-                    answerToggle.addEventListener('click', () => {
-                        if (answerText.style.display === 'none') {
-                            answerText.style.display = 'block';
-                            answerToggle.innerHTML = '<i class="fas fa-eye-slash"></i> Hide Answer';
-                        } else {
-                            answerText.style.display = 'none';
-                            answerToggle.innerHTML = '<i class="fas fa-eye"></i> Show Answer';
-                        }
-                    });
-                    
-                    answerSection.appendChild(answerInput);
-                    answerSection.appendChild(answerToggle);
-                    answerSection.appendChild(answerText);
-                    
-                    questionItem.appendChild(questionText);
-                    questionItem.appendChild(answerSection);
-                    questionsListDiv.appendChild(questionItem);
-                });
-            } else {
-                document.getElementById('questions-section').style.display = 'none';
-            }
-        }
-
-        function copyText(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                const notification = document.getElementById('copy-notification');
-                notification.style.display = 'block';
-                notification.style.animation = 'none';
-                notification.offsetHeight; // Trigger reflow
-                notification.style.animation = 'fadeInOut 2s ease';
-                setTimeout(() => {
-                    notification.style.display = 'none';
-                }, 2000);
-            });
-        }
-
-        // Return to top functionality
-        window.addEventListener('scroll', function() {
-            const returnToTop = document.getElementById('returnToTop');
-            if (window.scrollY > 500) {
-                returnToTop.classList.add('visible');
-            } else {
-                returnToTop.classList.remove('visible');
-            }
-        });
-        
-        document.getElementById('returnToTop').addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    </script>
+    <script src="js/sw-register.js"></script>
+    <script src="js/content-error.js" defer></script>
+    <script src="js/lesson-audio-sync.js" defer></script>
+    <script src="js/reading-page.js" defer></script>
+    <script src="js/return-to-top.js" defer></script>
 </body>
 </html>

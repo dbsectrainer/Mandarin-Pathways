@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "day": 30,
+  "lang": "zh",
+  "phrases": [
+    {
+      "i": 0,
+      "section": "Negotiation Terms",
+      "start": 0.0,
+      "end": 1.272
+    },
+    {
+      "i": 1,
+      "section": "Negotiation Terms",
+      "start": 1.272,
+      "end": 2.568
+    },
+    {
+      "i": 2,
+      "section": "Negotiation Terms",
+      "start": 2.568,
+      "end": 3.864
+    },
+    {
+      "i": 3,
+      "section": "Negotiation Terms",
+      "start": 3.864,
+      "end": 5.184
+    },
+    {
+      "i": 4,
+      "section": "Negotiation Terms",
+      "start": 5.184,
+      "end": 6.48
+    },
+    {
+      "i": 5,
+      "section": "Negotiation Terms",
+      "start": 6.48,
+      "end": 7.776
+    },
+    {
+      "i": 6,
+      "section": "Negotiation Terms",
+      "start": 7.776,
+      "end": 9.432
+    },
+    {
+      "i": 7,
+      "section": "Negotiation Phrases",
+      "start": 9.432,
+      "end": 12.12
+    },
+    {
+      "i": 8,
+      "section": "Negotiation Phrases",
+      "start": 12.12,
+      "end": 14.712
+    },
+    {
+      "i": 9,
+      "section": "Negotiation Phrases",
+      "start": 14.712,
+      "end": 16.824
+    },
+    {
+      "i": 10,
+      "section": "Negotiation Phrases",
+      "start": 16.824,
+      "end": 19.152
+    },
+    {
+      "i": 11,
+      "section": "Negotiation Phrases",
+      "start": 19.152,
+      "end": 20.496
+    },
+    {
+      "i": 12,
+      "section": "Negotiation Phrases",
+      "start": 20.496,
+      "end": 22.152
+    }
+  ]
+}

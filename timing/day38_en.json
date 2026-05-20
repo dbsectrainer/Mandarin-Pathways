@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "day": 38,
+  "lang": "en",
+  "phrases": [
+    {
+      "i": 0,
+      "section": "Shopping Dialogue 1",
+      "start": 0.0,
+      "end": 3.312
+    },
+    {
+      "i": 1,
+      "section": "Shopping Dialogue 1",
+      "start": 3.312,
+      "end": 6.0
+    },
+    {
+      "i": 2,
+      "section": "Shopping Dialogue 1",
+      "start": 6.0,
+      "end": 10.92
+    },
+    {
+      "i": 3,
+      "section": "Shopping Dialogue 1",
+      "start": 10.92,
+      "end": 15.168
+    },
+    {
+      "i": 4,
+      "section": "Shopping Dialogue 1",
+      "start": 15.168,
+      "end": 18.288
+    },
+    {
+      "i": 5,
+      "section": "Shopping Dialogue 2",
+      "start": 18.288,
+      "end": 21.984
+    },
+    {
+      "i": 6,
+      "section": "Shopping Dialogue 2",
+      "start": 21.984,
+      "end": 25.128
+    },
+    {
+      "i": 7,
+      "section": "Shopping Dialogue 2",
+      "start": 25.128,
+      "end": 28.584
+    },
+    {
+      "i": 8,
+      "section": "Shopping Dialogue 2",
+      "start": 28.584,
+      "end": 33.528
+    },
+    {
+      "i": 9,
+      "section": "Shopping Dialogue 2",
+      "start": 33.528,
+      "end": 36.696
+    }
+  ]
+}

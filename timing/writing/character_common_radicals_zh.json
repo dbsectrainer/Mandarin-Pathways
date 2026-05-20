@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "phrases": [
+    {
+      "section": "title",
+      "i": 0,
+      "start": 0.0,
+      "end": 1.632
+    },
+    {
+      "section": "description",
+      "i": 1,
+      "start": 1.632,
+      "end": 5.856
+    }
+  ],
+  "activity_type": "character",
+  "level": "common_radicals",
+  "lang": "zh",
+  "kind": "writing"
+}

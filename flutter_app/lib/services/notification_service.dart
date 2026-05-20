@@ -12,7 +12,7 @@ class NotificationService {
     const AndroidInitializationSettings initializationSettingsAndroid =
         AndroidInitializationSettings('@mipmap/ic_launcher');
 
-    const DarwinInitializationSettings initializationSettingsIOS =
+    const DarwinInitializationSettings initializationSettingsDarwin =
         DarwinInitializationSettings(
       requestAlertPermission: true,
       requestBadgePermission: true,
@@ -22,11 +22,12 @@ class NotificationService {
     const InitializationSettings initializationSettings =
         InitializationSettings(
       android: initializationSettingsAndroid,
-      iOS: initializationSettingsIOS,
+      iOS: initializationSettingsDarwin,
+      macOS: initializationSettingsDarwin,
     );
 
     await _notificationsPlugin.initialize(
-      initializationSettings,
+      settings: initializationSettings,
       onDidReceiveNotificationResponse: _onNotificationTapped,
     );
   }
@@ -57,11 +58,11 @@ class NotificationService {
     required int minute,
   }) async {
     await _notificationsPlugin.zonedSchedule(
-      0, // notification id
-      'Mandarin Pathways',
-      "Time for your daily Mandarin lesson! 📚",
-      _nextInstanceOfTime(hour, minute),
-      const NotificationDetails(
+      id: 0,
+      title: 'Mandarin Pathways',
+      body: "Time for your daily Mandarin lesson! 📚",
+      scheduledDate: _nextInstanceOfTime(hour, minute),
+      notificationDetails: const NotificationDetails(
         android: AndroidNotificationDetails(
           'daily_reminder',
           'Daily Reminders',
@@ -70,10 +71,9 @@ class NotificationService {
           priority: Priority.high,
         ),
         iOS: DarwinNotificationDetails(),
+        macOS: DarwinNotificationDetails(),
       ),
       androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      uiLocalNotificationDateInterpretation:
-          UILocalNotificationDateInterpretation.absoluteTime,
       matchDateTimeComponents: DateTimeComponents.time,
     );
   }
@@ -114,13 +114,14 @@ class NotificationService {
         priority: Priority.high,
       ),
       iOS: DarwinNotificationDetails(),
+      macOS: DarwinNotificationDetails(),
     );
 
     await _notificationsPlugin.show(
-      DateTime.now().millisecond,
-      title,
-      body,
-      notificationDetails,
+      id: DateTime.now().millisecond,
+      title: title,
+      body: body,
+      notificationDetails: notificationDetails,
       payload: payload,
     );
   }

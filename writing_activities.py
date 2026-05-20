@@ -1,8 +1,13 @@
 import argparse
 import os
-import time
 import asyncio
-import edge_tts
+import sys
+from pathlib import Path
+
+_scripts_dir = Path(__file__).resolve().parent / "scripts"
+if str(_scripts_dir) not in sys.path:
+    sys.path.insert(0, str(_scripts_dir))
+import audio_timings  # noqa: E402
 
 # Define writing activities by level and type
 
@@ -11,6 +16,7 @@ character_practice = {
     "Basic Strokes": {
         "title": "基本笔画 / Basic Strokes",
         "description": "Practice the fundamental strokes used in Chinese characters",
+        "description_zh": "练习汉字中使用的基本笔画",
         "hasAudio": True,
         "characters": [
             {
@@ -54,6 +60,7 @@ character_practice = {
     "Common Radicals": {
         "title": "常用部首 / Common Radicals",
         "description": "Practice common radicals that form the building blocks of Chinese characters",
+        "description_zh": "练习构成汉字基本组成部分的常用部首",
         "hasAudio": True,
         "characters": [
             {
@@ -97,6 +104,7 @@ character_practice = {
     "Numbers": {
         "title": "数字 / Numbers",
         "description": "Practice writing Chinese numbers",
+        "description_zh": "练习书写中文数字",
         "hasAudio": True,
         "characters": [
             {
@@ -141,6 +149,7 @@ character_practice = {
     "Complete Radicals - Group 1": {
         "title": "完整部首 - 第一组 / Complete Radicals - Group 1",
         "description": "Practice common radicals (1-30 of 214 Kangxi radicals)",
+        "description_zh": "练习常用部首（康熙部首214个中的1-30个）",
         "hasAudio": True,
         "characters": [
             {
@@ -239,6 +248,7 @@ character_practice = {
     "Complete Radicals - Group 2": {
         "title": "完整部首 - 第二组 / Complete Radicals - Group 2",
         "description": "Practice common radicals (31-60 of 214 Kangxi radicals)",
+        "description_zh": "练习常用部首（康熙部首214个中的31-60个）",
         "hasAudio": True,
         "characters": [
             {
@@ -337,6 +347,7 @@ character_practice = {
     "Complete Radicals - Group 3": {
         "title": "完整部首 - 第三组 / Complete Radicals - Group 3",
         "description": "Practice common radicals (61-90 of 214 Kangxi radicals)",
+        "description_zh": "练习常用部首（康熙部首214个中的61-90个）",
         "hasAudio": True,
         "characters": [
             {
@@ -435,6 +446,7 @@ character_practice = {
     "HSK1 - Essential": {
         "title": "HSK1 基础汉字 / HSK1 Essential Characters",
         "description": "Practice the most common characters from HSK Level 1",
+        "description_zh": "练习HSK一级中最常用的汉字",
         "hasAudio": True,
         "characters": [
             {
@@ -533,6 +545,7 @@ character_practice = {
     "HSK2 - Basic": {
         "title": "HSK2 基础汉字 / HSK2 Basic Characters",
         "description": "Practice common characters from HSK Level 2",
+        "description_zh": "练习HSK二级中的常用汉字",
         "hasAudio": True,
         "characters": [
             {
@@ -631,6 +644,7 @@ character_practice = {
     "Theme - Family": {
         "title": "主题 - 家庭 / Theme - Family",
         "description": "Practice characters related to family members and relationships",
+        "description_zh": "练习与家庭成员和关系相关的汉字",
         "hasAudio": True,
         "characters": [
             {
@@ -729,6 +743,7 @@ character_practice = {
     "HSK3 - Intermediate": {
         "title": "HSK3 中级汉字 / HSK3 Intermediate Characters",
         "description": "Practice intermediate characters from HSK Level 3",
+        "description_zh": "练习HSK三级中的中级汉字",
         "hasAudio": True,
         "characters": [
             {
@@ -827,6 +842,7 @@ character_practice = {
     "Theme - Food": {
         "title": "主题 - 食物 / Theme - Food",
         "description": "Practice characters related to food and dining",
+        "description_zh": "练习与食物和用餐相关的汉字",
         "hasAudio": True,
         "characters": [
             {
@@ -925,6 +941,7 @@ character_practice = {
     "Theme - Travel": {
         "title": "主题 - 旅行 / Theme - Travel",
         "description": "Practice characters related to travel and transportation",
+        "description_zh": "练习与旅行和交通相关的汉字",
         "hasAudio": True,
         "characters": [
             {
@@ -1027,6 +1044,8 @@ sentence_completion = {
     "Beginner": {
         "title": "初级句子完成 / Beginner Sentence Completion",
         "description": "Complete sentences with appropriate words",
+        "description_zh": "用适当的词语完成句子",
+        "hasAudio": True,
         "exercises": [
             {
                 "prompt": "我 ____ 中文。(study)",
@@ -1068,6 +1087,8 @@ sentence_completion = {
     "Intermediate": {
         "title": "中级句子完成 / Intermediate Sentence Completion",
         "description": "Complete sentences with appropriate words or phrases",
+        "description_zh": "用适当的词语或短语完成句子",
+        "hasAudio": True,
         "exercises": [
             {
                 "prompt": "如果明天 ____ ，我们就去公园。(good weather)",
@@ -1108,7 +1129,9 @@ sentence_completion = {
     },
     "Advanced": {
         "title": "高级句子完成 / Advanced Sentence Completion",
-        "description": "Complete sentences with appropriate words or phrases",
+        "description": "Complete complex sentences with appropriate words or phrases",
+        "description_zh": "用适当的词语或短语完成复杂句子",
+        "hasAudio": True,
         "exercises": [
             {
                 "prompt": "环境保护 ____ 全球关注的重要话题。(become)",
@@ -1154,6 +1177,8 @@ translation_exercises = {
     "Beginner": {
         "title": "初级翻译练习 / Beginner Translation Exercises",
         "description": "Translate simple sentences between English and Chinese",
+        "description_zh": "翻译英文和中文之间的简单句子",
+        "hasAudio": True,
         "exercises": [
             {
                 "en": "My name is Li Ming.",
@@ -1185,6 +1210,8 @@ translation_exercises = {
     "Intermediate": {
         "title": "中级翻译练习 / Intermediate Translation Exercises",
         "description": "Translate more complex sentences between English and Chinese",
+        "description_zh": "翻译英文和中文之间的更复杂句子",
+        "hasAudio": True,
         "exercises": [
             {
                 "en": "I have been studying Chinese for three years.",
@@ -1216,6 +1243,8 @@ translation_exercises = {
     "Advanced": {
         "title": "高级翻译练习 / Advanced Translation Exercises",
         "description": "Translate complex sentences and paragraphs between English and Chinese",
+        "description_zh": "翻译英文和中文之间的复杂句子和段落",
+        "hasAudio": True,
         "exercises": [
             {
                 "en": "The rapid development of technology has greatly changed our way of life.",
@@ -1279,7 +1308,12 @@ def generate_writing_file(activity_type, level, format_type):
             f.write(f"{activity_content['title']}\n")
             
         f.write("-" * 20 + "\n\n")
-        f.write(f"{activity_content['description']}\n\n")
+        desc_for_file = (
+            activity_content.get("description_zh")
+            if format_type == "zh"
+            else activity_content["description"]
+        )
+        f.write(f"{desc_for_file}\n\n")
         
         # Write the exercises based on activity type
         if activity_type == "character":
@@ -1329,41 +1363,29 @@ def generate_writing_file(activity_type, level, format_type):
                     f.write(f"Translation: {exercise['en']}\n\n")
 
 async def generate_audio(activity_type, level, format_type="zh", voice=None):
-    """Generate audio file for writing instructions"""
+    """Generate intro narration (title + description) with per-line timings."""
     print(f"Generating {activity_type} {level} {format_type} audio file...")
-    
+
     activities_dict = all_writing_activities[activity_type]
     if level not in activities_dict:
         print(f"Level {level} not found in {activity_type} activities")
         return
-    
+
     activity_content = activities_dict[level]
-    
-    # Select text based on format type
-    if format_type == "zh":
-        title_parts = activity_content["title"].split(" / ")
-        text = f"{title_parts[0]}. {activity_content['description']}"
-        if not voice:
-            voice = "zh-CN-XiaoxiaoNeural"
-    elif format_type == "en":
-        title_parts = activity_content["title"].split(" / ")
-        title = title_parts[1] if len(title_parts) > 1 else title_parts[0]
-        text = f"{title}. {activity_content['description']}"
-        if not voice:
-            voice = "en-US-AriaNeural"
-    else:
+
+    if format_type not in ("zh", "en"):
         print(f"Audio generation not supported for {format_type}")
         return
-    
-    # Ensure the audio_files/writing directory exists
-    os.makedirs("audio_files/writing", exist_ok=True)
-    
-    output_file = f"audio_files/writing/{activity_type}_{level.lower().replace(' ', '_')}_{format_type}.mp3"
-    
-    communicate = edge_tts.Communicate(text, voice)
-    await communicate.save(output_file)
-    
-    print(f"Audio saved to {output_file}")
+
+    await audio_timings.generate_writing_audio_with_timings(
+        activity_content, activity_type, level, format_type, voice
+    )
+
+    slug = level.lower().replace(" ", "_")
+    print(
+        f"✓ Saved audio_files/writing/{activity_type}_{slug}_{format_type}.mp3 "
+        "and timing manifest"
+    )
 
 async def main():
     parser = argparse.ArgumentParser(description="Generate writing activity files")

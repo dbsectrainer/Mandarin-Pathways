@@ -1,4 +1,4 @@
-const CACHE_VERSION = '2';
+const CACHE_VERSION = '10';
 const CACHE_NAME = `mandarin-pathways-v${CACHE_VERSION}`;
 
 // Cache groups for different types of resources
@@ -13,15 +13,23 @@ const STATIC_ASSETS = [
   'reading.html',
   'writing.html',
   'supplementary.html',
+  'review.html',
   'manifest.json',
   'css/styles.min.css',
-  'css/video-player.css',
-  'css/native-speaker.css',
   'css/reading.css',
   'css/writing.css',
   'js/script.min.js',
-  'js/video-loader.js',
-  'js/video-loader-supplementary.js',
+  'js/sw-register.js',
+  'js/return-to-top.js',
+  'js/content-error.js',
+  'js/lesson-audio-sync.js',
+  'js/starred-phrases.js',
+  'js/day-page.js',
+  'js/reading-page.js',
+  'js/writing-page.js',
+  'js/supplementary-page.js',
+  'js/data-portability.js',
+  'js/review-page.js',
   'js/character-drawing.js',
   'js/notifications.js',
   'icons/icon-72x72.png',
@@ -41,12 +49,6 @@ const FONT_ASSETS = [];
 const COMPRESSION_HEADERS = new Headers({
   'Content-Encoding': 'gzip, br',
   'Cache-Control': 'public, max-age=31536000',
-  'Vary': 'Accept-Encoding'
-});
-
-// Headers for HTML files to enable bfcache
-const HTML_HEADERS = new Headers({
-  'Cache-Control': 'no-cache',
   'Vary': 'Accept-Encoding'
 });
 
@@ -93,21 +95,47 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // HTML files - Network first with bfcache support
+  // HTML navigations — use the Request as-is so query strings,credentials,and headers behave like a normal reload.
   if (event.request.mode === 'navigate') {
     event.respondWith(
-      fetch(event.request.url, {
-        headers: HTML_HEADERS
-      })
-      .then(response => {
-        // Clone the response before caching
-        const responseToCache = response.clone();
-        caches.open(STATIC_CACHE).then(cache => {
-          cache.put(event.request, responseToCache);
-        });
-        return response;
-      })
-      .catch(() => caches.match('/index.html'))
+      (async () => {
+        try {
+          const response = await fetch(event.request);
+          if (response && response.ok) {
+            try {
+              const cache = await caches.open(STATIC_CACHE);
+              await cache.put(event.request, response.clone());
+            } catch (_) {
+              // Ignore cache/storage failures — user still sees the fresh response.
+            }
+          }
+          return response;
+        } catch (_) {
+          let cached = await caches.match(event.request);
+          if (!cached) {
+            const urlObj = new URL(event.request.url);
+            const pathKey = `${urlObj.origin}${urlObj.pathname}`;
+            cached = await caches.match(pathKey);
+          }
+          if (cached) {
+            return cached;
+          }
+          const pathname = new URL(event.request.url).pathname;
+          if (pathname === '/' || pathname === '/index.html') {
+            const shell =
+              (await caches.match(`${self.origin}/index.html`)) ||
+              (await caches.match(`${self.origin}/`));
+            if (shell) {
+              return shell;
+            }
+          }
+          return new Response('Offline — try again when you have a connection.', {
+            status: 503,
+            statusText: 'Service Unavailable',
+            headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+          });
+        }
+      })()
     );
     return;
   }
@@ -153,7 +181,8 @@ self.addEventListener('fetch', (event) => {
     event.request.url.includes('/audio_files/') ||
     event.request.url.includes('/text_files/') ||
     event.request.url.includes('/reading_files/') ||
-    event.request.url.includes('/writing_files/')
+    event.request.url.includes('/writing_files/') ||
+    event.request.url.includes('/timing/')
   ) {
     event.respondWith(
       caches.match(event.request)

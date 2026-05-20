@@ -1,8 +1,14 @@
 import argparse
 import os
+import sys
 import time
 import asyncio
-import edge_tts
+from pathlib import Path
+
+_scripts_dir = Path(__file__).resolve().parent / "scripts"
+if str(_scripts_dir) not in sys.path:
+    sys.path.insert(0, str(_scripts_dir))
+import audio_timings  # noqa: E402
 
 # Define phrases by day and category
 
@@ -669,37 +675,20 @@ def generate_text_file(day, format_type):
     print(f"✓ Saved to text_files/day{day}_{format_type}.txt")
 
 async def generate_audio(day, format_type="zh", voice=None):
-    """Generate audio file for a specific day using edge-tts"""
-    # Set default voice based on language
-    if voice is None:
-        voice = "zh-CN-XiaoxiaoNeural" if format_type == "zh" else "en-US-JennyNeural"
-    
+    """Generate per-phrase stitched audio plus timing JSON for karaoke-style playback."""
     print(f"\nGenerating Day {day} {format_type} audio file...")
     start_time = time.time()
-    
     phrases_dict = all_phrases[day]
-    
-    # Generate text for phrases
-    text = ""
-    for category, phrase_list in phrases_dict.items():
-        for phrase in phrase_list:
-            # Add appropriate punctuation based on language
-            if format_type == "zh":
-                text += phrase['zh'] + "。"
-            else:
-                text += phrase['en'] + ". "
-    
-    # Ensure the audio_files directory exists
-    os.makedirs("audio_files", exist_ok=True)
-    
-    # Configure edge-tts
-    communicate = edge_tts.Communicate(text, voice)
-    
-    # Generate audio
-    await communicate.save(f"audio_files/day{day}_{format_type}.mp3")
-    
+
+    await audio_timings.generate_day_lesson_audio_with_timings(
+        phrases_dict, day, format_type, voice
+    )
+
     elapsed = time.time() - start_time
-    print(f"✓ Saved to audio_files/day{day}_{format_type}.mp3 ({elapsed:.2f}s)")
+    print(
+        f"✓ Saved to audio_files/day{day}_{format_type}.mp3 "
+        f"and timing/day{day}_{format_type}.json ({elapsed:.2f}s)"
+    )
 
 async def main():
     parser = argparse.ArgumentParser(description="Generate Mandarin and English learning files")

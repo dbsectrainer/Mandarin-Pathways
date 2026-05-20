@@ -8,7 +8,7 @@
 
 ## Overview
 
-A focused Mandarin Chinese learning platform designed to take learners from foundational phrases to advanced professional fluency. The program offers a modular 40-day journey through interactive audio-visual lessons, YouTube video demonstrations, real-world conversation practice, reading comprehension exercises, character writing practice, and culturally relevant topics—ideal for travelers, professionals, and global citizens.
+A focused Mandarin Chinese learning platform designed to take learners from foundational phrases to advanced professional fluency. The program offers a modular 40-day journey through interactive audio-visual lessons (dual-language audio and transcripts), real-world phrase practice, reading comprehension exercises, character writing practice, and culturally relevant topics—ideal for travelers, professionals, and global citizens.
 
 ### 🚀 Now Available as a Flutter Mobile App!
 
@@ -39,7 +39,7 @@ A focused Mandarin Chinese learning platform designed to take learners from foun
 ### Web Development
 - Interactive, responsive web interface using HTML5, CSS3, and modern JavaScript
 - Dynamic content updates and micro-interactions for enhanced user engagement
-- YouTube API integration for embedded instructional videos
+- Progressive Web App with offline-ready static assets (first-party lesson audio and transcripts)
 - Mobile-first responsive design using media queries and grid layouts
 - Canvas-based drawing system for Chinese character practice
 - Interactive reading comprehension exercises with vocabulary tools
@@ -52,8 +52,7 @@ A focused Mandarin Chinese learning platform designed to take learners from foun
 ### Educational Technology
 - Structured 40-day curriculum design with progressive learning paths
 - Interactive learning tools and progress tracking systems
-- Multimedia content integration (text, audio, video, interactive exercises)
-- Curated YouTube content for visual learning reinforcement
+- Multimedia content integration (text, audio, interactive exercises)
 - Character writing practice with stroke order guidance
 - Reading comprehension exercises with vocabulary support
 
@@ -81,14 +80,10 @@ A focused Mandarin Chinese learning platform designed to take learners from foun
 - `writing.html`: Character writing practice with canvas-based drawing
 - `css/`: Stylesheets for the web interface
   - `styles.css`: Main stylesheet
-  - `video-player.css`: Styles for the YouTube video player
-  - `native-speaker.css`: Styles for native speaker components
   - `reading.css`: Styles for reading practice interface
   - `writing.css`: Styles for writing practice interface
 - `js/`: JavaScript functionality and interactive features
   - `script.js`: Core application functionality
-  - `video-loader.js`: Loads YouTube videos for daily lessons
-  - `video-loader-supplementary.js`: Loads supplementary YouTube videos
   - `character-drawing.js`: Canvas-based drawing system for character practice
 - `audio_files/`: 
   - Daily lesson audio files in both English (`day{n}_en.mp3`) and Mandarin (`day{n}_zh.mp3`)
@@ -99,6 +94,14 @@ A focused Mandarin Chinese learning platform designed to take learners from foun
   - Simplified Chinese (`day{n}_zh.txt`)
   - Pinyin (`day{n}_pinyin.txt`)
   - English (`day{n}_en.txt`)
+- `timing/`: Karaoke-style cue files for synced playback with transcripts:
+  - Daily lessons: `timing/day{n}_zh.json`, `timing/day{n}_en.json`
+  - Supplementary categories: `timing/supplementary/{category}_zh.json` (and `_en`)
+  - Reading passages: `timing/reading/{level}_{topic_slug}_zh.json` (and `_en`)
+  - Writing activity intros (title + description): `timing/writing/{type}_{level_slug}_zh.json` (and `_en`)
+  - **Chinese vs Latin UI:** Mandarin timings are generated against Chinese sentences. Reading with `lang=pinyin` loads **`_zh` audio + timings** alongside the romanized transcript (segmented like English), so cues track the same passages as `_zh`; per-token granularity is weaker than hanzi spans. Supplementary behaves the same (`pinyin` text + `_zh.json` cues). Writing with `lang=pinyin` plays the **`_zh`** intro clip (aligned to **`description_zh`**); the romanized heading uses **phrase-level** highlighting on those two cues (no `.lesson-token` children) because syllable timing differs from Mandarin speech.
+  - **Writing `lang=zh`:** Karaoke and **`_zh`** TTS match the Chinese title plus **`description_zh`** on each block in **`writing_activities.py`**. Mandarin stitching lives in **`scripts/audio_timings.py`**; **`generate_writing_file`** writes **`description_zh`** into zh text files only. **`_en`** intros use English copy.
+  - Manifests regenerate with their MP3s when you run the Python generators.
 - `reading_files/`: Text content for reading practice exercises
 - `writing_files/`: Character practice content and writing exercises
 - `manifest.json`: PWA configuration for installable app features
@@ -106,8 +109,6 @@ A focused Mandarin Chinese learning platform designed to take learners from foun
 - `icons/`: PWA icons for various device sizes and resolutions
   - `icon-72x72.png` to `icon-512x512.png`: Progressive sizes for different devices
   - `icon.svg`: Scalable vector icon
-- `videos.json`: YouTube video IDs for each daily lesson
-- `videos_supplementary.json`: YouTube video IDs for supplementary content
 - Python content generation scripts:
   - `mandarin_phrases_days_01_07.py`: Days 1-7 content
   - `mandarin_phrases_days_08_14.py`: Days 8-14 content
@@ -117,7 +118,7 @@ A focused Mandarin Chinese learning platform designed to take learners from foun
   - `mandarin_phrases_supplementary.py`: Additional practice content
   - `reading_activities.py`: Reading practice content generator
   - `writing_activities.py`: Writing practice content generator
-  - `video_search.py`: Utility for finding and managing YouTube videos
+  - `video_search.py`: Stub only (embedded YouTube was removed); kept so old references exit gracefully
 
 ## Course Structure (40 Days)
 
@@ -164,12 +165,6 @@ A focused Mandarin Chinese learning platform designed to take learners from foun
 - Daily progress tracker with lesson completion badges
 - Mobile-friendly, offline-capable web interface
 
-### YouTube Video Integration
-- Curated YouTube videos for each daily lesson
-- Native speaker demonstrations and practice materials
-- Visual reinforcement of pronunciation and cultural context
-- Videos automatically loaded based on the current lesson day
-
 ### Mandarin-Specific Tools
 - Tone practice and audio drills
 - Pinyin-to-Hanzi recognition games
@@ -211,10 +206,20 @@ A focused Mandarin Chinese learning platform designed to take learners from foun
 
 ### Requirements
 - Python 3.12+
+- **ffmpeg** on your PATH (required by ``pydub`` when stitching per-phrase TTS into `audio_files/day{n}_*.mp3` and writing `timing/day{n}_*.json`)
 - Required Python packages:
   ```bash
-  pip install gtts edge-tts pandas
+  pip install gtts edge-tts pandas pydub
   ```
+
+  Or install from the pinned list:
+
+  ```bash
+  pip install -r requirements.txt
+  ```
+
+  Regenerating Mandarin lesson audio builds **one stitched MP3 per day/voice plus** cue files under `timing/` so the web day lesson can sync highlights with playback.
+
 
 ### Generate Lessons
 ```bash
@@ -260,11 +265,9 @@ This project follows industry best practices for open source repositories:
 2. Listen to both English explanation and native Mandarin pronunciation
 3. Read along with Pinyin and Hanzi
 4. Repeat, record, and shadow the audio
-5. Watch the YouTube video for native speaker demonstrations (available in Mandarin mode)
-6. Practice with the video content to improve pronunciation and cultural understanding
-7. Practice reading comprehension with leveled texts and vocabulary support
-8. Master character writing with the interactive drawing system
-9. Complete your daily badge and track your fluency gains
+5. Practice reading comprehension with leveled texts and vocabulary support
+6. Master character writing with the interactive drawing system
+7. Complete your daily badge and track your fluency gains
 
 ## Storage
 Uses localStorage to save:

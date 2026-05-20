@@ -65,6 +65,7 @@ class CharacterDrawing {
         this.canvas.style.left = '0';
         this.canvas.style.zIndex = '2';
         this.canvas.style.cursor = 'crosshair';
+        this.canvas.style.touchAction = 'none';
         
         // Create background canvas for grid and reference character
         this.bgCanvas = document.createElement('canvas');
@@ -74,6 +75,7 @@ class CharacterDrawing {
         this.bgCanvas.style.top = '0';
         this.bgCanvas.style.left = '0';
         this.bgCanvas.style.zIndex = '1';
+        this.bgCanvas.style.touchAction = 'none';
         
         // Add canvases to container
         this.canvasContainer.appendChild(this.bgCanvas);

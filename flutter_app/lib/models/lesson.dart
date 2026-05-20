@@ -5,7 +5,6 @@ class Lesson {
   final LessonSection section;
   final Map<String, String> audioFiles; // language -> file path
   final Map<String, String> textFiles; // language -> file path
-  final String? videoId;
 
   Lesson({
     required this.day,
@@ -14,7 +13,6 @@ class Lesson {
     required this.section,
     required this.audioFiles,
     required this.textFiles,
-    this.videoId,
   });
 
   factory Lesson.fromJson(Map<String, dynamic> json) {
@@ -25,7 +23,6 @@ class Lesson {
       section: LessonSection.fromString(json['section'] as String),
       audioFiles: Map<String, String>.from(json['audioFiles'] as Map),
       textFiles: Map<String, String>.from(json['textFiles'] as Map),
-      videoId: json['videoId'] as String?,
     );
   }
 
@@ -37,7 +34,6 @@ class Lesson {
       'section': section.name,
       'audioFiles': audioFiles,
       'textFiles': textFiles,
-      'videoId': videoId,
     };
   }
 }

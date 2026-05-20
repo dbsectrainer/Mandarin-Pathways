@@ -10,7 +10,8 @@ Mandarin Pathways has been converted from a Progressive Web App (PWA) to a nativ
 - **Offline-first architecture**: All lessons and audio cached locally
 - **Native performance**: Smooth animations and responsive UI
 - **Modern Flutter features**: Material Design 3, state management with Provider
-- **Rich multimedia**: Audio playback, YouTube video integration, interactive practice
+- **Rich multimedia**: Audio playback with speed and loop controls, interactive practice surfaces
+- **Lesson media**: Bundled Mandarin/English dual-track audio (`assets/audio/`) plus trilingual transcripts (`assets/text/`) aligned with each day—no embedded third-party streaming or video playback in this build.
 
 ## Features
 
@@ -24,10 +25,6 @@ Mandarin Pathways has been converted from a Progressive Web App (PWA) to a nativ
 - Variable playback speed (0.5x to 2.0x)
 - Loop functionality for practice
 - Seek controls with 10-second skip forward/backward
-
-### 📹 Video Integration
-- YouTube video integration for native speaker practice
-- Embedded video player with full controls
 
 ### ✍️ Core Skills Practice
 - **Reading Skills**: Practice comprehension at multiple difficulty levels
@@ -69,7 +66,7 @@ flutter_app/
 │   │   └── supplementary_screen.dart # Supplementary materials
 │   ├── services/
 │   │   ├── app_state.dart        # Global app state management
-│   │   ├── storage_service.dart  # Local data persistence
+│   │   ├── storage_service.dart   # Local data persistence
 │   │   ├── audio_service.dart    # Audio playback
 │   │   └── notification_service.dart # Notifications
 │   └── widgets/
@@ -79,9 +76,7 @@ flutter_app/
 ├── assets/
 │   ├── audio/                    # Audio files (day{n}_{lang}.mp3)
 │   ├── text/                     # Text files (day{n}_{lang}.txt)
-│   ├── icons/                    # App icons
-│   ├── videos.json               # YouTube video IDs
-│   └── videos_supplementary.json
+│   └── icons/                    # App icons
 └── pubspec.yaml                  # Dependencies and configuration
 ```
 
@@ -89,18 +84,17 @@ flutter_app/
 
 - **State Management**: Provider pattern for reactive state updates
 - **Local Storage**: SharedPreferences for persistent data
-- **Audio**: audioplayers package for cross-platform audio playback
-- **Video**: youtube_player_flutter for YouTube integration
-- **Notifications**: flutter_local_notifications with timezone support
-- **UI**: Material Design 3 with Google Fonts (Poppins)
+- **Audio**: `audioplayers` for bundled lesson audio
+- **Notifications**: `flutter_local_notifications` with `timezone`
+- **UI**: Material Design 3 via Flutter Material 3; typography from `google_fonts` (e.g., Poppins) and icons from `font_awesome_flutter`
 
 ## Getting Started
 
 ### Prerequisites
 
-- Flutter SDK (3.0.0 or higher)
-- Dart SDK (3.0.0 or higher)
-- iOS/Android development tools (for mobile deployment)
+- **Dart**: 3.10 or newer (`environment.sdk` in `pubspec.yaml`)
+- **Flutter**: current stable channel (run `flutter doctor` to verify your toolchain)
+- **Mobile**: Xcode (iOS) and/or Android SDK as needed for device builds; CocoaPods when building for iOS or macOS
 
 ### Installation
 
@@ -116,13 +110,20 @@ flutter_app/
    flutter doctor
    ```
 
-2. **Install Dependencies**:
+2. **Install dependencies** (from the repository root, this folder is `flutter_app/`):
    ```bash
    cd flutter_app
    flutter pub get
    ```
 
-3. **Run the App**:
+3. **iOS / macOS native builds**: After dependency changes, refresh CocoaPods:
+   ```bash
+   cd ios && pod install && cd ..
+   cd macos && pod install && cd ..
+   ```
+   Run these commands from **`flutter_app/`** (same directory as `pubspec.yaml`).
+
+4. **Run the app**:
    ```bash
    # Run on connected device/emulator
    flutter run
@@ -170,6 +171,16 @@ flutter build linux --release
 
 ## Configuration
 
+### Assets (`pubspec.yaml`)
+
+Declared asset directories:
+
+- **`assets/audio/`** — Lesson MP3s (`day{n}_zh.mp3`, `day{n}_en.mp3`, …)
+- **`assets/text/`** — Lesson transcripts (`day{n}_zh.txt`, `day{n}_pinyin.txt`, `day{n}_en.txt`, …)
+- **`assets/icons/`** — Launcher and in-app imagery
+
+Hot-restart or rebuild after adding files so Flutter picks up new bundle entries.
+
 ### Audio Files
 
 Audio files should be placed in `assets/audio/` with the naming convention:
@@ -183,16 +194,6 @@ Text content should be in `assets/text/` with the naming convention:
 - `day{n}_pinyin.txt` - Pinyin romanization
 - `day{n}_en.txt` - English translation
 
-### Video Integration
-
-Update `assets/videos.json` to add YouTube video IDs:
-```json
-{
-  "day1": "VIDEO_ID_HERE",
-  "day2": "VIDEO_ID_HERE"
-}
-```
-
 ### Notification Configuration
 
 Notifications require platform-specific setup:
@@ -202,17 +203,30 @@ Notifications require platform-specific setup:
 
 ## Dependencies
 
-### Core Flutter Packages
+Version pins and exact constraints are in **`pubspec.yaml`**; run `dart pub deps` after `flutter pub get` to inspect what resolved.
 
-- `provider` (^6.1.1) - State management
-- `shared_preferences` (^2.2.2) - Local storage
-- `audioplayers` (^5.2.1) - Audio playback
-- `youtube_player_flutter` (^8.1.2) - YouTube videos
-- `flutter_local_notifications` (^16.3.0) - Notifications
-- `google_fonts` (^6.1.0) - Typography
-- `font_awesome_flutter` (^10.6.0) - Icons
+Packages referenced from current **`lib/`** code include:
 
-See `pubspec.yaml` for complete dependency list.
+| Package | Role |
+|---------|------|
+| `provider` | `AppState` + reactive UI wiring |
+| `shared_preferences` | Progress, preferences, notification settings cache |
+| `audioplayers` | Bundled lesson audio playback |
+| `flutter_local_notifications` | Daily reminders / completion pings |
+| `timezone` | Local time handling for notification scheduling |
+
+UI and typography:
+
+| Package | Role |
+|---------|------|
+| `google_fonts` | Fonts such as Poppins |
+| `font_awesome_flutter` | Icons |
+
+Still listed in **`pubspec.yaml`** (verify before removing—they may become unused during refactors):
+
+- `cupertino_icons`, `path_provider`, `http`, `url_launcher`
+
+**Linting**: `flutter_lints` (`dev_dependency`).
 
 ## Migration from PWA
 
@@ -223,13 +237,13 @@ See `pubspec.yaml` for complete dependency list.
 3. **Service Worker → Native Caching**: Flutter's asset bundling
 4. **Web Audio API → audioplayers**: Cross-platform audio
 5. **HTML5 Canvas → CustomPainter**: Drawing functionality (future)
+6. **Embeds**: No bundled third-party lesson video IDs or in-app streaming players—the lesson surfaces mirror the streamlined PWA (audio + text + practice screens)
 
 ### What's Preserved
 
 - All 40 lessons and content structure
 - Progress tracking functionality
 - Audio playback with speed/loop controls
-- YouTube video integration
 - Reading and writing practice sections
 - Supplementary materials
 
@@ -261,7 +275,7 @@ flutter analyze
 ### Format Code
 
 ```bash
-flutter format lib/
+dart format lib/
 ```
 
 ## Troubleshooting
@@ -282,7 +296,7 @@ flutter pub cache repair
 
 **iOS**: Ensure Xcode is up to date and CocoaPods is installed
 **Android**: Verify Android SDK is properly configured
-**Web**: Enable CORS if loading external resources
+**Web**: Lesson content ships as Flutter assets (`google_fonts` may still fetch fonts at runtime); revisit CORS if you add arbitrary cross-origin fetches beyond what those packages define.
 
 ## Future Enhancements
 
@@ -290,7 +304,7 @@ flutter pub cache repair
 - [ ] Speech recognition for pronunciation practice
 - [ ] Spaced repetition flashcards
 - [ ] Social features (study groups, leaderboards)
-- [ ] Offline video caching
+- [ ] Offline media caching enhancements
 - [ ] Multi-user profiles
 - [ ] Cloud sync across devices
 
@@ -306,15 +320,15 @@ Contributions are welcome! Please:
 
 ## License
 
-Copyright © 2025 Mandarin Pathways. All rights reserved.
+Copyright © 2026 Mandarin Pathways. All rights reserved.
 
 ## Support
 
 For issues, questions, or suggestions:
 - Open an issue on GitHub
-- Check the Flutter documentation: https://flutter.dev/docs
+- Check the Flutter documentation: https://docs.flutter.dev
 - Review the original PWA at: [original web URL]
 
 ---
 
-**Note**: This Flutter app provides the same comprehensive Mandarin learning experience as the original PWA, now with native mobile performance and cross-platform support.
+**Note**: This Flutter client mirrors the Mandarin Pathways curriculum and primary flows from the sibling PWA (home, the 40-day course, supplementary material, plus reading/writing practice) while trading the browser runtime for Flutter's native shell, richer bundled-audio controls, and installable/mobile/desktop binaries.

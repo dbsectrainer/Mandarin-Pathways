@@ -1,10 +1,17 @@
 # Python
 __pycache__/
+
+# Node / Playwright
+node_modules/
+playwright-report/
+test-results/
 *.py[cod]
 *.pyo
 *.pyd
 *.env
 .env
+.env.*
+!.env.example
 venv/
 build/
 dist/
@@ -16,3 +23,22 @@ dist/
 
 # VSCode
 .vscode/
+
+# Credentials & machine-specific (never publish)
+**/local.properties
+key.properties
+**/*.keystore
+**/*.jks
+**/credentials.json
+*.pem
+
+# Internal planning maintained locally only
+MONETIZATION_STRATEGIES.md
+
+# JetBrains / logs
+.idea/
+*.log
+
+# Xcode / CocoaPods user state
+**/xcuserdata/
+**/DerivedData/

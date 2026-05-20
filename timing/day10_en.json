@@ -1,0 +1,85 @@
+{
+  "version": 1,
+  "day": 10,
+  "lang": "en",
+  "phrases": [
+    {
+      "i": 0,
+      "section": "Food Items",
+      "start": 0.0,
+      "end": 1.584
+    },
+    {
+      "i": 1,
+      "section": "Food Items",
+      "start": 1.584,
+      "end": 3.216
+    },
+    {
+      "i": 2,
+      "section": "Food Items",
+      "start": 3.216,
+      "end": 4.728
+    },
+    {
+      "i": 3,
+      "section": "Food Items",
+      "start": 4.728,
+      "end": 6.192
+    },
+    {
+      "i": 4,
+      "section": "Food Items",
+      "start": 6.192,
+      "end": 7.728
+    },
+    {
+      "i": 5,
+      "section": "Food Items",
+      "start": 7.728,
+      "end": 9.552
+    },
+    {
+      "i": 6,
+      "section": "Food Items",
+      "start": 9.552,
+      "end": 11.064
+    },
+    {
+      "i": 7,
+      "section": "Restaurant Phrases",
+      "start": 11.064,
+      "end": 12.6
+    },
+    {
+      "i": 8,
+      "section": "Restaurant Phrases",
+      "start": 12.6,
+      "end": 14.568
+    },
+    {
+      "i": 9,
+      "section": "Restaurant Phrases",
+      "start": 14.568,
+      "end": 16.92
+    },
+    {
+      "i": 10,
+      "section": "Restaurant Phrases",
+      "start": 16.92,
+      "end": 18.744
+    },
+    {
+      "i": 11,
+      "section": "Restaurant Phrases",
+      "start": 18.744,
+      "end": 20.832
+    },
+    {
+      "i": 12,
+      "section": "Restaurant Phrases",
+      "start": 20.832,
+      "end": 23.16
+    }
+  ]
+}

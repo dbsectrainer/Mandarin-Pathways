@@ -1,7 +1,7 @@
 数字
 --------------------
 
-Practice writing Chinese numbers
+练习书写中文数字
 
 一 - one
 笔画数: 1

@@ -11,11 +11,6 @@
     <title>Mandarin Pathways - Your Journey to Chinese Language Mastery</title>
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" href="icons/icon-192x192.png">
-    <link rel="stylesheet" href="css/styles.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -24,6 +19,7 @@
     <noscript>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link rel="stylesheet" href="css/styles.min.css">
     </noscript>
 </head>
 <body>
@@ -35,6 +31,7 @@
         </div>
         <h1>Mandarin Pathways</h1>
         <p><span class="zh">开启您的中文学习之旅</span><span class="en">Your Journey to Chinese Language Mastery</span></p>
+        <p class="site-nav-links"><a href="review.html"><span class="zh">复习清单</span><span class="en">Review starred phrases</span></a></p>
     </header>
 
     <section class="hero-section">
@@ -134,7 +131,7 @@
 
         <!-- Section divider with visual anchor -->
         <div class="section-divider"></div>
-        
+
         <!-- Visual anchor pattern -->
         <div class="visual-anchor" style="top: 5%; right: 5%;"></div>
 
@@ -169,14 +166,14 @@
 
         <section id="day-selection">
             <h2><span class="zh">每日课程</span><span class="en">Daily Lessons</span></h2>
-            
+
             <!-- Day grid pagination controls -->
             <div class="day-controls">
                 <button id="prevDays" class="hover-scale" aria-label="Previous page"><i class="fas fa-chevron-left"></i> <span class="zh">上一页</span><span class="en">Previous</span></button>
                 <div class="day-range" role="status" aria-live="polite"><span class="zh">第</span><span class="en">Days </span><span id="dayRangeStart">1</span>-<span id="dayRangeEnd">10</span><span class="zh">天</span></div>
                 <button id="nextDays" class="hover-scale" aria-label="Next page"><span class="zh">下一页</span><span class="en">Next</span> <i class="fas fa-chevron-right"></i></button>
             </div>
-            
+
             <div class="day-grid">
                 <!-- Days will be dynamically added here -->
             </div>
@@ -240,7 +237,7 @@
 
         <!-- Section divider with visual anchor -->
         <div class="section-divider"></div>
-        
+
         <!-- Visual anchor pattern -->
         <div class="visual-anchor" style="bottom: 10%; left: 5%;"></div>
 
@@ -324,83 +321,25 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 Mandarin Pathways | <span class="zh">赋能语言学习</span><span class="en">Empowering Language Learning</span></p>
+        <p>&copy; 2026 Mandarin Pathways | <span class="zh">赋能语言学习</span><span class="en">Empowering Language Learning</span></p>
     </footer>
 
-    <script>
-        // Register Service Worker
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registration successful');
-                    })
-                    .catch(err => {
-                        console.log('ServiceWorker registration failed: ', err);
-                    });
-            });
-        }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize progress tracking
-            function initializeProgress() {
-                const completedDays = JSON.parse(localStorage.getItem('completedDays') || '{}');
-                ['zh', 'pinyin', 'en'].forEach(lang => {
-                    const completed = Object.keys(completedDays).filter(key => key.endsWith(`_${lang}`)).length;
-                    updateLanguageProgress(lang, completed, completedDays);
-                });
-            }
-
-            // Listen for progress updates from day.html
-            window.addEventListener('storage', function(e) {
-                if (e.key === 'currentProgress') {
-                    const progress = JSON.parse(e.newValue);
-                    const completedDays = JSON.parse(localStorage.getItem('completedDays') || '{}');
-                    updateLanguageProgress(progress.lang, progress.completed, completedDays);
-                }
-            });
-
-            // Initialize progress
-            initializeProgress();
-        });
-
-        function updateLanguageProgress(lang, completed, completedDays) {
-            // Find the language card
-            const cards = document.querySelectorAll('.language-card');
-            let card;
-            cards.forEach(c => {
-                const title = c.querySelector('h3').textContent.trim().split(' ')[1].toLowerCase();
-                if (title === lang) card = c;
-            });
-
-            if (card) {
-                // Update progress text and bar
-                const progressText = card.querySelector('.progress-container p');
-                const progressBar = card.querySelector('.progress-fill');
-                progressText.textContent = `Progress: Day ${completed}/50`;
-                progressBar.style.width = `${(completed / 50) * 100}%`;
-            }
-
-            // Update day grid status icons
-            const dayGrid = document.querySelector('.day-grid');
-            if (dayGrid) {
-                const dayLinks = dayGrid.querySelectorAll('a');
-                dayLinks.forEach((link, index) => {
-                    const day = index + 1;
-                    const status = link.querySelector('.day-status i');
-                    if (completedDays[`${day}_${lang}`]) {
-                        status.className = 'fas fa-check-circle';
-                        status.style.color = 'var(--success-color)';
-                    } else {
-                        status.className = 'fas fa-circle';
-                        status.style.color = 'var(--warning-color)';
-                    }
-                });
-            }
-        }
-    </script>
-    <script src="js/script.min.js" defer></script>
-    <script src="js/notifications.js" defer></script>
+    <!-- Backup / restore progress -->
+    <div id="data-portability-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h3><span class="zh">备份与恢复</span><span class="en">Backup & restore</span></h3>
+            <p><span class="zh">将进度导出为 JSON 文件，或在另一台设备上导入备份（将替换本设备上的进度数据）。</span><span class="en">Export your progress as JSON, or import a backup from another device (replaces progress on this browser).</span></p>
+            <div class="button-group">
+                <button type="button" id="export-progress-btn" class="primary-btn" aria-label="Export progress JSON">Export</button>
+                <label class="primary-btn" style="cursor:pointer;display:inline-block;margin:0;">
+                    Import
+                    <input type="file" id="import-progress-file" accept="application/json,.json" style="display:none">
+                </label>
+                <button type="button" id="close-data-portability" class="secondary-btn">Close</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Notification Settings Modal -->
     <div id="notification-settings-modal" class="modal" style="display: none;">
@@ -478,24 +417,80 @@
             cursor: pointer;
         }
     </style>
-    
+
+
+    <script src="js/sw-register.js"></script>
     <script>
-        // Return to top functionality
-        window.addEventListener('scroll', function() {
-            const returnToTop = document.getElementById('returnToTop');
-            if (window.scrollY > 500) {
-                returnToTop.classList.add('visible');
-            } else {
-                returnToTop.classList.remove('visible');
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize progress tracking
+            function initializeProgress() {
+                const completedDays = JSON.parse(localStorage.getItem('completedDays') || '{}');
+                ['zh', 'pinyin', 'en'].forEach(lang => {
+                    const completed = Object.keys(completedDays).filter(key => key.endsWith(`_${lang}`)).length;
+                    updateLanguageProgress(lang, completed, completedDays);
+                });
             }
-        });
-        
-        document.getElementById('returnToTop').addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
+
+            // Listen for progress updates from day.html
+            window.addEventListener('storage', function(e) {
+                if (e.key === 'currentProgress') {
+                    const progress = JSON.parse(e.newValue);
+                    const completedDays = JSON.parse(localStorage.getItem('completedDays') || '{}');
+                    updateLanguageProgress(progress.lang, progress.completed, completedDays);
+                }
             });
+
+            // Initialize progress
+            initializeProgress();
         });
+
+        function updateLanguageProgress(lang, completed, completedDays) {
+            const cardOrder = ['zh', 'pinyin', 'en'];
+            const idx = cardOrder.indexOf(lang);
+            const cards = document.querySelectorAll('.language-card');
+            const card = idx >= 0 ? cards[idx] : null;
+
+            if (card) {
+                const progressText = card.querySelector('.progress-container p');
+                const progressBar = card.querySelector('.progress-fill');
+                if (progressText && progressBar) {
+                    const zh = progressText.querySelector('.zh');
+                    const en = progressText.querySelector('.en');
+                    if (zh) {
+                        zh.textContent = `进度：第${completed}/40天`;
+                    }
+                    if (en) {
+                        en.textContent = `Progress: Day ${completed}/40`;
+                    }
+                    if (!zh && !en) {
+                        progressText.textContent = `Progress: Day ${completed}/40`;
+                    }
+                    progressBar.style.width = `${(completed / 40) * 100}%`;
+                }
+            }
+
+            const dayGrid = document.querySelector('.day-grid');
+            if (dayGrid) {
+                const dayLinks = dayGrid.querySelectorAll('a');
+                dayLinks.forEach((link, index) => {
+                    const d = index + 1;
+                    const status = link.querySelector('.day-status i');
+                    if (!status) return;
+                    if (completedDays[`${d}_${lang}`]) {
+                        status.className = 'fas fa-check-circle';
+                        status.style.color = 'var(--success-color)';
+                    } else {
+                        status.className = 'fas fa-circle';
+                        status.style.color = 'var(--warning-color)';
+                    }
+                });
+            }
+        }
     </script>
+    <script src="js/script.min.js" defer></script>
+    <script src="js/notifications.js" defer></script>
+    <script src="js/data-portability.js" defer></script>
+
+    <script src="js/return-to-top.js"></script>
 </body>
 </html>

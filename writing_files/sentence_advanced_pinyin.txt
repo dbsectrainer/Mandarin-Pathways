@@ -1,7 +1,7 @@
 高级句子完成 / Advanced Sentence Completion
 --------------------
 
-Complete sentences with appropriate words or phrases
+Complete complex sentences with appropriate words or phrases
 
 1. 环境保护 ____ 全球关注的重要话题。(become)
 Answer: 已经成为 (yǐjīng chéngwéi)

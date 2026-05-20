@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "day": 14,
+  "lang": "en",
+  "phrases": [
+    {
+      "i": 0,
+      "section": "Travel Documents",
+      "start": 0.0,
+      "end": 1.752
+    },
+    {
+      "i": 1,
+      "section": "Travel Documents",
+      "start": 1.752,
+      "end": 3.288
+    },
+    {
+      "i": 2,
+      "section": "Travel Documents",
+      "start": 3.288,
+      "end": 5.28
+    },
+    {
+      "i": 3,
+      "section": "Travel Documents",
+      "start": 5.28,
+      "end": 7.248
+    },
+    {
+      "i": 4,
+      "section": "Travel Documents",
+      "start": 7.248,
+      "end": 8.952
+    },
+    {
+      "i": 5,
+      "section": "Useful Expressions",
+      "start": 8.952,
+      "end": 10.992
+    },
+    {
+      "i": 6,
+      "section": "Useful Expressions",
+      "start": 10.992,
+      "end": 13.056
+    },
+    {
+      "i": 7,
+      "section": "Useful Expressions",
+      "start": 13.056,
+      "end": 15.408
+    },
+    {
+      "i": 8,
+      "section": "Useful Expressions",
+      "start": 15.408,
+      "end": 17.472
+    },
+    {
+      "i": 9,
+      "section": "Useful Expressions",
+      "start": 17.472,
+      "end": 19.56
+    },
+    {
+      "i": 10,
+      "section": "Useful Expressions",
+      "start": 19.56,
+      "end": 22.392
+    }
+  ]
+}

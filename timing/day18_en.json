@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "day": 18,
+  "lang": "en",
+  "phrases": [
+    {
+      "i": 0,
+      "section": "Major Festivals",
+      "start": 0.0,
+      "end": 3.24
+    },
+    {
+      "i": 1,
+      "section": "Major Festivals",
+      "start": 3.24,
+      "end": 5.376
+    },
+    {
+      "i": 2,
+      "section": "Major Festivals",
+      "start": 5.376,
+      "end": 7.68
+    },
+    {
+      "i": 3,
+      "section": "Major Festivals",
+      "start": 7.68,
+      "end": 9.744
+    },
+    {
+      "i": 4,
+      "section": "Major Festivals",
+      "start": 9.744,
+      "end": 11.832
+    },
+    {
+      "i": 5,
+      "section": "Festival Traditions",
+      "start": 11.832,
+      "end": 14.4
+    },
+    {
+      "i": 6,
+      "section": "Festival Traditions",
+      "start": 14.4,
+      "end": 16.176
+    },
+    {
+      "i": 7,
+      "section": "Festival Traditions",
+      "start": 16.176,
+      "end": 17.88
+    },
+    {
+      "i": 8,
+      "section": "Festival Traditions",
+      "start": 17.88,
+      "end": 19.776
+    },
+    {
+      "i": 9,
+      "section": "Festival Traditions",
+      "start": 19.776,
+      "end": 22.2
+    },
+    {
+      "i": 10,
+      "section": "Festival Traditions",
+      "start": 22.2,
+      "end": 24.6
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 初级翻译练习
 --------------------
 
-Translate simple sentences between English and Chinese
+翻译英文和中文之间的简单句子
 
 1. 英文: My name is Li Ming.
 翻译: 我叫李明。

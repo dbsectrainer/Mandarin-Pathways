@@ -228,7 +228,7 @@
             Promise.all([textFetch, timingFetch])
                 .then(([text, timing]) => {
                     formatAndDisplayReadingContent(text, lang, timing);
-                    if (topicInfo.hasAudio && lang !== 'pinyin') {
+                    if (topicInfo.hasAudio) {
                         LessonAudioSync.attachCueHighlighting(
                             audio,
                             timing?.phrases,
@@ -259,43 +259,35 @@
                 const readingContentDiv = document.getElementById('reading-content');
                 readingContentDiv.innerHTML = '';
 
-                if (lang === 'pinyin') {
-                    mainTextNormalized.split(/\n\n+/).forEach((paragraph) => {
-                        const t = paragraph.trim();
-                        if (t) {
-                            const p = document.createElement('p');
-                            p.textContent = t;
-                            readingContentDiv.appendChild(p);
-                        }
-                    });
-                } else {
-                    const sentences = LessonAudioSync.splitReadingSegments(
-                        mainTextNormalized,
-                        lang
+                const segmentLang = lang === 'zh' ? 'zh' : 'en';
+                const sentences = LessonAudioSync.splitReadingSegments(
+                    mainTextNormalized,
+                    segmentLang
+                );
+                if (
+                    timingManifest &&
+                    Array.isArray(timingManifest.phrases) &&
+                    timingManifest.phrases.length !== sentences.length
+                ) {
+                    console.warn(
+                        `[reading timings] Manifest has ${timingManifest.phrases.length} cues but transcript split into ${sentences.length} segments`
                     );
-                    if (
-                        timingManifest &&
-                        Array.isArray(timingManifest.phrases) &&
-                        timingManifest.phrases.length !== sentences.length
-                    ) {
-                        console.warn(
-                            `[reading timings] Manifest has ${timingManifest.phrases.length} cues but transcript split into ${sentences.length} segments`
-                        );
-                    }
-
-                    sentences.forEach((sent, i) => {
-                        const p = document.createElement('p');
-                        p.className = 'reading-sync-line';
-                        p.dataset.cueI = String(i);
-                        const phraseReading = document.createElement('span');
-                        phraseReading.className = 'phrase-reading reading-passage-reading';
-                        phraseReading.appendChild(
-                            LessonAudioSync.appendPhraseSpansToFragment(sent, lang)
-                        );
-                        p.appendChild(phraseReading);
-                        readingContentDiv.appendChild(p);
-                    });
                 }
+
+                const spanLang = lang === 'zh' ? 'zh' : 'en';
+
+                sentences.forEach((sent, i) => {
+                    const p = document.createElement('p');
+                    p.className = 'reading-sync-line';
+                    p.dataset.cueI = String(i);
+                    const phraseReading = document.createElement('span');
+                    phraseReading.className = 'phrase-reading reading-passage-reading';
+                    phraseReading.appendChild(
+                        LessonAudioSync.appendPhraseSpansToFragment(sent, spanLang)
+                    );
+                    p.appendChild(phraseReading);
+                    readingContentDiv.appendChild(p);
+                });
             }
             
             if (sections.length >= 2) {

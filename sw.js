@@ -1,4 +1,4 @@
-const CACHE_VERSION = '8';
+const CACHE_VERSION = '10';
 const CACHE_NAME = `mandarin-pathways-v${CACHE_VERSION}`;
 
 // Cache groups for different types of resources

@@ -99,7 +99,9 @@ A focused Mandarin Chinese learning platform designed to take learners from foun
   - Supplementary categories: `timing/supplementary/{category}_zh.json` (and `_en`)
   - Reading passages: `timing/reading/{level}_{topic_slug}_zh.json` (and `_en`)
   - Writing activity intros (title + description): `timing/writing/{type}_{level_slug}_zh.json` (and `_en`)
-  All are regenerated alongside their matching MP3 files when you run the Python generators.
+  - **Chinese vs Latin UI:** Mandarin timings are generated against Chinese sentences. Reading with `lang=pinyin` loads **`_zh` audio + timings** alongside the romanized transcript (segmented like English), so cues track the same passages as `_zh`; per-token granularity is weaker than hanzi spans. Supplementary behaves the same (`pinyin` text + `_zh.json` cues). Writing with `lang=pinyin` plays the **`_zh`** intro clip (aligned to **`description_zh`**); the romanized heading uses **phrase-level** highlighting on those two cues (no `.lesson-token` children) because syllable timing differs from Mandarin speech.
+  - **Writing `lang=zh`:** Karaoke and **`_zh`** TTS match the Chinese title plus **`description_zh`** on each block in **`writing_activities.py`**. Mandarin stitching lives in **`scripts/audio_timings.py`**; **`generate_writing_file`** writes **`description_zh`** into zh text files only. **`_en`** intros use English copy.
+  - Manifests regenerate with their MP3s when you run the Python generators.
 - `reading_files/`: Text content for reading practice exercises
 - `writing_files/`: Character practice content and writing exercises
 - `manifest.json`: PWA configuration for installable app features

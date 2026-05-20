@@ -252,13 +252,16 @@ async def generate_writing_audio_with_timings(
     title_parts = activity_content["title"].split(" / ")
     if format_type == "zh":
         head_raw = title_parts[0].strip()
+        desc_raw = (
+            activity_content.get("description_zh") or activity_content["description"]
+        ).strip()
     else:
         head_raw = (
             title_parts[1].strip()
             if len(title_parts) > 1
             else title_parts[0].strip()
         )
-    desc_raw = activity_content["description"].strip()
+        desc_raw = activity_content["description"].strip()
 
     seg0 = ensure_sentence_tts_punctuation(head_raw, format_type)
     seg1 = ensure_sentence_tts_punctuation(desc_raw, format_type)

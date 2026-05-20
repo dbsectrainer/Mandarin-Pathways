@@ -435,26 +435,47 @@
         }
 
         /**
-         * Section header aligns with stitched TTS cues (Chinese title clause + English description for zh audio).
-         * Pinyin UI uses plain text — no karaoke spans (audio is still Mandarin/instruction English).
+         * Section header reflects stitched intro TTS timings:
+         * - Mandarin (`*_zh.mp3`): cue `0` = Chinese title; cue `1` = `description_zh` from generators (`writing_activities.py` + audio_timings.py).
+         * - English (`*_en.mp3`): English subtitle + English description.
+         * - Pinyin UI: Mandarin reference audio (`*_zh.mp3`) keeps the same two cues; we render romanized strings in
+         *   `.writing-sync-cue` without per-token spans so only phrase-level cues highlight (romanization ≠ syllable-perfect vs speech).
          * @returns {boolean} Whether DOM has cue elements for LessonAudioSync
          */
         function setupWritingSectionHeader(activityInfo, lang) {
             const titleEl = document.getElementById('section-title');
             const descEl = document.getElementById('section-description');
             if (lang === 'pinyin') {
-                titleEl.textContent = activityInfo.titlePinyin || activityInfo.title;
-                descEl.textContent = activityInfo.descriptionPinyin || activityInfo.description;
-                return false;
+                titleEl.innerHTML = '';
+                descEl.innerHTML = '';
+                const titleCue = document.createElement('span');
+                titleCue.className = 'writing-sync-cue';
+                titleCue.dataset.cueI = '0';
+                titleCue.textContent =
+                    activityInfo.titlePinyin || activityInfo.title;
+                titleEl.appendChild(titleCue);
+                const descCue = document.createElement('span');
+                descCue.className = 'writing-sync-cue';
+                descCue.dataset.cueI = '1';
+                descCue.textContent =
+                    activityInfo.descriptionPinyin || activityInfo.description;
+                descEl.appendChild(descCue);
+                return true;
             }
 
             const parts = activityInfo.title.split(' / ').map((s) => s.trim()).filter(Boolean);
             const zhTitle = parts[0] || activityInfo.title;
             const enTitle = parts.length > 1 ? parts.slice(1).join(' / ') : parts[0] || activityInfo.title;
             const titleCueText = lang === 'zh' ? zhTitle : enTitle;
-            const descriptionCueText = activityInfo.description;
+            const descriptionCueText =
+                lang === 'zh'
+                    ? (activityInfo.descriptionZh || activityInfo.description)
+                    : activityInfo.description;
 
             const titleSpanLang = /[\u4e00-\u9fff]/.test(titleCueText) ? 'zh' : 'en';
+            const descriptionSpanLang = /[\u4e00-\u9fff]/.test(descriptionCueText)
+                ? 'zh'
+                : 'en';
             titleEl.innerHTML = '';
             descEl.innerHTML = '';
 
@@ -470,7 +491,10 @@
             descCue.className = 'writing-sync-cue';
             descCue.dataset.cueI = '1';
             descCue.appendChild(
-                LessonAudioSync.appendPhraseSpansToFragment(descriptionCueText, 'en')
+                LessonAudioSync.appendPhraseSpansToFragment(
+                    descriptionCueText,
+                    descriptionSpanLang
+                )
             );
             descEl.appendChild(descCue);
             return true;

@@ -52,19 +52,11 @@ header p {
 }
 
 .hero-section {
-    background-color: var(--primary-color);
-    min-height: 400px;
+    background: url('https://images.unsplash.com/photo-1546410531-89436e5b419a?auto=format&fit=crop&w=1920&q=80') center/cover;
     padding: 100px 20px;
     text-align: center;
     color: white;
     position: relative;
-    content-visibility: auto;
-    contain-intrinsic-size: 400px;
-}
-
-/* Load hero image after page load to prevent layout shift */
-.hero-section.loaded {
-    background: url('https://images.unsplash.com/photo-1546410531-89436e5b419a?auto=format&fit=crop&w=900&q=75') center/cover;
 }
 
 .hero-section::before {

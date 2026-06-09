@@ -115,6 +115,8 @@ function getQuizForDay(day) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    applyStandardDocumentLang(getUrlLang("zh-CN"));
+
     const dayButtons = document.getElementById("quiz-day-buttons");
     const form = document.getElementById("quiz-form");
     const resultEl = document.getElementById("quiz-result");
@@ -189,7 +191,10 @@ function renderQuiz(form, day) {
         } else {
             const label = document.createElement("label");
             label.className = "phrase-item";
-            label.textContent = "Answer ";
+            label.innerHTML = localizedTextHtml({
+                zh: "答案 ",
+                en: "Answer ",
+            });
 
             const input = document.createElement("input");
             input.type = "text";
@@ -272,9 +277,10 @@ function renderSavedQuizScore(resultEl, day) {
     resultEl.innerHTML = "";
 
     const note = document.createElement("p");
-    note.textContent =
-        `Best saved score for Day ${day}: ` +
-        `${saved.bestScore}/${saved.total} (${saved.percentage}%).`;
+    note.innerHTML = localizedTextHtml({
+        zh: `第 ${day} 天最佳成绩：${saved.bestScore}/${saved.total}（${saved.percentage}%）。`,
+        en: `Best saved score for Day ${day}: ${saved.bestScore}/${saved.total} (${saved.percentage}%).`,
+    });
     resultEl.appendChild(note);
 }
 
@@ -283,17 +289,51 @@ function renderQuizResult(resultEl, result) {
     resultEl.innerHTML = "";
 
     const heading = document.createElement("h2");
-    heading.textContent = `Day ${result.day} score: ${result.score}/${result.total}`;
+    heading.innerHTML = localizedTextHtml({
+        zh: `第 ${result.day} 天得分：${result.score}/${result.total}`,
+        en: `Day ${result.day} score: ${result.score}/${result.total}`,
+    });
 
     const detail = document.createElement("p");
-    detail.textContent = "Your best score has been saved.";
+    detail.innerHTML = localizedTextHtml({
+        zh: "你的最佳成绩已保存。",
+        en: "Your best score has been saved.",
+    });
+
+    const actions = document.createElement("div");
+    actions.className = "lesson-actions";
 
     const retry = document.createElement("a");
     retry.className = "home-btn";
     retry.href = `quiz.html?day=${encodeURIComponent(result.day)}`;
-    retry.textContent = "Try again";
+    retry.innerHTML = `<i class="fas fa-redo"></i> ${localizedTextHtml({
+        zh: "再试一次",
+        en: "Try again",
+    })}`;
+
+    const srsLink = document.createElement("a");
+    srsLink.className = "nav-btn";
+    srsLink.href = "srs.html";
+    srsLink.innerHTML =
+        '<i class="fas fa-layer-group"></i> <span class="zh">间隔复习</span><span class="en">SRS review</span>';
+
+    const dayLink = document.createElement("a");
+    dayLink.className = "nav-btn";
+    dayLink.href = "#quiz-day-buttons";
+    dayLink.innerHTML =
+        '<i class="fas fa-calendar-alt"></i> <span class="zh">换一天</span><span class="en">Try another day</span>';
+    dayLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        document
+            .getElementById("quiz-day-buttons")
+            ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    actions.appendChild(retry);
+    actions.appendChild(dayLink);
+    actions.appendChild(srsLink);
 
     resultEl.appendChild(heading);
     resultEl.appendChild(detail);
-    resultEl.appendChild(retry);
+    resultEl.appendChild(actions);
 }

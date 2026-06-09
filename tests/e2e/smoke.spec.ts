@@ -31,6 +31,35 @@ test.describe("PWA smoke", () => {
         await expect(page.locator("#complete-btn")).toBeVisible();
     });
 
+    test("day lesson dynamic UI follows selected language", async ({
+        page,
+    }) => {
+        await page.goto("/day.html?day=1&lang=zh", { waitUntil: "load" });
+        await expect(page.locator("#section-title .zh")).toHaveText(
+            "拼音系统与发音",
+        );
+        await expect(page.locator("#section-title .en")).toBeHidden();
+
+        await page.locator("#complete-btn").click();
+        await expect(page.locator("#complete-btn .zh")).toHaveText("已完成");
+        await expect(page.locator("#complete-btn .en")).toBeHidden();
+        await expect(page.locator("#copy-notification .zh")).toHaveText(
+            "已标记为完成！",
+        );
+
+        await page.goto("/day.html?day=8&lang=en", { waitUntil: "load" });
+        await expect(page.locator("#section-title .en")).toHaveText(
+            "Essential Daily Phrases",
+        );
+        await expect(page.locator("#section-title .zh")).toBeHidden();
+
+        await page.goto("/day.html?day=1&lang=pinyin", { waitUntil: "load" });
+        await expect(page.locator("#audio-fallback .zh")).toHaveText(
+            "使用普通话音频作为参考。",
+        );
+        await expect(page.locator("#audio-fallback .en")).toBeHidden();
+    });
+
     test("writing shell renders with URL selection", async ({ page }) => {
         await page.goto(
             "/writing.html?type=character&level=Basic%20Strokes&lang=en",

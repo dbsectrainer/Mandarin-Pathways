@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
     <head>
         <meta charset="UTF-8" />
         <meta
@@ -22,15 +22,52 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
             rel="stylesheet"
+            media="print"
+            onload="this.media = 'all'"
         />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            media="print"
+            onload="this.media = 'all'"
         />
         <link rel="stylesheet" href="css/styles.min.css" />
+        <noscript>
+            <link
+                href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+                rel="stylesheet"
+            />
+            <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            />
+        </noscript>
     </head>
     <body>
         <header>
+            <div class="language-selector">
+                <button
+                    class="language-btn"
+                    data-lang="zh"
+                    aria-label="Switch to Simplified Chinese"
+                >
+                    <span class="flag">🇨🇳</span> 简体中文
+                </button>
+                <button
+                    class="language-btn"
+                    data-lang="pinyin"
+                    aria-label="Switch to Pinyin"
+                >
+                    <span class="flag">🔤</span> Pinyin
+                </button>
+                <button
+                    class="language-btn"
+                    data-lang="en"
+                    aria-label="Switch to English"
+                >
+                    <span class="flag">🇺🇸</span> English
+                </button>
+            </div>
             <h1>Mandarin Pathways</h1>
             <p>
                 <span class="zh">自我测验</span
@@ -43,6 +80,9 @@
                 <i class="fas fa-arrow-up"></i>
             </div>
 
+            <!-- Visual anchor pattern -->
+            <div class="visual-anchor" style="top: 5%; right: 5%"></div>
+
             <div class="lesson-container">
                 <div class="navigation">
                     <a href="index.html" class="home-btn">
@@ -53,15 +93,26 @@
                 </div>
 
                 <section class="section-info" aria-labelledby="quiz-title">
-                    <h2 id="quiz-title">Quiz by day</h2>
+                    <h2 id="quiz-title">
+                        <span class="zh">按天测验</span
+                        ><span class="en">Quiz by day</span>
+                    </h2>
                     <p>
-                        Practice key phrases with multiple-choice and fill-in
-                        questions. Best scores are saved on this device.
+                        <span class="zh"
+                            >用选择题和填空题练习关键短语。最佳成绩会保存在本设备上。</span
+                        ><span class="en"
+                            >Practice key phrases with multiple-choice and
+                            fill-in questions. Best scores are saved on this
+                            device.</span
+                        >
                     </p>
                 </section>
 
                 <div class="level-selector">
-                    <h3>Select a day</h3>
+                    <h3>
+                        <span class="zh">选择一天</span
+                        ><span class="en">Select a day</span>
+                    </h3>
                     <div class="level-buttons" id="quiz-day-buttons"></div>
                 </div>
 
@@ -75,7 +126,8 @@
                         form="quiz-form"
                     >
                         <i class="fas fa-check"></i>
-                        Score quiz
+                        <span class="zh">提交测验</span
+                        ><span class="en">Score quiz</span>
                     </button>
                 </div>
 
@@ -98,6 +150,8 @@
         </footer>
 
         <script src="js/sw-register.js" defer></script>
+        <script src="js/i18n.js" defer></script>
+        <script src="js/lang-switcher.js" defer></script>
         <script src="js/quiz.js" defer></script>
         <script src="js/return-to-top.js" defer></script>
     </body>

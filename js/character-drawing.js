@@ -136,7 +136,8 @@ class CharacterDrawing {
         // Create clear button
         this.clearButton = document.createElement("button");
         this.clearButton.className = "character-drawing-btn clear-btn";
-        this.clearButton.innerHTML = '<i class="fas fa-eraser"></i> Clear';
+        this.clearButton.innerHTML =
+            '<i class="fas fa-eraser"></i> <span class="zh">清除</span><span class="pinyin">Qīngchú</span><span class="en">Clear</span>';
         this.clearButton.style.padding = "5px 10px";
         this.clearButton.style.backgroundColor = "#f8f8f8";
         this.clearButton.style.border = "1px solid #ccc";
@@ -147,7 +148,8 @@ class CharacterDrawing {
         // Create undo button
         this.undoButton = document.createElement("button");
         this.undoButton.className = "character-drawing-btn undo-btn";
-        this.undoButton.innerHTML = '<i class="fas fa-undo"></i> Undo';
+        this.undoButton.innerHTML =
+            '<i class="fas fa-undo"></i> <span class="zh">撤销</span><span class="pinyin">Chèxiāo</span><span class="en">Undo</span>';
         this.undoButton.style.padding = "5px 10px";
         this.undoButton.style.backgroundColor = "#f8f8f8";
         this.undoButton.style.border = "1px solid #ccc";
@@ -158,7 +160,8 @@ class CharacterDrawing {
         // Create hint button
         this.hintButton = document.createElement("button");
         this.hintButton.className = "character-drawing-btn hint-btn";
-        this.hintButton.innerHTML = '<i class="fas fa-lightbulb"></i> Hint';
+        this.hintButton.innerHTML =
+            '<i class="fas fa-lightbulb"></i> <span class="zh">提示</span><span class="pinyin">Tíshì</span><span class="en">Hint</span>';
         this.hintButton.style.padding = "5px 10px";
         this.hintButton.style.backgroundColor = "#f8f8f8";
         this.hintButton.style.border = "1px solid #ccc";
@@ -464,12 +467,14 @@ function initializeCharacterDrawing() {
             const playBtn = document.createElement("button");
             playBtn.type = "button";
             playBtn.className = "secondary-btn";
-            playBtn.textContent = "Play stroke order";
+            playBtn.innerHTML =
+                '<span class="zh">播放笔顺</span><span class="pinyin">Bōfàng bǐshùn</span><span class="en">Play stroke order</span>';
 
             const quizBtn = document.createElement("button");
             quizBtn.type = "button";
             quizBtn.className = "secondary-btn";
-            quizBtn.textContent = "Quiz mode";
+            quizBtn.innerHTML =
+                '<span class="zh">测验模式</span><span class="pinyin">Cèyàn móshì</span><span class="en">Quiz mode</span>';
 
             writerActions.appendChild(playBtn);
             writerActions.appendChild(quizBtn);
@@ -505,6 +510,9 @@ function initializeCharacterDrawing() {
         // Add drawing container to practice area
         area.appendChild(drawingContainer);
     });
+
+    const lang = new URLSearchParams(window.location.search).get("lang") || "zh";
+    applyWritingLangVisibility(lang, document.getElementById("writing-content"));
 }
 
 // Initialize when DOM is loaded

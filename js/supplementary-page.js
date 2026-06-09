@@ -1,7 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
     const category = urlParams.get("category") || "education";
-    const lang = urlParams.get("lang") || "zh";
+    const lang = getUrlLang();
+    applyStandardDocumentLang(lang);
+
+    const notification = document.getElementById("copy-notification");
+    renderCopyNotificationDefault(notification);
 
     // Update category name with proper formatting
     const categoryName =
@@ -16,34 +20,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (completedCategories[`${category}_${lang}`]) {
         completeBtn.classList.add("completed");
-        completeBtn.innerHTML = '<i class="fas fa-check-circle"></i> Completed';
+        renderCompleteButtonCompleted(completeBtn);
         completeBtn.disabled = true;
     }
 
     completeBtn.addEventListener("click", () => {
-        // Mark category as complete
         completedCategories[`${category}_${lang}`] = true;
         localStorage.setItem(
             "completedSupplementary",
             JSON.stringify(completedCategories),
         );
 
-        // Update button state
         completeBtn.classList.add("completed");
-        completeBtn.innerHTML = '<i class="fas fa-check-circle"></i> Completed';
+        renderCompleteButtonCompleted(completeBtn);
         completeBtn.disabled = true;
 
-        // Show completion notification
-        const notification = document.getElementById("copy-notification");
-        notification.textContent = "Category marked as complete!";
-        notification.style.display = "block";
-        notification.style.animation = "none";
-        notification.offsetHeight; // Trigger reflow
-        notification.style.animation = "fadeInOut 2s ease";
-        setTimeout(() => {
-            notification.style.display = "none";
-            notification.textContent = "Phrase copied to clipboard!";
-        }, 2000);
+        showTimedNotification(
+            notification,
+            localizedTextHtml({
+                zh: "分类已标记为完成！",
+                en: "Category marked as complete!",
+            }),
+            localizedTextHtml({
+                zh: "短语已复制到剪贴板！",
+                en: "Phrase copied to clipboard!",
+            }),
+        );
     });
 
     // Set active language
@@ -82,8 +84,10 @@ document.addEventListener("DOMContentLoaded", function () {
     // Add a note only for Pinyin that it's using Mandarin audio
     const audioFallback = document.getElementById("audio-fallback");
     if (lang === "pinyin") {
-        audioFallback.innerHTML =
-            '<p class="note"><i class="fas fa-info-circle"></i> Using Mandarin audio for reference.</p>';
+        audioFallback.innerHTML = `<p class="note"><i class="fas fa-info-circle"></i> ${localizedTextHtml({
+            zh: "使用普通话音频作为参考。",
+            en: "Using Mandarin audio for reference.",
+        })}</p>`;
         audioFallback.style.display = "block";
     } else {
         audioFallback.innerHTML = "";
@@ -219,13 +223,17 @@ function formatAndDisplayContent(text, lang, timingManifest) {
 function copyPhrase(phrase) {
     navigator.clipboard.writeText(phrase).then(() => {
         const notification = document.getElementById("copy-notification");
-        notification.style.display = "block";
-        notification.style.animation = "none";
-        notification.offsetHeight; // Trigger reflow
-        notification.style.animation = "fadeInOut 2s ease";
-        setTimeout(() => {
-            notification.style.display = "none";
-        }, 2000);
+        showTimedNotification(
+            notification,
+            localizedTextHtml({
+                zh: "短语已复制到剪贴板！",
+                en: "Phrase copied to clipboard!",
+            }),
+            localizedTextHtml({
+                zh: "短语已复制到剪贴板！",
+                en: "Phrase copied to clipboard!",
+            }),
+        );
     });
 }
 

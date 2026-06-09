@@ -5,38 +5,74 @@ const ACHIEVEMENTS_KEY = "earnedAchievements";
 const ACHIEVEMENT_DEFS = [
     {
         id: "first-lesson",
-        label: "First lesson",
-        description: "Complete one lesson",
+        label: {
+            zh: "第一课",
+            en: "First lesson",
+        },
+        description: {
+            zh: "完成一节课程",
+            en: "Complete one lesson",
+        },
         test: ({ completedLessonCount }) => completedLessonCount >= 1,
     },
     {
         id: "week-learner",
-        label: "7-day learner",
-        description: "Complete 7 lessons",
+        label: {
+            zh: "7天学习者",
+            en: "7-day learner",
+        },
+        description: {
+            zh: "完成7节课程",
+            en: "Complete 7 lessons",
+        },
         test: ({ completedLessonCount }) => completedLessonCount >= 7,
     },
     {
         id: "two-week-path",
-        label: "Two-week path",
-        description: "Complete 14 lessons",
+        label: {
+            zh: "两周路径",
+            en: "Two-week path",
+        },
+        description: {
+            zh: "完成14节课程",
+            en: "Complete 14 lessons",
+        },
         test: ({ completedLessonCount }) => completedLessonCount >= 14,
     },
     {
         id: "thirty-day-build",
-        label: "30-day build",
-        description: "Complete 30 lessons",
+        label: {
+            zh: "30天积累",
+            en: "30-day build",
+        },
+        description: {
+            zh: "完成30节课程",
+            en: "Complete 30 lessons",
+        },
         test: ({ completedLessonCount }) => completedLessonCount >= 30,
     },
     {
         id: "pathway-complete",
-        label: "Pathway complete",
-        description: "Complete all 40 lessons",
+        label: {
+            zh: "路径完成",
+            en: "Pathway complete",
+        },
+        description: {
+            zh: "完成全部40节课程",
+            en: "Complete all 40 lessons",
+        },
         test: ({ completedLessonCount }) => completedLessonCount >= 40,
     },
     {
         id: "first-review",
-        label: "First review",
-        description: "Complete one SRS review",
+        label: {
+            zh: "第一次复习",
+            en: "First review",
+        },
+        description: {
+            zh: "完成一次间隔复习",
+            en: "Complete one SRS review",
+        },
         test: ({ srsReviewCount }) => srsReviewCount >= 1,
     },
 ];
@@ -145,7 +181,9 @@ function renderStreakWidgets() {
         el.textContent = String(state.streakCount);
     });
     document.querySelectorAll("[data-last-active-date]").forEach((el) => {
-        el.textContent = state.lastActiveDate || "Not started";
+        el.innerHTML =
+            state.lastActiveDate ||
+            localizedTextHtml({ zh: "尚未开始", en: "Not started" });
     });
 
     document.querySelectorAll("[data-achievements-list]").forEach((list) => {
@@ -155,7 +193,7 @@ function renderStreakWidgets() {
             item.className = earned.has(achievement.id)
                 ? "achievement-badge earned"
                 : "achievement-badge";
-            item.innerHTML = `<strong>${achievement.label}</strong><span>${achievement.description}</span>`;
+            item.innerHTML = `<strong>${localizedTextHtml(achievement.label)}</strong><span>${localizedTextHtml(achievement.description)}</span>`;
             list.appendChild(item);
         });
     });

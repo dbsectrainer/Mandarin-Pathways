@@ -126,6 +126,11 @@ function reviewSrsCard(cardId, grade, date = new Date()) {
     return cards[index];
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    applyStandardDocumentLang(getUrlLang("zh-CN"));
+    renderSrsPage();
+});
+
 function renderSrsPage() {
     const root = document.getElementById("srs-app");
     if (!root) return;
@@ -140,14 +145,58 @@ function renderSrsPage() {
 
         const summary = document.createElement("div");
         summary.className = "practice-summary";
-        summary.innerHTML = `<p><strong>${dueCards.length}</strong> cards due today · <strong>${getSrsCards().length}</strong> total cards</p>`;
+        summary.innerHTML = `<p>${localizedTextHtml({
+            zh: `<strong>${dueCards.length}</strong> 张卡片今日到期 · 共 <strong>${getSrsCards().length}</strong> 张卡片`,
+            en: `<strong>${dueCards.length}</strong> cards due today · <strong>${getSrsCards().length}</strong> total cards`,
+        })}</p>`;
         root.appendChild(summary);
 
-        if (!dueCards.length || currentIndex >= dueCards.length) {
+        if (!dueCards.length) {
             const done = document.createElement("div");
             done.className = "review-card";
             done.innerHTML =
-                '<p class="review-phrase">No cards due right now.</p><p class="review-meta">Add lesson phrases or star phrases, then come back for spaced review.</p>';
+                '<p class="review-phrase"><span class="zh">今日无复习卡片</span><span class="en">No cards due today</span></p>' +
+                '<p class="review-meta"><span class="zh">从课程中收藏短语，然后返回进行间隔复习。</span><span class="en">Star phrases from lessons to build your deck, then return here for spaced review.</span></p>';
+            const emptyActions = document.createElement("div");
+            emptyActions.className = "lesson-actions";
+            const starLink = document.createElement("a");
+            starLink.href = "review.html";
+            starLink.className = "home-btn";
+            starLink.innerHTML =
+                '<i class="fas fa-star"></i> <span class="zh">收藏短语</span><span class="en">Star phrases</span>';
+            const lessonLink = document.createElement("a");
+            lessonLink.href = "index.html";
+            lessonLink.className = "nav-btn";
+            lessonLink.innerHTML =
+                '<i class="fas fa-home"></i> <span class="zh">返回课程</span><span class="en">Go to lessons</span>';
+            emptyActions.appendChild(starLink);
+            emptyActions.appendChild(lessonLink);
+            done.appendChild(emptyActions);
+            root.appendChild(done);
+            return;
+        }
+
+        if (currentIndex >= dueCards.length) {
+            const done = document.createElement("div");
+            done.className = "review-card";
+            done.innerHTML =
+                '<p class="review-phrase"><span class="zh">复习完成！</span><span class="en">Session complete!</span></p>' +
+                '<p class="review-meta"><span class="zh">今日所有到期卡片已复习完毕。明天继续保持！</span><span class="en">All cards due today have been reviewed. Keep it up!</span></p>';
+            const doneActions = document.createElement("div");
+            doneActions.className = "lesson-actions";
+            const homeLink = document.createElement("a");
+            homeLink.href = "index.html";
+            homeLink.className = "home-btn";
+            homeLink.innerHTML =
+                '<i class="fas fa-home"></i> <span class="zh">返回课程</span><span class="en">Go to lessons</span>';
+            const moreLink = document.createElement("a");
+            moreLink.href = "review.html";
+            moreLink.className = "nav-btn";
+            moreLink.innerHTML =
+                '<i class="fas fa-star"></i> <span class="zh">收藏更多短语</span><span class="en">Star more phrases</span>';
+            doneActions.appendChild(homeLink);
+            doneActions.appendChild(moreLink);
+            done.appendChild(doneActions);
             root.appendChild(done);
             return;
         }
@@ -156,9 +205,12 @@ function renderSrsPage() {
         const panel = document.createElement("div");
         panel.className = "srs-card";
         panel.innerHTML = `
-            <p class="review-meta">Day ${card.day || "?"} · ${card.lang} · ${currentIndex + 1}/${dueCards.length}</p>
+            <p class="review-meta">${localizedTextHtml({
+                zh: `第 ${card.day || "?"} 天 · ${card.lang} · ${currentIndex + 1}/${dueCards.length}`,
+                en: `Day ${card.day || "?"} · ${card.lang} · ${currentIndex + 1}/${dueCards.length}`,
+            })}</p>
             <p class="srs-front">${card.front}</p>
-            <p class="srs-back" ${showingBack ? "" : "hidden"}>${card.back || "No back text saved"}</p>
+            <p class="srs-back" ${showingBack ? "" : "hidden"}>${card.back || localizedTextHtml({ zh: "未保存背面文本", en: "No back text saved" })}</p>
         `;
 
         const actions = document.createElement("div");
@@ -168,7 +220,11 @@ function renderSrsPage() {
             const showBtn = document.createElement("button");
             showBtn.type = "button";
             showBtn.className = "primary-btn";
-            showBtn.textContent = "Show answer";
+            showBtn.dataset.testid = "srs-show-answer";
+            showBtn.innerHTML = localizedTextHtml({
+                zh: "显示答案",
+                en: "Show answer",
+            });
             showBtn.addEventListener("click", () => {
                 showingBack = true;
                 render();
@@ -180,7 +236,13 @@ function renderSrsPage() {
                 btn.type = "button";
                 btn.className =
                     grade === "again" ? "secondary-btn" : "primary-btn";
-                btn.textContent = grade[0].toUpperCase() + grade.slice(1);
+                btn.dataset.testid = `srs-grade-${grade}`;
+                const labels = {
+                    again: { zh: "重来", en: "Again" },
+                    good: { zh: "良好", en: "Good" },
+                    easy: { zh: "简单", en: "Easy" },
+                };
+                btn.innerHTML = localizedTextHtml(labels[grade]);
                 btn.addEventListener("click", () => {
                     reviewSrsCard(card.id, grade);
                     currentIndex += 1;
@@ -197,5 +259,3 @@ function renderSrsPage() {
 
     render();
 }
-
-document.addEventListener("DOMContentLoaded", renderSrsPage);

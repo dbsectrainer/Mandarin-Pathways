@@ -99,6 +99,8 @@ const placementQuestions = [
 ];
 
 document.addEventListener("DOMContentLoaded", () => {
+    applyStandardDocumentLang(getUrlLang("zh-CN"));
+
     const form = document.getElementById("placement-form");
     const resultEl = document.getElementById("placement-result");
     if (!form || !resultEl) return;
@@ -178,7 +180,10 @@ function getPlacementRecommendation(score) {
         return {
             level: "Beginner",
             day: 1,
-            message: "Start with the foundations and build daily confidence.",
+            message: {
+                zh: "从基础开始，每天建立信心。",
+                en: "Start with the foundations and build daily confidence.",
+            },
         };
     }
 
@@ -186,8 +191,10 @@ function getPlacementRecommendation(score) {
         return {
             level: "Upper beginner",
             day: 8,
-            message:
-                "Begin after the first week and review earlier lessons as needed.",
+            message: {
+                zh: "从第一周后开始学习，并根据需要复习前面的课程。",
+                en: "Begin after the first week and review earlier lessons as needed.",
+            },
         };
     }
 
@@ -195,16 +202,35 @@ function getPlacementRecommendation(score) {
         return {
             level: "Intermediate",
             day: 16,
-            message:
-                "Start with practical sentence patterns and longer exchanges.",
+            message: {
+                zh: "从实用句型和较长对话开始。",
+                en: "Start with practical sentence patterns and longer exchanges.",
+            },
         };
     }
 
     return {
         level: "Advanced",
         day: 31,
-        message: "Move into longer topics while using quizzes for review.",
+        message: {
+            zh: "进入更长的话题，并用测验进行复习。",
+            en: "Move into longer topics while using quizzes for review.",
+        },
     };
+}
+
+const PLACEMENT_LEVEL_ZH = {
+    Beginner: "初级",
+    "Upper beginner": "中初级",
+    Intermediate: "中级",
+    Advanced: "高级",
+};
+
+function placementMessageHtml(message) {
+    if (message && typeof message === "object" && message.zh && message.en) {
+        return localizedTextHtml(message);
+    }
+    return `<span class="en">${String(message || "")}</span>`;
 }
 
 function renderSavedPlacement(resultEl) {
@@ -223,28 +249,60 @@ function renderPlacementResult(resultEl, result) {
     resultEl.innerHTML = "";
 
     const heading = document.createElement("h2");
-    heading.textContent = `Recommended start: Day ${result.recommendedDay}`;
+    heading.innerHTML = localizedTextHtml({
+        zh: `建议起点：第 ${result.recommendedDay} 天`,
+        en: `Recommended start: Day ${result.recommendedDay}`,
+    });
 
     const score = document.createElement("p");
-    score.textContent = `Score: ${result.score}/${result.total} (${result.percentage}%) - ${result.level}`;
+    const levelZh = PLACEMENT_LEVEL_ZH[result.level] || result.level;
+    score.innerHTML = localizedTextHtml({
+        zh: `得分：${result.score}/${result.total}（${result.percentage}%）— ${levelZh}`,
+        en: `Score: ${result.score}/${result.total} (${result.percentage}%) - ${result.level}`,
+    });
 
     const message = document.createElement("p");
-    message.textContent = result.message;
+    message.innerHTML = placementMessageHtml(result.message);
+
+    const actions = document.createElement("div");
+    actions.className = "lesson-actions";
 
     const link = document.createElement("a");
     link.className = "home-btn";
     link.href = `day.html?day=${encodeURIComponent(result.recommendedDay)}&lang=zh`;
     link.dataset.testid = "placement-start-link";
+    const playIcon = document.createElement("i");
+    playIcon.className = "fas fa-play";
+    link.appendChild(playIcon);
+    const zhSpan = document.createElement("span");
+    zhSpan.className = "zh";
+    zhSpan.textContent = ` 开始第${result.recommendedDay}天`;
+    const enSpan = document.createElement("span");
+    enSpan.className = "en";
+    enSpan.textContent = ` Start at Day ${result.recommendedDay}`;
+    link.appendChild(zhSpan);
+    link.appendChild(enSpan);
 
-    const icon = document.createElement("i");
-    icon.className = "fas fa-play";
-    link.appendChild(icon);
-    link.appendChild(
-        document.createTextNode(` Start at Day ${result.recommendedDay}`),
-    );
+    const retake = document.createElement("button");
+    retake.type = "button";
+    retake.className = "nav-btn";
+    retake.innerHTML =
+        '<i class="fas fa-redo"></i> <span class="zh">重新测试</span><span class="en">Retake test</span>';
+    retake.addEventListener("click", () => {
+        resultEl.hidden = true;
+        resultEl.innerHTML = "";
+        const form = document.getElementById("placement-form");
+        if (form) {
+            form.reset();
+            form.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+    });
+
+    actions.appendChild(link);
+    actions.appendChild(retake);
 
     resultEl.appendChild(heading);
     resultEl.appendChild(score);
     resultEl.appendChild(message);
-    resultEl.appendChild(link);
+    resultEl.appendChild(actions);
 }

@@ -214,18 +214,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Apply language filtering - show only elements for the selected language
-    const allLangElements = document.querySelectorAll(".zh, .pinyin, .en");
-    allLangElements.forEach((el) => {
-        // Hide all language elements first
-        el.style.display = "none";
-    });
-
-    // Show only elements for the selected language
-    const selectedLangElements = document.querySelectorAll("." + lang);
-    selectedLangElements.forEach((el) => {
-        el.style.display = "";
-    });
+    applyWritingLangVisibility(lang);
 
     // Add click event listeners to language buttons
     languageBtns.forEach((btn) => {
@@ -265,8 +254,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // If activity type is selected, show levels
     if (activityType && writingData[activityType]) {
         document.querySelector(".level-selector").style.display = "block";
-        document.getElementById("activity-type").textContent =
-            getActivityTypeDisplay(activityType, lang);
+        document.getElementById("activity-type").innerHTML =
+            getActivityTypeDisplayHtml(activityType);
+        applyWritingLangVisibility(lang, document.getElementById("activity-type"));
 
         // Populate levels
         const levelButtons = document.getElementById("level-buttons");
@@ -387,109 +377,70 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.getItem("completedWritings") || "{}",
     );
 
+    const notification = document.getElementById("copy-notification");
+    renderCopyNotificationDefault3(notification);
+
     if (
         activityType &&
         level &&
         completedWritings[`${activityType}_${level}_${lang}`]
     ) {
         completeBtn.classList.add("completed");
-
-        // Create language-specific completed text
-        let completedText = "";
-        if (lang === "zh") {
-            completedText = "已完成";
-        } else if (lang === "pinyin") {
-            completedText = "Yǐ wánchéng";
-        } else {
-            completedText = "Completed";
-        }
-
-        completeBtn.innerHTML = `<i class="fas fa-check-circle"></i> ${completedText}`;
+        renderCompleteButtonCompleted3(completeBtn);
+        applyWritingLangVisibility(lang, completeBtn);
         completeBtn.disabled = true;
     }
 
     completeBtn.addEventListener("click", () => {
         if (activityType && level) {
-            // Mark writing activity as complete
             completedWritings[`${activityType}_${level}_${lang}`] = true;
             localStorage.setItem(
                 "completedWritings",
                 JSON.stringify(completedWritings),
             );
 
-            // Update button state
             completeBtn.classList.add("completed");
-
-            // Create language-specific completed text
-            let completedText = "";
-            if (lang === "zh") {
-                completedText = "已完成";
-            } else if (lang === "pinyin") {
-                completedText = "Yǐ wánchéng";
-            } else {
-                completedText = "Completed";
-            }
-
-            completeBtn.innerHTML = `<i class="fas fa-check-circle"></i> ${completedText}`;
+            renderCompleteButtonCompleted3(completeBtn);
+            applyWritingLangVisibility(lang, completeBtn);
             completeBtn.disabled = true;
 
-            // Show completion notification with language-specific text
-            const notification = document.getElementById("copy-notification");
-
-            if (lang === "zh") {
-                notification.textContent = "活动已标记为完成！";
-            } else if (lang === "pinyin") {
-                notification.textContent = "Huódòng yǐ biāojì wéi wánchéng!";
-            } else {
-                notification.textContent = "Activity marked as complete!";
-            }
-            notification.style.display = "block";
-            notification.style.animation = "none";
-            notification.offsetHeight; // Trigger reflow
-            notification.style.animation = "fadeInOut 2s ease";
-            setTimeout(() => {
-                notification.style.display = "none";
-                notification.textContent = "Phrase copied to clipboard!";
-            }, 2000);
+            showTimedNotification(
+                notification,
+                localizedTextHtml3({
+                    zh: "活动已标记为完成！",
+                    pinyin: "Huódòng yǐ biāojì wéi wánchéng!",
+                    en: "Activity marked as complete!",
+                }),
+                localizedTextHtml3({
+                    zh: "短语已复制到剪贴板！",
+                    pinyin: "Duǎnyǔ yǐ fùzhì dào jiǎtiēbǎn!",
+                    en: "Phrase copied to clipboard!",
+                }),
+            );
         }
     });
 });
 
-function getActivityTypeDisplay(type, lang) {
-    if (lang === "zh") {
-        switch (type) {
-            case "character":
-                return "汉字练习";
-            case "sentence":
-                return "句子完成";
-            case "translation":
-                return "翻译练习";
-            default:
-                return type;
-        }
-    } else if (lang === "pinyin") {
-        switch (type) {
-            case "character":
-                return "Hànzì liànxí";
-            case "sentence":
-                return "Jùzi wánchéng";
-            case "translation":
-                return "Fānyì liànxí";
-            default:
-                return type;
-        }
-    } else {
-        switch (type) {
-            case "character":
-                return "Character Practice";
-            case "sentence":
-                return "Sentence Completion";
-            case "translation":
-                return "Translation Practice";
-            default:
-                return type;
-        }
-    }
+function getActivityTypeDisplayHtml(type) {
+    const labels = {
+        character: {
+            zh: "汉字练习",
+            pinyin: "Hànzì liànxí",
+            en: "Character Practice",
+        },
+        sentence: {
+            zh: "句子完成",
+            pinyin: "Jùzi wánchéng",
+            en: "Sentence Completion",
+        },
+        translation: {
+            zh: "翻译练习",
+            pinyin: "Fānyì liànxí",
+            en: "Translation Practice",
+        },
+    };
+    const label = labels[type] || { zh: type, pinyin: type, en: type };
+    return localizedTextHtml3(label);
 }
 
 /**

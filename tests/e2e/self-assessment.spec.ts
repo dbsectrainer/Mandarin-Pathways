@@ -2,11 +2,9 @@ import { test, expect } from "@playwright/test";
 
 test.describe("Self assessment", () => {
     test("placement test stores a recommendation", async ({ page }) => {
-        await page.goto("/placement.html");
+        await page.goto("/placement.html?lang=en");
 
-        await expect(
-            page.getByRole("heading", { name: /Find your starting point/i }),
-        ).toBeVisible();
+        await expect(page.locator("#placement-title .en")).toBeVisible();
 
         const answers = [
             "Hello",
@@ -25,8 +23,8 @@ test.describe("Self assessment", () => {
             await page.getByLabel(answer).check();
         }
 
-        await page.getByRole("button", { name: /Score placement/i }).click();
-        await expect(page.getByTestId("placement-result")).toContainText(
+        await page.locator("#placement-submit").click();
+        await expect(page.locator("#placement-result h2 .en")).toContainText(
             "Recommended start: Day 31",
         );
 
@@ -38,17 +36,15 @@ test.describe("Self assessment", () => {
     });
 
     test("day quiz stores the best score", async ({ page }) => {
-        await page.goto("/quiz.html?day=1");
+        await page.goto("/quiz.html?day=1&lang=en");
 
-        await expect(
-            page.getByRole("heading", { name: /Quiz by day/i }),
-        ).toBeVisible();
+        await expect(page.locator("#quiz-title .en")).toBeVisible();
         await page.getByLabel("How are you?").check();
         await page.getByLabel("zai jian").check();
         await page.getByTestId("quiz-fill-3").fill("我");
 
-        await page.getByRole("button", { name: /Score quiz/i }).click();
-        await expect(page.getByTestId("quiz-result")).toContainText(
+        await page.locator("#quiz-submit").click();
+        await expect(page.locator("#quiz-result h2 .en")).toContainText(
             "Day 1 score: 3/3",
         );
 

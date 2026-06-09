@@ -24,8 +24,8 @@ test.describe("retention loop", () => {
         await page.reload();
 
         await expect(page.locator(".srs-front")).toContainText("你好");
-        await page.getByRole("button", { name: "Show answer" }).click();
-        await page.getByRole("button", { name: "Good" }).click();
+        await page.locator('[data-testid="srs-show-answer"]').click();
+        await page.locator('[data-testid="srs-grade-good"]').click();
 
         const stored = await page.evaluate(() =>
             JSON.parse(localStorage.getItem("srsCards") || "[]"),
@@ -49,6 +49,18 @@ test.describe("retention loop", () => {
         await page.evaluate(() => {
             localStorage.setItem("streakCount", "3");
             localStorage.setItem(
+                "completedDays",
+                JSON.stringify({
+                    "1_zh": true,
+                }),
+            );
+            localStorage.setItem(
+                "placementResult",
+                JSON.stringify({
+                    recommendedDay: 8,
+                }),
+            );
+            localStorage.setItem(
                 "srsCards",
                 JSON.stringify([
                     {
@@ -66,5 +78,26 @@ test.describe("retention loop", () => {
             "3",
         );
         await expect(page.locator("#srs-due-count")).toHaveText("1");
+        await expect(page.locator("#placement-start-day .zh")).toHaveText(
+            "第8天",
+        );
+        await expect(
+            page.locator(".achievement-badge").first().locator(".zh").first(),
+        ).toHaveText("第一课");
+        await expect(
+            page.locator(".achievement-badge").first().locator(".en").first(),
+        ).toBeHidden();
+
+        await page.getByRole("button", { name: "English" }).click();
+
+        await expect(page.locator("#placement-start-day .en")).toHaveText(
+            "Day 8",
+        );
+        await expect(
+            page.locator(".achievement-badge").first().locator(".en").first(),
+        ).toHaveText("First lesson");
+        await expect(
+            page.locator(".achievement-badge").first().locator(".zh").first(),
+        ).toBeHidden();
     });
 });

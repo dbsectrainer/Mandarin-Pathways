@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+    applyStandardDocumentLang(getUrlLang("zh-CN"));
+
     const listEl = document.getElementById("review-list");
     if (!listEl) return;
 
@@ -45,7 +47,10 @@ document.addEventListener("DOMContentLoaded", () => {
             const removeBtn = document.createElement("button");
             removeBtn.type = "button";
             removeBtn.className = "secondary-btn";
-            removeBtn.textContent = "Remove";
+            removeBtn.innerHTML = localizedTextHtml({
+                zh: "移除",
+                en: "Remove",
+            });
             removeBtn.addEventListener("click", () => {
                 removeStarredPhrase(entry.id);
                 render();

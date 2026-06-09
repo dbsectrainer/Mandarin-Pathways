@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const day =
         Number.isFinite(rawDay) && rawDay >= 1 && rawDay <= 40 ? rawDay : 1;
     const lang = urlParams.get("lang") || "zh";
+    document.documentElement.lang = lang === "en" ? "en" : "zh-CN";
 
     document.getElementById("day-number").textContent = day;
 
@@ -14,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (completedDays[`${day}_${lang}`]) {
         completeBtn.classList.add("completed");
-        completeBtn.innerHTML = '<i class="fas fa-check-circle"></i> Completed';
+        renderCompleteButtonCompleted(completeBtn);
         completeBtn.disabled = true;
     }
 
@@ -23,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("completedDays", JSON.stringify(completedDays));
 
         completeBtn.classList.add("completed");
-        completeBtn.innerHTML = '<i class="fas fa-check-circle"></i> Completed';
+        renderCompleteButtonCompleted(completeBtn);
         completeBtn.disabled = true;
 
         const totalCompleted = Object.keys(completedDays).filter((key) =>
@@ -45,14 +46,17 @@ document.addEventListener("DOMContentLoaded", function () {
         updatePageProgress(lang, totalCompleted);
 
         const notification = document.getElementById("copy-notification");
-        notification.textContent = "Day marked as complete!";
+        notification.innerHTML = localizedTextHtml({
+            zh: "已标记为完成！",
+            en: "Day marked as complete!",
+        });
         notification.style.display = "block";
         notification.style.animation = "none";
         notification.offsetHeight;
         notification.style.animation = "fadeInOut 2s ease";
         setTimeout(() => {
             notification.style.display = "none";
-            notification.textContent = "Phrase copied to clipboard!";
+            renderCopyNotificationDefault(notification);
         }, 2000);
     });
 
@@ -109,9 +113,11 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("language-flag").textContent = flagMap[lang];
 
     const sectionInfo = getSectionInfo(day);
-    document.getElementById("section-title").textContent = sectionInfo.title;
-    document.getElementById("section-description").textContent =
-        sectionInfo.description;
+    document.getElementById("section-title").innerHTML = localizedTextHtml(
+        sectionInfo.title,
+    );
+    document.getElementById("section-description").innerHTML =
+        localizedTextHtml(sectionInfo.description);
 
     const quizLink = document.getElementById("lesson-quiz-link");
     if (quizLink) {
@@ -125,7 +131,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const audioFallback = document.getElementById("audio-fallback");
     if (lang === "pinyin") {
         audioFallback.innerHTML =
-            '<p class="note"><i class="fas fa-info-circle"></i> Using Mandarin audio for reference.</p>';
+            `<p class="note"><i class="fas fa-info-circle"></i> ${localizedTextHtml({
+                zh: "使用普通话音频作为参考。",
+                en: "Using Mandarin audio for reference.",
+            })}</p>`;
         audioFallback.style.display = "block";
     } else {
         audioFallback.innerHTML = "";
@@ -299,14 +308,17 @@ function formatAndDisplayContent(text, day, lang, timingManifest) {
                 });
                 const notification =
                     document.getElementById("copy-notification");
-                notification.textContent = "Phrase added to SRS review.";
+                notification.innerHTML = localizedTextHtml({
+                    zh: "短语已添加到间隔复习。",
+                    en: "Phrase added to SRS review.",
+                });
                 notification.style.display = "block";
                 notification.style.animation = "none";
                 notification.offsetHeight;
                 notification.style.animation = "fadeInOut 2s ease";
                 setTimeout(() => {
                     notification.style.display = "none";
-                    notification.textContent = "Phrase copied to clipboard!";
+                    renderCopyNotificationDefault(notification);
                 }, 2000);
             });
 
@@ -359,32 +371,60 @@ function copyPhrase(phrase) {
 function getSectionInfo(dayNum) {
     if (dayNum <= 7) {
         return {
-            title: "Pinyin System & Pronunciation",
-            description:
-                "Master the fundamentals of Mandarin pronunciation and tones.",
+            title: {
+                zh: "拼音系统与发音",
+                en: "Pinyin System & Pronunciation",
+            },
+            description: {
+                zh: "掌握普通话发音和声调的基础。",
+                en: "Master the fundamentals of Mandarin pronunciation and tones.",
+            },
         };
     }
     if (dayNum <= 14) {
         return {
-            title: "Essential Daily Phrases",
-            description: "Learn practical phrases for everyday communication.",
+            title: {
+                zh: "基础日常用语",
+                en: "Essential Daily Phrases",
+            },
+            description: {
+                zh: "学习日常交流中的实用短语。",
+                en: "Learn practical phrases for everyday communication.",
+            },
         };
     }
     if (dayNum <= 22) {
         return {
-            title: "Cultural Context & Daily Life",
-            description:
-                "Understand Chinese culture and daily life communication.",
+            title: {
+                zh: "文化背景与日常生活",
+                en: "Cultural Context & Daily Life",
+            },
+            description: {
+                zh: "了解中国文化和日常生活交流。",
+                en: "Understand Chinese culture and daily life communication.",
+            },
         };
     }
     if (dayNum <= 30) {
         return {
-            title: "Professional Mandarin",
-            description: "Master business and professional communication.",
+            title: {
+                zh: "职业中文",
+                en: "Professional Mandarin",
+            },
+            description: {
+                zh: "掌握商务和职业场景中的沟通。",
+                en: "Master business and professional communication.",
+            },
         };
     }
     return {
-        title: "Advanced Fluency",
-        description: "Achieve advanced fluency and real-world applications.",
+        title: {
+            zh: "高级流利度",
+            en: "Advanced Fluency",
+        },
+        description: {
+            zh: "提升高级流利度并应用于真实场景。",
+            en: "Achieve advanced fluency and real-world applications.",
+        },
     };
 }

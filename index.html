@@ -937,7 +937,7 @@
                         class="primary-btn"
                         aria-label="Export progress JSON"
                     >
-                        Export
+                        <span class="zh">导出</span><span class="en">Export</span>
                     </button>
                     <label
                         class="primary-btn"
@@ -947,7 +947,7 @@
                             margin: 0;
                         "
                     >
-                        Import
+                        <span class="zh">导入</span><span class="en">Import</span>
                         <input
                             type="file"
                             id="import-progress-file"
@@ -960,7 +960,7 @@
                         id="close-data-portability"
                         class="secondary-btn"
                     >
-                        Close
+                        <span class="zh">关闭</span><span class="en">Close</span>
                     </button>
                 </div>
             </div>
@@ -973,7 +973,10 @@
             style="display: none"
         >
             <div class="modal-content">
-                <h3>Notification Settings</h3>
+                <h3>
+                    <span class="zh">通知设置</span
+                    ><span class="en">Notification Settings</span>
+                </h3>
                 <div class="settings-form">
                     <div class="form-group">
                         <label>
@@ -982,12 +985,14 @@
                                 id="notifications-enabled"
                                 checked
                             />
-                            Enable Daily Reminders
+                            <span class="zh">启用每日提醒</span
+                            ><span class="en">Enable Daily Reminders</span>
                         </label>
                     </div>
                     <div class="form-group">
-                        <label
-                            >Reminder Time:
+                        <label>
+                            <span class="zh">提醒时间：</span
+                            ><span class="en">Reminder Time: </span>
                             <input
                                 type="time"
                                 id="reminder-time"
@@ -1001,72 +1006,21 @@
                             class="primary-btn"
                             aria-label="Save notification settings"
                         >
-                            Save Settings
+                            <span class="zh">保存设置</span
+                            ><span class="en">Save Settings</span>
                         </button>
                         <button
                             id="close-notification-settings"
                             class="secondary-btn"
                             aria-label="Close settings modal"
                         >
-                            Close
+                            <span class="zh">关闭</span
+                            ><span class="en">Close</span>
                         </button>
                     </div>
                 </div>
             </div>
         </div>
-
-        <style>
-            .modal {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: rgba(0, 0, 0, 0.5);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                z-index: 1000;
-            }
-            .modal-content {
-                background: white;
-                padding: 2rem;
-                border-radius: 8px;
-                max-width: 400px;
-                width: 90%;
-            }
-            .settings-form {
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-            }
-            .form-group {
-                display: flex;
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            .button-group {
-                display: flex;
-                gap: 1rem;
-                justify-content: flex-end;
-                margin-top: 1rem;
-            }
-            .primary-btn {
-                background: var(--primary-color);
-                color: white;
-                border: none;
-                padding: 0.5rem 1rem;
-                border-radius: 4px;
-                cursor: pointer;
-            }
-            .secondary-btn {
-                background: #f0f0f0;
-                border: 1px solid #ddd;
-                padding: 0.5rem 1rem;
-                border-radius: 4px;
-                cursor: pointer;
-            }
-        </style>
 
         <script src="js/sw-register.js"></script>
         <script>
@@ -1148,6 +1102,7 @@
                 }
             }
         </script>
+        <script src="js/i18n.js" defer></script>
         <script src="js/starred-phrases.js" defer></script>
         <script src="js/streaks.js" defer></script>
         <script src="js/srs.js" defer></script>

@@ -25,12 +25,26 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
             rel="stylesheet"
+            media="print"
+            onload="this.media = 'all'"
         />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            media="print"
+            onload="this.media = 'all'"
         />
         <link rel="stylesheet" href="css/styles.min.css" />
+        <noscript>
+            <link
+                href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+                rel="stylesheet"
+            />
+            <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            />
+        </noscript>
     </head>
     <body>
         <header>
@@ -214,6 +228,7 @@
         </div>
 
         <script src="js/sw-register.js"></script>
+        <script src="js/i18n.js" defer></script>
         <script src="js/content-error.js" defer></script>
         <script src="js/lesson-audio-sync.js" defer></script>
         <script src="js/starred-phrases.js" defer></script>

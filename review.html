@@ -25,15 +25,52 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
             rel="stylesheet"
+            media="print"
+            onload="this.media = 'all'"
         />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            media="print"
+            onload="this.media = 'all'"
         />
         <link rel="stylesheet" href="css/styles.min.css" />
+        <noscript>
+            <link
+                href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+                rel="stylesheet"
+            />
+            <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            />
+        </noscript>
     </head>
     <body>
         <header>
+            <div class="language-selector">
+                <button
+                    class="language-btn"
+                    data-lang="zh"
+                    aria-label="Switch to Simplified Chinese"
+                >
+                    <span class="flag">🇨🇳</span> 简体中文
+                </button>
+                <button
+                    class="language-btn"
+                    data-lang="pinyin"
+                    aria-label="Switch to Pinyin"
+                >
+                    <span class="flag">🔤</span> Pinyin
+                </button>
+                <button
+                    class="language-btn"
+                    data-lang="en"
+                    aria-label="Switch to English"
+                >
+                    <span class="flag">🇺🇸</span> English
+                </button>
+            </div>
             <h1>Mandarin Pathways</h1>
             <p>
                 <span class="zh">复习收藏的短语</span
@@ -72,6 +109,8 @@
         </footer>
 
         <script src="js/sw-register.js" defer></script>
+        <script src="js/i18n.js" defer></script>
+        <script src="js/lang-switcher.js" defer></script>
         <script src="js/starred-phrases.js" defer></script>
         <script src="js/review-page.js" defer></script>
         <script src="js/return-to-top.js" defer></script>

@@ -399,7 +399,9 @@ function renderLearningDashboard() {
                 localStorage.getItem("placementResult") || "null",
             );
             const startDay = result?.startDay || result?.recommendedDay;
-            placementEl.textContent = startDay ? `Day ${startDay}` : "--";
+            placementEl.innerHTML = startDay
+                ? `<span class="zh">第${startDay}天</span><span class="en">Day ${startDay}</span>`
+                : "--";
         } catch {
             placementEl.textContent = "--";
         }

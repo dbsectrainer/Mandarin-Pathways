@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
     <head>
         <meta charset="UTF-8" />
         <meta
@@ -22,15 +22,52 @@
         <link
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
             rel="stylesheet"
+            media="print"
+            onload="this.media = 'all'"
         />
         <link
             rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            media="print"
+            onload="this.media = 'all'"
         />
         <link rel="stylesheet" href="css/styles.min.css" />
+        <noscript>
+            <link
+                href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+                rel="stylesheet"
+            />
+            <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            />
+        </noscript>
     </head>
     <body>
         <header>
+            <div class="language-selector">
+                <button
+                    class="language-btn"
+                    data-lang="zh"
+                    aria-label="Switch to Simplified Chinese"
+                >
+                    <span class="flag">🇨🇳</span> 简体中文
+                </button>
+                <button
+                    class="language-btn"
+                    data-lang="pinyin"
+                    aria-label="Switch to Pinyin"
+                >
+                    <span class="flag">🔤</span> Pinyin
+                </button>
+                <button
+                    class="language-btn"
+                    data-lang="en"
+                    aria-label="Switch to English"
+                >
+                    <span class="flag">🇺🇸</span> English
+                </button>
+            </div>
             <h1>Mandarin Pathways</h1>
             <p>
                 <span class="zh">中文水平测试</span
@@ -43,6 +80,9 @@
                 <i class="fas fa-arrow-up"></i>
             </div>
 
+            <!-- Visual anchor pattern -->
+            <div class="visual-anchor" style="top: 5%; right: 5%"></div>
+
             <div class="lesson-container">
                 <div class="navigation">
                     <a href="index.html" class="home-btn">
@@ -53,10 +93,18 @@
                 </div>
 
                 <section class="section-info" aria-labelledby="placement-title">
-                    <h2 id="placement-title">Find your starting point</h2>
+                    <h2 id="placement-title">
+                        <span class="zh">找到你的起点</span
+                        ><span class="en">Find your starting point</span>
+                    </h2>
                     <p>
-                        Answer a short mix of phrase, vocabulary, and sentence
-                        questions. Your result is saved on this device.
+                        <span class="zh"
+                            >回答短语、词汇和句子的混合小题。结果会保存在本设备上。</span
+                        ><span class="en"
+                            >Answer a short mix of phrase, vocabulary, and
+                            sentence questions. Your result is saved on this
+                            device.</span
+                        >
                     </p>
                 </section>
 
@@ -70,7 +118,8 @@
                         form="placement-form"
                     >
                         <i class="fas fa-check"></i>
-                        Score placement
+                        <span class="zh">提交测试</span
+                        ><span class="en">Score placement</span>
                     </button>
                 </div>
 
@@ -93,6 +142,8 @@
         </footer>
 
         <script src="js/sw-register.js" defer></script>
+        <script src="js/i18n.js" defer></script>
+        <script src="js/lang-switcher.js" defer></script>
         <script src="js/placement-page.js" defer></script>
         <script src="js/return-to-top.js" defer></script>
     </body>

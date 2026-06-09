@@ -37,22 +37,16 @@ document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
     const level = urlParams.get("level") || "";
     const topic = urlParams.get("topic") || "";
-    const lang = urlParams.get("lang") || "zh";
+    const lang = getUrlLang();
+    applyStandardDocumentLang(lang);
 
-    // Set active language and update HTML lang attribute
+    const notification = document.getElementById("copy-notification");
+    renderCopyNotificationDefault(notification);
+
     const languageBtns = document.querySelectorAll(".language-btn");
     languageBtns.forEach((btn) => {
         if (btn.dataset.lang === lang) {
             btn.classList.add("active");
-            // Set HTML lang attribute based on selected language
-            if (lang === "en") {
-                document.documentElement.setAttribute("lang", "en");
-            } else if (lang === "zh") {
-                document.documentElement.setAttribute("lang", "zh-CN");
-            } else {
-                // For pinyin, we'll use English as the base language
-                document.documentElement.setAttribute("lang", "en");
-            }
         }
         btn.addEventListener("click", () => {
             const currentLevel = urlParams.get("level") || "";
@@ -145,36 +139,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (level && topic && completedReadings[`${level}_${topic}_${lang}`]) {
         completeBtn.classList.add("completed");
-        completeBtn.innerHTML = '<i class="fas fa-check-circle"></i> Completed';
+        renderCompleteButtonCompleted(completeBtn);
         completeBtn.disabled = true;
     }
 
     completeBtn.addEventListener("click", () => {
         if (level && topic) {
-            // Mark reading as complete
             completedReadings[`${level}_${topic}_${lang}`] = true;
             localStorage.setItem(
                 "completedReadings",
                 JSON.stringify(completedReadings),
             );
 
-            // Update button state
             completeBtn.classList.add("completed");
-            completeBtn.innerHTML =
-                '<i class="fas fa-check-circle"></i> Completed';
+            renderCompleteButtonCompleted(completeBtn);
             completeBtn.disabled = true;
 
-            // Show completion notification
-            const notification = document.getElementById("copy-notification");
-            notification.textContent = "Reading marked as complete!";
-            notification.style.display = "block";
-            notification.style.animation = "none";
-            notification.offsetHeight; // Trigger reflow
-            notification.style.animation = "fadeInOut 2s ease";
-            setTimeout(() => {
-                notification.style.display = "none";
-                notification.textContent = "Phrase copied to clipboard!";
-            }, 2000);
+            showTimedNotification(
+                notification,
+                localizedTextHtml({
+                    zh: "阅读已标记为完成！",
+                    en: "Reading marked as complete!",
+                }),
+                localizedTextHtml({
+                    zh: "短语已复制到剪贴板！",
+                    en: "Phrase copied to clipboard!",
+                }),
+            );
         }
     });
 });
@@ -199,16 +190,20 @@ function loadReadingContent(level, topic, lang) {
     if (topicInfo.hasAudio) {
         audio.src = `audio_files/reading/${level}_${topicSlug}_${audioLang}.mp3`;
         if (lang === "pinyin") {
-            audioFallback.innerHTML =
-                '<p class="note"><i class="fas fa-info-circle"></i> Using Mandarin audio for reference.</p>';
+            audioFallback.innerHTML = `<p class="note"><i class="fas fa-info-circle"></i> ${localizedTextHtml({
+                zh: "使用普通话音频作为参考。",
+                en: "Using Mandarin audio for reference.",
+            })}</p>`;
             audioFallback.style.display = "block";
         } else {
             audioFallback.style.display = "none";
         }
     } else {
         audio.src = "";
-        audioFallback.innerHTML =
-            '<p class="note"><i class="fas fa-info-circle"></i> Audio not available for this reading.</p>';
+        audioFallback.innerHTML = `<p class="note"><i class="fas fa-info-circle"></i> ${localizedTextHtml({
+            zh: "此阅读暂无音频。",
+            en: "Audio not available for this reading.",
+        })}</p>`;
         audioFallback.style.display = "block";
     }
 
@@ -386,11 +381,17 @@ function formatAndDisplayReadingContent(text, lang, timingManifest) {
 
             const answerInput = document.createElement("textarea");
             answerInput.className = "answer-input";
-            answerInput.placeholder = "Write your answer here...";
+            answerInput.placeholder =
+                lang === "en"
+                    ? "Write your answer here..."
+                    : "在此写下你的答案…";
 
             const answerToggle = document.createElement("button");
             answerToggle.className = "answer-toggle";
-            answerToggle.innerHTML = '<i class="fas fa-eye"></i> Show Answer';
+            answerToggle.innerHTML = `<i class="fas fa-eye"></i> ${localizedTextHtml({
+                zh: "显示答案",
+                en: "Show Answer",
+            })}`;
 
             const answerText = document.createElement("div");
             answerText.className = "answer-text";
@@ -403,12 +404,20 @@ function formatAndDisplayReadingContent(text, lang, timingManifest) {
             answerToggle.addEventListener("click", () => {
                 if (answerText.style.display === "none") {
                     answerText.style.display = "block";
-                    answerToggle.innerHTML =
-                        '<i class="fas fa-eye-slash"></i> Hide Answer';
+                    answerToggle.innerHTML = `<i class="fas fa-eye-slash"></i> ${localizedTextHtml(
+                        {
+                            zh: "隐藏答案",
+                            en: "Hide Answer",
+                        },
+                    )}`;
                 } else {
                     answerText.style.display = "none";
-                    answerToggle.innerHTML =
-                        '<i class="fas fa-eye"></i> Show Answer';
+                    answerToggle.innerHTML = `<i class="fas fa-eye"></i> ${localizedTextHtml(
+                        {
+                            zh: "显示答案",
+                            en: "Show Answer",
+                        },
+                    )}`;
                 }
             });
 
@@ -428,12 +437,16 @@ function formatAndDisplayReadingContent(text, lang, timingManifest) {
 function copyText(text) {
     navigator.clipboard.writeText(text).then(() => {
         const notification = document.getElementById("copy-notification");
-        notification.style.display = "block";
-        notification.style.animation = "none";
-        notification.offsetHeight; // Trigger reflow
-        notification.style.animation = "fadeInOut 2s ease";
-        setTimeout(() => {
-            notification.style.display = "none";
-        }, 2000);
+        showTimedNotification(
+            notification,
+            localizedTextHtml({
+                zh: "短语已复制到剪贴板！",
+                en: "Phrase copied to clipboard!",
+            }),
+            localizedTextHtml({
+                zh: "短语已复制到剪贴板！",
+                en: "Phrase copied to clipboard!",
+            }),
+        );
     });
 }

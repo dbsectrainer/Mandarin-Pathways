@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+### 2026-06-09
+
+- **Roadmap PWA features:** Added offline SRS flashcards, streaks and achievements, placement testing, day quizzes, pinyin tone visuals, offline stroke-order playback, progress portability keys, static cache updates, CI, and Playwright coverage for the new retention/self-assessment/learning-depth flows.
+
 ### 2026-05-20
 
 - **Review & tooling:** Added review UI, starred phrases (`js/starred-phrases.js`), related stylesheet hooks, Playwright smoke tests (`tests/e2e`, `playwright.config.ts`), `package.json` / lockfile tooling, service worker registration path updates, `.gitignore` tweaks, `README`/workspace doc updates, and miscellaneous Flutter manifests/config touch-ups.

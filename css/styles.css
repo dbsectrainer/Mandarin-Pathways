@@ -219,6 +219,80 @@ main {
     margin-top: 20px;
 }
 
+.learning-dashboard {
+    padding: 0 20px 30px;
+}
+
+.dashboard-panel {
+    background: white;
+    border: 1px solid #e6e9ec;
+    border-radius: 8px;
+    padding: 24px;
+}
+
+.dashboard-panel h2 {
+    margin-top: 0;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 18px 0;
+}
+
+.dashboard-stat {
+    border: 1px solid #e6e9ec;
+    border-radius: 8px;
+    padding: 16px;
+    background: #fbfcfd;
+}
+
+.dashboard-number {
+    display: block;
+    color: var(--accent-color);
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.dashboard-label {
+    display: block;
+    font-size: 0.9rem;
+    color: #4d5b66;
+}
+
+.achievement-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 18px 0 0;
+}
+
+.achievement-badge {
+    border: 1px solid #dce2e7;
+    border-radius: 8px;
+    padding: 10px;
+    background: #f5f7f8;
+    color: #697782;
+}
+
+.achievement-badge.earned {
+    border-color: rgba(30, 132, 73, 0.35);
+    background: rgba(30, 132, 73, 0.08);
+    color: var(--text-color);
+}
+
+.achievement-badge strong,
+.achievement-badge span {
+    display: block;
+}
+
+.achievement-badge span {
+    font-size: 0.85rem;
+}
+
 .stat-item {
     text-align: center;
     padding: 10px;
@@ -1312,6 +1386,77 @@ footer {
     color: inherit;
     font-weight: 600;
     text-decoration: underline;
+    margin: 0 0.45rem;
+}
+
+.srs-card {
+    background: #fff;
+    border: 1px solid #e0e5e9;
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin: 1rem 0;
+}
+
+.srs-front {
+    font-size: 1.8rem;
+    margin: 0.5rem 0;
+}
+
+.srs-back {
+    border-top: 1px solid #e0e5e9;
+    color: #45525d;
+    margin: 1rem 0;
+    padding-top: 1rem;
+}
+
+.practice-summary {
+    background: var(--secondary-color);
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+}
+
+.streak-banner h3 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    align-items: baseline;
+}
+
+.tone-glyph-list {
+    display: inline-flex;
+    gap: 0.2rem;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+}
+
+.tone-glyph {
+    width: 26px;
+    height: 18px;
+}
+
+.tone-explainer {
+    border-left: 4px solid var(--accent-color);
+}
+
+.stroke-order-panel {
+    align-items: center;
+    background: #fbfcfd;
+    border: 1px solid #e0e5e9;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 0 auto 1rem;
+    padding: 1rem;
+    width: min(100%, 260px);
+}
+
+.stroke-order-writer {
+    min-height: 180px;
+}
+
+.hanzi-writer-lite {
+    display: block;
 }
 
 .navigation {
@@ -1411,7 +1556,10 @@ footer {
 
 .lesson-actions {
     display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
     justify-content: center;
+    align-items: center;
     margin: 30px 0;
     animation: fadeIn 0.8s ease forwards;
 }

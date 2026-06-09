@@ -91,6 +91,14 @@
                     ><span class="zh">复习清单</span
                     ><span class="en">Review starred phrases</span></a
                 >
+                <a href="srs.html"
+                    ><span class="zh">间隔复习</span
+                    ><span class="en">SRS flashcards</span></a
+                >
+                <a href="placement.html"
+                    ><span class="zh">水平测试</span
+                    ><span class="en">Placement test</span></a
+                >
             </p>
         </header>
 
@@ -269,6 +277,63 @@
                     </div>
                 </div>
             </div>
+
+            <section class="learning-dashboard">
+                <div class="dashboard-panel">
+                    <h2>
+                        <span class="zh">学习仪表盘</span
+                        ><span class="en">Learning Dashboard</span>
+                    </h2>
+                    <div class="dashboard-grid">
+                        <div class="dashboard-stat">
+                            <span class="dashboard-number" data-streak-count
+                                >0</span
+                            >
+                            <span class="dashboard-label"
+                                ><span class="zh">连续学习天数</span
+                                ><span class="en">Day streak</span></span
+                            >
+                        </div>
+                        <div class="dashboard-stat">
+                            <span class="dashboard-number" id="srs-due-count"
+                                >0</span
+                            >
+                            <span class="dashboard-label"
+                                ><span class="zh">今日复习卡片</span
+                                ><span class="en">Cards due today</span></span
+                            >
+                        </div>
+                        <div class="dashboard-stat">
+                            <span
+                                class="dashboard-number"
+                                id="placement-start-day"
+                                >--</span
+                            >
+                            <span class="dashboard-label"
+                                ><span class="zh">推荐起点</span
+                                ><span class="en">Recommended start</span></span
+                            >
+                        </div>
+                    </div>
+                    <div class="review-actions">
+                        <a href="srs.html" class="home-btn">
+                            <i class="fas fa-layer-group"></i>
+                            <span class="zh">开始复习</span
+                            ><span class="en">Start SRS</span>
+                        </a>
+                        <a href="placement.html" class="nav-btn">
+                            <i class="fas fa-compass"></i>
+                            <span class="zh">水平测试</span
+                            ><span class="en">Placement</span>
+                        </a>
+                    </div>
+                    <ul
+                        class="achievement-list"
+                        data-achievements-list
+                        aria-label="Achievements"
+                    ></ul>
+                </div>
+            </section>
 
             <!-- Section divider with visual anchor -->
             <div class="section-divider"></div>
@@ -1083,6 +1148,9 @@
                 }
             }
         </script>
+        <script src="js/starred-phrases.js" defer></script>
+        <script src="js/streaks.js" defer></script>
+        <script src="js/srs.js" defer></script>
         <script src="js/script.min.js" defer></script>
         <script src="js/notifications.js" defer></script>
         <script src="js/data-portability.js" defer></script>

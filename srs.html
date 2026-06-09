@@ -8,16 +8,12 @@
         />
         <meta
             name="description"
-            content="Review starred Mandarin phrases - 复习收藏的短语"
+            content="Spaced repetition flashcards for Mandarin Pathways"
         />
         <meta name="theme-color" content="#e74c3c" />
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta
-            name="apple-mobile-web-app-status-bar-style"
-            content="black-translucent"
-        />
         <meta name="apple-mobile-web-app-title" content="Mandarin Pathways" />
-        <title>Mandarin Pathways - Review</title>
+        <title>Mandarin Pathways - SRS Review</title>
         <link rel="manifest" href="manifest.json" />
         <link rel="apple-touch-icon" href="icons/icon-192x192.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -36,16 +32,12 @@
         <header>
             <h1>Mandarin Pathways</h1>
             <p>
-                <span class="zh">复习收藏的短语</span
-                ><span class="en">Review starred phrases</span>
+                <span class="zh">间隔重复复习</span
+                ><span class="en">Spaced repetition review</span>
             </p>
         </header>
 
         <main>
-            <div class="return-to-top" id="returnToTop">
-                <i class="fas fa-arrow-up"></i>
-            </div>
-
             <div class="lesson-container">
                 <div class="navigation">
                     <a href="index.html" class="home-btn">
@@ -53,13 +45,25 @@
                         <span class="zh">返回首页</span
                         ><span class="en">Back to Home</span>
                     </a>
-                    <a href="srs.html" class="nav-btn">
-                        <i class="fas fa-layer-group"></i>
-                        <span class="zh">间隔复习</span
-                        ><span class="en">SRS review</span>
+                    <a href="review.html" class="nav-btn">
+                        <i class="fas fa-star"></i>
+                        <span class="zh">收藏复习</span
+                        ><span class="en">Starred review</span>
                     </a>
                 </div>
-                <div id="review-list"></div>
+                <section class="section-info streak-banner">
+                    <h3>
+                        <span data-streak-count>0</span>
+                        <span class="zh">天连续学习</span
+                        ><span class="en">day learning streak</span>
+                    </h3>
+                    <p>
+                        <span class="zh">最后学习：</span
+                        ><span class="en">Last active: </span
+                        ><span data-last-active-date>Not started</span>
+                    </p>
+                </section>
+                <div id="srs-app"></div>
             </div>
         </main>
 
@@ -73,7 +77,8 @@
 
         <script src="js/sw-register.js" defer></script>
         <script src="js/starred-phrases.js" defer></script>
-        <script src="js/review-page.js" defer></script>
+        <script src="js/streaks.js" defer></script>
+        <script src="js/srs.js" defer></script>
         <script src="js/return-to-top.js" defer></script>
     </body>
 </html>

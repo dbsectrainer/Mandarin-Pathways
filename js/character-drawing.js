@@ -433,7 +433,6 @@ function initializeCharacterDrawing() {
 
         const character = {
             character: characterDisplay.textContent.trim(),
-            // We don't have stroke data yet, but we could add it later
             strokes: [],
         };
 
@@ -450,6 +449,45 @@ function initializeCharacterDrawing() {
         drawingContainer.style.flexWrap = "wrap";
         drawingContainer.style.gap = "10px";
         drawingContainer.style.justifyContent = "center";
+
+        if (window.HanziWriterLite) {
+            const strokePanel = document.createElement("div");
+            strokePanel.className = "stroke-order-panel";
+
+            const writerTarget = document.createElement("div");
+            writerTarget.className = "stroke-order-writer";
+            strokePanel.appendChild(writerTarget);
+
+            const writerActions = document.createElement("div");
+            writerActions.className = "review-actions";
+
+            const playBtn = document.createElement("button");
+            playBtn.type = "button";
+            playBtn.className = "secondary-btn";
+            playBtn.textContent = "Play stroke order";
+
+            const quizBtn = document.createElement("button");
+            quizBtn.type = "button";
+            quizBtn.className = "secondary-btn";
+            quizBtn.textContent = "Quiz mode";
+
+            writerActions.appendChild(playBtn);
+            writerActions.appendChild(quizBtn);
+            strokePanel.appendChild(writerActions);
+
+            const writer = window.HanziWriterLite.create(
+                writerTarget,
+                character.character,
+                {
+                    width: 180,
+                    height: 180,
+                },
+            );
+
+            playBtn.addEventListener("click", () => writer.animateCharacter());
+            quizBtn.addEventListener("click", () => writer.quiz());
+            area.appendChild(strokePanel);
+        }
 
         // Create 5 drawing canvases
         for (let i = 0; i < 5; i++) {

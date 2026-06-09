@@ -23,6 +23,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // Initialize language buttons
     initializeLanguageButtons();
 
+    renderLearningDashboard();
+
     // Load hero section background image
     const heroSection = document.querySelector(".hero-section");
     if (heroSection) {
@@ -344,8 +346,10 @@ function initializeMicroInteractions() {
 
 // Progress tracking
 function updateProgress(day) {
+    const completedDays = getCompletedDaysForProgress();
+    const completed = day || completedDays.size;
     const progressFills = document.querySelectorAll(".progress-fill");
-    const progress = (day / 40) * 100;
+    const progress = (completed / 40) * 100;
 
     progressFills.forEach((fill) => {
         fill.style.width = `${progress}%`;
@@ -353,8 +357,53 @@ function updateProgress(day) {
 
     // Update all progress texts
     document.querySelectorAll(".progress-container p").forEach((text) => {
-        text.textContent = `Progress: Day ${day}/40`;
+        text.textContent = `Progress: Day ${completed}/40`;
     });
+
+    document.querySelectorAll(".day-grid a").forEach((link) => {
+        const dayNumber = link.querySelector(".day-number")?.textContent;
+        const status = link.querySelector(".day-status i");
+        if (!dayNumber || !status) return;
+        if (completedDays.has(dayNumber)) {
+            status.className = "fas fa-check-circle";
+            status.style.color = "var(--success-color)";
+        }
+    });
+}
+
+function getCompletedDaysForProgress() {
+    try {
+        const completed = JSON.parse(
+            localStorage.getItem("completedDays") || "{}",
+        );
+        return new Set(
+            Object.keys(completed)
+                .filter((key) => completed[key])
+                .map((key) => key.split("_")[0]),
+        );
+    } catch {
+        return new Set();
+    }
+}
+
+function renderLearningDashboard() {
+    const dueEl = document.getElementById("srs-due-count");
+    if (dueEl && typeof getDueSrsCards === "function") {
+        dueEl.textContent = String(getDueSrsCards().length);
+    }
+
+    const placementEl = document.getElementById("placement-start-day");
+    if (placementEl) {
+        try {
+            const result = JSON.parse(
+                localStorage.getItem("placementResult") || "null",
+            );
+            const startDay = result?.startDay || result?.recommendedDay;
+            placementEl.textContent = startDay ? `Day ${startDay}` : "--";
+        } catch {
+            placementEl.textContent = "--";
+        }
+    }
 }
 
 // Helper function to format dates

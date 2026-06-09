@@ -38,6 +38,10 @@ document.addEventListener("DOMContentLoaded", function () {
             }),
         );
 
+        if (typeof recordLearningActivity === "function") {
+            recordLearningActivity();
+        }
+
         updatePageProgress(lang, totalCompleted);
 
         const notification = document.getElementById("copy-notification");
@@ -108,6 +112,11 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("section-title").textContent = sectionInfo.title;
     document.getElementById("section-description").textContent =
         sectionInfo.description;
+
+    const quizLink = document.getElementById("lesson-quiz-link");
+    if (quizLink) {
+        quizLink.href = `quiz.html?day=${day}&lang=${lang}`;
+    }
 
     const audio = document.getElementById("audio-player");
     const audioLang = lang === "pinyin" ? "zh" : lang;
@@ -275,8 +284,46 @@ function formatAndDisplayContent(text, day, lang, timingManifest) {
             copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
             copyBtn.addEventListener("click", () => copyPhrase(trimmedPhrase));
 
+            const srsBtn = document.createElement("button");
+            srsBtn.type = "button";
+            srsBtn.className = "copy-btn";
+            srsBtn.setAttribute("aria-label", "Add phrase to SRS");
+            srsBtn.innerHTML = '<i class="fas fa-layer-group"></i>';
+            srsBtn.addEventListener("click", () => {
+                if (typeof upsertSrsCard !== "function") return;
+                upsertSrsCard({
+                    day,
+                    lang,
+                    front: trimmedPhrase,
+                    back: title,
+                });
+                const notification =
+                    document.getElementById("copy-notification");
+                notification.textContent = "Phrase added to SRS review.";
+                notification.style.display = "block";
+                notification.style.animation = "none";
+                notification.offsetHeight;
+                notification.style.animation = "fadeInOut 2s ease";
+                setTimeout(() => {
+                    notification.style.display = "none";
+                    notification.textContent = "Phrase copied to clipboard!";
+                }, 2000);
+            });
+
+            if (
+                lang === "pinyin" &&
+                window.MandarinTones &&
+                typeof window.MandarinTones.appendToneGlyphs === "function"
+            ) {
+                window.MandarinTones.appendToneGlyphs(
+                    phraseReading,
+                    trimmedPhrase,
+                );
+            }
+
             phraseItem.appendChild(phraseReading);
             phraseItem.appendChild(starBtn);
+            phraseItem.appendChild(srsBtn);
             phraseItem.appendChild(copyBtn);
             phraseList.appendChild(phraseItem);
         });

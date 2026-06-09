@@ -114,6 +114,38 @@
                     <p id="section-description"></p>
                 </div>
 
+                <div class="section-info tone-explainer">
+                    <h3>
+                        <span class="zh">声调速览</span
+                        ><span class="en">Tones 101</span>
+                    </h3>
+                    <p>
+                        <span class="zh"
+                            >拼音模式会在音节旁显示一声平、二声升、三声降升、四声降的声调轮廓。</span
+                        ><span class="en"
+                            >In Pinyin mode, each syllable can show the tone
+                            contour: first level, second rising, third dipping,
+                            and fourth falling.</span
+                        >
+                    </p>
+                </div>
+
+                <div class="section-info streak-banner">
+                    <h3>
+                        <span data-streak-count>0</span>
+                        <span class="zh">天连续学习</span
+                        ><span class="en">day learning streak</span>
+                    </h3>
+                    <p>
+                        <span class="zh"
+                            >完成课程或复习卡片来保持连续学习。</span
+                        ><span class="en"
+                            >Complete lessons or review cards to keep your
+                            streak active.</span
+                        >
+                    </p>
+                </div>
+
                 <div class="audio-player">
                     <audio controls id="audio-player" type="audio/mpeg">
                         <span class="zh">您的浏览器不支持音频元素。</span
@@ -130,6 +162,11 @@
                 </div>
 
                 <div class="lesson-actions">
+                    <a id="lesson-quiz-link" class="home-btn" href="quiz.html">
+                        <i class="fas fa-question-circle"></i>
+                        <span class="zh">课程测验</span
+                        ><span class="en">Quiz this day</span>
+                    </a>
                     <button id="complete-btn" class="complete-btn">
                         <i class="fas fa-check"></i>
                         <span class="zh">标记为已完成</span
@@ -180,6 +217,9 @@
         <script src="js/content-error.js" defer></script>
         <script src="js/lesson-audio-sync.js" defer></script>
         <script src="js/starred-phrases.js" defer></script>
+        <script src="js/streaks.js" defer></script>
+        <script src="js/srs.js" defer></script>
+        <script src="js/tone-visualizer.js" defer></script>
         <script src="js/day-page.js" defer></script>
         <script src="js/return-to-top.js" defer></script>
     </body>

@@ -12,6 +12,12 @@ const PORTABILITY_KEYS = [
     "completedSupplementary",
     "mandarin_pathways_notifications",
     "starredPhrases",
+    "srsCards",
+    "lastActiveDate",
+    "streakCount",
+    "earnedAchievements",
+    "placementResult",
+    "quizScores",
 ];
 
 function collectPayloadKeys() {

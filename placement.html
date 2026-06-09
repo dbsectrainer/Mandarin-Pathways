@@ -1,15 +1,12 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta
             name="viewport"
             content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
         />
-        <meta
-            name="description"
-            content="Review starred Mandarin phrases - 复习收藏的短语"
-        />
+        <meta name="description" content="Mandarin Pathways placement test" />
         <meta name="theme-color" content="#e74c3c" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta
@@ -17,7 +14,7 @@
             content="black-translucent"
         />
         <meta name="apple-mobile-web-app-title" content="Mandarin Pathways" />
-        <title>Mandarin Pathways - Review</title>
+        <title>Mandarin Pathways - Placement Test</title>
         <link rel="manifest" href="manifest.json" />
         <link rel="apple-touch-icon" href="icons/icon-192x192.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -36,8 +33,8 @@
         <header>
             <h1>Mandarin Pathways</h1>
             <p>
-                <span class="zh">复习收藏的短语</span
-                ><span class="en">Review starred phrases</span>
+                <span class="zh">中文水平测试</span
+                ><span class="en">Placement test</span>
             </p>
         </header>
 
@@ -53,13 +50,37 @@
                         <span class="zh">返回首页</span
                         ><span class="en">Back to Home</span>
                     </a>
-                    <a href="srs.html" class="nav-btn">
-                        <i class="fas fa-layer-group"></i>
-                        <span class="zh">间隔复习</span
-                        ><span class="en">SRS review</span>
-                    </a>
                 </div>
-                <div id="review-list"></div>
+
+                <section class="section-info" aria-labelledby="placement-title">
+                    <h2 id="placement-title">Find your starting point</h2>
+                    <p>
+                        Answer a short mix of phrase, vocabulary, and sentence
+                        questions. Your result is saved on this device.
+                    </p>
+                </section>
+
+                <form id="placement-form" data-testid="placement-form"></form>
+
+                <div class="lesson-actions">
+                    <button
+                        id="placement-submit"
+                        class="complete-btn"
+                        type="submit"
+                        form="placement-form"
+                    >
+                        <i class="fas fa-check"></i>
+                        Score placement
+                    </button>
+                </div>
+
+                <section
+                    id="placement-result"
+                    class="section-info"
+                    aria-live="polite"
+                    hidden
+                    data-testid="placement-result"
+                ></section>
             </div>
         </main>
 
@@ -72,8 +93,7 @@
         </footer>
 
         <script src="js/sw-register.js" defer></script>
-        <script src="js/starred-phrases.js" defer></script>
-        <script src="js/review-page.js" defer></script>
+        <script src="js/placement-page.js" defer></script>
         <script src="js/return-to-top.js" defer></script>
     </body>
 </html>

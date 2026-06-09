@@ -61,8 +61,16 @@ function showTimedNotification(
     }, ms);
 }
 
+function normalizePreferredLanguage(lang) {
+    if (!lang || lang === "zh") {
+        return "zh-CN";
+    }
+    return lang;
+}
+
 function applyStandardDocumentLang(lang) {
-    document.documentElement.lang = lang === "en" ? "en" : "zh-CN";
+    document.documentElement.lang =
+        normalizePreferredLanguage(lang) === "en" ? "en" : "zh-CN";
 }
 
 function getUrlLang(defaultLang = "zh") {

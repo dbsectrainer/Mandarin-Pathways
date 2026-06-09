@@ -57,23 +57,19 @@ function initializeLanguage() {
 }
 
 function setLanguage(lang) {
-    // Store the preference
-    localStorage.setItem("preferredLanguage", lang);
+    const normalized = normalizePreferredLanguage(lang);
 
-    // Update HTML lang attribute
-    document.documentElement.lang = lang;
+    localStorage.setItem("preferredLanguage", normalized);
+    applyStandardDocumentLang(normalized);
+    selectedLanguage = normalized;
 
-    // Update language buttons
     const buttons = document.querySelectorAll(".language-btn");
     buttons.forEach((btn) => {
-        if (
-            (btn.dataset.lang === "zh" && lang === "zh-CN") ||
-            (btn.dataset.lang === btn.dataset.lang && lang === btn.dataset.lang)
-        ) {
-            btn.classList.add("active");
-        } else {
-            btn.classList.remove("active");
-        }
+        const btnLang = btn.dataset.lang;
+        const isActive =
+            (btnLang === "zh" && normalized === "zh-CN") ||
+            btnLang === normalized;
+        btn.classList.toggle("active", isActive);
     });
 }
 
@@ -96,7 +92,7 @@ function initializeLanguageButtons() {
 let currentDayPage = 1;
 const daysPerPage = 10;
 const totalDays = 40;
-let selectedLanguage = localStorage.getItem("preferredLanguage") || "zh-CN"; // Default to Simplified Chinese
+let selectedLanguage = "zh-CN";
 
 function generateDayGrid() {
     const dayGrid = document.querySelector(".day-grid");
@@ -355,9 +351,18 @@ function updateProgress(day) {
         fill.style.width = `${progress}%`;
     });
 
-    // Update all progress texts
     document.querySelectorAll(".progress-container p").forEach((text) => {
-        text.textContent = `Progress: Day ${completed}/40`;
+        const zh = text.querySelector(".zh");
+        const en = text.querySelector(".en");
+        if (zh) {
+            zh.textContent = `进度：第${completed}/40天`;
+        }
+        if (en) {
+            en.textContent = `Progress: Day ${completed}/40`;
+        }
+        if (!zh && !en) {
+            text.textContent = `Progress: Day ${completed}/40`;
+        }
     });
 
     document.querySelectorAll(".day-grid a").forEach((link) => {

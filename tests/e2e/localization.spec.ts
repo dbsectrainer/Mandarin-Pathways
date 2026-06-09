@@ -1,6 +1,24 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("page localization", () => {
+    test("index language card progress follows lang from URL", async ({
+        page,
+    }) => {
+        await page.goto("/index.html?lang=zh", { waitUntil: "load" });
+        await expect(page.locator("html")).toHaveAttribute("lang", "zh-CN");
+        const zhCard = page.locator(".language-card").first();
+        await expect(zhCard.locator(".progress-container .zh")).toBeVisible();
+        await expect(zhCard.locator(".progress-container .en")).toBeHidden();
+        await expect(zhCard.locator(".progress-container .zh")).toContainText(
+            "进度：第",
+        );
+
+        const stored = await page.evaluate(() =>
+            localStorage.getItem("preferredLanguage"),
+        );
+        expect(stored).toBe("zh-CN");
+    });
+
     test("placement static and result UI follow lang", async ({ page }) => {
         await page.goto("/placement.html?lang=zh", { waitUntil: "load" });
         await expect(page.locator("#placement-title .zh")).toHaveText(

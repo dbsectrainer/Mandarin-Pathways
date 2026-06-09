@@ -1,10 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const stored = localStorage.getItem("preferredLanguage") || "zh-CN";
+    const stored = normalizePreferredLanguage(
+        localStorage.getItem("preferredLanguage") || "zh-CN",
+    );
     applyLang(stored);
 
     document.querySelectorAll(".language-btn").forEach(function (btn) {
         btn.addEventListener("click", function () {
-            const lang = btn.dataset.lang === "zh" ? "zh-CN" : btn.dataset.lang;
+            const lang = normalizePreferredLanguage(
+                btn.dataset.lang === "zh" ? "zh-CN" : btn.dataset.lang,
+            );
             localStorage.setItem("preferredLanguage", lang);
             applyLang(lang);
         });
@@ -12,13 +16,13 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function applyLang(lang) {
-    document.documentElement.lang =
-        lang === "en" ? "en" : lang === "pinyin" ? "zh-CN" : lang;
+    const normalized = normalizePreferredLanguage(lang);
+    localStorage.setItem("preferredLanguage", normalized);
+    applyStandardDocumentLang(normalized);
     document.querySelectorAll(".language-btn").forEach(function (btn) {
         const matches =
-            (btn.dataset.lang === "zh" &&
-                (lang === "zh-CN" || lang === "zh")) ||
-            btn.dataset.lang === lang;
+            (btn.dataset.lang === "zh" && normalized === "zh-CN") ||
+            btn.dataset.lang === normalized;
         btn.classList.toggle("active", matches);
     });
 }

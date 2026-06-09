@@ -1,73 +1,73 @@
 {
-  "version": 1,
-  "day": 22,
-  "lang": "en",
-  "phrases": [
-    {
-      "i": 0,
-      "section": "Daily Expressions",
-      "start": 0.0,
-      "end": 1.728
-    },
-    {
-      "i": 1,
-      "section": "Daily Expressions",
-      "start": 1.728,
-      "end": 3.36
-    },
-    {
-      "i": 2,
-      "section": "Daily Expressions",
-      "start": 3.36,
-      "end": 5.28
-    },
-    {
-      "i": 3,
-      "section": "Daily Expressions",
-      "start": 5.28,
-      "end": 8.232
-    },
-    {
-      "i": 4,
-      "section": "Daily Expressions",
-      "start": 8.232,
-      "end": 10.008
-    },
-    {
-      "i": 5,
-      "section": "Daily Expressions",
-      "start": 10.008,
-      "end": 11.712
-    },
-    {
-      "i": 6,
-      "section": "Communication Strategies",
-      "start": 11.712,
-      "end": 13.752
-    },
-    {
-      "i": 7,
-      "section": "Communication Strategies",
-      "start": 13.752,
-      "end": 15.816
-    },
-    {
-      "i": 8,
-      "section": "Communication Strategies",
-      "start": 15.816,
-      "end": 18.12
-    },
-    {
-      "i": 9,
-      "section": "Communication Strategies",
-      "start": 18.12,
-      "end": 20.736
-    },
-    {
-      "i": 10,
-      "section": "Communication Strategies",
-      "start": 20.736,
-      "end": 22.968
-    }
-  ]
+    "version": 1,
+    "day": 22,
+    "lang": "en",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Daily Expressions",
+            "start": 0.0,
+            "end": 1.728
+        },
+        {
+            "i": 1,
+            "section": "Daily Expressions",
+            "start": 1.728,
+            "end": 3.36
+        },
+        {
+            "i": 2,
+            "section": "Daily Expressions",
+            "start": 3.36,
+            "end": 5.28
+        },
+        {
+            "i": 3,
+            "section": "Daily Expressions",
+            "start": 5.28,
+            "end": 8.232
+        },
+        {
+            "i": 4,
+            "section": "Daily Expressions",
+            "start": 8.232,
+            "end": 10.008
+        },
+        {
+            "i": 5,
+            "section": "Daily Expressions",
+            "start": 10.008,
+            "end": 11.712
+        },
+        {
+            "i": 6,
+            "section": "Communication Strategies",
+            "start": 11.712,
+            "end": 13.752
+        },
+        {
+            "i": 7,
+            "section": "Communication Strategies",
+            "start": 13.752,
+            "end": 15.816
+        },
+        {
+            "i": 8,
+            "section": "Communication Strategies",
+            "start": 15.816,
+            "end": 18.12
+        },
+        {
+            "i": 9,
+            "section": "Communication Strategies",
+            "start": 18.12,
+            "end": 20.736
+        },
+        {
+            "i": 10,
+            "section": "Communication Strategies",
+            "start": 20.736,
+            "end": 22.968
+        }
+    ]
 }

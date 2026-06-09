@@ -1,79 +1,79 @@
 {
-  "version": 1,
-  "day": 28,
-  "lang": "en",
-  "phrases": [
-    {
-      "i": 0,
-      "section": "Presentation Vocabulary",
-      "start": 0.0,
-      "end": 2.592
-    },
-    {
-      "i": 1,
-      "section": "Presentation Vocabulary",
-      "start": 2.592,
-      "end": 4.344
-    },
-    {
-      "i": 2,
-      "section": "Presentation Vocabulary",
-      "start": 4.344,
-      "end": 5.832
-    },
-    {
-      "i": 3,
-      "section": "Presentation Vocabulary",
-      "start": 5.832,
-      "end": 7.296
-    },
-    {
-      "i": 4,
-      "section": "Presentation Vocabulary",
-      "start": 7.296,
-      "end": 9.072
-    },
-    {
-      "i": 5,
-      "section": "Presentation Vocabulary",
-      "start": 9.072,
-      "end": 11.112
-    },
-    {
-      "i": 6,
-      "section": "Presentation Phrases",
-      "start": 11.112,
-      "end": 13.464
-    },
-    {
-      "i": 7,
-      "section": "Presentation Phrases",
-      "start": 13.464,
-      "end": 15.168
-    },
-    {
-      "i": 8,
-      "section": "Presentation Phrases",
-      "start": 15.168,
-      "end": 16.92
-    },
-    {
-      "i": 9,
-      "section": "Presentation Phrases",
-      "start": 16.92,
-      "end": 18.624
-    },
-    {
-      "i": 10,
-      "section": "Presentation Phrases",
-      "start": 18.624,
-      "end": 20.544
-    },
-    {
-      "i": 11,
-      "section": "Presentation Phrases",
-      "start": 20.544,
-      "end": 22.848
-    }
-  ]
+    "version": 1,
+    "day": 28,
+    "lang": "en",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Presentation Vocabulary",
+            "start": 0.0,
+            "end": 2.592
+        },
+        {
+            "i": 1,
+            "section": "Presentation Vocabulary",
+            "start": 2.592,
+            "end": 4.344
+        },
+        {
+            "i": 2,
+            "section": "Presentation Vocabulary",
+            "start": 4.344,
+            "end": 5.832
+        },
+        {
+            "i": 3,
+            "section": "Presentation Vocabulary",
+            "start": 5.832,
+            "end": 7.296
+        },
+        {
+            "i": 4,
+            "section": "Presentation Vocabulary",
+            "start": 7.296,
+            "end": 9.072
+        },
+        {
+            "i": 5,
+            "section": "Presentation Vocabulary",
+            "start": 9.072,
+            "end": 11.112
+        },
+        {
+            "i": 6,
+            "section": "Presentation Phrases",
+            "start": 11.112,
+            "end": 13.464
+        },
+        {
+            "i": 7,
+            "section": "Presentation Phrases",
+            "start": 13.464,
+            "end": 15.168
+        },
+        {
+            "i": 8,
+            "section": "Presentation Phrases",
+            "start": 15.168,
+            "end": 16.92
+        },
+        {
+            "i": 9,
+            "section": "Presentation Phrases",
+            "start": 16.92,
+            "end": 18.624
+        },
+        {
+            "i": 10,
+            "section": "Presentation Phrases",
+            "start": 18.624,
+            "end": 20.544
+        },
+        {
+            "i": 11,
+            "section": "Presentation Phrases",
+            "start": 20.544,
+            "end": 22.848
+        }
+    ]
 }

@@ -1,4 +1,4 @@
-const CACHE_VERSION = '10';
+const CACHE_VERSION = "10";
 const CACHE_NAME = `mandarin-pathways-v${CACHE_VERSION}`;
 
 // Cache groups for different types of resources
@@ -7,39 +7,39 @@ const DYNAMIC_CACHE = `dynamic-v${CACHE_VERSION}`;
 const FONT_CACHE = `fonts-v${CACHE_VERSION}`;
 
 const STATIC_ASSETS = [
-  './',
-  'index.html',
-  'day.html',
-  'reading.html',
-  'writing.html',
-  'supplementary.html',
-  'review.html',
-  'manifest.json',
-  'css/styles.min.css',
-  'css/reading.css',
-  'css/writing.css',
-  'js/script.min.js',
-  'js/sw-register.js',
-  'js/return-to-top.js',
-  'js/content-error.js',
-  'js/lesson-audio-sync.js',
-  'js/starred-phrases.js',
-  'js/day-page.js',
-  'js/reading-page.js',
-  'js/writing-page.js',
-  'js/supplementary-page.js',
-  'js/data-portability.js',
-  'js/review-page.js',
-  'js/character-drawing.js',
-  'js/notifications.js',
-  'icons/icon-72x72.png',
-  'icons/icon-96x96.png',
-  'icons/icon-128x128.png',
-  'icons/icon-144x144.png',
-  'icons/icon-152x152.png',
-  'icons/icon-192x192.png',
-  'icons/icon-384x384.png',
-  'icons/icon-512x512.png'
+    "./",
+    "index.html",
+    "day.html",
+    "reading.html",
+    "writing.html",
+    "supplementary.html",
+    "review.html",
+    "manifest.json",
+    "css/styles.min.css",
+    "css/reading.css",
+    "css/writing.css",
+    "js/script.min.js",
+    "js/sw-register.js",
+    "js/return-to-top.js",
+    "js/content-error.js",
+    "js/lesson-audio-sync.js",
+    "js/starred-phrases.js",
+    "js/day-page.js",
+    "js/reading-page.js",
+    "js/writing-page.js",
+    "js/supplementary-page.js",
+    "js/data-portability.js",
+    "js/review-page.js",
+    "js/character-drawing.js",
+    "js/notifications.js",
+    "icons/icon-72x72.png",
+    "icons/icon-96x96.png",
+    "icons/icon-128x128.png",
+    "icons/icon-144x144.png",
+    "icons/icon-152x152.png",
+    "icons/icon-192x192.png",
+    "icons/icon-384x384.png",
+    "icons/icon-512x512.png",
 ];
 
 // External fonts and styles are handled separately to avoid CORS issues
@@ -47,245 +47,260 @@ const FONT_ASSETS = [];
 
 // Compression and caching headers
 const COMPRESSION_HEADERS = new Headers({
-  'Content-Encoding': 'gzip, br',
-  'Cache-Control': 'public, max-age=31536000',
-  'Vary': 'Accept-Encoding'
+    "Content-Encoding": "gzip, br",
+    "Cache-Control": "public, max-age=31536000",
+    Vary: "Accept-Encoding",
 });
 
 // Install event - cache all static assets
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    Promise.all([
-      // Cache static assets
-      caches.open(STATIC_CACHE).then((cache) => {
-        return cache.addAll(STATIC_ASSETS);
-      }),
-      // Cache fonts separately
-      caches.open(FONT_CACHE).then((cache) => {
-        return cache.addAll(FONT_ASSETS);
-      })
-    ]).then(() => {
-      return self.skipWaiting();
-    })
-  );
+self.addEventListener("install", (event) => {
+    event.waitUntil(
+        Promise.all([
+            // Cache static assets
+            caches.open(STATIC_CACHE).then((cache) => {
+                return cache.addAll(STATIC_ASSETS);
+            }),
+            // Cache fonts separately
+            caches.open(FONT_CACHE).then((cache) => {
+                return cache.addAll(FONT_ASSETS);
+            }),
+        ]).then(() => {
+            return self.skipWaiting();
+        }),
+    );
 });
 
 // Activate event - clean up old caches
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          // Delete old caches that don't match current version
-          if (!cacheName.endsWith(CACHE_VERSION)) {
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    }).then(() => {
-      return self.clients.claim();
-    })
-  );
+self.addEventListener("activate", (event) => {
+    event.waitUntil(
+        caches
+            .keys()
+            .then((cacheNames) => {
+                return Promise.all(
+                    cacheNames.map((cacheName) => {
+                        // Delete old caches that don't match current version
+                        if (!cacheName.endsWith(CACHE_VERSION)) {
+                            return caches.delete(cacheName);
+                        }
+                    }),
+                );
+            })
+            .then(() => {
+                return self.clients.claim();
+            }),
+    );
 });
 
 // Fetch event - implement stale-while-revalidate strategy with compression
-self.addEventListener('fetch', (event) => {
-  // Skip cross-origin requests
-  if (!event.request.url.startsWith(self.location.origin)) {
-    return;
-  }
+self.addEventListener("fetch", (event) => {
+    // Skip cross-origin requests
+    if (!event.request.url.startsWith(self.location.origin)) {
+        return;
+    }
 
-  // HTML navigations — use the Request as-is so query strings,credentials,and headers behave like a normal reload.
-  if (event.request.mode === 'navigate') {
+    // HTML navigations — use the Request as-is so query strings,credentials,and headers behave like a normal reload.
+    if (event.request.mode === "navigate") {
+        event.respondWith(
+            (async () => {
+                try {
+                    const response = await fetch(event.request);
+                    if (response && response.ok) {
+                        try {
+                            const cache = await caches.open(STATIC_CACHE);
+                            await cache.put(event.request, response.clone());
+                        } catch (_) {
+                            // Ignore cache/storage failures — user still sees the fresh response.
+                        }
+                    }
+                    return response;
+                } catch (_) {
+                    let cached = await caches.match(event.request);
+                    if (!cached) {
+                        const urlObj = new URL(event.request.url);
+                        const pathKey = `${urlObj.origin}${urlObj.pathname}`;
+                        cached = await caches.match(pathKey);
+                    }
+                    if (cached) {
+                        return cached;
+                    }
+                    const pathname = new URL(event.request.url).pathname;
+                    if (pathname === "/" || pathname === "/index.html") {
+                        const shell =
+                            (await caches.match(`${self.origin}/index.html`)) ||
+                            (await caches.match(`${self.origin}/`));
+                        if (shell) {
+                            return shell;
+                        }
+                    }
+                    return new Response(
+                        "Offline — try again when you have a connection.",
+                        {
+                            status: 503,
+                            statusText: "Service Unavailable",
+                            headers: {
+                                "Content-Type": "text/plain; charset=utf-8",
+                            },
+                        },
+                    );
+                }
+            })(),
+        );
+        return;
+    }
+
+    // CSS and JS - Network first with compression and caching
+    if (
+        event.request.destination === "style" ||
+        event.request.destination === "script"
+    ) {
+        event.respondWith(
+            caches.match(event.request).then((cachedResponse) => {
+                const fetchPromise = fetch(event.request, {
+                    headers: COMPRESSION_HEADERS,
+                }).then((response) => {
+                    // Clone and cache the new response
+                    const responseToCache = response.clone();
+                    caches.open(STATIC_CACHE).then((cache) => {
+                        cache.put(event.request, responseToCache);
+                    });
+                    return response;
+                });
+
+                return cachedResponse || fetchPromise;
+            }),
+        );
+        return;
+    }
+
+    // Images - Cache first then network
+    if (event.request.destination === "image") {
+        event.respondWith(
+            caches.match(event.request).then((response) => {
+                return (
+                    response ||
+                    fetch(event.request).then((networkResponse) => {
+                        return caches.open(STATIC_CACHE).then((cache) => {
+                            cache.put(event.request, networkResponse.clone());
+                            return networkResponse;
+                        });
+                    })
+                );
+            }),
+        );
+        return;
+    }
+
+    // Audio and text files - Cache first, then network
+    if (
+        event.request.url.includes("/audio_files/") ||
+        event.request.url.includes("/text_files/") ||
+        event.request.url.includes("/reading_files/") ||
+        event.request.url.includes("/writing_files/") ||
+        event.request.url.includes("/timing/")
+    ) {
+        event.respondWith(
+            caches.match(event.request).then(
+                (response) =>
+                    response ||
+                    fetch(event.request).then((response) => {
+                        const responseToCache = response.clone();
+                        caches
+                            .open(CACHE_NAME)
+                            .then((cache) =>
+                                cache.put(event.request, responseToCache),
+                            );
+                        return response;
+                    }),
+            ),
+        );
+        return;
+    }
+
+    // Default fetch behavior
     event.respondWith(
-      (async () => {
-        try {
-          const response = await fetch(event.request);
-          if (response && response.ok) {
-            try {
-              const cache = await caches.open(STATIC_CACHE);
-              await cache.put(event.request, response.clone());
-            } catch (_) {
-              // Ignore cache/storage failures — user still sees the fresh response.
-            }
-          }
-          return response;
-        } catch (_) {
-          let cached = await caches.match(event.request);
-          if (!cached) {
-            const urlObj = new URL(event.request.url);
-            const pathKey = `${urlObj.origin}${urlObj.pathname}`;
-            cached = await caches.match(pathKey);
-          }
-          if (cached) {
-            return cached;
-          }
-          const pathname = new URL(event.request.url).pathname;
-          if (pathname === '/' || pathname === '/index.html') {
-            const shell =
-              (await caches.match(`${self.origin}/index.html`)) ||
-              (await caches.match(`${self.origin}/`));
-            if (shell) {
-              return shell;
-            }
-          }
-          return new Response('Offline — try again when you have a connection.', {
-            status: 503,
-            statusText: 'Service Unavailable',
-            headers: { 'Content-Type': 'text/plain; charset=utf-8' },
-          });
-        }
-      })()
+        caches
+            .match(event.request)
+            .then((response) => response || fetch(event.request))
+            .catch(() => {
+                if (event.request.mode === "navigate") {
+                    return caches.match("/index.html");
+                }
+            }),
     );
-    return;
-  }
-
-  // CSS and JS - Network first with compression and caching
-  if (event.request.destination === 'style' || event.request.destination === 'script') {
-    event.respondWith(
-      caches.match(event.request).then((cachedResponse) => {
-        const fetchPromise = fetch(event.request, {
-          headers: COMPRESSION_HEADERS
-        }).then(response => {
-          // Clone and cache the new response
-          const responseToCache = response.clone();
-          caches.open(STATIC_CACHE).then(cache => {
-            cache.put(event.request, responseToCache);
-          });
-          return response;
-        });
-        
-        return cachedResponse || fetchPromise;
-      })
-    );
-    return;
-  }
-
-  // Images - Cache first then network
-  if (event.request.destination === 'image') {
-    event.respondWith(
-      caches.match(event.request).then((response) => {
-        return response || fetch(event.request).then((networkResponse) => {
-          return caches.open(STATIC_CACHE).then((cache) => {
-            cache.put(event.request, networkResponse.clone());
-            return networkResponse;
-          });
-        });
-      })
-    );
-    return;
-  }
-
-  // Audio and text files - Cache first, then network
-  if (
-    event.request.url.includes('/audio_files/') ||
-    event.request.url.includes('/text_files/') ||
-    event.request.url.includes('/reading_files/') ||
-    event.request.url.includes('/writing_files/') ||
-    event.request.url.includes('/timing/')
-  ) {
-    event.respondWith(
-      caches.match(event.request)
-        .then((response) => response || fetch(event.request)
-          .then((response) => {
-            const responseToCache = response.clone();
-            caches.open(CACHE_NAME)
-              .then((cache) => cache.put(event.request, responseToCache));
-            return response;
-          })
-        )
-    );
-    return;
-  }
-
-  // Default fetch behavior
-  event.respondWith(
-    caches.match(event.request)
-      .then((response) => response || fetch(event.request))
-      .catch(() => {
-        if (event.request.mode === 'navigate') {
-          return caches.match('/index.html');
-        }
-      })
-  );
 });
 
 // Push notification handling
-self.addEventListener('push', (event) => {
-  const options = {
-    body: event.data.text(),
-    icon: '/icons/icon-192x192.png',
-    badge: '/icons/icon-96x96.png',
-    vibrate: [100, 50, 100],
-    data: {
-      dateOfArrival: Date.now(),
-      primaryKey: 1
-    },
-    actions: [
-      {
-        action: 'explore',
-        title: 'Start Learning',
-        icon: '/icons/icon-96x96.png'
-      },
-      {
-        action: 'close',
-        title: 'Close',
-        icon: '/icons/icon-96x96.png'
-      }
-    ]
-  };
+self.addEventListener("push", (event) => {
+    const options = {
+        body: event.data.text(),
+        icon: "/icons/icon-192x192.png",
+        badge: "/icons/icon-96x96.png",
+        vibrate: [100, 50, 100],
+        data: {
+            dateOfArrival: Date.now(),
+            primaryKey: 1,
+        },
+        actions: [
+            {
+                action: "explore",
+                title: "Start Learning",
+                icon: "/icons/icon-96x96.png",
+            },
+            {
+                action: "close",
+                title: "Close",
+                icon: "/icons/icon-96x96.png",
+            },
+        ],
+    };
 
-  event.waitUntil(
-    self.registration.showNotification('Mandarin Pathways', options)
-  );
+    event.waitUntil(
+        self.registration.showNotification("Mandarin Pathways", options),
+    );
 });
 
 // Notification click handling
-self.addEventListener('notificationclick', (event) => {
-  event.notification.close();
+self.addEventListener("notificationclick", (event) => {
+    event.notification.close();
 
-  if (event.action === 'start') {
-    // Open the app
-    event.waitUntil(
-      clients.openWindow('/')
-    );
-  } else if (event.action === 'settings') {
-    // Notify clients to open settings
-    event.waitUntil(
-      clients.matchAll().then(clients => {
-        clients.forEach(client => {
-          client.postMessage({
-            type: 'notificationClick',
-            action: 'settings'
-          });
-        });
-      })
-    );
-  } else {
-    // Default action when clicking the notification body
-    event.waitUntil(
-      clients.openWindow('/')
-    );
-  }
+    if (event.action === "start") {
+        // Open the app
+        event.waitUntil(clients.openWindow("/"));
+    } else if (event.action === "settings") {
+        // Notify clients to open settings
+        event.waitUntil(
+            clients.matchAll().then((clients) => {
+                clients.forEach((client) => {
+                    client.postMessage({
+                        type: "notificationClick",
+                        action: "settings",
+                    });
+                });
+            }),
+        );
+    } else {
+        // Default action when clicking the notification body
+        event.waitUntil(clients.openWindow("/"));
+    }
 });
 
 // Background sync for pending actions
-self.addEventListener('sync', (event) => {
-  if (event.tag === 'sync-progress') {
-    event.waitUntil(
-      // Sync progress data when online
-      syncProgress()
-    );
-  }
+self.addEventListener("sync", (event) => {
+    if (event.tag === "sync-progress") {
+        event.waitUntil(
+            // Sync progress data when online
+            syncProgress(),
+        );
+    }
 });
 
 // Helper function to sync progress
 async function syncProgress() {
-  const clients = await self.clients.matchAll();
-  clients.forEach(client => {
-    // Notify client to sync progress
-    client.postMessage({
-      type: 'sync-complete'
+    const clients = await self.clients.matchAll();
+    clients.forEach((client) => {
+        // Notify client to sync progress
+        client.postMessage({
+            type: "sync-complete",
+        });
     });
-  });
 }

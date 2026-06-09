@@ -16,32 +16,38 @@ Mandarin Pathways has been converted from a Progressive Web App (PWA) to a nativ
 ## Features
 
 ### 📚 40-Day Structured Curriculum
+
 - Daily lessons organized into 5 progressive sections
 - Lessons available in three formats: Simplified Chinese (简体中文), Pinyin, and English
 - Progress tracking across all languages
 
 ### 🎵 Audio Features
+
 - Dual-language audio for every lesson (Chinese + English)
 - Variable playback speed (0.5x to 2.0x)
 - Loop functionality for practice
 - Seek controls with 10-second skip forward/backward
 
 ### ✍️ Core Skills Practice
+
 - **Reading Skills**: Practice comprehension at multiple difficulty levels
 - **Writing Skills**: Character practice, sentence building, and translation exercises
 
 ### 📊 Progress Tracking
+
 - Track completion across all 40 days
 - Separate progress for each language format
 - Visual progress indicators on home screen
 - Persistent storage using SharedPreferences
 
 ### 🔔 Notifications
+
 - Daily reminder notifications
 - Customizable reminder times
 - Completion celebration notifications
 
 ### 🌐 Supplementary Materials
+
 - Education & Academic Life
 - Hobbies & Interests
 - Emotions & Feelings
@@ -99,65 +105,74 @@ flutter_app/
 ### Installation
 
 1. **Install Flutter**:
-   ```bash
-   # Clone Flutter repository
-   git clone https://github.com/flutter/flutter.git -b stable
 
-   # Add to PATH
-   export PATH="$PATH:`pwd`/flutter/bin"
+    ```bash
+    # Clone Flutter repository
+    git clone https://github.com/flutter/flutter.git -b stable
 
-   # Verify installation
-   flutter doctor
-   ```
+    # Add to PATH
+    export PATH="$PATH:`pwd`/flutter/bin"
+
+    # Verify installation
+    flutter doctor
+    ```
 
 2. **Install dependencies** (from the repository root, this folder is `flutter_app/`):
-   ```bash
-   cd flutter_app
-   flutter pub get
-   ```
+
+    ```bash
+    cd flutter_app
+    flutter pub get
+    ```
 
 3. **iOS / macOS native builds**: After dependency changes, refresh CocoaPods:
-   ```bash
-   cd ios && pod install && cd ..
-   cd macos && pod install && cd ..
-   ```
-   Run these commands from **`flutter_app/`** (same directory as `pubspec.yaml`).
+
+    ```bash
+    cd ios && pod install && cd ..
+    cd macos && pod install && cd ..
+    ```
+
+    Run these commands from **`flutter_app/`** (same directory as `pubspec.yaml`).
 
 4. **Run the app**:
-   ```bash
-   # Run on connected device/emulator
-   flutter run
 
-   # Run on specific platform
-   flutter run -d chrome        # Web
-   flutter run -d ios           # iOS
-   flutter run -d android       # Android
-   flutter run -d macos         # macOS
-   flutter run -d windows       # Windows
-   flutter run -d linux         # Linux
-   ```
+    ```bash
+    # Run on connected device/emulator
+    flutter run
+
+    # Run on specific platform
+    flutter run -d chrome        # Web
+    flutter run -d ios           # iOS
+    flutter run -d android       # Android
+    flutter run -d macos         # macOS
+    flutter run -d windows       # Windows
+    flutter run -d linux         # Linux
+    ```
 
 ### Building for Production
 
 #### Android (APK)
+
 ```bash
 flutter build apk --release
 # Output: build/app/outputs/flutter-apk/app-release.apk
 ```
 
 #### iOS (IPA)
+
 ```bash
 flutter build ios --release
 # Then use Xcode to create IPA
 ```
 
 #### Web
+
 ```bash
 flutter build web --release
 # Output: build/web/
 ```
 
 #### Desktop
+
 ```bash
 # macOS
 flutter build macos --release
@@ -184,12 +199,14 @@ Hot-restart or rebuild after adding files so Flutter picks up new bundle entries
 ### Audio Files
 
 Audio files should be placed in `assets/audio/` with the naming convention:
+
 - `day{n}_zh.mp3` - Mandarin audio
 - `day{n}_en.mp3` - English explanations
 
 ### Text Files
 
 Text content should be in `assets/text/` with the naming convention:
+
 - `day{n}_zh.txt` - Simplified Chinese text
 - `day{n}_pinyin.txt` - Pinyin romanization
 - `day{n}_en.txt` - English translation
@@ -207,20 +224,20 @@ Version pins and exact constraints are in **`pubspec.yaml`**; run `dart pub deps
 
 Packages referenced from current **`lib/`** code include:
 
-| Package | Role |
-|---------|------|
-| `provider` | `AppState` + reactive UI wiring |
-| `shared_preferences` | Progress, preferences, notification settings cache |
-| `audioplayers` | Bundled lesson audio playback |
-| `flutter_local_notifications` | Daily reminders / completion pings |
-| `timezone` | Local time handling for notification scheduling |
+| Package                       | Role                                               |
+| ----------------------------- | -------------------------------------------------- |
+| `provider`                    | `AppState` + reactive UI wiring                    |
+| `shared_preferences`          | Progress, preferences, notification settings cache |
+| `audioplayers`                | Bundled lesson audio playback                      |
+| `flutter_local_notifications` | Daily reminders / completion pings                 |
+| `timezone`                    | Local time handling for notification scheduling    |
 
 UI and typography:
 
-| Package | Role |
-|---------|------|
-| `google_fonts` | Fonts such as Poppins |
-| `font_awesome_flutter` | Icons |
+| Package                | Role                  |
+| ---------------------- | --------------------- |
+| `google_fonts`         | Fonts such as Poppins |
+| `font_awesome_flutter` | Icons                 |
 
 Still listed in **`pubspec.yaml`** (verify before removing—they may become unused during refactors):
 
@@ -281,11 +298,13 @@ dart format lib/
 ## Troubleshooting
 
 ### Audio Not Playing
+
 - Ensure audio files are in `assets/audio/` directory
 - Verify `pubspec.yaml` includes audio assets
 - Run `flutter clean && flutter pub get`
 
 ### Build Errors
+
 ```bash
 flutter clean
 flutter pub get
@@ -325,6 +344,7 @@ Copyright © 2026 Mandarin Pathways. All rights reserved.
 ## Support
 
 For issues, questions, or suggestions:
+
 - Open an issue on GitHub
 - Check the Flutter documentation: https://docs.flutter.dev
 - Review the original PWA at: [original web URL]

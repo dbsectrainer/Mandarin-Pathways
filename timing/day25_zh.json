@@ -1,67 +1,67 @@
 {
-  "version": 1,
-  "day": 25,
-  "lang": "zh",
-  "phrases": [
-    {
-      "i": 0,
-      "section": "Remote Work Terms",
-      "start": 0.0,
-      "end": 1.632
-    },
-    {
-      "i": 1,
-      "section": "Remote Work Terms",
-      "start": 1.632,
-      "end": 3.216
-    },
-    {
-      "i": 2,
-      "section": "Remote Work Terms",
-      "start": 3.216,
-      "end": 5.184
-    },
-    {
-      "i": 3,
-      "section": "Remote Work Terms",
-      "start": 5.184,
-      "end": 6.912
-    },
-    {
-      "i": 4,
-      "section": "Remote Work Terms",
-      "start": 6.912,
-      "end": 8.544
-    },
-    {
-      "i": 5,
-      "section": "Remote Work Phrases",
-      "start": 8.544,
-      "end": 10.92
-    },
-    {
-      "i": 6,
-      "section": "Remote Work Phrases",
-      "start": 10.92,
-      "end": 12.96
-    },
-    {
-      "i": 7,
-      "section": "Remote Work Phrases",
-      "start": 12.96,
-      "end": 15.144
-    },
-    {
-      "i": 8,
-      "section": "Remote Work Phrases",
-      "start": 15.144,
-      "end": 17.112
-    },
-    {
-      "i": 9,
-      "section": "Remote Work Phrases",
-      "start": 17.112,
-      "end": 19.152
-    }
-  ]
+    "version": 1,
+    "day": 25,
+    "lang": "zh",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Remote Work Terms",
+            "start": 0.0,
+            "end": 1.632
+        },
+        {
+            "i": 1,
+            "section": "Remote Work Terms",
+            "start": 1.632,
+            "end": 3.216
+        },
+        {
+            "i": 2,
+            "section": "Remote Work Terms",
+            "start": 3.216,
+            "end": 5.184
+        },
+        {
+            "i": 3,
+            "section": "Remote Work Terms",
+            "start": 5.184,
+            "end": 6.912
+        },
+        {
+            "i": 4,
+            "section": "Remote Work Terms",
+            "start": 6.912,
+            "end": 8.544
+        },
+        {
+            "i": 5,
+            "section": "Remote Work Phrases",
+            "start": 8.544,
+            "end": 10.92
+        },
+        {
+            "i": 6,
+            "section": "Remote Work Phrases",
+            "start": 10.92,
+            "end": 12.96
+        },
+        {
+            "i": 7,
+            "section": "Remote Work Phrases",
+            "start": 12.96,
+            "end": 15.144
+        },
+        {
+            "i": 8,
+            "section": "Remote Work Phrases",
+            "start": 15.144,
+            "end": 17.112
+        },
+        {
+            "i": 9,
+            "section": "Remote Work Phrases",
+            "start": 17.112,
+            "end": 19.152
+        }
+    ]
 }

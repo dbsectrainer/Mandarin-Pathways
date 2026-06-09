@@ -1,67 +1,67 @@
 {
-  "version": 1,
-  "day": 24,
-  "lang": "en",
-  "phrases": [
-    {
-      "i": 0,
-      "section": "Meeting Etiquette",
-      "start": 0.0,
-      "end": 1.704
-    },
-    {
-      "i": 1,
-      "section": "Meeting Etiquette",
-      "start": 1.704,
-      "end": 3.84
-    },
-    {
-      "i": 2,
-      "section": "Meeting Etiquette",
-      "start": 3.84,
-      "end": 5.544
-    },
-    {
-      "i": 3,
-      "section": "Meeting Etiquette",
-      "start": 5.544,
-      "end": 8.04
-    },
-    {
-      "i": 4,
-      "section": "Meeting Etiquette",
-      "start": 8.04,
-      "end": 9.72
-    },
-    {
-      "i": 5,
-      "section": "Business Phrases",
-      "start": 9.72,
-      "end": 11.952
-    },
-    {
-      "i": 6,
-      "section": "Business Phrases",
-      "start": 11.952,
-      "end": 15.408
-    },
-    {
-      "i": 7,
-      "section": "Business Phrases",
-      "start": 15.408,
-      "end": 17.616
-    },
-    {
-      "i": 8,
-      "section": "Business Phrases",
-      "start": 17.616,
-      "end": 20.4
-    },
-    {
-      "i": 9,
-      "section": "Business Phrases",
-      "start": 20.4,
-      "end": 22.584
-    }
-  ]
+    "version": 1,
+    "day": 24,
+    "lang": "en",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Meeting Etiquette",
+            "start": 0.0,
+            "end": 1.704
+        },
+        {
+            "i": 1,
+            "section": "Meeting Etiquette",
+            "start": 1.704,
+            "end": 3.84
+        },
+        {
+            "i": 2,
+            "section": "Meeting Etiquette",
+            "start": 3.84,
+            "end": 5.544
+        },
+        {
+            "i": 3,
+            "section": "Meeting Etiquette",
+            "start": 5.544,
+            "end": 8.04
+        },
+        {
+            "i": 4,
+            "section": "Meeting Etiquette",
+            "start": 8.04,
+            "end": 9.72
+        },
+        {
+            "i": 5,
+            "section": "Business Phrases",
+            "start": 9.72,
+            "end": 11.952
+        },
+        {
+            "i": 6,
+            "section": "Business Phrases",
+            "start": 11.952,
+            "end": 15.408
+        },
+        {
+            "i": 7,
+            "section": "Business Phrases",
+            "start": 15.408,
+            "end": 17.616
+        },
+        {
+            "i": 8,
+            "section": "Business Phrases",
+            "start": 17.616,
+            "end": 20.4
+        },
+        {
+            "i": 9,
+            "section": "Business Phrases",
+            "start": 20.4,
+            "end": 22.584
+        }
+    ]
 }

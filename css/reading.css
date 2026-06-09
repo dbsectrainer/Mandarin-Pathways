@@ -190,7 +190,7 @@
     .vocabulary-list {
         grid-template-columns: 1fr;
     }
-    
+
     .level-buttons,
     .topic-buttons {
         flex-direction: column;

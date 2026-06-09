@@ -1,67 +1,67 @@
 {
-  "version": 1,
-  "day": 17,
-  "lang": "en",
-  "phrases": [
-    {
-      "i": 0,
-      "section": "Polite Expressions",
-      "start": 0.0,
-      "end": 1.512
-    },
-    {
-      "i": 1,
-      "section": "Polite Expressions",
-      "start": 1.512,
-      "end": 3.12
-    },
-    {
-      "i": 2,
-      "section": "Polite Expressions",
-      "start": 3.12,
-      "end": 4.896
-    },
-    {
-      "i": 3,
-      "section": "Polite Expressions",
-      "start": 4.896,
-      "end": 6.48
-    },
-    {
-      "i": 4,
-      "section": "Polite Expressions",
-      "start": 6.48,
-      "end": 8.232
-    },
-    {
-      "i": 5,
-      "section": "Cultural Etiquette",
-      "start": 8.232,
-      "end": 11.328
-    },
-    {
-      "i": 6,
-      "section": "Cultural Etiquette",
-      "start": 11.328,
-      "end": 14.544
-    },
-    {
-      "i": 7,
-      "section": "Cultural Etiquette",
-      "start": 14.544,
-      "end": 16.536
-    },
-    {
-      "i": 8,
-      "section": "Cultural Etiquette",
-      "start": 16.536,
-      "end": 19.656
-    },
-    {
-      "i": 9,
-      "section": "Cultural Etiquette",
-      "start": 19.656,
-      "end": 22.176
-    }
-  ]
+    "version": 1,
+    "day": 17,
+    "lang": "en",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Polite Expressions",
+            "start": 0.0,
+            "end": 1.512
+        },
+        {
+            "i": 1,
+            "section": "Polite Expressions",
+            "start": 1.512,
+            "end": 3.12
+        },
+        {
+            "i": 2,
+            "section": "Polite Expressions",
+            "start": 3.12,
+            "end": 4.896
+        },
+        {
+            "i": 3,
+            "section": "Polite Expressions",
+            "start": 4.896,
+            "end": 6.48
+        },
+        {
+            "i": 4,
+            "section": "Polite Expressions",
+            "start": 6.48,
+            "end": 8.232
+        },
+        {
+            "i": 5,
+            "section": "Cultural Etiquette",
+            "start": 8.232,
+            "end": 11.328
+        },
+        {
+            "i": 6,
+            "section": "Cultural Etiquette",
+            "start": 11.328,
+            "end": 14.544
+        },
+        {
+            "i": 7,
+            "section": "Cultural Etiquette",
+            "start": 14.544,
+            "end": 16.536
+        },
+        {
+            "i": 8,
+            "section": "Cultural Etiquette",
+            "start": 16.536,
+            "end": 19.656
+        },
+        {
+            "i": 9,
+            "section": "Cultural Etiquette",
+            "start": 19.656,
+            "end": 22.176
+        }
+    ]
 }

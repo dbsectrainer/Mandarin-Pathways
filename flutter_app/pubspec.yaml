@@ -3,46 +3,46 @@ description: Learn Mandarin Chinese with structured daily lessons and supplement
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.10.0 <4.0.0'
+    sdk: ">=3.10.0 <4.0.0"
 
 dependencies:
-  flutter:
-    sdk: flutter
+    flutter:
+        sdk: flutter
 
-  # UI & Design
-  cupertino_icons: ^1.0.6
-  google_fonts: ^8.1.0
-  font_awesome_flutter: ^11.0.0
+    # UI & Design
+    cupertino_icons: ^1.0.6
+    google_fonts: ^8.1.0
+    font_awesome_flutter: ^11.0.0
 
-  # State Management
-  provider: ^6.1.1
+    # State Management
+    provider: ^6.1.1
 
-  # Local Storage
-  shared_preferences: ^2.2.2
-  path_provider: ^2.1.1
+    # Local Storage
+    shared_preferences: ^2.2.2
+    path_provider: ^2.1.1
 
-  # Audio Playback
-  audioplayers: ^6.6.0
+    # Audio Playback
+    audioplayers: ^6.6.0
 
-  # Networking
-  http: ^1.1.2
+    # Networking
+    http: ^1.1.2
 
-  # Notifications
-  flutter_local_notifications: ^21.0.0
-  timezone: ^0.11.0
+    # Notifications
+    flutter_local_notifications: ^21.0.0
+    timezone: ^0.11.0
 
-  # Utilities
-  url_launcher: ^6.2.2
+    # Utilities
+    url_launcher: ^6.2.2
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
-  flutter_lints: ^6.0.0
+    flutter_test:
+        sdk: flutter
+    flutter_lints: ^6.0.0
 
 flutter:
-  uses-material-design: true
+    uses-material-design: true
 
-  assets:
-    - assets/audio/
-    - assets/icons/
-    - assets/text/
+    assets:
+        - assets/audio/
+        - assets/icons/
+        - assets/text/

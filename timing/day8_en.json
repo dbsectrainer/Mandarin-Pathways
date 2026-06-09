@@ -1,67 +1,67 @@
 {
-  "version": 1,
-  "day": 8,
-  "lang": "en",
-  "phrases": [
-    {
-      "i": 0,
-      "section": "Shopping Places",
-      "start": 0.0,
-      "end": 1.536
-    },
-    {
-      "i": 1,
-      "section": "Shopping Places",
-      "start": 1.536,
-      "end": 3.456
-    },
-    {
-      "i": 2,
-      "section": "Shopping Places",
-      "start": 3.456,
-      "end": 5.088
-    },
-    {
-      "i": 3,
-      "section": "Shopping Places",
-      "start": 5.088,
-      "end": 7.056
-    },
-    {
-      "i": 4,
-      "section": "Shopping Places",
-      "start": 7.056,
-      "end": 8.904
-    },
-    {
-      "i": 5,
-      "section": "Shopping Phrases",
-      "start": 8.904,
-      "end": 10.8
-    },
-    {
-      "i": 6,
-      "section": "Shopping Phrases",
-      "start": 10.8,
-      "end": 12.768
-    },
-    {
-      "i": 7,
-      "section": "Shopping Phrases",
-      "start": 12.768,
-      "end": 14.712
-    },
-    {
-      "i": 8,
-      "section": "Shopping Phrases",
-      "start": 14.712,
-      "end": 16.68
-    },
-    {
-      "i": 9,
-      "section": "Shopping Phrases",
-      "start": 16.68,
-      "end": 18.6
-    }
-  ]
+    "version": 1,
+    "day": 8,
+    "lang": "en",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Shopping Places",
+            "start": 0.0,
+            "end": 1.536
+        },
+        {
+            "i": 1,
+            "section": "Shopping Places",
+            "start": 1.536,
+            "end": 3.456
+        },
+        {
+            "i": 2,
+            "section": "Shopping Places",
+            "start": 3.456,
+            "end": 5.088
+        },
+        {
+            "i": 3,
+            "section": "Shopping Places",
+            "start": 5.088,
+            "end": 7.056
+        },
+        {
+            "i": 4,
+            "section": "Shopping Places",
+            "start": 7.056,
+            "end": 8.904
+        },
+        {
+            "i": 5,
+            "section": "Shopping Phrases",
+            "start": 8.904,
+            "end": 10.8
+        },
+        {
+            "i": 6,
+            "section": "Shopping Phrases",
+            "start": 10.8,
+            "end": 12.768
+        },
+        {
+            "i": 7,
+            "section": "Shopping Phrases",
+            "start": 12.768,
+            "end": 14.712
+        },
+        {
+            "i": 8,
+            "section": "Shopping Phrases",
+            "start": 14.712,
+            "end": 16.68
+        },
+        {
+            "i": 9,
+            "section": "Shopping Phrases",
+            "start": 16.68,
+            "end": 18.6
+        }
+    ]
 }

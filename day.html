@@ -1,117 +1,241 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="description" content="Daily Mandarin Chinese lessons with audio and text - 每日中文课程，配有音频和文本">
-    <meta name="theme-color" content="#e74c3c">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Mandarin Pathways">
-    <title>Mandarin Pathways - Daily Lesson</title>
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.min.css">
-</head>
-<body>
-    <header>
-        <h1>Mandarin Pathways</h1>
-        <p><span class="zh">开启您的中文学习之旅</span><span class="en">Your Journey to Chinese Language Mastery</span></p>
-    </header>
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
+        />
+        <meta
+            name="description"
+            content="Daily Mandarin Chinese lessons with audio and text - 每日中文课程，配有音频和文本"
+        />
+        <meta name="theme-color" content="#e74c3c" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="black-translucent"
+        />
+        <meta name="apple-mobile-web-app-title" content="Mandarin Pathways" />
+        <title>Mandarin Pathways - Daily Lesson</title>
+        <link rel="manifest" href="manifest.json" />
+        <link rel="apple-touch-icon" href="icons/icon-192x192.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+            media="print"
+            onload="this.media = 'all'"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            media="print"
+            onload="this.media = 'all'"
+        />
+        <link rel="stylesheet" href="css/styles.min.css" />
+        <noscript>
+            <link
+                href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+                rel="stylesheet"
+            />
+            <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            />
+        </noscript>
+    </head>
+    <body>
+        <header>
+            <h1>Mandarin Pathways</h1>
+            <p>
+                <span class="zh">开启您的中文学习之旅</span
+                ><span class="en"
+                    >Your Journey to Chinese Language Mastery</span
+                >
+            </p>
+        </header>
 
-    <main>
-        <!-- Return to top button -->
-        <div class="return-to-top" id="returnToTop">
-            <i class="fas fa-arrow-up"></i>
+        <main>
+            <!-- Return to top button -->
+            <div class="return-to-top" id="returnToTop">
+                <i class="fas fa-arrow-up"></i>
+            </div>
+
+            <!-- Visual anchor pattern -->
+            <div class="visual-anchor" style="top: 5%; right: 5%"></div>
+
+            <div class="lesson-container">
+                <div class="lesson-header">
+                    <div class="lesson-title">
+                        <span class="flag" id="language-flag"></span>
+                        <h2>
+                            <span class="zh">第</span
+                            ><span class="en">Day </span
+                            ><span id="day-number"></span
+                            ><span class="zh">天</span>
+                        </h2>
+                    </div>
+                    <div class="language-selector">
+                        <button
+                            type="button"
+                            class="language-btn"
+                            data-lang="zh"
+                            aria-label="Switch to Simplified Chinese"
+                        >
+                            <span class="flag">🇨🇳</span> 简体中文
+                        </button>
+                        <button
+                            type="button"
+                            class="language-btn"
+                            data-lang="pinyin"
+                            aria-label="Switch to Pinyin"
+                        >
+                            <span class="flag">🔤</span> Pinyin
+                        </button>
+                        <button
+                            type="button"
+                            class="language-btn"
+                            data-lang="en"
+                            aria-label="Switch to English"
+                        >
+                            <span class="flag">🇺🇸</span> English
+                        </button>
+                    </div>
+                </div>
+
+                <div class="navigation">
+                    <a href="#" class="nav-btn" id="prev-btn-top">
+                        <i class="fas fa-arrow-left"></i>
+                        <span class="zh">上一天</span
+                        ><span class="en">Previous Day</span>
+                    </a>
+                    <a href="index.html" class="home-btn">
+                        <i class="fas fa-home"></i>
+                        <span class="zh">返回首页</span
+                        ><span class="en">Back to Home</span>
+                    </a>
+                    <a href="#" class="nav-btn" id="next-btn-top">
+                        <span class="zh">下一天</span
+                        ><span class="en">Next Day</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <div class="section-info">
+                    <h3 id="section-title"></h3>
+                    <p id="section-description"></p>
+                </div>
+
+                <div class="section-info tone-explainer">
+                    <h3>
+                        <span class="zh">声调速览</span
+                        ><span class="en">Tones 101</span>
+                    </h3>
+                    <p>
+                        <span class="zh"
+                            >拼音模式会在音节旁显示一声平、二声升、三声降升、四声降的声调轮廓。</span
+                        ><span class="en"
+                            >In Pinyin mode, each syllable can show the tone
+                            contour: first level, second rising, third dipping,
+                            and fourth falling.</span
+                        >
+                    </p>
+                </div>
+
+                <div class="section-info streak-banner">
+                    <h3>
+                        <span data-streak-count>0</span>
+                        <span class="zh">天连续学习</span
+                        ><span class="en">day learning streak</span>
+                    </h3>
+                    <p>
+                        <span class="zh"
+                            >完成课程或复习卡片来保持连续学习。</span
+                        ><span class="en"
+                            >Complete lessons or review cards to keep your
+                            streak active.</span
+                        >
+                    </p>
+                </div>
+
+                <div class="audio-player">
+                    <audio controls id="audio-player" type="audio/mpeg">
+                        <span class="zh">您的浏览器不支持音频元素。</span
+                        ><span class="en"
+                            >Your browser does not support the audio
+                            element.</span
+                        >
+                    </audio>
+                    <div id="audio-fallback"></div>
+                </div>
+
+                <div class="text-content" id="text-content">
+                    <!-- Text content will be dynamically added here -->
+                </div>
+
+                <div class="lesson-actions">
+                    <a id="lesson-quiz-link" class="home-btn" href="quiz.html">
+                        <i class="fas fa-question-circle"></i>
+                        <span class="zh">课程测验</span
+                        ><span class="en">Quiz this day</span>
+                    </a>
+                    <button id="complete-btn" class="complete-btn">
+                        <i class="fas fa-check"></i>
+                        <span class="zh">标记为已完成</span
+                        ><span class="en">Mark as Complete</span>
+                    </button>
+                </div>
+
+                <!-- Section divider with visual anchor -->
+                <div class="section-divider"></div>
+
+                <div class="navigation">
+                    <a href="#" class="nav-btn" id="prev-btn">
+                        <i class="fas fa-arrow-left"></i>
+                        <span class="zh">上一天</span
+                        ><span class="en">Previous Day</span>
+                    </a>
+                    <a href="index.html" class="home-btn">
+                        <i class="fas fa-home"></i>
+                        <span class="zh">返回首页</span
+                        ><span class="en">Back to Home</span>
+                    </a>
+                    <a href="#" class="nav-btn" id="next-btn">
+                        <span class="zh">下一天</span
+                        ><span class="en">Next Day</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Visual anchor pattern -->
+            <div class="visual-anchor" style="bottom: 10%; left: 5%"></div>
+        </main>
+
+        <footer>
+            <p>
+                &copy; 2026 Mandarin Pathways |
+                <span class="zh">赋能中文学习</span
+                ><span class="en">Empowering Chinese Language Learning</span>
+            </p>
+        </footer>
+
+        <div class="copy-notification" id="copy-notification">
+            <span class="zh">短语已复制到剪贴板！</span
+            ><span class="en">Phrase copied to clipboard!</span>
         </div>
 
-        <!-- Visual anchor pattern -->
-        <div class="visual-anchor" style="top: 5%; right: 5%;"></div>
-
-        <div class="lesson-container">
-            <div class="lesson-header">
-                <div class="lesson-title">
-                    <span class="flag" id="language-flag"></span>
-                    <h2><span class="zh">第</span><span class="en">Day </span><span id="day-number"></span><span class="zh">天</span></h2>
-                </div>
-                <div class="language-selector">
-                    <button type="button" class="language-btn" data-lang="zh" aria-label="Switch to Simplified Chinese"><span class="flag">🇨🇳</span> 简体中文</button>
-                    <button type="button" class="language-btn" data-lang="pinyin" aria-label="Switch to Pinyin"><span class="flag">🔤</span> Pinyin</button>
-                    <button type="button" class="language-btn" data-lang="en" aria-label="Switch to English"><span class="flag">🇺🇸</span> English</button>
-                </div>
-            </div>
-
-            <div class="navigation">
-                <a href="#" class="nav-btn" id="prev-btn-top">
-                    <i class="fas fa-arrow-left"></i> <span class="zh">上一天</span><span class="en">Previous Day</span>
-                </a>
-                <a href="index.html" class="home-btn">
-                    <i class="fas fa-home"></i> <span class="zh">返回首页</span><span class="en">Back to Home</span>
-                </a>
-                <a href="#" class="nav-btn" id="next-btn-top">
-                    <span class="zh">下一天</span><span class="en">Next Day</span> <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-
-            <div class="section-info">
-                <h3 id="section-title"></h3>
-                <p id="section-description"></p>
-            </div>
-
-            <div class="audio-player">
-                <audio controls id="audio-player" type="audio/mpeg">
-                    <span class="zh">您的浏览器不支持音频元素。</span><span class="en">Your browser does not support the audio element.</span>
-                </audio>
-                <div id="audio-fallback"></div>
-            </div>
-
-            <div class="text-content" id="text-content">
-                <!-- Text content will be dynamically added here -->
-            </div>
-
-            <div class="lesson-actions">
-                <button id="complete-btn" class="complete-btn">
-                    <i class="fas fa-check"></i> <span class="zh">标记为已完成</span><span class="en">Mark as Complete</span>
-                </button>
-            </div>
-
-            <!-- Section divider with visual anchor -->
-            <div class="section-divider"></div>
-
-            <div class="navigation">
-                <a href="#" class="nav-btn" id="prev-btn">
-                    <i class="fas fa-arrow-left"></i> <span class="zh">上一天</span><span class="en">Previous Day</span>
-                </a>
-                <a href="index.html" class="home-btn">
-                    <i class="fas fa-home"></i> <span class="zh">返回首页</span><span class="en">Back to Home</span>
-                </a>
-                <a href="#" class="nav-btn" id="next-btn">
-                    <span class="zh">下一天</span><span class="en">Next Day</span> <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-        </div>
-
-        <!-- Visual anchor pattern -->
-        <div class="visual-anchor" style="bottom: 10%; left: 5%;"></div>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Mandarin Pathways | <span class="zh">赋能中文学习</span><span class="en">Empowering Chinese Language Learning</span></p>
-    </footer>
-
-    <div class="copy-notification" id="copy-notification">
-        <span class="zh">短语已复制到剪贴板！</span><span class="en">Phrase copied to clipboard!</span>
-    </div>
-
-    <script src="js/sw-register.js"></script>
-    <script src="js/content-error.js" defer></script>
-    <script src="js/lesson-audio-sync.js" defer></script>
-    <script src="js/starred-phrases.js" defer></script>
-    <script src="js/day-page.js" defer></script>
-    <script src="js/return-to-top.js" defer></script>
-</body>
+        <script src="js/sw-register.js"></script>
+        <script src="js/i18n.js" defer></script>
+        <script src="js/content-error.js" defer></script>
+        <script src="js/lesson-audio-sync.js" defer></script>
+        <script src="js/starred-phrases.js" defer></script>
+        <script src="js/streaks.js" defer></script>
+        <script src="js/srs.js" defer></script>
+        <script src="js/tone-visualizer.js" defer></script>
+        <script src="js/day-page.js" defer></script>
+        <script src="js/return-to-top.js" defer></script>
+    </body>
 </html>

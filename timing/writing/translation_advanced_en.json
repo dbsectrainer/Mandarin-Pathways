@@ -1,21 +1,21 @@
 {
-  "version": 1,
-  "phrases": [
-    {
-      "section": "title",
-      "i": 0,
-      "start": 0.0,
-      "end": 3.192
-    },
-    {
-      "section": "description",
-      "i": 1,
-      "start": 3.192,
-      "end": 8.376
-    }
-  ],
-  "activity_type": "translation",
-  "level": "advanced",
-  "lang": "en",
-  "kind": "writing"
+    "version": 1,
+    "phrases": [
+        {
+            "section": "title",
+            "i": 0,
+            "start": 0.0,
+            "end": 3.192
+        },
+        {
+            "section": "description",
+            "i": 1,
+            "start": 3.192,
+            "end": 8.376
+        }
+    ],
+    "activity_type": "translation",
+    "level": "advanced",
+    "lang": "en",
+    "kind": "writing"
 }

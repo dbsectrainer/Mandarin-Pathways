@@ -1,73 +1,73 @@
 {
-  "version": 1,
-  "day": 3,
-  "lang": "en",
-  "phrases": [
-    {
-      "i": 0,
-      "section": "Time Words",
-      "start": 0.0,
-      "end": 1.44
-    },
-    {
-      "i": 1,
-      "section": "Time Words",
-      "start": 1.44,
-      "end": 2.952
-    },
-    {
-      "i": 2,
-      "section": "Time Words",
-      "start": 2.952,
-      "end": 4.632
-    },
-    {
-      "i": 3,
-      "section": "Time Words",
-      "start": 4.632,
-      "end": 6.36
-    },
-    {
-      "i": 4,
-      "section": "Time Words",
-      "start": 6.36,
-      "end": 7.92
-    },
-    {
-      "i": 5,
-      "section": "Time Words",
-      "start": 7.92,
-      "end": 9.624
-    },
-    {
-      "i": 6,
-      "section": "Time Words",
-      "start": 9.624,
-      "end": 11.136
-    },
-    {
-      "i": 7,
-      "section": "Asking Time",
-      "start": 11.136,
-      "end": 13.08
-    },
-    {
-      "i": 8,
-      "section": "Asking Time",
-      "start": 13.08,
-      "end": 15.288
-    },
-    {
-      "i": 9,
-      "section": "Asking Time",
-      "start": 15.288,
-      "end": 16.728
-    },
-    {
-      "i": 10,
-      "section": "Asking Time",
-      "start": 16.728,
-      "end": 18.768
-    }
-  ]
+    "version": 1,
+    "day": 3,
+    "lang": "en",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Time Words",
+            "start": 0.0,
+            "end": 1.44
+        },
+        {
+            "i": 1,
+            "section": "Time Words",
+            "start": 1.44,
+            "end": 2.952
+        },
+        {
+            "i": 2,
+            "section": "Time Words",
+            "start": 2.952,
+            "end": 4.632
+        },
+        {
+            "i": 3,
+            "section": "Time Words",
+            "start": 4.632,
+            "end": 6.36
+        },
+        {
+            "i": 4,
+            "section": "Time Words",
+            "start": 6.36,
+            "end": 7.92
+        },
+        {
+            "i": 5,
+            "section": "Time Words",
+            "start": 7.92,
+            "end": 9.624
+        },
+        {
+            "i": 6,
+            "section": "Time Words",
+            "start": 9.624,
+            "end": 11.136
+        },
+        {
+            "i": 7,
+            "section": "Asking Time",
+            "start": 11.136,
+            "end": 13.08
+        },
+        {
+            "i": 8,
+            "section": "Asking Time",
+            "start": 13.08,
+            "end": 15.288
+        },
+        {
+            "i": 9,
+            "section": "Asking Time",
+            "start": 15.288,
+            "end": 16.728
+        },
+        {
+            "i": 10,
+            "section": "Asking Time",
+            "start": 16.728,
+            "end": 18.768
+        }
+    ]
 }

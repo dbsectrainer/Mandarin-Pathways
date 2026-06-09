@@ -1,73 +1,73 @@
 {
-  "version": 1,
-  "day": 33,
-  "lang": "en",
-  "phrases": [
-    {
-      "i": 0,
-      "section": "Formal Greetings",
-      "start": 0.0,
-      "end": 2.4
-    },
-    {
-      "i": 1,
-      "section": "Formal Greetings",
-      "start": 2.4,
-      "end": 5.088
-    },
-    {
-      "i": 2,
-      "section": "Formal Greetings",
-      "start": 5.088,
-      "end": 7.944
-    },
-    {
-      "i": 3,
-      "section": "Formal Greetings",
-      "start": 7.944,
-      "end": 10.632
-    },
-    {
-      "i": 4,
-      "section": "Formal Greetings",
-      "start": 10.632,
-      "end": 12.84
-    },
-    {
-      "i": 5,
-      "section": "Formal Phrases",
-      "start": 12.84,
-      "end": 15.216
-    },
-    {
-      "i": 6,
-      "section": "Formal Phrases",
-      "start": 15.216,
-      "end": 17.592
-    },
-    {
-      "i": 7,
-      "section": "Formal Phrases",
-      "start": 17.592,
-      "end": 20.352
-    },
-    {
-      "i": 8,
-      "section": "Formal Phrases",
-      "start": 20.352,
-      "end": 23.04
-    },
-    {
-      "i": 9,
-      "section": "Formal Phrases",
-      "start": 23.04,
-      "end": 25.824
-    },
-    {
-      "i": 10,
-      "section": "Formal Phrases",
-      "start": 25.824,
-      "end": 28.056
-    }
-  ]
+    "version": 1,
+    "day": 33,
+    "lang": "en",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Formal Greetings",
+            "start": 0.0,
+            "end": 2.4
+        },
+        {
+            "i": 1,
+            "section": "Formal Greetings",
+            "start": 2.4,
+            "end": 5.088
+        },
+        {
+            "i": 2,
+            "section": "Formal Greetings",
+            "start": 5.088,
+            "end": 7.944
+        },
+        {
+            "i": 3,
+            "section": "Formal Greetings",
+            "start": 7.944,
+            "end": 10.632
+        },
+        {
+            "i": 4,
+            "section": "Formal Greetings",
+            "start": 10.632,
+            "end": 12.84
+        },
+        {
+            "i": 5,
+            "section": "Formal Phrases",
+            "start": 12.84,
+            "end": 15.216
+        },
+        {
+            "i": 6,
+            "section": "Formal Phrases",
+            "start": 15.216,
+            "end": 17.592
+        },
+        {
+            "i": 7,
+            "section": "Formal Phrases",
+            "start": 17.592,
+            "end": 20.352
+        },
+        {
+            "i": 8,
+            "section": "Formal Phrases",
+            "start": 20.352,
+            "end": 23.04
+        },
+        {
+            "i": 9,
+            "section": "Formal Phrases",
+            "start": 23.04,
+            "end": 25.824
+        },
+        {
+            "i": 10,
+            "section": "Formal Phrases",
+            "start": 25.824,
+            "end": 28.056
+        }
+    ]
 }

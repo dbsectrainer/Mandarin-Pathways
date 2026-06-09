@@ -1,21 +1,21 @@
 {
-  "version": 1,
-  "phrases": [
-    {
-      "section": "title",
-      "i": 0,
-      "start": 0.0,
-      "end": 3.552
-    },
-    {
-      "section": "description",
-      "i": 1,
-      "start": 3.552,
-      "end": 7.872
-    }
-  ],
-  "activity_type": "character",
-  "level": "hsk3_-_intermediate",
-  "lang": "en",
-  "kind": "writing"
+    "version": 1,
+    "phrases": [
+        {
+            "section": "title",
+            "i": 0,
+            "start": 0.0,
+            "end": 3.552
+        },
+        {
+            "section": "description",
+            "i": 1,
+            "start": 3.552,
+            "end": 7.872
+        }
+    ],
+    "activity_type": "character",
+    "level": "hsk3_-_intermediate",
+    "lang": "en",
+    "kind": "writing"
 }

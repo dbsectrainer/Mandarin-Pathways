@@ -1,73 +1,73 @@
 {
-  "version": 1,
-  "day": 21,
-  "lang": "en",
-  "phrases": [
-    {
-      "i": 0,
-      "section": "Cultural Concepts",
-      "start": 0.0,
-      "end": 3.144
-    },
-    {
-      "i": 1,
-      "section": "Cultural Concepts",
-      "start": 3.144,
-      "end": 6.048
-    },
-    {
-      "i": 2,
-      "section": "Cultural Concepts",
-      "start": 6.048,
-      "end": 8.136
-    },
-    {
-      "i": 3,
-      "section": "Cultural Concepts",
-      "start": 8.136,
-      "end": 9.744
-    },
-    {
-      "i": 4,
-      "section": "Cultural Concepts",
-      "start": 9.744,
-      "end": 12.696
-    },
-    {
-      "i": 5,
-      "section": "Traditional Arts",
-      "start": 12.696,
-      "end": 14.472
-    },
-    {
-      "i": 6,
-      "section": "Traditional Arts",
-      "start": 14.472,
-      "end": 17.064
-    },
-    {
-      "i": 7,
-      "section": "Traditional Arts",
-      "start": 17.064,
-      "end": 18.84
-    },
-    {
-      "i": 8,
-      "section": "Traditional Arts",
-      "start": 18.84,
-      "end": 20.712
-    },
-    {
-      "i": 9,
-      "section": "Traditional Arts",
-      "start": 20.712,
-      "end": 22.56
-    },
-    {
-      "i": 10,
-      "section": "Traditional Arts",
-      "start": 22.56,
-      "end": 25.176
-    }
-  ]
+    "version": 1,
+    "day": 21,
+    "lang": "en",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Cultural Concepts",
+            "start": 0.0,
+            "end": 3.144
+        },
+        {
+            "i": 1,
+            "section": "Cultural Concepts",
+            "start": 3.144,
+            "end": 6.048
+        },
+        {
+            "i": 2,
+            "section": "Cultural Concepts",
+            "start": 6.048,
+            "end": 8.136
+        },
+        {
+            "i": 3,
+            "section": "Cultural Concepts",
+            "start": 8.136,
+            "end": 9.744
+        },
+        {
+            "i": 4,
+            "section": "Cultural Concepts",
+            "start": 9.744,
+            "end": 12.696
+        },
+        {
+            "i": 5,
+            "section": "Traditional Arts",
+            "start": 12.696,
+            "end": 14.472
+        },
+        {
+            "i": 6,
+            "section": "Traditional Arts",
+            "start": 14.472,
+            "end": 17.064
+        },
+        {
+            "i": 7,
+            "section": "Traditional Arts",
+            "start": 17.064,
+            "end": 18.84
+        },
+        {
+            "i": 8,
+            "section": "Traditional Arts",
+            "start": 18.84,
+            "end": 20.712
+        },
+        {
+            "i": 9,
+            "section": "Traditional Arts",
+            "start": 20.712,
+            "end": 22.56
+        },
+        {
+            "i": 10,
+            "section": "Traditional Arts",
+            "start": 22.56,
+            "end": 25.176
+        }
+    ]
 }

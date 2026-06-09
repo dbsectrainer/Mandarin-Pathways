@@ -12,6 +12,7 @@ about: Submit a pull request
 **Related issues:**
 
 **Checklist:**
+
 - [ ] Tests added/updated
 - [ ] Documentation updated
 - [ ] Linting and formatting pass

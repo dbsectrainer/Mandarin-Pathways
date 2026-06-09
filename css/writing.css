@@ -203,11 +203,11 @@ textarea.answer-input {
     .tools-container {
         flex-direction: column;
     }
-    
+
     .practice-area {
         flex-direction: column;
     }
-    
+
     .character-display {
         margin-bottom: 10px;
     }
@@ -218,12 +218,12 @@ textarea.answer-input {
         flex-wrap: wrap;
         justify-content: center;
     }
-    
+
     .practice-cell {
         width: 50px;
         height: 50px;
     }
-    
+
     .writing-input {
         width: 40px;
         height: 40px;

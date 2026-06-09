@@ -1,79 +1,79 @@
 {
-  "version": 1,
-  "day": 20,
-  "lang": "zh",
-  "phrases": [
-    {
-      "i": 0,
-      "section": "Common Places",
-      "start": 0.0,
-      "end": 1.248
-    },
-    {
-      "i": 1,
-      "section": "Common Places",
-      "start": 1.248,
-      "end": 2.592
-    },
-    {
-      "i": 2,
-      "section": "Common Places",
-      "start": 2.592,
-      "end": 4.08
-    },
-    {
-      "i": 3,
-      "section": "Common Places",
-      "start": 4.08,
-      "end": 5.328
-    },
-    {
-      "i": 4,
-      "section": "Common Places",
-      "start": 5.328,
-      "end": 6.552
-    },
-    {
-      "i": 5,
-      "section": "Common Places",
-      "start": 6.552,
-      "end": 7.872
-    },
-    {
-      "i": 6,
-      "section": "Common Places",
-      "start": 7.872,
-      "end": 9.12
-    },
-    {
-      "i": 7,
-      "section": "Public Communication",
-      "start": 9.12,
-      "end": 11.064
-    },
-    {
-      "i": 8,
-      "section": "Public Communication",
-      "start": 11.064,
-      "end": 13.488
-    },
-    {
-      "i": 9,
-      "section": "Public Communication",
-      "start": 13.488,
-      "end": 15.288
-    },
-    {
-      "i": 10,
-      "section": "Public Communication",
-      "start": 15.288,
-      "end": 18.024
-    },
-    {
-      "i": 11,
-      "section": "Public Communication",
-      "start": 18.024,
-      "end": 19.704
-    }
-  ]
+    "version": 1,
+    "day": 20,
+    "lang": "zh",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Common Places",
+            "start": 0.0,
+            "end": 1.248
+        },
+        {
+            "i": 1,
+            "section": "Common Places",
+            "start": 1.248,
+            "end": 2.592
+        },
+        {
+            "i": 2,
+            "section": "Common Places",
+            "start": 2.592,
+            "end": 4.08
+        },
+        {
+            "i": 3,
+            "section": "Common Places",
+            "start": 4.08,
+            "end": 5.328
+        },
+        {
+            "i": 4,
+            "section": "Common Places",
+            "start": 5.328,
+            "end": 6.552
+        },
+        {
+            "i": 5,
+            "section": "Common Places",
+            "start": 6.552,
+            "end": 7.872
+        },
+        {
+            "i": 6,
+            "section": "Common Places",
+            "start": 7.872,
+            "end": 9.12
+        },
+        {
+            "i": 7,
+            "section": "Public Communication",
+            "start": 9.12,
+            "end": 11.064
+        },
+        {
+            "i": 8,
+            "section": "Public Communication",
+            "start": 11.064,
+            "end": 13.488
+        },
+        {
+            "i": 9,
+            "section": "Public Communication",
+            "start": 13.488,
+            "end": 15.288
+        },
+        {
+            "i": 10,
+            "section": "Public Communication",
+            "start": 15.288,
+            "end": 18.024
+        },
+        {
+            "i": 11,
+            "section": "Public Communication",
+            "start": 18.024,
+            "end": 19.704
+        }
+    ]
 }

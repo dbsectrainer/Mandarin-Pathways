@@ -1,496 +1,1118 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="description" content="Learn Mandarin Chinese with structured daily lessons and supplementary materials - 通过结构化的每日课程和补充材料学习中文">
-    <meta name="theme-color" content="#e74c3c">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Mandarin Pathways">
-    <title>Mandarin Pathways - Your Journey to Chinese Language Mastery</title>
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
-    <link rel="stylesheet" href="css/styles.min.css" media="print" onload="this.media='all'">
-    <noscript>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-        <link rel="stylesheet" href="css/styles.min.css">
-    </noscript>
-</head>
-<body>
-    <header>
-        <div class="language-selector">
-            <button class="language-btn" data-lang="zh" aria-label="Switch to Simplified Chinese"><span class="flag">🇨🇳</span> 简体中文</button>
-            <button class="language-btn" data-lang="pinyin" aria-label="Switch to Pinyin"><span class="flag">🔤</span> Pinyin</button>
-            <button class="language-btn" data-lang="en" aria-label="Switch to English"><span class="flag">🇺🇸</span> English</button>
-        </div>
-        <h1>Mandarin Pathways</h1>
-        <p><span class="zh">开启您的中文学习之旅</span><span class="en">Your Journey to Chinese Language Mastery</span></p>
-        <p class="site-nav-links"><a href="review.html"><span class="zh">复习清单</span><span class="en">Review starred phrases</span></a></p>
-    </header>
-
-    <section class="hero-section">
-        <div class="hero-content animate-fade-in">
-            <h2><span class="zh">掌握中文</span><span class="en">Master Mandarin Chinese</span></h2>
-            <p><span class="zh">通过40天全面的中文学习，开启全球机遇</span><span class="en">Embark on a 40-day journey through comprehensive Mandarin learning for global opportunities</span></p>
-        </div>
-    </section>
-
-    <main>
-        <!-- Return to top button -->
-        <div class="return-to-top" id="returnToTop">
-            <i class="fas fa-arrow-up"></i>
-        </div>
-        <div class="language-cards">
-            <div class="language-card animate-fade-in" title="Simplified Chinese - Most widely used writing system in mainland China">
-                <div class="card-header" style="background: linear-gradient(135deg, #e74c3c, #c0392b);">
-                    <h3>
-                        <span class="flag">🇨🇳</span>
-                        简体中文
-                    </h3>
-                </div>
-                <div class="card-content">
-                    <div class="progress-container">
-                        <p><span class="zh">进度：第0/40天</span><span class="en">Progress: Day 0/40</span></p>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%;"></div>
-                        </div>
-                    </div>
-                    <div class="stats">
-                        <div class="stat-item">
-                            <div class="stat-number">40</div>
-                            <div class="stat-label"><span class="zh">天</span><span class="en">Days</span></div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">5</div>
-                            <div class="stat-label"><span class="zh">级别</span><span class="en">Levels</span></div>
-                        </div>
-                    </div>
-                </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
+        />
+        <meta
+            name="description"
+            content="Learn Mandarin Chinese with structured daily lessons and supplementary materials - 通过结构化的每日课程和补充材料学习中文"
+        />
+        <meta name="theme-color" content="#e74c3c" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="black-translucent"
+        />
+        <meta name="apple-mobile-web-app-title" content="Mandarin Pathways" />
+        <title>
+            Mandarin Pathways - Your Journey to Chinese Language Mastery
+        </title>
+        <link rel="manifest" href="manifest.json" />
+        <link rel="apple-touch-icon" href="icons/icon-192x192.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+            media="print"
+            onload="this.media = 'all'"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            media="print"
+            onload="this.media = 'all'"
+        />
+        <link
+            rel="stylesheet"
+            href="css/styles.min.css"
+            media="print"
+            onload="this.media = 'all'"
+        />
+        <noscript>
+            <link
+                href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+                rel="stylesheet"
+            />
+            <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            />
+            <link rel="stylesheet" href="css/styles.min.css" />
+        </noscript>
+    </head>
+    <body>
+        <header>
+            <div class="language-selector">
+                <button
+                    class="language-btn"
+                    data-lang="zh"
+                    aria-label="Switch to Simplified Chinese"
+                >
+                    <span class="flag">🇨🇳</span> 简体中文
+                </button>
+                <button
+                    class="language-btn"
+                    data-lang="pinyin"
+                    aria-label="Switch to Pinyin"
+                >
+                    <span class="flag">🔤</span> Pinyin
+                </button>
+                <button
+                    class="language-btn"
+                    data-lang="en"
+                    aria-label="Switch to English"
+                >
+                    <span class="flag">🇺🇸</span> English
+                </button>
             </div>
+            <h1>Mandarin Pathways</h1>
+            <p>
+                <span class="zh">开启您的中文学习之旅</span
+                ><span class="en"
+                    >Your Journey to Chinese Language Mastery</span
+                >
+            </p>
+            <p class="site-nav-links">
+                <a href="review.html"
+                    ><span class="zh">复习清单</span
+                    ><span class="en">Review starred phrases</span></a
+                >
+                <a href="srs.html"
+                    ><span class="zh">间隔复习</span
+                    ><span class="en">SRS flashcards</span></a
+                >
+                <a href="placement.html"
+                    ><span class="zh">水平测试</span
+                    ><span class="en">Placement test</span></a
+                >
+            </p>
+        </header>
 
-            <div class="language-card animate-fade-in" title="Pinyin - Phonetic system for learning Mandarin pronunciation">
-                <div class="card-header" style="background: linear-gradient(135deg, #27ae60, #2ecc71);">
-                    <h3>
-                        <span class="flag">🔤</span>
-                        Pinyin
-                    </h3>
-                </div>
-                <div class="card-content">
-                    <div class="progress-container">
-                        <p><span class="zh">进度：第0/40天</span><span class="en">Progress: Day 0/40</span></p>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%;"></div>
-                        </div>
-                    </div>
-                    <div class="stats">
-                        <div class="stat-item">
-                            <div class="stat-number">40</div>
-                            <div class="stat-label"><span class="zh">天</span><span class="en">Days</span></div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">5</div>
-                            <div class="stat-label"><span class="zh">级别</span><span class="en">Levels</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="language-card animate-fade-in" title="English - Translation of Mandarin phrases">
-                <div class="card-header" style="background: linear-gradient(135deg, #9b59b6, #8e44ad);">
-                    <h3>
-                        <span class="flag">🇺🇸</span>
-                        English
-                    </h3>
-                </div>
-                <div class="card-content">
-                    <div class="progress-container">
-                        <p><span class="zh">进度：第0/40天</span><span class="en">Progress: Day 0/40</span></p>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%;"></div>
-                        </div>
-                    </div>
-                    <div class="stats">
-                        <div class="stat-item">
-                            <div class="stat-number">40</div>
-                            <div class="stat-label"><span class="zh">天</span><span class="en">Days</span></div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">5</div>
-                            <div class="stat-label"><span class="zh">级别</span><span class="en">Levels</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Section divider with visual anchor -->
-        <div class="section-divider"></div>
-
-        <!-- Visual anchor pattern -->
-        <div class="visual-anchor" style="top: 5%; right: 5%;"></div>
-
-        <section class="course-overview">
-            <h2><span class="zh">课程结构</span><span class="en">Course Structure</span></h2>
-            <div class="course-sections">
-                <div class="section-card">
-                    <h3><i class="fas fa-star"></i> <span class="zh">第1-7天</span><span class="en">Days 1-7</span></h3>
-                    <p><span class="zh">拼音系统、声调和基本发音</span><span class="en">Pinyin system, tones, and pronunciation basics</span></p>
-                </div>
-                <div class="section-card">
-                    <h3><i class="fas fa-comments"></i> <span class="zh">第8-14天</span><span class="en">Days 8-14</span></h3>
-                    <p><span class="zh">基本日常用语和基础语法</span><span class="en">Essential daily phrases and basic grammar</span></p>
-                </div>
-                <div class="section-card">
-                    <h3><i class="fas fa-building"></i> <span class="zh">第15-22天</span><span class="en">Days 15-22</span></h3>
-                    <p><span class="zh">文化背景和日常生活交流</span><span class="en">Cultural context and daily life communication</span></p>
-                </div>
-                <div class="section-card">
-                    <h3><i class="fas fa-laptop-code"></i> <span class="zh">第23-30天</span><span class="en">Days 23-30</span></h3>
-                    <p><span class="zh">职业和商务中文</span><span class="en">Professional and business Mandarin</span></p>
-                </div>
-                <div class="section-card">
-                    <h3><i class="fas fa-graduation-cap"></i> <span class="zh">第31-40天</span><span class="en">Days 31-40</span></h3>
-                    <p><span class="zh">高级流利度和实际应用</span><span class="en">Advanced fluency and real-world applications</span></p>
-                </div>
+        <section class="hero-section">
+            <div class="hero-content animate-fade-in">
+                <h2>
+                    <span class="zh">掌握中文</span
+                    ><span class="en">Master Mandarin Chinese</span>
+                </h2>
+                <p>
+                    <span class="zh">通过40天全面的中文学习，开启全球机遇</span
+                    ><span class="en"
+                        >Embark on a 40-day journey through comprehensive
+                        Mandarin learning for global opportunities</span
+                    >
+                </p>
             </div>
         </section>
 
-        <!-- Section divider with visual anchor -->
-        <div class="section-divider"></div>
-
-        <section id="day-selection">
-            <h2><span class="zh">每日课程</span><span class="en">Daily Lessons</span></h2>
-
-            <!-- Day grid pagination controls -->
-            <div class="day-controls">
-                <button id="prevDays" class="hover-scale" aria-label="Previous page"><i class="fas fa-chevron-left"></i> <span class="zh">上一页</span><span class="en">Previous</span></button>
-                <div class="day-range" role="status" aria-live="polite"><span class="zh">第</span><span class="en">Days </span><span id="dayRangeStart">1</span>-<span id="dayRangeEnd">10</span><span class="zh">天</span></div>
-                <button id="nextDays" class="hover-scale" aria-label="Next page"><span class="zh">下一页</span><span class="en">Next</span> <i class="fas fa-chevron-right"></i></button>
+        <main>
+            <!-- Return to top button -->
+            <div class="return-to-top" id="returnToTop">
+                <i class="fas fa-arrow-up"></i>
             </div>
-
-            <div class="day-grid">
-                <!-- Days will be dynamically added here -->
-            </div>
-        </section>
-
-        <!-- Section divider with visual anchor -->
-        <div class="section-divider"></div>
-
-        <!-- Core Skills Section -->
-        <section class="core-skills-section">
-            <h2><span class="zh">核心语言技能</span><span class="en">Core Language Skills</span></h2>
-            <p class="section-description"><span class="zh">通过这些专项练习增强您的日常学习，提高阅读和写作能力。</span><span class="en">Enhance your daily learning with focused practice on these essential language skills.</span></p>
-            <div class="core-skills-grid">
-                <a href="reading.html" class="core-skill-card">
-                    <div class="card-icon"><i class="fas fa-book-open"></i></div>
-                    <h3><span class="zh">阅读能力</span><span class="en">Reading Skills</span></h3>
-                    <p><span class="zh">提高您的中文阅读理解能力，从初级到高级的多种练习。</span><span class="en">Improve your Chinese reading comprehension with exercises from beginner to advanced levels.</span></p>
-                </a>
-                <a href="writing.html" class="core-skill-card">
-                    <div class="card-icon"><i class="fas fa-pen"></i></div>
-                    <h3><span class="zh">写作能力</span><span class="en">Writing Skills</span></h3>
-                    <p><span class="zh">练习汉字书写、句子构建和翻译技巧，全面提升写作水平。</span><span class="en">Practice character writing, sentence construction, and translation techniques to enhance your writing proficiency.</span></p>
-                </a>
-            </div>
-        </section>
-
-        <!-- Section divider with visual anchor -->
-        <div class="section-divider"></div>
-
-        <!-- Supplementary Content Section -->
-        <section class="supplementary-section">
-            <h2><span class="zh">补充学习材料</span><span class="en">Supplementary Learning Materials</span></h2>
-            <div class="supplementary-grid">
-                <a href="supplementary.html?category=education&lang=zh" class="supplementary-card">
-                    <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
-                    <h3><span class="zh">教育与学术生活</span><span class="en">Education & Academic Life</span></h3>
-                    <p><span class="zh">掌握学术环境和课堂互动的词汇。</span><span class="en">Master vocabulary for academic settings and classroom interactions.</span></p>
-                </a>
-                <a href="supplementary.html?category=hobbies&lang=zh" class="supplementary-card">
-                    <div class="card-icon"><i class="fas fa-palette"></i></div>
-                    <h3><span class="zh">兴趣爱好</span><span class="en">Hobbies & Interests</span></h3>
-                    <p><span class="zh">表达您对运动、艺术和娱乐的兴趣。</span><span class="en">Express your interests in sports, arts, and entertainment.</span></p>
-                </a>
-                <a href="supplementary.html?category=emotions&lang=zh" class="supplementary-card">
-                    <div class="card-icon"><i class="fas fa-heart"></i></div>
-                    <h3><span class="zh">情感表达</span><span class="en">Emotions & Feelings</span></h3>
-                    <p><span class="zh">有效地表达您的情感和感受。</span><span class="en">Communicate your emotions and feelings effectively.</span></p>
-                </a>
-                <a href="supplementary.html?category=daily_life&lang=zh" class="supplementary-card">
-                    <div class="card-icon"><i class="fas fa-cloud-sun"></i></div>
-                    <h3><span class="zh">天气与日常生活</span><span class="en">Weather & Daily Life</span></h3>
-                    <p><span class="zh">天气和日常生活的基本用语。</span><span class="en">Essential phrases for weather and daily routines.</span></p>
-                </a>
-                <a href="supplementary.html?category=comparisons&lang=zh" class="supplementary-card">
-                    <div class="card-icon"><i class="fas fa-balance-scale"></i></div>
-                    <h3><span class="zh">比较结构</span><span class="en">Comparison Structures</span></h3>
-                    <p><span class="zh">学习进行比较和表达偏好。</span><span class="en">Learn to make comparisons and express preferences.</span></p>
-                </a>
-            </div>
-        </section>
-
-        <!-- Section divider with visual anchor -->
-        <div class="section-divider"></div>
-
-        <!-- Visual anchor pattern -->
-        <div class="visual-anchor" style="bottom: 10%; left: 5%;"></div>
-
-        <section class="benefits-section">
-            <!-- Visual storytelling journey path -->
-            <div class="journey-path"></div>
-            <h2><span class="zh">为什么学习中文？</span><span class="en">Why Learn Mandarin Chinese?</span></h2>
-            <div class="benefits-grid">
-                <div class="benefit-card">
-                    <h3><i class="fas fa-globe"></i> <span class="zh">全球影响力</span><span class="en">Global Reach & Impact</span></h3>
-                    <ul>
-                        <li><strong><span class="zh">母语使用者：</span><span class="en">Native Speakers:</span></strong> <span class="zh">全球超过10亿</span><span class="en">Over 1 billion worldwide</span></li>
-                        <li><strong><span class="zh">商业：</span><span class="en">Business:</span></strong> <span class="zh">中国巨大的经济影响力</span><span class="en">China's massive economic influence</span></li>
-                        <li><strong><span class="zh">科技：</span><span class="en">Technology:</span></strong> <span class="zh">主要科技创新中心</span><span class="en">Major tech innovation hub</span></li>
-                        <li><strong><span class="zh">文化：</span><span class="en">Culture:</span></strong> <span class="zh">五千年丰富文化遗产</span><span class="en">Rich 5000-year cultural heritage</span></li>
-                        <li><strong><span class="zh">未来：</span><span class="en">Future:</span></strong> <span class="zh">日益增长的全球重要性</span><span class="en">Growing global significance</span></li>
-                    </ul>
-                </div>
-                <div class="benefit-card">
-                    <h3><i class="fas fa-briefcase"></i> <span class="zh">职业优势</span><span class="en">Career Advantages</span></h3>
-                    <ul>
-                        <li><span class="zh">国际商务机会</span><span class="en">International business opportunities</span></li>
-                        <li><span class="zh">科技领域合作</span><span class="en">Tech sector collaboration</span></li>
-                        <li><span class="zh">进出口优势</span><span class="en">Import/export advantages</span></li>
-                        <li><span class="zh">外交和政府职位</span><span class="en">Diplomatic and government positions</span></li>
-                        <li><span class="zh">跨文化咨询</span><span class="en">Cross-cultural consulting</span></li>
-                    </ul>
-                </div>
-                <div class="benefit-card">
-                    <h3><i class="fas fa-dollar-sign"></i> <span class="zh">商业潜力</span><span class="en">Business Potential</span></h3>
-                    <ul>
-                        <li><span class="zh">进入中国市场</span><span class="en">Access to Chinese market</span></li>
-                        <li><span class="zh">电子商务机会</span><span class="en">E-commerce opportunities</span></li>
-                        <li><span class="zh">翻译服务</span><span class="en">Translation services</span></li>
-                        <li><span class="zh">语言教学</span><span class="en">Language teaching</span></li>
-                        <li><span class="zh">文化咨询</span><span class="en">Cultural consulting</span></li>
-                    </ul>
-                </div>
-                <div class="benefit-card">
-                    <h3><i class="fas fa-brain"></i> <span class="zh">认知优势</span><span class="en">Cognitive Benefits</span></h3>
-                    <ul>
-                        <li><span class="zh">通过汉字学习增强记忆力</span><span class="en">Enhanced memory through character learning</span></li>
-                        <li><span class="zh">提高模式识别能力</span><span class="en">Improved pattern recognition</span></li>
-                        <li><span class="zh">更好的多任务处理能力</span><span class="en">Better multitasking abilities</span></li>
-                        <li><span class="zh">更强的问题解决能力</span><span class="en">Stronger problem-solving skills</span></li>
-                    </ul>
-                </div>
-                <div class="benefit-card">
-                    <h3><i class="fas fa-plane"></i> <span class="zh">文化接触</span><span class="en">Cultural Access</span></h3>
-                    <ul>
-                        <li><span class="zh">理解中国哲学</span><span class="en">Understand Chinese philosophy</span></li>
-                        <li><span class="zh">欣赏中国艺术</span><span class="en">Appreciate Chinese arts</span></li>
-                        <li><span class="zh">与当地社区联系</span><span class="en">Connect with local communities</span></li>
-                        <li><span class="zh">自信地探索</span><span class="en">Navigate with confidence</span></li>
-                    </ul>
-                </div>
-                <div class="benefit-card">
-                    <h3><i class="fas fa-link"></i> <span class="zh">书写系统</span><span class="en">Writing Systems</span></h3>
-                    <div class="combo-table">
-                        <div class="combo-row">
-                            <span class="combo"><span class="zh">简体中文</span><span class="en">Simplified Chinese</span></span>
-                            <span class="benefit"><span class="zh">中国大陆标准</span><span class="en">Mainland China standard</span></span>
+            <div class="language-cards">
+                <div
+                    class="language-card animate-fade-in"
+                    title="Simplified Chinese - Most widely used writing system in mainland China"
+                >
+                    <div
+                        class="card-header"
+                        style="
+                            background: linear-gradient(
+                                135deg,
+                                #e74c3c,
+                                #c0392b
+                            );
+                        "
+                    >
+                        <h3>
+                            <span class="flag">🇨🇳</span>
+                            简体中文
+                        </h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="progress-container">
+                            <p>
+                                <span class="zh">进度：第0/40天</span
+                                ><span class="en">Progress: Day 0/40</span>
+                            </p>
+                            <div class="progress-bar">
+                                <div
+                                    class="progress-fill"
+                                    style="width: 0%"
+                                ></div>
+                            </div>
                         </div>
-                        <div class="combo-row">
-                            <span class="combo"><span class="zh">繁体中文</span><span class="en">Traditional Chinese</span></span>
-                            <span class="benefit"><span class="zh">台湾和香港使用</span><span class="en">Taiwan & Hong Kong usage</span></span>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <div class="stat-number">40</div>
+                                <div class="stat-label">
+                                    <span class="zh">天</span
+                                    ><span class="en">Days</span>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">5</div>
+                                <div class="stat-label">
+                                    <span class="zh">级别</span
+                                    ><span class="en">Levels</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="combo-row">
-                            <span class="combo"><span class="zh">拼音系统</span><span class="en">Pinyin System</span></span>
-                            <span class="benefit"><span class="zh">语音学习辅助</span><span class="en">Phonetic learning aid</span></span>
+                    </div>
+                </div>
+
+                <div
+                    class="language-card animate-fade-in"
+                    title="Pinyin - Phonetic system for learning Mandarin pronunciation"
+                >
+                    <div
+                        class="card-header"
+                        style="
+                            background: linear-gradient(
+                                135deg,
+                                #27ae60,
+                                #2ecc71
+                            );
+                        "
+                    >
+                        <h3>
+                            <span class="flag">🔤</span>
+                            Pinyin
+                        </h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="progress-container">
+                            <p>
+                                <span class="zh">进度：第0/40天</span
+                                ><span class="en">Progress: Day 0/40</span>
+                            </p>
+                            <div class="progress-bar">
+                                <div
+                                    class="progress-fill"
+                                    style="width: 0%"
+                                ></div>
+                            </div>
                         </div>
-                        <div class="combo-row">
-                            <span class="combo"><span class="zh">汉字书写</span><span class="en">Character Writing</span></span>
-                            <span class="benefit"><span class="zh">文化欣赏</span><span class="en">Cultural appreciation</span></span>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <div class="stat-number">40</div>
+                                <div class="stat-label">
+                                    <span class="zh">天</span
+                                    ><span class="en">Days</span>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">5</div>
+                                <div class="stat-label">
+                                    <span class="zh">级别</span
+                                    ><span class="en">Levels</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="language-card animate-fade-in"
+                    title="English - Translation of Mandarin phrases"
+                >
+                    <div
+                        class="card-header"
+                        style="
+                            background: linear-gradient(
+                                135deg,
+                                #9b59b6,
+                                #8e44ad
+                            );
+                        "
+                    >
+                        <h3>
+                            <span class="flag">🇺🇸</span>
+                            English
+                        </h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="progress-container">
+                            <p>
+                                <span class="zh">进度：第0/40天</span
+                                ><span class="en">Progress: Day 0/40</span>
+                            </p>
+                            <div class="progress-bar">
+                                <div
+                                    class="progress-fill"
+                                    style="width: 0%"
+                                ></div>
+                            </div>
+                        </div>
+                        <div class="stats">
+                            <div class="stat-item">
+                                <div class="stat-number">40</div>
+                                <div class="stat-label">
+                                    <span class="zh">天</span
+                                    ><span class="en">Days</span>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">5</div>
+                                <div class="stat-label">
+                                    <span class="zh">级别</span
+                                    ><span class="en">Levels</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
 
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Mandarin Pathways | <span class="zh">赋能语言学习</span><span class="en">Empowering Language Learning</span></p>
-    </footer>
-
-
-    <!-- Backup / restore progress -->
-    <div id="data-portability-modal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <h3><span class="zh">备份与恢复</span><span class="en">Backup & restore</span></h3>
-            <p><span class="zh">将进度导出为 JSON 文件，或在另一台设备上导入备份（将替换本设备上的进度数据）。</span><span class="en">Export your progress as JSON, or import a backup from another device (replaces progress on this browser).</span></p>
-            <div class="button-group">
-                <button type="button" id="export-progress-btn" class="primary-btn" aria-label="Export progress JSON">Export</button>
-                <label class="primary-btn" style="cursor:pointer;display:inline-block;margin:0;">
-                    Import
-                    <input type="file" id="import-progress-file" accept="application/json,.json" style="display:none">
-                </label>
-                <button type="button" id="close-data-portability" class="secondary-btn">Close</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Notification Settings Modal -->
-    <div id="notification-settings-modal" class="modal" style="display: none;">
-        <div class="modal-content">
-            <h3>Notification Settings</h3>
-            <div class="settings-form">
-                <div class="form-group">
-                    <label>
-                        <input type="checkbox" id="notifications-enabled" checked>
-                        Enable Daily Reminders
-                    </label>
+            <section class="learning-dashboard">
+                <div class="dashboard-panel">
+                    <h2>
+                        <span class="zh">学习仪表盘</span
+                        ><span class="en">Learning Dashboard</span>
+                    </h2>
+                    <div class="dashboard-grid">
+                        <div class="dashboard-stat">
+                            <span class="dashboard-number" data-streak-count
+                                >0</span
+                            >
+                            <span class="dashboard-label"
+                                ><span class="zh">连续学习天数</span
+                                ><span class="en">Day streak</span></span
+                            >
+                        </div>
+                        <div class="dashboard-stat">
+                            <span class="dashboard-number" id="srs-due-count"
+                                >0</span
+                            >
+                            <span class="dashboard-label"
+                                ><span class="zh">今日复习卡片</span
+                                ><span class="en">Cards due today</span></span
+                            >
+                        </div>
+                        <div class="dashboard-stat">
+                            <span
+                                class="dashboard-number"
+                                id="placement-start-day"
+                                >--</span
+                            >
+                            <span class="dashboard-label"
+                                ><span class="zh">推荐起点</span
+                                ><span class="en">Recommended start</span></span
+                            >
+                        </div>
+                    </div>
+                    <div class="review-actions">
+                        <a href="srs.html" class="home-btn">
+                            <i class="fas fa-layer-group"></i>
+                            <span class="zh">开始复习</span
+                            ><span class="en">Start SRS</span>
+                        </a>
+                        <a href="placement.html" class="nav-btn">
+                            <i class="fas fa-compass"></i>
+                            <span class="zh">水平测试</span
+                            ><span class="en">Placement</span>
+                        </a>
+                    </div>
+                    <ul
+                        class="achievement-list"
+                        data-achievements-list
+                        aria-label="Achievements"
+                    ></ul>
                 </div>
-                <div class="form-group">
-                    <label>Reminder Time:
-                        <input type="time" id="reminder-time" value="09:00">
-                    </label>
+            </section>
+
+            <!-- Section divider with visual anchor -->
+            <div class="section-divider"></div>
+
+            <!-- Visual anchor pattern -->
+            <div class="visual-anchor" style="top: 5%; right: 5%"></div>
+
+            <section class="course-overview">
+                <h2>
+                    <span class="zh">课程结构</span
+                    ><span class="en">Course Structure</span>
+                </h2>
+                <div class="course-sections">
+                    <div class="section-card">
+                        <h3>
+                            <i class="fas fa-star"></i>
+                            <span class="zh">第1-7天</span
+                            ><span class="en">Days 1-7</span>
+                        </h3>
+                        <p>
+                            <span class="zh">拼音系统、声调和基本发音</span
+                            ><span class="en"
+                                >Pinyin system, tones, and pronunciation
+                                basics</span
+                            >
+                        </p>
+                    </div>
+                    <div class="section-card">
+                        <h3>
+                            <i class="fas fa-comments"></i>
+                            <span class="zh">第8-14天</span
+                            ><span class="en">Days 8-14</span>
+                        </h3>
+                        <p>
+                            <span class="zh">基本日常用语和基础语法</span
+                            ><span class="en"
+                                >Essential daily phrases and basic grammar</span
+                            >
+                        </p>
+                    </div>
+                    <div class="section-card">
+                        <h3>
+                            <i class="fas fa-building"></i>
+                            <span class="zh">第15-22天</span
+                            ><span class="en">Days 15-22</span>
+                        </h3>
+                        <p>
+                            <span class="zh">文化背景和日常生活交流</span
+                            ><span class="en"
+                                >Cultural context and daily life
+                                communication</span
+                            >
+                        </p>
+                    </div>
+                    <div class="section-card">
+                        <h3>
+                            <i class="fas fa-laptop-code"></i>
+                            <span class="zh">第23-30天</span
+                            ><span class="en">Days 23-30</span>
+                        </h3>
+                        <p>
+                            <span class="zh">职业和商务中文</span
+                            ><span class="en"
+                                >Professional and business Mandarin</span
+                            >
+                        </p>
+                    </div>
+                    <div class="section-card">
+                        <h3>
+                            <i class="fas fa-graduation-cap"></i>
+                            <span class="zh">第31-40天</span
+                            ><span class="en">Days 31-40</span>
+                        </h3>
+                        <p>
+                            <span class="zh">高级流利度和实际应用</span
+                            ><span class="en"
+                                >Advanced fluency and real-world
+                                applications</span
+                            >
+                        </p>
+                    </div>
                 </div>
+            </section>
+
+            <!-- Section divider with visual anchor -->
+            <div class="section-divider"></div>
+
+            <section id="day-selection">
+                <h2>
+                    <span class="zh">每日课程</span
+                    ><span class="en">Daily Lessons</span>
+                </h2>
+
+                <!-- Day grid pagination controls -->
+                <div class="day-controls">
+                    <button
+                        id="prevDays"
+                        class="hover-scale"
+                        aria-label="Previous page"
+                    >
+                        <i class="fas fa-chevron-left"></i>
+                        <span class="zh">上一页</span
+                        ><span class="en">Previous</span>
+                    </button>
+                    <div class="day-range" role="status" aria-live="polite">
+                        <span class="zh">第</span><span class="en">Days </span
+                        ><span id="dayRangeStart">1</span>-<span
+                            id="dayRangeEnd"
+                            >10</span
+                        ><span class="zh">天</span>
+                    </div>
+                    <button
+                        id="nextDays"
+                        class="hover-scale"
+                        aria-label="Next page"
+                    >
+                        <span class="zh">下一页</span
+                        ><span class="en">Next</span>
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <div class="day-grid">
+                    <!-- Days will be dynamically added here -->
+                </div>
+            </section>
+
+            <!-- Section divider with visual anchor -->
+            <div class="section-divider"></div>
+
+            <!-- Core Skills Section -->
+            <section class="core-skills-section">
+                <h2>
+                    <span class="zh">核心语言技能</span
+                    ><span class="en">Core Language Skills</span>
+                </h2>
+                <p class="section-description">
+                    <span class="zh"
+                        >通过这些专项练习增强您的日常学习，提高阅读和写作能力。</span
+                    ><span class="en"
+                        >Enhance your daily learning with focused practice on
+                        these essential language skills.</span
+                    >
+                </p>
+                <div class="core-skills-grid">
+                    <a href="reading.html" class="core-skill-card">
+                        <div class="card-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h3>
+                            <span class="zh">阅读能力</span
+                            ><span class="en">Reading Skills</span>
+                        </h3>
+                        <p>
+                            <span class="zh"
+                                >提高您的中文阅读理解能力，从初级到高级的多种练习。</span
+                            ><span class="en"
+                                >Improve your Chinese reading comprehension with
+                                exercises from beginner to advanced
+                                levels.</span
+                            >
+                        </p>
+                    </a>
+                    <a href="writing.html" class="core-skill-card">
+                        <div class="card-icon"><i class="fas fa-pen"></i></div>
+                        <h3>
+                            <span class="zh">写作能力</span
+                            ><span class="en">Writing Skills</span>
+                        </h3>
+                        <p>
+                            <span class="zh"
+                                >练习汉字书写、句子构建和翻译技巧，全面提升写作水平。</span
+                            ><span class="en"
+                                >Practice character writing, sentence
+                                construction, and translation techniques to
+                                enhance your writing proficiency.</span
+                            >
+                        </p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Section divider with visual anchor -->
+            <div class="section-divider"></div>
+
+            <!-- Supplementary Content Section -->
+            <section class="supplementary-section">
+                <h2>
+                    <span class="zh">补充学习材料</span
+                    ><span class="en">Supplementary Learning Materials</span>
+                </h2>
+                <div class="supplementary-grid">
+                    <a
+                        href="supplementary.html?category=education&lang=zh"
+                        class="supplementary-card"
+                    >
+                        <div class="card-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>
+                            <span class="zh">教育与学术生活</span
+                            ><span class="en">Education & Academic Life</span>
+                        </h3>
+                        <p>
+                            <span class="zh"
+                                >掌握学术环境和课堂互动的词汇。</span
+                            ><span class="en"
+                                >Master vocabulary for academic settings and
+                                classroom interactions.</span
+                            >
+                        </p>
+                    </a>
+                    <a
+                        href="supplementary.html?category=hobbies&lang=zh"
+                        class="supplementary-card"
+                    >
+                        <div class="card-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3>
+                            <span class="zh">兴趣爱好</span
+                            ><span class="en">Hobbies & Interests</span>
+                        </h3>
+                        <p>
+                            <span class="zh"
+                                >表达您对运动、艺术和娱乐的兴趣。</span
+                            ><span class="en"
+                                >Express your interests in sports, arts, and
+                                entertainment.</span
+                            >
+                        </p>
+                    </a>
+                    <a
+                        href="supplementary.html?category=emotions&lang=zh"
+                        class="supplementary-card"
+                    >
+                        <div class="card-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>
+                            <span class="zh">情感表达</span
+                            ><span class="en">Emotions & Feelings</span>
+                        </h3>
+                        <p>
+                            <span class="zh">有效地表达您的情感和感受。</span
+                            ><span class="en"
+                                >Communicate your emotions and feelings
+                                effectively.</span
+                            >
+                        </p>
+                    </a>
+                    <a
+                        href="supplementary.html?category=daily_life&lang=zh"
+                        class="supplementary-card"
+                    >
+                        <div class="card-icon">
+                            <i class="fas fa-cloud-sun"></i>
+                        </div>
+                        <h3>
+                            <span class="zh">天气与日常生活</span
+                            ><span class="en">Weather & Daily Life</span>
+                        </h3>
+                        <p>
+                            <span class="zh">天气和日常生活的基本用语。</span
+                            ><span class="en"
+                                >Essential phrases for weather and daily
+                                routines.</span
+                            >
+                        </p>
+                    </a>
+                    <a
+                        href="supplementary.html?category=comparisons&lang=zh"
+                        class="supplementary-card"
+                    >
+                        <div class="card-icon">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <h3>
+                            <span class="zh">比较结构</span
+                            ><span class="en">Comparison Structures</span>
+                        </h3>
+                        <p>
+                            <span class="zh">学习进行比较和表达偏好。</span
+                            ><span class="en"
+                                >Learn to make comparisons and express
+                                preferences.</span
+                            >
+                        </p>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Section divider with visual anchor -->
+            <div class="section-divider"></div>
+
+            <!-- Visual anchor pattern -->
+            <div class="visual-anchor" style="bottom: 10%; left: 5%"></div>
+
+            <section class="benefits-section">
+                <!-- Visual storytelling journey path -->
+                <div class="journey-path"></div>
+                <h2>
+                    <span class="zh">为什么学习中文？</span
+                    ><span class="en">Why Learn Mandarin Chinese?</span>
+                </h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <h3>
+                            <i class="fas fa-globe"></i>
+                            <span class="zh">全球影响力</span
+                            ><span class="en">Global Reach & Impact</span>
+                        </h3>
+                        <ul>
+                            <li>
+                                <strong
+                                    ><span class="zh">母语使用者：</span
+                                    ><span class="en"
+                                        >Native Speakers:</span
+                                    ></strong
+                                >
+                                <span class="zh">全球超过10亿</span
+                                ><span class="en"
+                                    >Over 1 billion worldwide</span
+                                >
+                            </li>
+                            <li>
+                                <strong
+                                    ><span class="zh">商业：</span
+                                    ><span class="en">Business:</span></strong
+                                >
+                                <span class="zh">中国巨大的经济影响力</span
+                                ><span class="en"
+                                    >China's massive economic influence</span
+                                >
+                            </li>
+                            <li>
+                                <strong
+                                    ><span class="zh">科技：</span
+                                    ><span class="en">Technology:</span></strong
+                                >
+                                <span class="zh">主要科技创新中心</span
+                                ><span class="en"
+                                    >Major tech innovation hub</span
+                                >
+                            </li>
+                            <li>
+                                <strong
+                                    ><span class="zh">文化：</span
+                                    ><span class="en">Culture:</span></strong
+                                >
+                                <span class="zh">五千年丰富文化遗产</span
+                                ><span class="en"
+                                    >Rich 5000-year cultural heritage</span
+                                >
+                            </li>
+                            <li>
+                                <strong
+                                    ><span class="zh">未来：</span
+                                    ><span class="en">Future:</span></strong
+                                >
+                                <span class="zh">日益增长的全球重要性</span
+                                ><span class="en"
+                                    >Growing global significance</span
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>
+                            <i class="fas fa-briefcase"></i>
+                            <span class="zh">职业优势</span
+                            ><span class="en">Career Advantages</span>
+                        </h3>
+                        <ul>
+                            <li>
+                                <span class="zh">国际商务机会</span
+                                ><span class="en"
+                                    >International business opportunities</span
+                                >
+                            </li>
+                            <li>
+                                <span class="zh">科技领域合作</span
+                                ><span class="en"
+                                    >Tech sector collaboration</span
+                                >
+                            </li>
+                            <li>
+                                <span class="zh">进出口优势</span
+                                ><span class="en"
+                                    >Import/export advantages</span
+                                >
+                            </li>
+                            <li>
+                                <span class="zh">外交和政府职位</span
+                                ><span class="en"
+                                    >Diplomatic and government positions</span
+                                >
+                            </li>
+                            <li>
+                                <span class="zh">跨文化咨询</span
+                                ><span class="en"
+                                    >Cross-cultural consulting</span
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>
+                            <i class="fas fa-dollar-sign"></i>
+                            <span class="zh">商业潜力</span
+                            ><span class="en">Business Potential</span>
+                        </h3>
+                        <ul>
+                            <li>
+                                <span class="zh">进入中国市场</span
+                                ><span class="en"
+                                    >Access to Chinese market</span
+                                >
+                            </li>
+                            <li>
+                                <span class="zh">电子商务机会</span
+                                ><span class="en"
+                                    >E-commerce opportunities</span
+                                >
+                            </li>
+                            <li>
+                                <span class="zh">翻译服务</span
+                                ><span class="en">Translation services</span>
+                            </li>
+                            <li>
+                                <span class="zh">语言教学</span
+                                ><span class="en">Language teaching</span>
+                            </li>
+                            <li>
+                                <span class="zh">文化咨询</span
+                                ><span class="en">Cultural consulting</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>
+                            <i class="fas fa-brain"></i>
+                            <span class="zh">认知优势</span
+                            ><span class="en">Cognitive Benefits</span>
+                        </h3>
+                        <ul>
+                            <li>
+                                <span class="zh">通过汉字学习增强记忆力</span
+                                ><span class="en"
+                                    >Enhanced memory through character
+                                    learning</span
+                                >
+                            </li>
+                            <li>
+                                <span class="zh">提高模式识别能力</span
+                                ><span class="en"
+                                    >Improved pattern recognition</span
+                                >
+                            </li>
+                            <li>
+                                <span class="zh">更好的多任务处理能力</span
+                                ><span class="en"
+                                    >Better multitasking abilities</span
+                                >
+                            </li>
+                            <li>
+                                <span class="zh">更强的问题解决能力</span
+                                ><span class="en"
+                                    >Stronger problem-solving skills</span
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>
+                            <i class="fas fa-plane"></i>
+                            <span class="zh">文化接触</span
+                            ><span class="en">Cultural Access</span>
+                        </h3>
+                        <ul>
+                            <li>
+                                <span class="zh">理解中国哲学</span
+                                ><span class="en"
+                                    >Understand Chinese philosophy</span
+                                >
+                            </li>
+                            <li>
+                                <span class="zh">欣赏中国艺术</span
+                                ><span class="en">Appreciate Chinese arts</span>
+                            </li>
+                            <li>
+                                <span class="zh">与当地社区联系</span
+                                ><span class="en"
+                                    >Connect with local communities</span
+                                >
+                            </li>
+                            <li>
+                                <span class="zh">自信地探索</span
+                                ><span class="en"
+                                    >Navigate with confidence</span
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="benefit-card">
+                        <h3>
+                            <i class="fas fa-link"></i>
+                            <span class="zh">书写系统</span
+                            ><span class="en">Writing Systems</span>
+                        </h3>
+                        <div class="combo-table">
+                            <div class="combo-row">
+                                <span class="combo"
+                                    ><span class="zh">简体中文</span
+                                    ><span class="en"
+                                        >Simplified Chinese</span
+                                    ></span
+                                >
+                                <span class="benefit"
+                                    ><span class="zh">中国大陆标准</span
+                                    ><span class="en"
+                                        >Mainland China standard</span
+                                    ></span
+                                >
+                            </div>
+                            <div class="combo-row">
+                                <span class="combo"
+                                    ><span class="zh">繁体中文</span
+                                    ><span class="en"
+                                        >Traditional Chinese</span
+                                    ></span
+                                >
+                                <span class="benefit"
+                                    ><span class="zh">台湾和香港使用</span
+                                    ><span class="en"
+                                        >Taiwan & Hong Kong usage</span
+                                    ></span
+                                >
+                            </div>
+                            <div class="combo-row">
+                                <span class="combo"
+                                    ><span class="zh">拼音系统</span
+                                    ><span class="en">Pinyin System</span></span
+                                >
+                                <span class="benefit"
+                                    ><span class="zh">语音学习辅助</span
+                                    ><span class="en"
+                                        >Phonetic learning aid</span
+                                    ></span
+                                >
+                            </div>
+                            <div class="combo-row">
+                                <span class="combo"
+                                    ><span class="zh">汉字书写</span
+                                    ><span class="en"
+                                        >Character Writing</span
+                                    ></span
+                                >
+                                <span class="benefit"
+                                    ><span class="zh">文化欣赏</span
+                                    ><span class="en"
+                                        >Cultural appreciation</span
+                                    ></span
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>
+                &copy; 2026 Mandarin Pathways |
+                <span class="zh">赋能语言学习</span
+                ><span class="en">Empowering Language Learning</span>
+            </p>
+        </footer>
+
+        <!-- Backup / restore progress -->
+        <div id="data-portability-modal" class="modal" style="display: none">
+            <div class="modal-content">
+                <h3>
+                    <span class="zh">备份与恢复</span
+                    ><span class="en">Backup & restore</span>
+                </h3>
+                <p>
+                    <span class="zh"
+                        >将进度导出为 JSON
+                        文件，或在另一台设备上导入备份（将替换本设备上的进度数据）。</span
+                    ><span class="en"
+                        >Export your progress as JSON, or import a backup from
+                        another device (replaces progress on this
+                        browser).</span
+                    >
+                </p>
                 <div class="button-group">
-                <button id="save-notification-settings" class="primary-btn" aria-label="Save notification settings">Save Settings</button>
-                <button id="close-notification-settings" class="secondary-btn" aria-label="Close settings modal">Close</button>
+                    <button
+                        type="button"
+                        id="export-progress-btn"
+                        class="primary-btn"
+                        aria-label="Export progress JSON"
+                    >
+                        <span class="zh">导出</span
+                        ><span class="en">Export</span>
+                    </button>
+                    <label
+                        class="primary-btn"
+                        style="
+                            cursor: pointer;
+                            display: inline-block;
+                            margin: 0;
+                        "
+                    >
+                        <span class="zh">导入</span
+                        ><span class="en">Import</span>
+                        <input
+                            type="file"
+                            id="import-progress-file"
+                            accept="application/json,.json"
+                            style="display: none"
+                        />
+                    </label>
+                    <button
+                        type="button"
+                        id="close-data-portability"
+                        class="secondary-btn"
+                    >
+                        <span class="zh">关闭</span
+                        ><span class="en">Close</span>
+                    </button>
                 </div>
             </div>
         </div>
-    </div>
 
-    <style>
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        .modal-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            max-width: 400px;
-            width: 90%;
-        }
-        .settings-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-        .button-group {
-            display: flex;
-            gap: 1rem;
-            justify-content: flex-end;
-            margin-top: 1rem;
-        }
-        .primary-btn {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .secondary-btn {
-            background: #f0f0f0;
-            border: 1px solid #ddd;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-    </style>
+        <!-- Notification Settings Modal -->
+        <div
+            id="notification-settings-modal"
+            class="modal"
+            style="display: none"
+        >
+            <div class="modal-content">
+                <h3>
+                    <span class="zh">通知设置</span
+                    ><span class="en">Notification Settings</span>
+                </h3>
+                <div class="settings-form">
+                    <div class="form-group">
+                        <label>
+                            <input
+                                type="checkbox"
+                                id="notifications-enabled"
+                                checked
+                            />
+                            <span class="zh">启用每日提醒</span
+                            ><span class="en">Enable Daily Reminders</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <span class="zh">提醒时间：</span
+                            ><span class="en">Reminder Time: </span>
+                            <input
+                                type="time"
+                                id="reminder-time"
+                                value="09:00"
+                            />
+                        </label>
+                    </div>
+                    <div class="button-group">
+                        <button
+                            id="save-notification-settings"
+                            class="primary-btn"
+                            aria-label="Save notification settings"
+                        >
+                            <span class="zh">保存设置</span
+                            ><span class="en">Save Settings</span>
+                        </button>
+                        <button
+                            id="close-notification-settings"
+                            class="secondary-btn"
+                            aria-label="Close settings modal"
+                        >
+                            <span class="zh">关闭</span
+                            ><span class="en">Close</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-
-    <script src="js/sw-register.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Initialize progress tracking
-            function initializeProgress() {
-                const completedDays = JSON.parse(localStorage.getItem('completedDays') || '{}');
-                ['zh', 'pinyin', 'en'].forEach(lang => {
-                    const completed = Object.keys(completedDays).filter(key => key.endsWith(`_${lang}`)).length;
-                    updateLanguageProgress(lang, completed, completedDays);
-                });
-            }
-
-            // Listen for progress updates from day.html
-            window.addEventListener('storage', function(e) {
-                if (e.key === 'currentProgress') {
-                    const progress = JSON.parse(e.newValue);
-                    const completedDays = JSON.parse(localStorage.getItem('completedDays') || '{}');
-                    updateLanguageProgress(progress.lang, progress.completed, completedDays);
+        <script src="js/sw-register.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Initialize progress tracking
+                function initializeProgress() {
+                    const completedDays = JSON.parse(
+                        localStorage.getItem("completedDays") || "{}",
+                    );
+                    ["zh", "pinyin", "en"].forEach((lang) => {
+                        const completed = Object.keys(completedDays).filter(
+                            (key) => key.endsWith(`_${lang}`),
+                        ).length;
+                        updateLanguageProgress(lang, completed, completedDays);
+                    });
                 }
+
+                // Listen for progress updates from day.html
+                window.addEventListener("storage", function (e) {
+                    if (e.key === "currentProgress") {
+                        const progress = JSON.parse(e.newValue);
+                        const completedDays = JSON.parse(
+                            localStorage.getItem("completedDays") || "{}",
+                        );
+                        updateLanguageProgress(
+                            progress.lang,
+                            progress.completed,
+                            completedDays,
+                        );
+                    }
+                });
+
+                // Initialize progress
+                initializeProgress();
             });
 
-            // Initialize progress
-            initializeProgress();
-        });
+            function updateLanguageProgress(lang, completed, completedDays) {
+                const cardOrder = ["zh", "pinyin", "en"];
+                const idx = cardOrder.indexOf(lang);
+                const cards = document.querySelectorAll(".language-card");
+                const card = idx >= 0 ? cards[idx] : null;
 
-        function updateLanguageProgress(lang, completed, completedDays) {
-            const cardOrder = ['zh', 'pinyin', 'en'];
-            const idx = cardOrder.indexOf(lang);
-            const cards = document.querySelectorAll('.language-card');
-            const card = idx >= 0 ? cards[idx] : null;
+                if (card) {
+                    const progressText = card.querySelector(
+                        ".progress-container p",
+                    );
+                    const progressBar = card.querySelector(".progress-fill");
+                    if (progressText && progressBar) {
+                        const zh = progressText.querySelector(".zh");
+                        const en = progressText.querySelector(".en");
+                        if (zh) {
+                            zh.textContent = `进度：第${completed}/40天`;
+                        }
+                        if (en) {
+                            en.textContent = `Progress: Day ${completed}/40`;
+                        }
+                        if (!zh && !en) {
+                            progressText.textContent = `Progress: Day ${completed}/40`;
+                        }
+                        progressBar.style.width = `${(completed / 40) * 100}%`;
+                    }
+                }
 
-            if (card) {
-                const progressText = card.querySelector('.progress-container p');
-                const progressBar = card.querySelector('.progress-fill');
-                if (progressText && progressBar) {
-                    const zh = progressText.querySelector('.zh');
-                    const en = progressText.querySelector('.en');
-                    if (zh) {
-                        zh.textContent = `进度：第${completed}/40天`;
-                    }
-                    if (en) {
-                        en.textContent = `Progress: Day ${completed}/40`;
-                    }
-                    if (!zh && !en) {
-                        progressText.textContent = `Progress: Day ${completed}/40`;
-                    }
-                    progressBar.style.width = `${(completed / 40) * 100}%`;
+                const dayGrid = document.querySelector(".day-grid");
+                if (dayGrid) {
+                    const dayLinks = dayGrid.querySelectorAll("a");
+                    dayLinks.forEach((link, index) => {
+                        const d = index + 1;
+                        const status = link.querySelector(".day-status i");
+                        if (!status) return;
+                        if (completedDays[`${d}_${lang}`]) {
+                            status.className = "fas fa-check-circle";
+                            status.style.color = "var(--success-color)";
+                        } else {
+                            status.className = "fas fa-circle";
+                            status.style.color = "var(--warning-color)";
+                        }
+                    });
                 }
             }
+        </script>
+        <script src="js/i18n.js" defer></script>
+        <script src="js/starred-phrases.js" defer></script>
+        <script src="js/streaks.js" defer></script>
+        <script src="js/srs.js" defer></script>
+        <script src="js/script.min.js" defer></script>
+        <script src="js/notifications.js" defer></script>
+        <script src="js/data-portability.js" defer></script>
 
-            const dayGrid = document.querySelector('.day-grid');
-            if (dayGrid) {
-                const dayLinks = dayGrid.querySelectorAll('a');
-                dayLinks.forEach((link, index) => {
-                    const d = index + 1;
-                    const status = link.querySelector('.day-status i');
-                    if (!status) return;
-                    if (completedDays[`${d}_${lang}`]) {
-                        status.className = 'fas fa-check-circle';
-                        status.style.color = 'var(--success-color)';
-                    } else {
-                        status.className = 'fas fa-circle';
-                        status.style.color = 'var(--warning-color)';
-                    }
-                });
-            }
-        }
-    </script>
-    <script src="js/script.min.js" defer></script>
-    <script src="js/notifications.js" defer></script>
-    <script src="js/data-portability.js" defer></script>
-
-    <script src="js/return-to-top.js"></script>
-</body>
+        <script src="js/return-to-top.js"></script>
+    </body>
 </html>

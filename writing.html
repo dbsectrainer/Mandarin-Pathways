@@ -1,143 +1,251 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <meta name="description" content="Practice writing Chinese characters - 练习写汉字">
-    <meta name="theme-color" content="#e74c3c">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Mandarin Pathways">
-    <title>Mandarin Pathways - Writing Practice</title>
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/styles.min.css">
-    <link rel="stylesheet" href="css/writing.css">
-    <script src="js/character-drawing.js" defer></script>
-</head>
-<body>
-    <header>
-        <h1>Mandarin Pathways</h1>
-        <p><span class="zh">开启您的中文学习之旅</span><span class="en">Your Journey to Chinese Language Mastery</span></p>
-    </header>
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
+        />
+        <meta
+            name="description"
+            content="Practice writing Chinese characters - 练习写汉字"
+        />
+        <meta name="theme-color" content="#e74c3c" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="black-translucent"
+        />
+        <meta name="apple-mobile-web-app-title" content="Mandarin Pathways" />
+        <title>Mandarin Pathways - Writing Practice</title>
+        <link rel="manifest" href="manifest.json" />
+        <link rel="apple-touch-icon" href="icons/icon-192x192.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+            media="print"
+            onload="this.media = 'all'"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            media="print"
+            onload="this.media = 'all'"
+        />
+        <link rel="stylesheet" href="css/styles.min.css" />
+        <noscript>
+            <link
+                href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+                rel="stylesheet"
+            />
+            <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            />
+        </noscript>
+        <link rel="stylesheet" href="css/writing.css" />
+        <script src="js/hanzi-writer-lite.js" defer></script>
+        <script src="js/i18n.js" defer></script>
+        <script src="js/character-drawing.js" defer></script>
+    </head>
+    <body>
+        <header>
+            <h1>Mandarin Pathways</h1>
+            <p>
+                <span class="zh">开启您的中文学习之旅</span
+                ><span class="en"
+                    >Your Journey to Chinese Language Mastery</span
+                >
+            </p>
+        </header>
 
-    <main>
-        <!-- Return to top button -->
-        <div class="return-to-top" id="returnToTop">
-            <i class="fas fa-arrow-up"></i>
+        <main>
+            <!-- Return to top button -->
+            <div class="return-to-top" id="returnToTop">
+                <i class="fas fa-arrow-up"></i>
+            </div>
+
+            <!-- Visual anchor pattern -->
+            <div class="visual-anchor" style="top: 5%; right: 5%"></div>
+
+            <div class="lesson-container">
+                <div class="lesson-header">
+                    <div class="lesson-title">
+                        <span class="flag" id="language-flag"></span>
+                        <h2>
+                            <span class="zh">写作练习：</span
+                            ><span class="en">Writing Practice: </span
+                            ><span id="activity-type"></span>
+                        </h2>
+                    </div>
+                    <div class="language-selector">
+                        <button
+                            type="button"
+                            class="language-btn"
+                            data-lang="zh"
+                            aria-label="Switch to Simplified Chinese"
+                        >
+                            <span class="flag">🇨🇳</span> 简体中文
+                        </button>
+                        <button
+                            type="button"
+                            class="language-btn"
+                            data-lang="pinyin"
+                            aria-label="Switch to Pinyin"
+                        >
+                            <span class="flag">🔤</span> Pinyin
+                        </button>
+                        <button
+                            type="button"
+                            class="language-btn"
+                            data-lang="en"
+                            aria-label="Switch to English"
+                        >
+                            <span class="flag">🇺🇸</span> English
+                        </button>
+                    </div>
+                </div>
+
+                <div class="navigation">
+                    <a href="index.html" class="home-btn">
+                        <i class="fas fa-home"></i>
+                        <span class="zh">返回首页</span
+                        ><span class="en">Back to Home</span>
+                    </a>
+                </div>
+
+                <div class="activity-selector">
+                    <h3>
+                        <span class="zh">选择活动类型</span
+                        ><span class="pinyin">Xuǎnzé huódòng lèixíng</span
+                        ><span class="en">Select Activity Type</span>
+                    </h3>
+                    <div class="activity-buttons">
+                        <button class="activity-btn" data-type="character">
+                            <i class="fas fa-pen"></i>
+                            <span class="zh">汉字练习</span
+                            ><span class="pinyin">Hànzì liànxí</span
+                            ><span class="en">Character Practice</span>
+                        </button>
+                        <button class="activity-btn" data-type="sentence">
+                            <i class="fas fa-align-left"></i>
+                            <span class="zh">句子完成</span
+                            ><span class="pinyin">Jùzi wánchéng</span
+                            ><span class="en">Sentence Completion</span>
+                        </button>
+                        <button class="activity-btn" data-type="translation">
+                            <i class="fas fa-language"></i>
+                            <span class="zh">翻译练习</span
+                            ><span class="pinyin">Fānyì liànxí</span
+                            ><span class="en">Translation Practice</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="level-selector" style="display: none">
+                    <h3>
+                        <span class="zh">选择难度级别</span
+                        ><span class="pinyin">Xuǎnzé nándù jíbié</span
+                        ><span class="en">Select Difficulty Level</span>
+                    </h3>
+                    <div class="level-buttons" id="level-buttons">
+                        <!-- Levels will be dynamically added here based on activity type -->
+                    </div>
+                </div>
+
+                <div class="section-info">
+                    <h3 id="section-title"></h3>
+                    <p id="section-description"></p>
+                </div>
+
+                <div class="audio-player">
+                    <audio controls id="audio-player" type="audio/mpeg">
+                        <span class="zh">您的浏览器不支持音频元素。</span
+                        ><span class="en"
+                            >Your browser does not support the audio
+                            element.</span
+                        >
+                    </audio>
+                    <div id="audio-fallback"></div>
+                </div>
+
+                <div class="writing-content" id="writing-content">
+                    <!-- Writing content will be dynamically added here -->
+                </div>
+
+                <div class="writing-tools">
+                    <h3>
+                        <span class="zh">写作工具</span
+                        ><span class="pinyin">Xiězuò gōngjù</span
+                        ><span class="en">Writing Tools</span>
+                    </h3>
+                    <div class="tools-container">
+                        <button id="clear-btn" class="tool-btn">
+                            <i class="fas fa-eraser"></i>
+                            <span class="zh">清除</span
+                            ><span class="pinyin">Qīngchú</span
+                            ><span class="en">Clear</span>
+                        </button>
+                        <button id="check-btn" class="tool-btn">
+                            <i class="fas fa-check"></i>
+                            <span class="zh">检查答案</span
+                            ><span class="pinyin">Jiǎnchá dá'àn</span
+                            ><span class="en">Check Answers</span>
+                        </button>
+                        <button id="show-answers-btn" class="tool-btn">
+                            <i class="fas fa-eye"></i>
+                            <span class="zh">显示答案</span
+                            ><span class="pinyin">Xiǎnshì dá'àn</span
+                            ><span class="en">Show Answers</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="lesson-actions">
+                    <button id="complete-btn" class="complete-btn">
+                        <i class="fas fa-check"></i>
+                        <span class="zh">标记为已完成</span
+                        ><span class="pinyin">Biāojì wéi yǐ wánchéng</span
+                        ><span class="en">Mark as Complete</span>
+                    </button>
+                </div>
+
+                <!-- Section divider with visual anchor -->
+                <div class="section-divider"></div>
+
+                <div class="navigation">
+                    <a href="index.html" class="home-btn">
+                        <i class="fas fa-home"></i>
+                        <span class="zh">返回首页</span
+                        ><span class="en">Back to Home</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Visual anchor pattern -->
+            <div class="visual-anchor" style="bottom: 10%; left: 5%"></div>
+        </main>
+
+        <footer>
+            <p>
+                &copy; 2026 Mandarin Pathways |
+                <span class="zh">赋能中文学习</span
+                ><span class="en">Empowering Chinese Language Learning</span>
+            </p>
+        </footer>
+
+        <div class="copy-notification" id="copy-notification">
+            <span class="zh">短语已复制到剪贴板！</span
+            ><span class="en">Phrase copied to clipboard!</span>
         </div>
 
-        <!-- Visual anchor pattern -->
-        <div class="visual-anchor" style="top: 5%; right: 5%;"></div>
-
-        <div class="lesson-container">
-            <div class="lesson-header">
-                <div class="lesson-title">
-                    <span class="flag" id="language-flag"></span>
-                    <h2><span class="zh">写作练习：</span><span class="en">Writing Practice: </span><span id="activity-type"></span></h2>
-                </div>
-                <div class="language-selector">
-                    <button type="button" class="language-btn" data-lang="zh" aria-label="Switch to Simplified Chinese"><span class="flag">🇨🇳</span> 简体中文</button>
-                    <button type="button" class="language-btn" data-lang="pinyin" aria-label="Switch to Pinyin"><span class="flag">🔤</span> Pinyin</button>
-                    <button type="button" class="language-btn" data-lang="en" aria-label="Switch to English"><span class="flag">🇺🇸</span> English</button>
-                </div>
-            </div>
-
-            <div class="navigation">
-                <a href="index.html" class="home-btn">
-                    <i class="fas fa-home"></i> <span class="zh">返回首页</span><span class="en">Back to Home</span>
-                </a>
-            </div>
-
-            <div class="activity-selector">
-                <h3><span class="zh">选择活动类型</span><span class="pinyin">Xuǎnzé huódòng lèixíng</span><span class="en">Select Activity Type</span></h3>
-                <div class="activity-buttons">
-                    <button class="activity-btn" data-type="character">
-                        <i class="fas fa-pen"></i> <span class="zh">汉字练习</span><span class="pinyin">Hànzì liànxí</span><span class="en">Character Practice</span>
-                    </button>
-                    <button class="activity-btn" data-type="sentence">
-                        <i class="fas fa-align-left"></i> <span class="zh">句子完成</span><span class="pinyin">Jùzi wánchéng</span><span class="en">Sentence Completion</span>
-                    </button>
-                    <button class="activity-btn" data-type="translation">
-                        <i class="fas fa-language"></i> <span class="zh">翻译练习</span><span class="pinyin">Fānyì liànxí</span><span class="en">Translation Practice</span>
-                    </button>
-                </div>
-            </div>
-
-            <div class="level-selector" style="display: none;">
-                <h3><span class="zh">选择难度级别</span><span class="pinyin">Xuǎnzé nándù jíbié</span><span class="en">Select Difficulty Level</span></h3>
-                <div class="level-buttons" id="level-buttons">
-                    <!-- Levels will be dynamically added here based on activity type -->
-                </div>
-            </div>
-
-            <div class="section-info">
-                <h3 id="section-title"></h3>
-                <p id="section-description"></p>
-            </div>
-
-            <div class="audio-player">
-                <audio controls id="audio-player" type="audio/mpeg">
-                    <span class="zh">您的浏览器不支持音频元素。</span><span class="en">Your browser does not support the audio element.</span>
-                </audio>
-                <div id="audio-fallback"></div>
-            </div>
-
-            <div class="writing-content" id="writing-content">
-                <!-- Writing content will be dynamically added here -->
-            </div>
-
-            <div class="writing-tools">
-                <h3><span class="zh">写作工具</span><span class="pinyin">Xiězuò gōngjù</span><span class="en">Writing Tools</span></h3>
-                <div class="tools-container">
-                    <button id="clear-btn" class="tool-btn">
-                        <i class="fas fa-eraser"></i> <span class="zh">清除</span><span class="pinyin">Qīngchú</span><span class="en">Clear</span>
-                    </button>
-                    <button id="check-btn" class="tool-btn">
-                        <i class="fas fa-check"></i> <span class="zh">检查答案</span><span class="pinyin">Jiǎnchá dá'àn</span><span class="en">Check Answers</span>
-                    </button>
-                    <button id="show-answers-btn" class="tool-btn">
-                        <i class="fas fa-eye"></i> <span class="zh">显示答案</span><span class="pinyin">Xiǎnshì dá'àn</span><span class="en">Show Answers</span>
-                    </button>
-                </div>
-            </div>
-
-            <div class="lesson-actions">
-                <button id="complete-btn" class="complete-btn">
-                    <i class="fas fa-check"></i> <span class="zh">标记为已完成</span><span class="pinyin">Biāojì wéi yǐ wánchéng</span><span class="en">Mark as Complete</span>
-                </button>
-            </div>
-
-            <!-- Section divider with visual anchor -->
-            <div class="section-divider"></div>
-
-            <div class="navigation">
-                <a href="index.html" class="home-btn">
-                    <i class="fas fa-home"></i> <span class="zh">返回首页</span><span class="en">Back to Home</span>
-                </a>
-            </div>
-        </div>
-
-        <!-- Visual anchor pattern -->
-        <div class="visual-anchor" style="bottom: 10%; left: 5%;"></div>
-    </main>
-
-    <footer>
-        <p>&copy; 2026 Mandarin Pathways | <span class="zh">赋能中文学习</span><span class="en">Empowering Chinese Language Learning</span></p>
-    </footer>
-
-    <div class="copy-notification" id="copy-notification">
-        <span class="zh">短语已复制到剪贴板！</span><span class="en">Phrase copied to clipboard!</span>
-    </div>
-
-    <script src="js/sw-register.js"></script>
-    <script src="js/content-error.js" defer></script>
-    <script src="js/lesson-audio-sync.js" defer></script>
-    <script src="js/writing-page.js" defer></script>
-    <script src="js/return-to-top.js" defer></script>
-</body>
+        <script src="js/sw-register.js"></script>
+        <script src="js/content-error.js" defer></script>
+        <script src="js/lesson-audio-sync.js" defer></script>
+        <script src="js/writing-page.js" defer></script>
+        <script src="js/return-to-top.js" defer></script>
+    </body>
 </html>

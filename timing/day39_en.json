@@ -1,67 +1,67 @@
 {
-  "version": 1,
-  "day": 39,
-  "lang": "en",
-  "phrases": [
-    {
-      "i": 0,
-      "section": "Business Meeting Dialogue 1",
-      "start": 0.0,
-      "end": 4.608
-    },
-    {
-      "i": 1,
-      "section": "Business Meeting Dialogue 1",
-      "start": 4.608,
-      "end": 7.752
-    },
-    {
-      "i": 2,
-      "section": "Business Meeting Dialogue 1",
-      "start": 7.752,
-      "end": 11.976
-    },
-    {
-      "i": 3,
-      "section": "Business Meeting Dialogue 1",
-      "start": 11.976,
-      "end": 15.312
-    },
-    {
-      "i": 4,
-      "section": "Business Meeting Dialogue 1",
-      "start": 15.312,
-      "end": 18.576
-    },
-    {
-      "i": 5,
-      "section": "Business Meeting Dialogue 2",
-      "start": 18.576,
-      "end": 24.072
-    },
-    {
-      "i": 6,
-      "section": "Business Meeting Dialogue 2",
-      "start": 24.072,
-      "end": 28.752
-    },
-    {
-      "i": 7,
-      "section": "Business Meeting Dialogue 2",
-      "start": 28.752,
-      "end": 32.64
-    },
-    {
-      "i": 8,
-      "section": "Business Meeting Dialogue 2",
-      "start": 32.64,
-      "end": 36.168
-    },
-    {
-      "i": 9,
-      "section": "Business Meeting Dialogue 2",
-      "start": 36.168,
-      "end": 38.904
-    }
-  ]
+    "version": 1,
+    "day": 39,
+    "lang": "en",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Business Meeting Dialogue 1",
+            "start": 0.0,
+            "end": 4.608
+        },
+        {
+            "i": 1,
+            "section": "Business Meeting Dialogue 1",
+            "start": 4.608,
+            "end": 7.752
+        },
+        {
+            "i": 2,
+            "section": "Business Meeting Dialogue 1",
+            "start": 7.752,
+            "end": 11.976
+        },
+        {
+            "i": 3,
+            "section": "Business Meeting Dialogue 1",
+            "start": 11.976,
+            "end": 15.312
+        },
+        {
+            "i": 4,
+            "section": "Business Meeting Dialogue 1",
+            "start": 15.312,
+            "end": 18.576
+        },
+        {
+            "i": 5,
+            "section": "Business Meeting Dialogue 2",
+            "start": 18.576,
+            "end": 24.072
+        },
+        {
+            "i": 6,
+            "section": "Business Meeting Dialogue 2",
+            "start": 24.072,
+            "end": 28.752
+        },
+        {
+            "i": 7,
+            "section": "Business Meeting Dialogue 2",
+            "start": 28.752,
+            "end": 32.64
+        },
+        {
+            "i": 8,
+            "section": "Business Meeting Dialogue 2",
+            "start": 32.64,
+            "end": 36.168
+        },
+        {
+            "i": 9,
+            "section": "Business Meeting Dialogue 2",
+            "start": 36.168,
+            "end": 38.904
+        }
+    ]
 }

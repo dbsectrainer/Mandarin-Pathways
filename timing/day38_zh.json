@@ -1,67 +1,67 @@
 {
-  "version": 1,
-  "day": 38,
-  "lang": "zh",
-  "phrases": [
-    {
-      "i": 0,
-      "section": "Shopping Dialogue 1",
-      "start": 0.0,
-      "end": 2.808
-    },
-    {
-      "i": 1,
-      "section": "Shopping Dialogue 1",
-      "start": 2.808,
-      "end": 4.992
-    },
-    {
-      "i": 2,
-      "section": "Shopping Dialogue 1",
-      "start": 4.992,
-      "end": 8.304
-    },
-    {
-      "i": 3,
-      "section": "Shopping Dialogue 1",
-      "start": 8.304,
-      "end": 11.808
-    },
-    {
-      "i": 4,
-      "section": "Shopping Dialogue 1",
-      "start": 11.808,
-      "end": 14.448
-    },
-    {
-      "i": 5,
-      "section": "Shopping Dialogue 2",
-      "start": 14.448,
-      "end": 17.64
-    },
-    {
-      "i": 6,
-      "section": "Shopping Dialogue 2",
-      "start": 17.64,
-      "end": 20.472
-    },
-    {
-      "i": 7,
-      "section": "Shopping Dialogue 2",
-      "start": 20.472,
-      "end": 23.808
-    },
-    {
-      "i": 8,
-      "section": "Shopping Dialogue 2",
-      "start": 23.808,
-      "end": 28.56
-    },
-    {
-      "i": 9,
-      "section": "Shopping Dialogue 2",
-      "start": 28.56,
-      "end": 31.512
-    }
-  ]
+    "version": 1,
+    "day": 38,
+    "lang": "zh",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Shopping Dialogue 1",
+            "start": 0.0,
+            "end": 2.808
+        },
+        {
+            "i": 1,
+            "section": "Shopping Dialogue 1",
+            "start": 2.808,
+            "end": 4.992
+        },
+        {
+            "i": 2,
+            "section": "Shopping Dialogue 1",
+            "start": 4.992,
+            "end": 8.304
+        },
+        {
+            "i": 3,
+            "section": "Shopping Dialogue 1",
+            "start": 8.304,
+            "end": 11.808
+        },
+        {
+            "i": 4,
+            "section": "Shopping Dialogue 1",
+            "start": 11.808,
+            "end": 14.448
+        },
+        {
+            "i": 5,
+            "section": "Shopping Dialogue 2",
+            "start": 14.448,
+            "end": 17.64
+        },
+        {
+            "i": 6,
+            "section": "Shopping Dialogue 2",
+            "start": 17.64,
+            "end": 20.472
+        },
+        {
+            "i": 7,
+            "section": "Shopping Dialogue 2",
+            "start": 20.472,
+            "end": 23.808
+        },
+        {
+            "i": 8,
+            "section": "Shopping Dialogue 2",
+            "start": 23.808,
+            "end": 28.56
+        },
+        {
+            "i": 9,
+            "section": "Shopping Dialogue 2",
+            "start": 28.56,
+            "end": 31.512
+        }
+    ]
 }

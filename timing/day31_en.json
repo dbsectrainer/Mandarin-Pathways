@@ -1,67 +1,67 @@
 {
-  "version": 1,
-  "day": 31,
-  "lang": "en",
-  "phrases": [
-    {
-      "i": 0,
-      "section": "Common Idioms",
-      "start": 0.0,
-      "end": 2.712
-    },
-    {
-      "i": 1,
-      "section": "Common Idioms",
-      "start": 2.712,
-      "end": 5.808
-    },
-    {
-      "i": 2,
-      "section": "Common Idioms",
-      "start": 5.808,
-      "end": 9.096
-    },
-    {
-      "i": 3,
-      "section": "Common Idioms",
-      "start": 9.096,
-      "end": 13.872
-    },
-    {
-      "i": 4,
-      "section": "Common Idioms",
-      "start": 13.872,
-      "end": 18.216
-    },
-    {
-      "i": 5,
-      "section": "Common Idioms",
-      "start": 18.216,
-      "end": 20.616
-    },
-    {
-      "i": 6,
-      "section": "Using Idioms",
-      "start": 20.616,
-      "end": 24.024
-    },
-    {
-      "i": 7,
-      "section": "Using Idioms",
-      "start": 24.024,
-      "end": 26.712
-    },
-    {
-      "i": 8,
-      "section": "Using Idioms",
-      "start": 26.712,
-      "end": 29.52
-    },
-    {
-      "i": 9,
-      "section": "Using Idioms",
-      "start": 29.52,
-      "end": 32.76
-    }
-  ]
+    "version": 1,
+    "day": 31,
+    "lang": "en",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Common Idioms",
+            "start": 0.0,
+            "end": 2.712
+        },
+        {
+            "i": 1,
+            "section": "Common Idioms",
+            "start": 2.712,
+            "end": 5.808
+        },
+        {
+            "i": 2,
+            "section": "Common Idioms",
+            "start": 5.808,
+            "end": 9.096
+        },
+        {
+            "i": 3,
+            "section": "Common Idioms",
+            "start": 9.096,
+            "end": 13.872
+        },
+        {
+            "i": 4,
+            "section": "Common Idioms",
+            "start": 13.872,
+            "end": 18.216
+        },
+        {
+            "i": 5,
+            "section": "Common Idioms",
+            "start": 18.216,
+            "end": 20.616
+        },
+        {
+            "i": 6,
+            "section": "Using Idioms",
+            "start": 20.616,
+            "end": 24.024
+        },
+        {
+            "i": 7,
+            "section": "Using Idioms",
+            "start": 24.024,
+            "end": 26.712
+        },
+        {
+            "i": 8,
+            "section": "Using Idioms",
+            "start": 26.712,
+            "end": 29.52
+        },
+        {
+            "i": 9,
+            "section": "Using Idioms",
+            "start": 29.52,
+            "end": 32.76
+        }
+    ]
 }

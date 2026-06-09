@@ -1,73 +1,73 @@
 {
-  "version": 1,
-  "day": 6,
-  "lang": "en",
-  "phrases": [
-    {
-      "i": 0,
-      "section": "Question Words",
-      "start": 0.0,
-      "end": 1.464
-    },
-    {
-      "i": 1,
-      "section": "Question Words",
-      "start": 1.464,
-      "end": 2.88
-    },
-    {
-      "i": 2,
-      "section": "Question Words",
-      "start": 2.88,
-      "end": 4.344
-    },
-    {
-      "i": 3,
-      "section": "Question Words",
-      "start": 4.344,
-      "end": 5.76
-    },
-    {
-      "i": 4,
-      "section": "Question Words",
-      "start": 5.76,
-      "end": 7.152
-    },
-    {
-      "i": 5,
-      "section": "Question Words",
-      "start": 7.152,
-      "end": 9.6
-    },
-    {
-      "i": 6,
-      "section": "Common Questions",
-      "start": 9.6,
-      "end": 11.4
-    },
-    {
-      "i": 7,
-      "section": "Common Questions",
-      "start": 11.4,
-      "end": 13.176
-    },
-    {
-      "i": 8,
-      "section": "Common Questions",
-      "start": 13.176,
-      "end": 15.024
-    },
-    {
-      "i": 9,
-      "section": "Common Questions",
-      "start": 15.024,
-      "end": 17.064
-    },
-    {
-      "i": 10,
-      "section": "Common Questions",
-      "start": 17.064,
-      "end": 19.08
-    }
-  ]
+    "version": 1,
+    "day": 6,
+    "lang": "en",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Question Words",
+            "start": 0.0,
+            "end": 1.464
+        },
+        {
+            "i": 1,
+            "section": "Question Words",
+            "start": 1.464,
+            "end": 2.88
+        },
+        {
+            "i": 2,
+            "section": "Question Words",
+            "start": 2.88,
+            "end": 4.344
+        },
+        {
+            "i": 3,
+            "section": "Question Words",
+            "start": 4.344,
+            "end": 5.76
+        },
+        {
+            "i": 4,
+            "section": "Question Words",
+            "start": 5.76,
+            "end": 7.152
+        },
+        {
+            "i": 5,
+            "section": "Question Words",
+            "start": 7.152,
+            "end": 9.6
+        },
+        {
+            "i": 6,
+            "section": "Common Questions",
+            "start": 9.6,
+            "end": 11.4
+        },
+        {
+            "i": 7,
+            "section": "Common Questions",
+            "start": 11.4,
+            "end": 13.176
+        },
+        {
+            "i": 8,
+            "section": "Common Questions",
+            "start": 13.176,
+            "end": 15.024
+        },
+        {
+            "i": 9,
+            "section": "Common Questions",
+            "start": 15.024,
+            "end": 17.064
+        },
+        {
+            "i": 10,
+            "section": "Common Questions",
+            "start": 17.064,
+            "end": 19.08
+        }
+    ]
 }

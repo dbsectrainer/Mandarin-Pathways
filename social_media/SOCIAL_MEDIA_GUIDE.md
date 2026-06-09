@@ -78,6 +78,7 @@ The script reads content from a CSV file with the following columns:
 - `Link`: URL to include with the post
 
 Example:
+
 ```csv
 Date,Platform,Post Type,Post Text,Hashtags,Image Prompt,Link
 5/6/25,TikTok,App Introduction,"Discover Mandarin Pathways, a free interactive app to learn Mandarin through games, flashcards, and quizzes. Start your journey today!",#LearnMandarin #LanguageLearning #MandarinPathways,Screenshot of Mandarin Pathways app homepage on a smartphone,https://mandarinpathways.com

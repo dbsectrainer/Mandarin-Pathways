@@ -1,67 +1,67 @@
 {
-  "version": 1,
-  "day": 16,
-  "lang": "en",
-  "phrases": [
-    {
-      "i": 0,
-      "section": "Greetings and Farewells",
-      "start": 0.0,
-      "end": 2.136
-    },
-    {
-      "i": 1,
-      "section": "Greetings and Farewells",
-      "start": 2.136,
-      "end": 4.32
-    },
-    {
-      "i": 2,
-      "section": "Greetings and Farewells",
-      "start": 4.32,
-      "end": 6.288
-    },
-    {
-      "i": 3,
-      "section": "Greetings and Farewells",
-      "start": 6.288,
-      "end": 8.136
-    },
-    {
-      "i": 4,
-      "section": "Greetings and Farewells",
-      "start": 8.136,
-      "end": 9.864
-    },
-    {
-      "i": 5,
-      "section": "Social Phrases",
-      "start": 9.864,
-      "end": 12.888
-    },
-    {
-      "i": 6,
-      "section": "Social Phrases",
-      "start": 12.888,
-      "end": 15.48
-    },
-    {
-      "i": 7,
-      "section": "Social Phrases",
-      "start": 15.48,
-      "end": 17.376
-    },
-    {
-      "i": 8,
-      "section": "Social Phrases",
-      "start": 17.376,
-      "end": 19.776
-    },
-    {
-      "i": 9,
-      "section": "Social Phrases",
-      "start": 19.776,
-      "end": 22.464
-    }
-  ]
+    "version": 1,
+    "day": 16,
+    "lang": "en",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Greetings and Farewells",
+            "start": 0.0,
+            "end": 2.136
+        },
+        {
+            "i": 1,
+            "section": "Greetings and Farewells",
+            "start": 2.136,
+            "end": 4.32
+        },
+        {
+            "i": 2,
+            "section": "Greetings and Farewells",
+            "start": 4.32,
+            "end": 6.288
+        },
+        {
+            "i": 3,
+            "section": "Greetings and Farewells",
+            "start": 6.288,
+            "end": 8.136
+        },
+        {
+            "i": 4,
+            "section": "Greetings and Farewells",
+            "start": 8.136,
+            "end": 9.864
+        },
+        {
+            "i": 5,
+            "section": "Social Phrases",
+            "start": 9.864,
+            "end": 12.888
+        },
+        {
+            "i": 6,
+            "section": "Social Phrases",
+            "start": 12.888,
+            "end": 15.48
+        },
+        {
+            "i": 7,
+            "section": "Social Phrases",
+            "start": 15.48,
+            "end": 17.376
+        },
+        {
+            "i": 8,
+            "section": "Social Phrases",
+            "start": 17.376,
+            "end": 19.776
+        },
+        {
+            "i": 9,
+            "section": "Social Phrases",
+            "start": 19.776,
+            "end": 22.464
+        }
+    ]
 }

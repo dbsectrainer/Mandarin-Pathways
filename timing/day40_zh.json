@@ -1,67 +1,67 @@
 {
-  "version": 1,
-  "day": 40,
-  "lang": "zh",
-  "phrases": [
-    {
-      "i": 0,
-      "section": "Travel Dialogue 1",
-      "start": 0.0,
-      "end": 3.168
-    },
-    {
-      "i": 1,
-      "section": "Travel Dialogue 1",
-      "start": 3.168,
-      "end": 9.312
-    },
-    {
-      "i": 2,
-      "section": "Travel Dialogue 1",
-      "start": 9.312,
-      "end": 12.288
-    },
-    {
-      "i": 3,
-      "section": "Travel Dialogue 1",
-      "start": 12.288,
-      "end": 15.12
-    },
-    {
-      "i": 4,
-      "section": "Travel Dialogue 1",
-      "start": 15.12,
-      "end": 17.64
-    },
-    {
-      "i": 5,
-      "section": "Travel Dialogue 2",
-      "start": 17.64,
-      "end": 20.664
-    },
-    {
-      "i": 6,
-      "section": "Travel Dialogue 2",
-      "start": 20.664,
-      "end": 23.976
-    },
-    {
-      "i": 7,
-      "section": "Travel Dialogue 2",
-      "start": 23.976,
-      "end": 26.52
-    },
-    {
-      "i": 8,
-      "section": "Travel Dialogue 2",
-      "start": 26.52,
-      "end": 30.864
-    },
-    {
-      "i": 9,
-      "section": "Travel Dialogue 2",
-      "start": 30.864,
-      "end": 34.608
-    }
-  ]
+    "version": 1,
+    "day": 40,
+    "lang": "zh",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Travel Dialogue 1",
+            "start": 0.0,
+            "end": 3.168
+        },
+        {
+            "i": 1,
+            "section": "Travel Dialogue 1",
+            "start": 3.168,
+            "end": 9.312
+        },
+        {
+            "i": 2,
+            "section": "Travel Dialogue 1",
+            "start": 9.312,
+            "end": 12.288
+        },
+        {
+            "i": 3,
+            "section": "Travel Dialogue 1",
+            "start": 12.288,
+            "end": 15.12
+        },
+        {
+            "i": 4,
+            "section": "Travel Dialogue 1",
+            "start": 15.12,
+            "end": 17.64
+        },
+        {
+            "i": 5,
+            "section": "Travel Dialogue 2",
+            "start": 17.64,
+            "end": 20.664
+        },
+        {
+            "i": 6,
+            "section": "Travel Dialogue 2",
+            "start": 20.664,
+            "end": 23.976
+        },
+        {
+            "i": 7,
+            "section": "Travel Dialogue 2",
+            "start": 23.976,
+            "end": 26.52
+        },
+        {
+            "i": 8,
+            "section": "Travel Dialogue 2",
+            "start": 26.52,
+            "end": 30.864
+        },
+        {
+            "i": 9,
+            "section": "Travel Dialogue 2",
+            "start": 30.864,
+            "end": 34.608
+        }
+    ]
 }

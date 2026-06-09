@@ -11,18 +11,22 @@ function localizedTextHtml3(text) {
 }
 
 function renderCompleteButtonCompleted(button) {
-    button.innerHTML = `<i class="fas fa-check-circle"></i> ${localizedTextHtml({
-        zh: "已完成",
-        en: "Completed",
-    })}`;
+    button.innerHTML = `<i class="fas fa-check-circle"></i> ${localizedTextHtml(
+        {
+            zh: "已完成",
+            en: "Completed",
+        },
+    )}`;
 }
 
 function renderCompleteButtonCompleted3(button) {
-    button.innerHTML = `<i class="fas fa-check-circle"></i> ${localizedTextHtml3({
-        zh: "已完成",
-        pinyin: "Yǐ wánchéng",
-        en: "Completed",
-    })}`;
+    button.innerHTML = `<i class="fas fa-check-circle"></i> ${localizedTextHtml3(
+        {
+            zh: "已完成",
+            pinyin: "Yǐ wánchéng",
+            en: "Completed",
+        },
+    )}`;
 }
 
 function renderCopyNotificationDefault(notification) {
@@ -40,7 +44,12 @@ function renderCopyNotificationDefault3(notification) {
     });
 }
 
-function showTimedNotification(notification, messageHtml, resetHtml, ms = 2000) {
+function showTimedNotification(
+    notification,
+    messageHtml,
+    resetHtml,
+    ms = 2000,
+) {
     notification.innerHTML = messageHtml;
     notification.style.display = "block";
     notification.style.animation = "none";
@@ -57,7 +66,9 @@ function applyStandardDocumentLang(lang) {
 }
 
 function getUrlLang(defaultLang = "zh") {
-    return new URLSearchParams(window.location.search).get("lang") || defaultLang;
+    return (
+        new URLSearchParams(window.location.search).get("lang") || defaultLang
+    );
 }
 
 function applyWritingLangVisibility(lang, root = document) {

@@ -84,10 +84,12 @@ document.addEventListener("DOMContentLoaded", function () {
     // Add a note only for Pinyin that it's using Mandarin audio
     const audioFallback = document.getElementById("audio-fallback");
     if (lang === "pinyin") {
-        audioFallback.innerHTML = `<p class="note"><i class="fas fa-info-circle"></i> ${localizedTextHtml({
-            zh: "使用普通话音频作为参考。",
-            en: "Using Mandarin audio for reference.",
-        })}</p>`;
+        audioFallback.innerHTML = `<p class="note"><i class="fas fa-info-circle"></i> ${localizedTextHtml(
+            {
+                zh: "使用普通话音频作为参考。",
+                en: "Using Mandarin audio for reference.",
+            },
+        )}</p>`;
         audioFallback.style.display = "block";
     } else {
         audioFallback.innerHTML = "";

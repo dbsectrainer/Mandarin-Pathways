@@ -16,7 +16,8 @@ function applyLang(lang) {
         lang === "en" ? "en" : lang === "pinyin" ? "zh-CN" : lang;
     document.querySelectorAll(".language-btn").forEach(function (btn) {
         const matches =
-            (btn.dataset.lang === "zh" && (lang === "zh-CN" || lang === "zh")) ||
+            (btn.dataset.lang === "zh" &&
+                (lang === "zh-CN" || lang === "zh")) ||
             btn.dataset.lang === lang;
         btn.classList.toggle("active", matches);
     });

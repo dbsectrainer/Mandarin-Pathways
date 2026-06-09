@@ -49,8 +49,12 @@ test.describe("page localization", () => {
 
     test("quiz result UI follows lang after submit", async ({ page }) => {
         await page.goto("/quiz.html?day=1&lang=zh", { waitUntil: "load" });
-        await page.locator('input[name="question-0"][value="How are you?"]').check();
-        await page.locator('input[name="question-1"][value="zai jian"]').check();
+        await page
+            .locator('input[name="question-0"][value="How are you?"]')
+            .check();
+        await page
+            .locator('input[name="question-1"][value="zai jian"]')
+            .check();
         await page.locator('input[name="question-2"]').fill("我");
         await page.locator("#quiz-submit").click();
         await expect(page.locator("#quiz-result .zh").first()).toContainText(
@@ -60,10 +64,9 @@ test.describe("page localization", () => {
     });
 
     test("supplementary complete action follows lang", async ({ page }) => {
-        await page.goto(
-            "/supplementary.html?category=education&lang=zh",
-            { waitUntil: "load" },
-        );
+        await page.goto("/supplementary.html?category=education&lang=zh", {
+            waitUntil: "load",
+        });
         await page.locator("#complete-btn").click();
         await expect(page.locator("#complete-btn .zh")).toHaveText("已完成");
         await expect(page.locator("#complete-btn .en")).toBeHidden();
@@ -120,12 +123,10 @@ test.describe("page localization", () => {
             );
         });
         await page.reload({ waitUntil: "load" });
-        await expect(
-            page.locator(".review-actions button .zh"),
-        ).toHaveText("移除");
-        await expect(
-            page.locator(".review-actions button .en"),
-        ).toBeHidden();
+        await expect(page.locator(".review-actions button .zh")).toHaveText(
+            "移除",
+        );
+        await expect(page.locator(".review-actions button .en")).toBeHidden();
     });
 
     test("srs session controls follow lang", async ({ page }) => {
@@ -149,13 +150,15 @@ test.describe("page localization", () => {
             );
         });
         await page.reload({ waitUntil: "load" });
-        await expect(page.locator('[data-testid="srs-show-answer"] .zh')).toHaveText(
-            "显示答案",
-        );
-        await expect(page.locator('[data-testid="srs-show-answer"] .en')).toBeHidden();
+        await expect(
+            page.locator('[data-testid="srs-show-answer"] .zh'),
+        ).toHaveText("显示答案");
+        await expect(
+            page.locator('[data-testid="srs-show-answer"] .en'),
+        ).toBeHidden();
         await page.locator('[data-testid="srs-show-answer"]').click();
-        await expect(page.locator('[data-testid="srs-grade-good"] .zh')).toHaveText(
-            "良好",
-        );
+        await expect(
+            page.locator('[data-testid="srs-grade-good"] .zh'),
+        ).toHaveText("良好");
     });
 });

@@ -190,20 +190,24 @@ function loadReadingContent(level, topic, lang) {
     if (topicInfo.hasAudio) {
         audio.src = `audio_files/reading/${level}_${topicSlug}_${audioLang}.mp3`;
         if (lang === "pinyin") {
-            audioFallback.innerHTML = `<p class="note"><i class="fas fa-info-circle"></i> ${localizedTextHtml({
-                zh: "使用普通话音频作为参考。",
-                en: "Using Mandarin audio for reference.",
-            })}</p>`;
+            audioFallback.innerHTML = `<p class="note"><i class="fas fa-info-circle"></i> ${localizedTextHtml(
+                {
+                    zh: "使用普通话音频作为参考。",
+                    en: "Using Mandarin audio for reference.",
+                },
+            )}</p>`;
             audioFallback.style.display = "block";
         } else {
             audioFallback.style.display = "none";
         }
     } else {
         audio.src = "";
-        audioFallback.innerHTML = `<p class="note"><i class="fas fa-info-circle"></i> ${localizedTextHtml({
-            zh: "此阅读暂无音频。",
-            en: "Audio not available for this reading.",
-        })}</p>`;
+        audioFallback.innerHTML = `<p class="note"><i class="fas fa-info-circle"></i> ${localizedTextHtml(
+            {
+                zh: "此阅读暂无音频。",
+                en: "Audio not available for this reading.",
+            },
+        )}</p>`;
         audioFallback.style.display = "block";
     }
 
@@ -234,7 +238,7 @@ function loadReadingContent(level, topic, lang) {
 
     Promise.all([textFetch, timingFetch])
         .then(([text, timing]) => {
-            formatAndDisplayReadingContent(text, lang, timing);
+            formatAndDisplayReadingContent(text, lang, timing, level, topic);
             if (topicInfo.hasAudio) {
                 LessonAudioSync.attachCueHighlighting(
                     audio,
@@ -255,7 +259,13 @@ function loadReadingContent(level, topic, lang) {
         });
 }
 
-function formatAndDisplayReadingContent(text, lang, timingManifest) {
+function formatAndDisplayReadingContent(
+    text,
+    lang,
+    timingManifest,
+    level,
+    topic,
+) {
     // Split the text into sections (main text, vocabulary, questions)
     const sections = text.split(/\n(?=\w[^\n]+\n-+\n)/);
 
@@ -323,12 +333,43 @@ function formatAndDisplayReadingContent(text, lang, timingManifest) {
                     .replace(/\(([^)]+)\)/, '<span class="pinyin">($1)</span>')
                     .replace(/-/, '<span class="separator">-</span>');
 
+                const srsBtn = document.createElement("button");
+                srsBtn.type = "button";
+                srsBtn.className = "copy-btn";
+                srsBtn.setAttribute("aria-label", "Add to SRS review");
+                srsBtn.innerHTML = '<i class="fas fa-layer-group"></i>';
+                srsBtn.addEventListener("click", () => {
+                    if (typeof upsertSrsCard !== "function") return;
+                    const front = item.replace(/^[•\s]+/, "").trim();
+                    upsertSrsCard({
+                        id: `reading|${level}|${topic}|${lang}|${front}`,
+                        day: null,
+                        lang,
+                        front,
+                        back: `${level} - ${topic}`,
+                    });
+                    const notification =
+                        document.getElementById("copy-notification");
+                    showTimedNotification(
+                        notification,
+                        localizedTextHtml({
+                            zh: "短语已添加到间隔复习。",
+                            en: "Phrase added to SRS review.",
+                        }),
+                        localizedTextHtml({
+                            zh: "短语已复制到剪贴板！",
+                            en: "Phrase copied to clipboard!",
+                        }),
+                    );
+                });
+
                 const copyBtn = document.createElement("button");
                 copyBtn.className = "copy-btn";
                 copyBtn.innerHTML = '<i class="fas fa-copy"></i>';
                 copyBtn.addEventListener("click", () => copyText(item.trim()));
 
                 vocabItem.appendChild(itemText);
+                vocabItem.appendChild(srsBtn);
                 vocabItem.appendChild(copyBtn);
                 vocabListDiv.appendChild(vocabItem);
             }
@@ -388,10 +429,12 @@ function formatAndDisplayReadingContent(text, lang, timingManifest) {
 
             const answerToggle = document.createElement("button");
             answerToggle.className = "answer-toggle";
-            answerToggle.innerHTML = `<i class="fas fa-eye"></i> ${localizedTextHtml({
-                zh: "显示答案",
-                en: "Show Answer",
-            })}`;
+            answerToggle.innerHTML = `<i class="fas fa-eye"></i> ${localizedTextHtml(
+                {
+                    zh: "显示答案",
+                    en: "Show Answer",
+                },
+            )}`;
 
             const answerText = document.createElement("div");
             answerText.className = "answer-text";

@@ -511,8 +511,12 @@ function initializeCharacterDrawing() {
         area.appendChild(drawingContainer);
     });
 
-    const lang = new URLSearchParams(window.location.search).get("lang") || "zh";
-    applyWritingLangVisibility(lang, document.getElementById("writing-content"));
+    const lang =
+        new URLSearchParams(window.location.search).get("lang") || "zh";
+    applyWritingLangVisibility(
+        lang,
+        document.getElementById("writing-content"),
+    );
 }
 
 // Initialize when DOM is loaded

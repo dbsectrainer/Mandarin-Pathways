@@ -256,7 +256,10 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector(".level-selector").style.display = "block";
         document.getElementById("activity-type").innerHTML =
             getActivityTypeDisplayHtml(activityType);
-        applyWritingLangVisibility(lang, document.getElementById("activity-type"));
+        applyWritingLangVisibility(
+            lang,
+            document.getElementById("activity-type"),
+        );
 
         // Populate levels
         const levelButtons = document.getElementById("level-buttons");

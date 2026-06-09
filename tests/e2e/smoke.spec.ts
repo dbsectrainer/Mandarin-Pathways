@@ -70,4 +70,22 @@ test.describe("PWA smoke", () => {
         await expect(page.locator("#writing-content")).toBeAttached();
         await expect(page.locator("#complete-btn")).toBeVisible();
     });
+
+    test("tone glyphs render in pinyin mode on day.html", async ({ page }) => {
+        await page.goto("/day.html?day=1&lang=pinyin", { waitUntil: "load" });
+        await expect(page.locator(".tone-glyph").first()).toBeVisible({
+            timeout: 5000,
+        });
+        expect(await page.locator(".tone-glyph").count()).toBeGreaterThan(0);
+    });
+
+    test("stroke-order panel renders on writing.html", async ({ page }) => {
+        await page.goto(
+            "/writing.html?type=character&level=Basic%20Strokes&lang=en",
+            { waitUntil: "load" },
+        );
+        const panel = page.locator(".stroke-order-panel").first();
+        await expect(panel).toBeVisible({ timeout: 5000 });
+        await expect(panel.locator("svg").first()).toBeAttached();
+    });
 });

@@ -130,11 +130,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const audioFallback = document.getElementById("audio-fallback");
     if (lang === "pinyin") {
-        audioFallback.innerHTML =
-            `<p class="note"><i class="fas fa-info-circle"></i> ${localizedTextHtml({
+        audioFallback.innerHTML = `<p class="note"><i class="fas fa-info-circle"></i> ${localizedTextHtml(
+            {
                 zh: "使用普通话音频作为参考。",
                 en: "Using Mandarin audio for reference.",
-            })}</p>`;
+            },
+        )}</p>`;
         audioFallback.style.display = "block";
     } else {
         audioFallback.innerHTML = "";

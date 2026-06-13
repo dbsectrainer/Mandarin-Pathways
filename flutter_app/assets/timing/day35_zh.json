@@ -1,0 +1,79 @@
+{
+    "version": 1,
+    "day": 35,
+    "lang": "zh",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Narrative Elements",
+            "start": 0.0,
+            "end": 1.248
+        },
+        {
+            "i": 1,
+            "section": "Narrative Elements",
+            "start": 1.248,
+            "end": 2.496
+        },
+        {
+            "i": 2,
+            "section": "Narrative Elements",
+            "start": 2.496,
+            "end": 3.792
+        },
+        {
+            "i": 3,
+            "section": "Narrative Elements",
+            "start": 3.792,
+            "end": 5.088
+        },
+        {
+            "i": 4,
+            "section": "Narrative Elements",
+            "start": 5.088,
+            "end": 6.36
+        },
+        {
+            "i": 5,
+            "section": "Narrative Elements",
+            "start": 6.36,
+            "end": 7.656
+        },
+        {
+            "i": 6,
+            "section": "Storytelling Phrases",
+            "start": 7.656,
+            "end": 9.288
+        },
+        {
+            "i": 7,
+            "section": "Storytelling Phrases",
+            "start": 9.288,
+            "end": 10.656
+        },
+        {
+            "i": 8,
+            "section": "Storytelling Phrases",
+            "start": 10.656,
+            "end": 11.904
+        },
+        {
+            "i": 9,
+            "section": "Storytelling Phrases",
+            "start": 11.904,
+            "end": 13.248
+        },
+        {
+            "i": 10,
+            "section": "Storytelling Phrases",
+            "start": 13.248,
+            "end": 14.52
+        },
+        {
+            "i": 11,
+            "section": "Storytelling Phrases",
+            "start": 14.52,
+            "end": 16.416
+        }
+    ]
+}

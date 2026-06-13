@@ -1,130 +1,115 @@
 import 'package:flutter/foundation.dart';
 import '../models/lesson.dart';
-import 'storage_service.dart';
+import '../models/placement_models.dart';
+import '../models/quiz_models.dart';
+import '../models/srs_card.dart';
+import '../models/starred_phrase.dart';
 import 'audio_service.dart';
+import 'content_service.dart';
+import 'learning_services.dart';
 import 'notification_service.dart';
+import 'storage_service.dart';
 
 class AppState extends ChangeNotifier {
-  final StorageService _storage;
-  final AudioService _audio;
-  final NotificationService _notification;
+  final StorageService storage;
+  final AudioService audioService;
+  final NotificationService notificationService;
+  final ContentService contentService;
+  late final StreakService streakService;
+  late final SrsService srsService;
 
-  Progress _progress = Progress();
   Language _currentLanguage = Language.chinese;
   bool _isLoading = true;
 
   AppState({
-    required StorageService storage,
-    required AudioService audio,
-    required NotificationService notification,
-  })  : _storage = storage,
-        _audio = audio,
-        _notification = notification {
+    required this.storage,
+    required this.audioService,
+    required this.notificationService,
+    ContentService? contentService,
+  }) : contentService = contentService ?? ContentService() {
+    streakService = StreakService(storage);
+    srsService = SrsService(storage, streakService);
     _initialize();
   }
 
-  // Getters
-  Progress get progress => _progress;
   Language get currentLanguage => _currentLanguage;
   bool get isLoading => _isLoading;
-  AudioService get audioService => _audio;
-  NotificationService get notificationService => _notification;
 
-  // Initialize app state
+  int get streakCount => storage.streakCount;
+  int get srsDueCount => srsService.getDueCards().length;
+  PlacementResult? get placementResult => storage.getPlacementResult();
+  List<String> get earnedAchievements => storage.getEarnedAchievements();
+
   Future<void> _initialize() async {
     _isLoading = true;
     notifyListeners();
-
     try {
-      await _storage.init();
-      await _notification.init();
-
-      // Load saved progress
-      _progress = await _storage.getProgress();
-
-      // Load preferred language
-      final langCode = await _storage.getPreferredLanguage();
-      _currentLanguage = Language.fromCode(langCode);
-
-      // Load audio settings
-      final audioSettings = await _storage.getAudioSettings();
-      await _audio.setPlaybackSpeed(audioSettings['playbackSpeed']);
-      await _audio.setLooping(audioSettings['loopEnabled']);
-
+      await storage.init();
+      await notificationService.init();
+      _currentLanguage = Language.fromCode(storage.getPreferredLanguage());
+      final audioSettings = await storage.getAudioSettings();
+      await audioService.setPlaybackSpeed(audioSettings['playbackSpeed']);
+      await audioService.setLooping(audioSettings['loopEnabled']);
+      await streakService.updateAchievements();
     } catch (e) {
-      print('Error initializing app state: $e');
+      debugPrint('Error initializing app state: $e');
     } finally {
       _isLoading = false;
       notifyListeners();
     }
   }
 
-  // Language Management
   Future<void> setLanguage(Language language) async {
     _currentLanguage = language;
-    await _storage.setPreferredLanguage(language.code);
+    await storage.setPreferredLanguage(language.code);
     notifyListeners();
   }
 
-  // Progress Management
   Future<void> markDayComplete(int day) async {
-    _progress.markDayComplete(day, _currentLanguage.code);
-    await _storage.saveProgress(_progress);
-    await _notification.showCompletionNotification(day);
+    await storage.markDayComplete(day, _currentLanguage.code);
+    await streakService.recordLearningActivity();
+    await notificationService.showCompletionNotification(day);
     notifyListeners();
   }
 
-  bool isDayCompleted(int day) {
-    return _progress.isDayCompleted(day, _currentLanguage.code);
-  }
+  bool isDayCompleted(int day) =>
+      storage.isDayCompleted(day, _currentLanguage.code);
 
-  double getProgressForLanguage(String langCode) {
-    return _progress.getProgressForLanguage(langCode);
-  }
+  double getProgressForLanguage(String langCode) =>
+      storage.getProgressForLanguage(langCode);
 
-  int get totalCompletedDays => _progress.totalCompleted;
+  int get totalCompletedDays => storage.totalUniqueCompletedDays;
 
-  int getCompletedDaysForLanguage(String langCode) {
-    return _progress.completedDays[langCode]?.length ?? 0;
-  }
-
-  // Audio Management
-  Future<void> playLessonAudio(int day, String language) async {
-    await _audio.playLessonAudio(day, language);
-  }
+  int getCompletedDaysForLanguage(String langCode) =>
+      storage.getCompletedDaysForLanguage(langCode);
 
   Future<void> setAudioSpeed(double speed) async {
-    await _audio.setPlaybackSpeed(speed);
-    final settings = await _storage.getAudioSettings();
+    await audioService.setPlaybackSpeed(speed);
+    final settings = await storage.getAudioSettings();
     settings['playbackSpeed'] = speed;
-    await _storage.saveAudioSettings(settings);
+    await storage.saveAudioSettings(settings);
   }
 
   Future<void> setAudioLooping(bool loop) async {
-    await _audio.setLooping(loop);
-    final settings = await _storage.getAudioSettings();
+    await audioService.setLooping(loop);
+    final settings = await storage.getAudioSettings();
     settings['loopEnabled'] = loop;
-    await _storage.saveAudioSettings(settings);
+    await storage.saveAudioSettings(settings);
   }
 
-  // Notification Management
   Future<void> scheduleDailyReminder(int hour, int minute) async {
-    await _notification.scheduleDailyReminder(hour: hour, minute: minute);
-    await _storage.saveNotificationSettings({
+    await notificationService.scheduleDailyReminder(hour: hour, minute: minute);
+    await storage.saveNotificationSettings({
       'enabled': true,
       'time': '$hour:${minute.toString().padLeft(2, '0')}',
     });
   }
 
   Future<void> cancelNotifications() async {
-    await _notification.cancelAllNotifications();
-    await _storage.saveNotificationSettings({
-      'enabled': false,
-      'time': '09:00',
-    });
+    await notificationService.cancelAllNotifications();
+    await storage.saveNotificationSettings({'enabled': false, 'time': '09:00'});
   }
 
-  // Lessons Data
   List<Lesson> getAllLessons() {
     return List.generate(40, (index) {
       final day = index + 1;
@@ -147,12 +132,114 @@ class AppState extends ChangeNotifier {
     });
   }
 
-  Lesson getLesson(int day) {
-    return getAllLessons()[day - 1];
+  Lesson getLesson(int day) => getAllLessons()[day - 1];
+
+  // Starred phrases
+  List<StarredPhrase> get starredPhrases => storage.getStarredPhrases();
+
+  Future<bool> toggleStarredPhrase({
+    required int day,
+    required String sectionTitle,
+    required String phrase,
+  }) async {
+    final lang = _currentLanguage.code;
+    final id = StarredPhrase.makeId(day, lang, sectionTitle, phrase);
+    final added = await storage.toggleStarredPhrase(StarredPhrase(
+      id: id,
+      day: day,
+      lang: lang,
+      phrase: phrase,
+      sectionTitle: sectionTitle,
+      createdAt: DateTime.now().toUtc(),
+    ));
+    notifyListeners();
+    return added;
   }
 
+  bool isPhraseStarred(int day, String sectionTitle, String phrase) {
+    final id = StarredPhrase.makeId(
+      day, _currentLanguage.code, sectionTitle, phrase);
+    return storage.isPhraseStarred(id);
+  }
+
+  Future<void> removeStarredPhrase(String id) async {
+    await storage.removeStarredPhrase(id);
+    notifyListeners();
+  }
+
+  Future<void> addPhraseToSrs({
+    required int day,
+    required String sectionTitle,
+    required String phrase,
+  }) async {
+    await srsService.upsertCard(
+      day: day,
+      lang: _currentLanguage.code,
+      front: phrase,
+      back: sectionTitle.isNotEmpty ? sectionTitle : 'Day $day',
+    );
+    notifyListeners();
+  }
+
+  // SRS
+  List<SrsCard> get srsCards => storage.getSrsCards();
+  List<SrsCard> get dueSrsCards => srsService.getDueCards();
+
+  Future<void> seedSrsFromStarred() async {
+    await srsService.seedFromStarred();
+    notifyListeners();
+  }
+
+  Future<SrsCard?> reviewSrsCard(String cardId, String grade) async {
+    final result = await srsService.reviewCard(cardId, grade);
+    notifyListeners();
+    return result;
+  }
+
+  // Supplementary / reading / writing completion
+  Future<void> markSupplementaryComplete(String category) async {
+    await storage.markSupplementaryComplete(category, _currentLanguage.code);
+    await streakService.recordLearningActivity();
+    notifyListeners();
+  }
+
+  bool isSupplementaryCompleted(String category) =>
+      storage.isSupplementaryCompleted(category, _currentLanguage.code);
+
+  Future<void> markReadingComplete(String level, String topic) async {
+    await storage.markReadingComplete(level, topic, _currentLanguage.code);
+    await streakService.recordLearningActivity();
+    notifyListeners();
+  }
+
+  bool isReadingCompleted(String level, String topic) =>
+      storage.isReadingCompleted(level, topic, _currentLanguage.code);
+
+  Future<void> markWritingComplete(String type, String level) async {
+    await storage.markWritingComplete(type, level, _currentLanguage.code);
+    await streakService.recordLearningActivity();
+    notifyListeners();
+  }
+
+  bool isWritingCompleted(String type, String level) =>
+      storage.isWritingCompleted(type, level, _currentLanguage.code);
+
+  // Placement & quiz
+  Future<void> savePlacementResult(PlacementResult result) async {
+    await storage.savePlacementResult(result);
+    notifyListeners();
+  }
+
+  Future<void> saveQuizScore(QuizResult result) async {
+    await storage.saveQuizScore(result);
+    notifyListeners();
+  }
+
+  QuizResult? getQuizScoreForDay(int day) => storage.getQuizScoreForDay(day);
+
+  @override
   void dispose() {
-    _audio.dispose();
+    audioService.dispose();
     super.dispose();
   }
 }

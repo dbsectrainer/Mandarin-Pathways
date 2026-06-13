@@ -1,0 +1,79 @@
+{
+    "version": 1,
+    "day": 12,
+    "lang": "zh",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Subject-Verb-Object",
+            "start": 0.0,
+            "end": 1.416
+        },
+        {
+            "i": 1,
+            "section": "Subject-Verb-Object",
+            "start": 1.416,
+            "end": 2.88
+        },
+        {
+            "i": 2,
+            "section": "Subject-Verb-Object",
+            "start": 2.88,
+            "end": 4.536
+        },
+        {
+            "i": 3,
+            "section": "Subject-Verb-Object",
+            "start": 4.536,
+            "end": 5.976
+        },
+        {
+            "i": 4,
+            "section": "Question Patterns",
+            "start": 5.976,
+            "end": 7.656
+        },
+        {
+            "i": 5,
+            "section": "Question Patterns",
+            "start": 7.656,
+            "end": 9.72
+        },
+        {
+            "i": 6,
+            "section": "Question Patterns",
+            "start": 9.72,
+            "end": 11.568
+        },
+        {
+            "i": 7,
+            "section": "Question Patterns",
+            "start": 11.568,
+            "end": 13.056
+        },
+        {
+            "i": 8,
+            "section": "Negation Patterns",
+            "start": 13.056,
+            "end": 14.904
+        },
+        {
+            "i": 9,
+            "section": "Negation Patterns",
+            "start": 14.904,
+            "end": 16.608
+        },
+        {
+            "i": 10,
+            "section": "Negation Patterns",
+            "start": 16.608,
+            "end": 18.432
+        },
+        {
+            "i": 11,
+            "section": "Negation Patterns",
+            "start": 18.432,
+            "end": 20.16
+        }
+    ]
+}

@@ -1,0 +1,67 @@
+{
+    "version": 1,
+    "day": 40,
+    "lang": "en",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Travel Dialogue 1",
+            "start": 0.0,
+            "end": 3.984
+        },
+        {
+            "i": 1,
+            "section": "Travel Dialogue 1",
+            "start": 3.984,
+            "end": 10.632
+        },
+        {
+            "i": 2,
+            "section": "Travel Dialogue 1",
+            "start": 10.632,
+            "end": 14.208
+        },
+        {
+            "i": 3,
+            "section": "Travel Dialogue 1",
+            "start": 14.208,
+            "end": 16.992
+        },
+        {
+            "i": 4,
+            "section": "Travel Dialogue 1",
+            "start": 16.992,
+            "end": 19.8
+        },
+        {
+            "i": 5,
+            "section": "Travel Dialogue 2",
+            "start": 19.8,
+            "end": 23.376
+        },
+        {
+            "i": 6,
+            "section": "Travel Dialogue 2",
+            "start": 23.376,
+            "end": 26.496
+        },
+        {
+            "i": 7,
+            "section": "Travel Dialogue 2",
+            "start": 26.496,
+            "end": 29.76
+        },
+        {
+            "i": 8,
+            "section": "Travel Dialogue 2",
+            "start": 29.76,
+            "end": 35.184
+        },
+        {
+            "i": 9,
+            "section": "Travel Dialogue 2",
+            "start": 35.184,
+            "end": 38.976
+        }
+    ]
+}

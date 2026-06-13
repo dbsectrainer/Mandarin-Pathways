@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../models/lesson.dart';
 import '../services/app_state.dart';
+import '../widgets/learning_dashboard.dart';
 import '../widgets/language_card.dart';
 import '../widgets/section_card.dart';
 import '../widgets/benefit_card.dart';
@@ -42,6 +43,8 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 _buildHeroSection(context),
                 _buildLanguageCards(appState),
+                const SizedBox(height: 32),
+                const LearningDashboard(),
                 const SizedBox(height: 32),
                 _buildCourseStructure(),
                 const SizedBox(height: 32),

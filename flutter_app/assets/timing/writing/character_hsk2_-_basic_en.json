@@ -1,0 +1,21 @@
+{
+    "version": 1,
+    "phrases": [
+        {
+            "section": "title",
+            "i": 0,
+            "start": 0.0,
+            "end": 3.144
+        },
+        {
+            "section": "description",
+            "i": 1,
+            "start": 3.144,
+            "end": 7.056
+        }
+    ],
+    "activity_type": "character",
+    "level": "hsk2_-_basic",
+    "lang": "en",
+    "kind": "writing"
+}

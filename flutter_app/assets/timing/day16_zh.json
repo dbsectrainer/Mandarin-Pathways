@@ -1,0 +1,67 @@
+{
+    "version": 1,
+    "day": 16,
+    "lang": "zh",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Greetings and Farewells",
+            "start": 0.0,
+            "end": 1.704
+        },
+        {
+            "i": 1,
+            "section": "Greetings and Farewells",
+            "start": 1.704,
+            "end": 3.312
+        },
+        {
+            "i": 2,
+            "section": "Greetings and Farewells",
+            "start": 3.312,
+            "end": 5.232
+        },
+        {
+            "i": 3,
+            "section": "Greetings and Farewells",
+            "start": 5.232,
+            "end": 6.696
+        },
+        {
+            "i": 4,
+            "section": "Greetings and Farewells",
+            "start": 6.696,
+            "end": 7.92
+        },
+        {
+            "i": 5,
+            "section": "Social Phrases",
+            "start": 7.92,
+            "end": 9.312
+        },
+        {
+            "i": 6,
+            "section": "Social Phrases",
+            "start": 9.312,
+            "end": 10.776
+        },
+        {
+            "i": 7,
+            "section": "Social Phrases",
+            "start": 10.776,
+            "end": 12.336
+        },
+        {
+            "i": 8,
+            "section": "Social Phrases",
+            "start": 12.336,
+            "end": 13.56
+        },
+        {
+            "i": 9,
+            "section": "Social Phrases",
+            "start": 13.56,
+            "end": 14.904
+        }
+    ]
+}

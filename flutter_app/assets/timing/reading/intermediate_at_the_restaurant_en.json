@@ -1,0 +1,45 @@
+{
+    "version": 1,
+    "phrases": [
+        {
+            "section": "reading",
+            "i": 0,
+            "start": 0.0,
+            "end": 4.416
+        },
+        {
+            "section": "reading",
+            "i": 1,
+            "start": 4.416,
+            "end": 8.496
+        },
+        {
+            "section": "reading",
+            "i": 2,
+            "start": 8.496,
+            "end": 13.2
+        },
+        {
+            "section": "reading",
+            "i": 3,
+            "start": 13.2,
+            "end": 16.848
+        },
+        {
+            "section": "reading",
+            "i": 4,
+            "start": 16.848,
+            "end": 20.064
+        },
+        {
+            "section": "reading",
+            "i": 5,
+            "start": 20.064,
+            "end": 23.568
+        }
+    ],
+    "level": "intermediate",
+    "topic": "at_the_restaurant",
+    "lang": "en",
+    "kind": "reading"
+}

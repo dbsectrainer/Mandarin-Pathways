@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:audioplayers/audioplayers.dart' as ap;
+import '../models/audio_cue.dart';
 import '../models/lesson.dart';
+import '../models/phrase_section.dart';
+import '../l10n/strings.dart';
 import '../services/app_state.dart';
+import '../widgets/lesson_audio_player.dart';
+import '../widgets/phrase_list.dart';
 
 class DayLessonScreen extends StatefulWidget {
   const DayLessonScreen({super.key});
@@ -14,287 +17,161 @@ class DayLessonScreen extends StatefulWidget {
 
 class _DayLessonScreenState extends State<DayLessonScreen> {
   late int _dayNumber;
-  late Lesson _lesson;
-  String _lessonText = '';
-  bool _isLoadingText = true;
-  ap.PlayerState _audioState = ap.PlayerState.stopped;
-  Duration _audioDuration = Duration.zero;
-  Duration _audioPosition = Duration.zero;
+  List<PhraseSection> _sections = [];
+  List<AudioCue> _cues = [];
+  int? _activeCue;
+  bool _loading = true;
+  String? _error;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     _dayNumber = ModalRoute.of(context)!.settings.arguments as int;
-    final appState = context.read<AppState>();
-    _lesson = appState.getLesson(_dayNumber);
-    _loadLessonText();
-    _setupAudioListeners();
+    _loadContent();
   }
 
-  void _setupAudioListeners() {
+  Future<void> _loadContent() async {
+    setState(() {
+      _loading = true;
+      _error = null;
+    });
     final appState = context.read<AppState>();
-    appState.audioService.playerStateStream.listen((state) {
-      if (mounted) {
-        setState(() => _audioState = state);
-      }
-    });
-
-    appState.audioService.positionStream.listen((position) {
-      if (mounted) {
-        setState(() => _audioPosition = position);
-      }
-    });
-
-    appState.audioService.durationStream.listen((duration) {
-      if (mounted && duration != null) {
-        setState(() => _audioDuration = duration);
-      }
-    });
-  }
-
-  Future<void> _loadLessonText() async {
-    setState(() => _isLoadingText = true);
+    final lang = appState.currentLanguage;
     try {
-      final appState = context.read<AppState>();
-      final textPath = _lesson.textFiles[appState.currentLanguage.code];
-      if (textPath != null) {
-        final text = await rootBundle.loadString('assets/$textPath');
-        if (mounted) {
-          setState(() {
-            _lessonText = text;
-            _isLoadingText = false;
-          });
-        }
+      final text = await appState.contentService.loadAssetText(
+        appState.contentService.dayTextPath(_dayNumber, lang),
+      );
+      final timing = await appState.contentService.loadTiming(
+        appState.contentService.dayTimingPath(_dayNumber, lang),
+      );
+      if (mounted) {
+        setState(() {
+          _sections = appState.contentService.parsePhraseSections(text);
+          _cues = timing?.phrases ?? [];
+          _loading = false;
+        });
       }
     } catch (e) {
       if (mounted) {
         setState(() {
-          _lessonText = 'Error loading lesson text: $e';
-          _isLoadingText = false;
+          _error = e.toString();
+          _loading = false;
         });
       }
     }
   }
 
+  void _updateCue() {
+    final appState = context.read<AppState>();
+    final pos = appState.audioService.currentPosition;
+    pos.then((p) {
+      if (!mounted || p == null) return;
+      final idx = appState.contentService.activeCueIndex(p, _cues);
+      if (idx != _activeCue) setState(() => _activeCue = idx);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final appState = context.watch<AppState>();
+    final lang = appState.currentLanguage;
+    final lesson = appState.getLesson(_dayNumber);
+    final audioPath = appState.contentService.dayAudioPath(_dayNumber, lang);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Day $_dayNumber'),
         actions: [
-          Consumer<AppState>(
-            builder: (context, appState, child) {
-              return IconButton(
-                icon: Text(
-                  appState.currentLanguage.flag,
-                  style: const TextStyle(fontSize: 24),
-                ),
-                onPressed: () => _showLanguageSelector(appState),
-              );
-            },
+          IconButton(
+            icon: Text(lang.flag, style: const TextStyle(fontSize: 24)),
+            onPressed: () => _showLanguagePicker(appState),
           ),
         ],
       ),
-      body: Consumer<AppState>(
-        builder: (context, appState, child) {
-          return SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                _buildSectionInfo(),
-                _buildAudioPlayer(appState),
-                _buildLessonContent(),
-                _buildCompletionButton(appState),
-                _buildNavigation(),
-              ],
-            ),
-          );
-        },
-      ),
+      body: _loading
+          ? const Center(child: CircularProgressIndicator())
+          : _error != null
+              ? Center(child: Text('Error: $_error'))
+              : SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      _sectionInfo(lesson),
+                      LessonAudioPlayer(
+                        audioPath: audioPath,
+                        showPinyinNote: lang == Language.pinyin,
+                        onPositionTick: _updateCue,
+                      ),
+                      PhraseListView(
+                        sections: _sections,
+                        day: _dayNumber,
+                        activeCueIndex: _activeCue,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: ElevatedButton.icon(
+                                onPressed: appState.isDayCompleted(_dayNumber)
+                                    ? null
+                                    : () => appState.markDayComplete(_dayNumber),
+                                icon: const Icon(Icons.check),
+                                label: Text(
+                                  appState.isDayCompleted(_dayNumber)
+                                      ? AppStrings.t(lang,
+                                          zh: '已完成', en: 'Completed')
+                                      : AppStrings.t(lang,
+                                          zh: '标记完成', en: 'Mark complete'),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            OutlinedButton(
+                              onPressed: () => Navigator.pushNamed(
+                                context, '/quiz', arguments: _dayNumber),
+                              child: Text(
+                                AppStrings.t(lang, zh: '测验', en: 'Quiz'),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      _navButtons(),
+                    ],
+                  ),
+                ),
     );
   }
 
-  Widget _buildSectionInfo() {
+  Widget _sectionInfo(Lesson lesson) {
     return Container(
+      width: double.infinity,
       padding: const EdgeInsets.all(16),
-      color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+      color: Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            _lesson.section.title,
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            _lesson.section.description,
-            style: Theme.of(context).textTheme.bodyMedium,
-          ),
+          Text(lesson.section.title,
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).colorScheme.primary,
+                  )),
+          Text(lesson.section.description),
         ],
       ),
     );
   }
 
-  Widget _buildAudioPlayer(AppState appState) {
-    return Card(
-      margin: const EdgeInsets.all(16),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.replay_10),
-                  onPressed: () {
-                    final newPosition = _audioPosition - const Duration(seconds: 10);
-                    appState.audioService.seek(
-                      newPosition < Duration.zero ? Duration.zero : newPosition,
-                    );
-                  },
-                ),
-                IconButton(
-                  iconSize: 48,
-                  icon: Icon(
-                    _audioState == ap.PlayerState.playing
-                        ? Icons.pause_circle_filled
-                        : Icons.play_circle_filled,
-                  ),
-                  onPressed: () => _toggleAudio(appState),
-                ),
-                IconButton(
-                  icon: const Icon(Icons.forward_10),
-                  onPressed: () {
-                    final newPosition = _audioPosition + const Duration(seconds: 10);
-                    appState.audioService.seek(
-                      newPosition > _audioDuration ? _audioDuration : newPosition,
-                    );
-                  },
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Slider(
-              value: _audioPosition.inMilliseconds.toDouble(),
-              max: _audioDuration.inMilliseconds.toDouble() > 0
-                  ? _audioDuration.inMilliseconds.toDouble()
-                  : 1.0,
-              onChanged: (value) {
-                appState.audioService.seek(Duration(milliseconds: value.toInt()));
-              },
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(_formatDuration(_audioPosition)),
-                Text(_formatDuration(_audioDuration)),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                DropdownButton<double>(
-                  value: appState.audioService.playbackSpeed,
-                  items: [0.5, 0.75, 1.0, 1.25, 1.5, 2.0].map((speed) {
-                    return DropdownMenuItem(
-                      value: speed,
-                      child: Text('${speed}x'),
-                    );
-                  }).toList(),
-                  onChanged: (speed) {
-                    if (speed != null) {
-                      appState.setAudioSpeed(speed);
-                    }
-                  },
-                ),
-                IconButton(
-                  icon: Icon(
-                    appState.audioService.isLooping
-                        ? Icons.repeat_one
-                        : Icons.repeat,
-                    color: appState.audioService.isLooping
-                        ? Theme.of(context).colorScheme.primary
-                        : null,
-                  ),
-                  onPressed: () {
-                    appState.setAudioLooping(!appState.audioService.isLooping);
-                  },
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildLessonContent() {
-    return Card(
-      margin: const EdgeInsets.all(16),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: _isLoadingText
-            ? const Center(child: CircularProgressIndicator())
-            : SelectableText(
-                _lessonText,
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      height: 1.8,
-                      fontSize: 18,
-                    ),
-              ),
-      ),
-    );
-  }
-
-  Widget _buildCompletionButton(AppState appState) {
-    final isCompleted = appState.isDayCompleted(_dayNumber);
-
+  Widget _navButtons() {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: ElevatedButton.icon(
-        onPressed: isCompleted
-            ? null
-            : () async {
-                await appState.markDayComplete(_dayNumber);
-                if (mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text('Day $_dayNumber marked as complete! 🎉'),
-                      backgroundColor: Colors.green,
-                    ),
-                  );
-                }
-              },
-        icon: Icon(isCompleted ? Icons.check_circle : Icons.check),
-        label: Text(isCompleted ? 'Completed' : 'Mark as Complete'),
-        style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(vertical: 16),
-          backgroundColor: isCompleted ? Colors.grey : null,
-        ),
-      ),
-    );
-  }
-
-  Widget _buildNavigation() {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ElevatedButton.icon(
             onPressed: _dayNumber > 1
-                ? () {
-                    Navigator.pushReplacementNamed(
-                      context,
-                      '/day',
-                      arguments: _dayNumber - 1,
-                    );
-                  }
+                ? () => Navigator.pushReplacementNamed(
+                      context, '/day', arguments: _dayNumber - 1)
                 : null,
             icon: const Icon(Icons.arrow_back),
             label: const Text('Previous'),
@@ -305,13 +182,8 @@ class _DayLessonScreenState extends State<DayLessonScreen> {
           ),
           ElevatedButton.icon(
             onPressed: _dayNumber < 40
-                ? () {
-                    Navigator.pushReplacementNamed(
-                      context,
-                      '/day',
-                      arguments: _dayNumber + 1,
-                    );
-                  }
+                ? () => Navigator.pushReplacementNamed(
+                      context, '/day', arguments: _dayNumber + 1)
                 : null,
             icon: const Icon(Icons.arrow_forward),
             label: const Text('Next'),
@@ -321,40 +193,22 @@ class _DayLessonScreenState extends State<DayLessonScreen> {
     );
   }
 
-  Future<void> _toggleAudio(AppState appState) async {
-    if (_audioState == ap.PlayerState.playing) {
-      await appState.audioService.pause();
-    } else {
-      final audioPath = _lesson.audioFiles[appState.currentLanguage.code];
-      if (audioPath != null) {
-        await appState.audioService.play(audioPath);
-      }
-    }
-  }
-
-  String _formatDuration(Duration duration) {
-    String twoDigits(int n) => n.toString().padLeft(2, '0');
-    final minutes = twoDigits(duration.inMinutes.remainder(60));
-    final seconds = twoDigits(duration.inSeconds.remainder(60));
-    return '$minutes:$seconds';
-  }
-
-  void _showLanguageSelector(AppState appState) {
+  void _showLanguagePicker(AppState appState) {
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
+      builder: (ctx) => AlertDialog(
         title: const Text('Select Language'),
         content: Column(
           mainAxisSize: MainAxisSize.min,
-          children: Language.values.map((language) {
+          children: Language.values.map((l) {
             return ListTile(
-              leading: Text(language.flag, style: const TextStyle(fontSize: 24)),
-              title: Text(language.displayName),
-              selected: appState.currentLanguage == language,
+              leading: Text(l.flag, style: const TextStyle(fontSize: 24)),
+              title: Text(l.displayName),
+              selected: appState.currentLanguage == l,
               onTap: () {
-                appState.setLanguage(language);
-                Navigator.pop(context);
-                _loadLessonText(); // Reload text in new language
+                appState.setLanguage(l);
+                Navigator.pop(ctx);
+                _loadContent();
               },
             );
           }).toList(),

@@ -15,6 +15,18 @@ Mandarin Pathways has been converted from a Progressive Web App (PWA) to a nativ
 
 ## Features
 
+### 📚 Full PWA Parity (2026)
+
+- **Learning dashboard**: streaks, SRS due count, placement recommendation, achievements
+- **SRS flashcards**: spaced repetition with again/good/easy grading
+- **Starred phrase review**: bookmark phrases from daily lessons
+- **Placement test**: level assessment with recommended start day
+- **Day quizzes**: self-assessment for days 1, 8, 16, 31+
+- **Karaoke audio sync**: phrase highlighting during playback
+- **Reading & writing**: full topic navigation with bundled content
+- **Character canvas**: touch drawing practice for writing exercises
+- **Progress portability**: export/import JSON compatible with PWA localStorage keys
+
 ### 📚 40-Day Structured Curriculum
 
 - Daily lessons organized into 5 progressive sections
@@ -319,13 +331,19 @@ flutter pub cache repair
 
 ## Future Enhancements
 
-- [ ] Canvas-based character drawing practice
 - [ ] Speech recognition for pronunciation practice
-- [ ] Spaced repetition flashcards
 - [ ] Social features (study groups, leaderboards)
-- [ ] Offline media caching enhancements
 - [ ] Multi-user profiles
 - [ ] Cloud sync across devices
+
+## Asset sync
+
+After regenerating PWA content, sync assets into the Flutter bundle:
+
+```bash
+python scripts/sync_flutter_assets.py
+cd flutter_app && flutter pub get
+```
 
 ## Contributing
 
@@ -351,4 +369,4 @@ For issues, questions, or suggestions:
 
 ---
 
-**Note**: This Flutter client mirrors the Mandarin Pathways curriculum and primary flows from the sibling PWA (home, the 40-day course, supplementary material, plus reading/writing practice) while trading the browser runtime for Flutter's native shell, richer bundled-audio controls, and installable/mobile/desktop binaries.
+**Note**: This Flutter client mirrors the full PWA feature set: 40-day course, supplementary material, reading/writing practice, SRS flashcards, starred review, placement test, day quizzes, streaks/achievements, and progress portability.

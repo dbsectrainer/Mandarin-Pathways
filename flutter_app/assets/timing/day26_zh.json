@@ -1,0 +1,79 @@
+{
+    "version": 1,
+    "day": 26,
+    "lang": "zh",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Meeting Vocabulary",
+            "start": 0.0,
+            "end": 1.272
+        },
+        {
+            "i": 1,
+            "section": "Meeting Vocabulary",
+            "start": 1.272,
+            "end": 2.856
+        },
+        {
+            "i": 2,
+            "section": "Meeting Vocabulary",
+            "start": 2.856,
+            "end": 4.08
+        },
+        {
+            "i": 3,
+            "section": "Meeting Vocabulary",
+            "start": 4.08,
+            "end": 5.304
+        },
+        {
+            "i": 4,
+            "section": "Meeting Vocabulary",
+            "start": 5.304,
+            "end": 6.72
+        },
+        {
+            "i": 5,
+            "section": "Meeting Vocabulary",
+            "start": 6.72,
+            "end": 8.136
+        },
+        {
+            "i": 6,
+            "section": "Meeting Phrases",
+            "start": 8.136,
+            "end": 9.792
+        },
+        {
+            "i": 7,
+            "section": "Meeting Phrases",
+            "start": 9.792,
+            "end": 11.496
+        },
+        {
+            "i": 8,
+            "section": "Meeting Phrases",
+            "start": 11.496,
+            "end": 13.224
+        },
+        {
+            "i": 9,
+            "section": "Meeting Phrases",
+            "start": 13.224,
+            "end": 14.64
+        },
+        {
+            "i": 10,
+            "section": "Meeting Phrases",
+            "start": 14.64,
+            "end": 16.176
+        },
+        {
+            "i": 11,
+            "section": "Meeting Phrases",
+            "start": 16.176,
+            "end": 18.576
+        }
+    ]
+}

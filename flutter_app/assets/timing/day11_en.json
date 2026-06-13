@@ -1,0 +1,91 @@
+{
+    "version": 1,
+    "day": 11,
+    "lang": "en",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Direction Words",
+            "start": 0.0,
+            "end": 1.824
+        },
+        {
+            "i": 1,
+            "section": "Direction Words",
+            "start": 1.824,
+            "end": 3.6
+        },
+        {
+            "i": 2,
+            "section": "Direction Words",
+            "start": 3.6,
+            "end": 5.28
+        },
+        {
+            "i": 3,
+            "section": "Direction Words",
+            "start": 5.28,
+            "end": 6.864
+        },
+        {
+            "i": 4,
+            "section": "Direction Words",
+            "start": 6.864,
+            "end": 8.376
+        },
+        {
+            "i": 5,
+            "section": "Direction Words",
+            "start": 8.376,
+            "end": 9.96
+        },
+        {
+            "i": 6,
+            "section": "Direction Words",
+            "start": 9.96,
+            "end": 11.616
+        },
+        {
+            "i": 7,
+            "section": "Direction Words",
+            "start": 11.616,
+            "end": 13.248
+        },
+        {
+            "i": 8,
+            "section": "Asking for Directions",
+            "start": 13.248,
+            "end": 16.008
+        },
+        {
+            "i": 9,
+            "section": "Asking for Directions",
+            "start": 16.008,
+            "end": 18.624
+        },
+        {
+            "i": 10,
+            "section": "Asking for Directions",
+            "start": 18.624,
+            "end": 20.424
+        },
+        {
+            "i": 11,
+            "section": "Asking for Directions",
+            "start": 20.424,
+            "end": 22.152
+        },
+        {
+            "i": 12,
+            "section": "Asking for Directions",
+            "start": 22.152,
+            "end": 23.832
+        },
+        {
+            "i": 13,
+            "section": "Asking for Directions",
+            "start": 23.832,
+            "end": 25.848
+        }
+    ]
+}

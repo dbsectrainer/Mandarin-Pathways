@@ -1,0 +1,35 @@
+Reading Exercise
+---------------
+
+My name is Li Ming. I am a student. I am twenty years old. I like learning Chinese. I also like listening to music and watching movies.
+
+生词表 / Vocabulary
+--------------------
+
+• I, me (wǒ) - 我
+• to be called (jiào) - 叫
+• student (xuésheng) - 学生
+• this year (jīnnián) - 今年
+• years old (suì) - 岁
+• to like (xǐhuan) - 喜欢
+• to study (xuéxí) - 学习
+• Chinese language (zhōngwén) - 中文
+• also (yě) - 也
+• to listen (tīng) - 听
+• music (yīnyuè) - 音乐
+• to watch (kàn) - 看
+• movie (diànyǐng) - 电影
+
+
+理解问题 / Comprehension Questions
+------------------------------
+
+【Question 1】 Who is Li Ming?
+Answer: 他是学生。
+
+【Question 2】 How old is Li Ming?
+Answer: 他二十岁。
+
+【Question 3】 What does Li Ming like?
+Answer: 他喜欢学习中文、听音乐和看电影。
+

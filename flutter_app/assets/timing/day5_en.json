@@ -1,0 +1,91 @@
+{
+    "version": 1,
+    "day": 5,
+    "lang": "en",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Common Adjectives",
+            "start": 0.0,
+            "end": 1.416
+        },
+        {
+            "i": 1,
+            "section": "Common Adjectives",
+            "start": 1.416,
+            "end": 2.856
+        },
+        {
+            "i": 2,
+            "section": "Common Adjectives",
+            "start": 2.856,
+            "end": 4.248
+        },
+        {
+            "i": 3,
+            "section": "Common Adjectives",
+            "start": 4.248,
+            "end": 5.832
+        },
+        {
+            "i": 4,
+            "section": "Common Adjectives",
+            "start": 5.832,
+            "end": 7.992
+        },
+        {
+            "i": 5,
+            "section": "Common Adjectives",
+            "start": 7.992,
+            "end": 10.056
+        },
+        {
+            "i": 6,
+            "section": "Common Adjectives",
+            "start": 10.056,
+            "end": 11.52
+        },
+        {
+            "i": 7,
+            "section": "Common Adjectives",
+            "start": 11.52,
+            "end": 12.96
+        },
+        {
+            "i": 8,
+            "section": "Common Adjectives",
+            "start": 12.96,
+            "end": 14.424
+        },
+        {
+            "i": 9,
+            "section": "Common Adjectives",
+            "start": 14.424,
+            "end": 16.872
+        },
+        {
+            "i": 10,
+            "section": "Descriptive Phrases",
+            "start": 16.872,
+            "end": 18.624
+        },
+        {
+            "i": 11,
+            "section": "Descriptive Phrases",
+            "start": 18.624,
+            "end": 20.592
+        },
+        {
+            "i": 12,
+            "section": "Descriptive Phrases",
+            "start": 20.592,
+            "end": 22.56
+        },
+        {
+            "i": 13,
+            "section": "Descriptive Phrases",
+            "start": 22.56,
+            "end": 24.552
+        }
+    ]
+}

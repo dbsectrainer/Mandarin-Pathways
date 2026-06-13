@@ -1,0 +1,85 @@
+主题 - 旅行 / Theme - Travel
+--------------------
+
+Practice characters related to travel and transportation
+
+车 - chē - car, vehicle
+Stroke count: 4
+Stroke order: horizontal, vertical, horizontal, vertical
+
+Write each character 5 times, paying attention to stroke order:
+
+车: _ _ _ _ _
+
+飞 - fēi - to fly
+Stroke count: 9
+Stroke order: horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal
+
+Write each character 5 times, paying attention to stroke order:
+
+飞: _ _ _ _ _
+
+机 - jī - machine
+Stroke count: 6
+Stroke order: horizontal, vertical, horizontal, vertical, horizontal, vertical
+
+Write each character 5 times, paying attention to stroke order:
+
+机: _ _ _ _ _
+
+场 - chǎng - field, place
+Stroke count: 12
+Stroke order: horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical
+
+Write each character 5 times, paying attention to stroke order:
+
+场: _ _ _ _ _
+
+路 - lù - road
+Stroke count: 13
+Stroke order: horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal
+
+Write each character 5 times, paying attention to stroke order:
+
+路: _ _ _ _ _
+
+站 - zhàn - station
+Stroke count: 10
+Stroke order: horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical
+
+Write each character 5 times, paying attention to stroke order:
+
+站: _ _ _ _ _
+
+票 - piào - ticket
+Stroke count: 11
+Stroke order: horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal
+
+Write each character 5 times, paying attention to stroke order:
+
+票: _ _ _ _ _
+
+行 - xíng - to go, travel
+Stroke count: 6
+Stroke order: horizontal, vertical, horizontal, vertical, horizontal, vertical
+
+Write each character 5 times, paying attention to stroke order:
+
+行: _ _ _ _ _
+
+李 - lǐ - plum, surname Li
+Stroke count: 7
+Stroke order: horizontal, vertical, horizontal, vertical, horizontal, vertical, horizontal
+
+Write each character 5 times, paying attention to stroke order:
+
+李: _ _ _ _ _
+
+国 - guó - country
+Stroke count: 8
+Stroke order: top, left vertical, right vertical, horizontal, vertical, horizontal, vertical, horizontal
+
+Write each character 5 times, paying attention to stroke order:
+
+国: _ _ _ _ _
+

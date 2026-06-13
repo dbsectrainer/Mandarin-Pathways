@@ -1,0 +1,39 @@
+{
+    "version": 1,
+    "phrases": [
+        {
+            "section": "reading",
+            "i": 0,
+            "start": 0.0,
+            "end": 1.56
+        },
+        {
+            "section": "reading",
+            "i": 1,
+            "start": 1.56,
+            "end": 3.144
+        },
+        {
+            "section": "reading",
+            "i": 2,
+            "start": 3.144,
+            "end": 4.992
+        },
+        {
+            "section": "reading",
+            "i": 3,
+            "start": 4.992,
+            "end": 7.056
+        },
+        {
+            "section": "reading",
+            "i": 4,
+            "start": 7.056,
+            "end": 9.768
+        }
+    ],
+    "level": "beginner",
+    "topic": "self_introduction",
+    "lang": "zh",
+    "kind": "reading"
+}

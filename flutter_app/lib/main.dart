@@ -5,6 +5,10 @@ import 'screens/home_screen.dart';
 import 'screens/day_lesson_screen.dart';
 import 'screens/reading_screen.dart';
 import 'screens/writing_screen.dart';
+import 'screens/review_screen.dart';
+import 'screens/srs_screen.dart';
+import 'screens/placement_screen.dart';
+import 'screens/quiz_screen.dart';
 import 'screens/supplementary_screen.dart';
 import 'services/app_state.dart';
 import 'services/storage_service.dart';
@@ -25,8 +29,8 @@ class MandarinPathwaysApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => AppState(
             storage: StorageService(),
-            audio: AudioService(),
-            notification: NotificationService(),
+            audioService: AudioService(),
+            notificationService: NotificationService(),
           ),
         ),
       ],
@@ -89,6 +93,10 @@ class MandarinPathwaysApp extends StatelessWidget {
           '/reading': (context) => const ReadingScreen(),
           '/writing': (context) => const WritingScreen(),
           '/supplementary': (context) => const SupplementaryScreen(),
+          '/review': (context) => const ReviewScreen(),
+          '/srs': (context) => const SrsScreen(),
+          '/placement': (context) => const PlacementScreen(),
+          '/quiz': (context) => const QuizScreen(),
         },
       ),
     );

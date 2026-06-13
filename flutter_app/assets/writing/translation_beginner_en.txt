@@ -1,0 +1,20 @@
+Beginner Translation Exercises
+--------------------
+
+Translate simple sentences between English and Chinese
+
+1. Chinese: 我叫李明。
+Translation: My name is Li Ming.
+
+2. Chinese: 我是学生。
+Translation: I am a student.
+
+3. Chinese: 我喜欢吃中国菜。
+Translation: I like to eat Chinese food.
+
+4. Chinese: 洗手间在哪里？
+Translation: Where is the bathroom?
+
+5. Chinese: 这个多少钱？
+Translation: How much does this cost?
+

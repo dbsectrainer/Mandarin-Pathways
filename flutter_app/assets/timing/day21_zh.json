@@ -1,0 +1,73 @@
+{
+    "version": 1,
+    "day": 21,
+    "lang": "zh",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Cultural Concepts",
+            "start": 0.0,
+            "end": 1.224
+        },
+        {
+            "i": 1,
+            "section": "Cultural Concepts",
+            "start": 1.224,
+            "end": 2.472
+        },
+        {
+            "i": 2,
+            "section": "Cultural Concepts",
+            "start": 2.472,
+            "end": 3.84
+        },
+        {
+            "i": 3,
+            "section": "Cultural Concepts",
+            "start": 3.84,
+            "end": 5.136
+        },
+        {
+            "i": 4,
+            "section": "Cultural Concepts",
+            "start": 5.136,
+            "end": 6.72
+        },
+        {
+            "i": 5,
+            "section": "Traditional Arts",
+            "start": 6.72,
+            "end": 8.04
+        },
+        {
+            "i": 6,
+            "section": "Traditional Arts",
+            "start": 8.04,
+            "end": 9.264
+        },
+        {
+            "i": 7,
+            "section": "Traditional Arts",
+            "start": 9.264,
+            "end": 10.752
+        },
+        {
+            "i": 8,
+            "section": "Traditional Arts",
+            "start": 10.752,
+            "end": 11.976
+        },
+        {
+            "i": 9,
+            "section": "Traditional Arts",
+            "start": 11.976,
+            "end": 13.272
+        },
+        {
+            "i": 10,
+            "section": "Traditional Arts",
+            "start": 13.272,
+            "end": 14.52
+        }
+    ]
+}

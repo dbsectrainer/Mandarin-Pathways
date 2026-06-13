@@ -1,0 +1,73 @@
+{
+    "version": 1,
+    "day": 33,
+    "lang": "zh",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Formal Greetings",
+            "start": 0.0,
+            "end": 1.368
+        },
+        {
+            "i": 1,
+            "section": "Formal Greetings",
+            "start": 1.368,
+            "end": 3.072
+        },
+        {
+            "i": 2,
+            "section": "Formal Greetings",
+            "start": 3.072,
+            "end": 4.728
+        },
+        {
+            "i": 3,
+            "section": "Formal Greetings",
+            "start": 4.728,
+            "end": 6.384
+        },
+        {
+            "i": 4,
+            "section": "Formal Greetings",
+            "start": 6.384,
+            "end": 8.064
+        },
+        {
+            "i": 5,
+            "section": "Formal Phrases",
+            "start": 8.064,
+            "end": 9.312
+        },
+        {
+            "i": 6,
+            "section": "Formal Phrases",
+            "start": 9.312,
+            "end": 10.488
+        },
+        {
+            "i": 7,
+            "section": "Formal Phrases",
+            "start": 10.488,
+            "end": 11.928
+        },
+        {
+            "i": 8,
+            "section": "Formal Phrases",
+            "start": 11.928,
+            "end": 13.344
+        },
+        {
+            "i": 9,
+            "section": "Formal Phrases",
+            "start": 13.344,
+            "end": 14.928
+        },
+        {
+            "i": 10,
+            "section": "Formal Phrases",
+            "start": 14.928,
+            "end": 16.584
+        }
+    ]
+}

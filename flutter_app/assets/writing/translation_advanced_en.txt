@@ -1,0 +1,20 @@
+Advanced Translation Exercises
+--------------------
+
+Translate complex sentences and paragraphs between English and Chinese
+
+1. Chinese: 科技的快速发展极大地改变了我们的生活方式。
+Translation: The rapid development of technology has greatly changed our way of life.
+
+2. Chinese: 环境保护不仅是政府的责任，也是每个公民的义务。
+Translation: Environmental protection is not only the responsibility of the government but also the duty of every citizen.
+
+3. Chinese: 随着全球化的发展，国家之间的文化交流变得越来越频繁。
+Translation: With the development of globalization, cultural exchange between countries has become increasingly frequent.
+
+4. Chinese: 尽管面临诸多挑战，他们坚持不懈地努力，最终取得了成功。
+Translation: Despite facing numerous challenges, they persisted in their efforts and finally achieved success.
+
+5. Chinese: 传统文化与现代元素的结合创造了独特的艺术风格。
+Translation: The combination of traditional culture and modern elements creates a unique artistic style.
+

@@ -1,0 +1,51 @@
+{
+    "version": 1,
+    "phrases": [
+        {
+            "section": "reading",
+            "i": 0,
+            "start": 0.0,
+            "end": 2.544
+        },
+        {
+            "section": "reading",
+            "i": 1,
+            "start": 2.544,
+            "end": 4.44
+        },
+        {
+            "section": "reading",
+            "i": 2,
+            "start": 4.44,
+            "end": 6.192
+        },
+        {
+            "section": "reading",
+            "i": 3,
+            "start": 6.192,
+            "end": 8.4
+        },
+        {
+            "section": "reading",
+            "i": 4,
+            "start": 8.4,
+            "end": 10.392
+        },
+        {
+            "section": "reading",
+            "i": 5,
+            "start": 10.392,
+            "end": 12.528
+        },
+        {
+            "section": "reading",
+            "i": 6,
+            "start": 12.528,
+            "end": 14.568
+        }
+    ],
+    "level": "beginner",
+    "topic": "daily_routine",
+    "lang": "zh",
+    "kind": "reading"
+}

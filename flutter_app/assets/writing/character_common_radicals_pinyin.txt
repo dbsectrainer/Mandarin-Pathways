@@ -1,0 +1,45 @@
+常用部首 / Common Radicals
+--------------------
+
+Practice common radicals that form the building blocks of Chinese characters
+
+口 - kǒu - mouth
+Stroke count: 3
+Stroke order: top, right, bottom-left
+
+Write each radical 5 times, paying attention to stroke order:
+
+口: _ _ _ _ _
+
+木 - mù - tree
+Stroke count: 4
+Stroke order: vertical, horizontal, left diagonal, right diagonal
+
+Write each radical 5 times, paying attention to stroke order:
+
+木: _ _ _ _ _
+
+水 - shuǐ - water
+Stroke count: 4
+Stroke order: left dot, right dot, left diagonal, right diagonal
+
+Write each radical 5 times, paying attention to stroke order:
+
+水: _ _ _ _ _
+
+火 - huǒ - fire
+Stroke count: 4
+Stroke order: dot, left diagonal, right diagonal, vertical
+
+Write each radical 5 times, paying attention to stroke order:
+
+火: _ _ _ _ _
+
+人 - rén - person
+Stroke count: 2
+Stroke order: left diagonal, right diagonal
+
+Write each radical 5 times, paying attention to stroke order:
+
+人: _ _ _ _ _
+

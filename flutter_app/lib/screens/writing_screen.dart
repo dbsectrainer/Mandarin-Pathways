@@ -1,4 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../data/content_catalog.dart';
+import '../models/lesson.dart';
+import '../l10n/strings.dart';
+import '../services/app_state.dart';
+import '../services/content_service.dart';
+import '../widgets/lesson_audio_player.dart';
+import '../widgets/character_canvas.dart';
 
 class WritingScreen extends StatefulWidget {
   const WritingScreen({super.key});
@@ -8,220 +16,197 @@ class WritingScreen extends StatefulWidget {
 }
 
 class _WritingScreenState extends State<WritingScreen> {
-  final TextEditingController _textController = TextEditingController();
-  String _selectedExercise = 'characters';
-
-  final Map<String, String> _exercises = {
-    'characters': 'Character Practice',
-    'sentences': 'Sentence Building',
-    'translation': 'Translation Practice',
-  };
-
-  @override
-  void dispose() {
-    _textController.dispose();
-    super.dispose();
-  }
+  String? _type;
+  String? _level;
+  ActivityInfo? _info;
+  List<WritingExercise> _exercises = [];
+  bool _loading = false;
 
   @override
   Widget build(BuildContext context) {
+    final appState = context.watch<AppState>();
+    final lang = appState.currentLanguage;
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Writing Skills'),
+        title: Text(AppStrings.t(lang, zh: '写作技能', en: 'Writing Skills')),
       ),
-      body: Column(
-        children: [
-          _buildExerciseSelector(),
-          Expanded(child: _buildWritingArea()),
-        ],
-      ),
+      body: _type == null
+          ? _typePicker()
+          : _level == null
+              ? _levelPicker(lang)
+              : _loading
+                  ? const Center(child: CircularProgressIndicator())
+                  : _contentBody(appState, lang),
     );
   }
 
-  Widget _buildExerciseSelector() {
-    return Container(
+  Widget _typePicker() {
+    return ListView(
       padding: const EdgeInsets.all(16),
-      color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Exercise Type:',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 8),
-          SegmentedButton<String>(
-            segments: _exercises.entries.map((entry) {
-              return ButtonSegment<String>(
-                value: entry.key,
-                label: Text(entry.value),
-              );
-            }).toList(),
-            selected: {_selectedExercise},
-            onSelectionChanged: (Set<String> newSelection) {
-              setState(() {
-                _selectedExercise = newSelection.first;
-              });
-            },
-          ),
-        ],
+      children: [
+        _typeTile('character', 'Character Practice'),
+        _typeTile('sentence', 'Sentence Building'),
+        _typeTile('translation', 'Translation Practice'),
+      ],
+    );
+  }
+
+  Widget _typeTile(String type, String label) {
+    return Card(
+      child: ListTile(
+        title: Text(label),
+        trailing: const Icon(Icons.chevron_right),
+        onTap: () => setState(() => _type = type),
       ),
     );
   }
 
-  Widget _buildWritingArea() {
+  Widget _levelPicker(Language lang) {
+    final levels = writingCatalog[_type!] ?? {};
+    return ListView(
+      padding: const EdgeInsets.all(16),
+      children: [
+        TextButton(
+          onPressed: () => setState(() => _type = null),
+          child: const Text('← Back'),
+        ),
+        ...levels.entries.map((e) {
+          return Card(
+            child: ListTile(
+              title: Text(e.value.displayTitle(lang)),
+              subtitle: Text(e.value.displayDescription(lang)),
+              onTap: () {
+                setState(() {
+                  _level = e.key;
+                  _info = e.value;
+                });
+                _load(e.key);
+              },
+            ),
+          );
+        }),
+      ],
+    );
+  }
+
+  Future<void> _load(String level) async {
+    setState(() => _loading = true);
+    final appState = context.read<AppState>();
+    final lang = appState.currentLanguage;
+    final text = await appState.contentService.loadAssetText(
+      appState.contentService.writingTextPath(_type!, level, lang),
+    );
+    if (mounted) {
+      setState(() {
+        _exercises = appState.contentService.parseWritingExercises(text);
+        _loading = false;
+      });
+    }
+  }
+
+  Widget _contentBody(AppState appState, Language lang) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    _getExerciseDescription(),
-                    style: Theme.of(context).textTheme.bodyLarge,
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    _getExercisePrompt(),
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                          fontWeight: FontWeight.bold,
-                        ),
-                  ),
-                ],
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: TextButton(
+              onPressed: () => setState(() {
+                _level = null;
+                _info = null;
+              }),
+              child: const Text('← Back to activities'),
+            ),
+          ),
+          if (_info != null)
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                _info!.displayTitle(lang),
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+            ),
+          if (_info != null && _info!.hasAudio)
+            LessonAudioPlayer(
+              audioPath: appState.contentService
+                  .writingAudioPath(_type!, _level!, lang),
+              showPinyinNote: lang == Language.pinyin,
+            ),
+          if (_type == 'character')
+            const Padding(
+              padding: EdgeInsets.all(16),
+              child: CharacterCanvas(),
+            ),
+          ..._exercises.map((ex) => _exerciseCard(ex)),
+          Padding(
+            padding: const EdgeInsets.all(16),
+            child: ElevatedButton(
+              onPressed: appState.isWritingCompleted(_type!, _level!)
+                  ? null
+                  : () => appState.markWritingComplete(_type!, _level!),
+              child: Text(
+                appState.isWritingCompleted(_type!, _level!)
+                    ? AppStrings.t(lang, zh: '已完成', en: 'Completed')
+                    : AppStrings.t(lang, zh: '标记完成', en: 'Mark complete'),
               ),
             ),
           ),
-          const SizedBox(height: 16),
-          Card(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Your Answer:',
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
-                  const SizedBox(height: 8),
-                  TextField(
-                    controller: _textController,
-                    maxLines: 10,
-                    decoration: const InputDecoration(
-                      hintText: 'Type your answer here...',
-                      border: OutlineInputBorder(),
-                    ),
-                    style: const TextStyle(fontSize: 18, height: 1.8),
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    children: [
-                      ElevatedButton(
-                        onPressed: _textController.clear,
-                        child: const Text('Clear'),
-                      ),
-                      const SizedBox(width: 8),
-                      ElevatedButton.icon(
-                        onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text('Answer saved! Keep practicing.'),
-                            ),
-                          );
-                        },
-                        icon: const Icon(Icons.save),
-                        label: const Text('Save'),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(height: 16),
-          if (_selectedExercise == 'characters') _buildCharacterGrid(),
         ],
       ),
     );
   }
 
-  Widget _buildCharacterGrid() {
-    final characters = ['你', '好', '我', '是', '的', '在', '有', '不', '人', '们'];
-
+  Widget _exerciseCard(WritingExercise ex) {
+    final controller = TextEditingController();
     return Card(
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Common Characters:',
-              style: Theme.of(context).textTheme.titleMedium,
+            Text(ex.prompt, style: const TextStyle(fontSize: 16)),
+            const SizedBox(height: 8),
+            TextField(
+              controller: controller,
+              maxLines: 3,
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: 'Your answer...',
+              ),
             ),
-            const SizedBox(height: 16),
-            Wrap(
-              spacing: 12,
-              runSpacing: 12,
-              children: characters.map((char) {
-                return InkWell(
-                  onTap: () {
-                    _textController.text += char;
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                TextButton(
+                  onPressed: () => controller.clear(),
+                  child: const Text('Clear'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    final ok = controller.text.trim().toLowerCase() ==
+                        ex.answer.trim().toLowerCase();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(ok ? 'Correct!' : 'Try again'),
+                        backgroundColor: ok ? Colors.green : Colors.orange,
+                      ),
+                    );
                   },
-                  child: Container(
-                    width: 60,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Center(
-                      child: Text(
-                        char,
-                        style: const TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
+                  child: const Text('Check'),
+                ),
+                if (ex.answer.isNotEmpty)
+                  TextButton(
+                    onPressed: () => controller.text = ex.answer,
+                    child: const Text('Show answer'),
                   ),
-                );
-              }).toList(),
+              ],
             ),
           ],
         ),
       ),
     );
-  }
-
-  String _getExerciseDescription() {
-    switch (_selectedExercise) {
-      case 'characters':
-        return 'Practice writing Chinese characters. Tap the characters below to add them to your answer.';
-      case 'sentences':
-        return 'Build complete sentences using Chinese characters and grammar patterns.';
-      case 'translation':
-        return 'Translate the given English sentence into Chinese.';
-      default:
-        return '';
-    }
-  }
-
-  String _getExercisePrompt() {
-    switch (_selectedExercise) {
-      case 'characters':
-        return 'Write: "Hello, how are you?" in Chinese';
-      case 'sentences':
-        return 'Build a sentence: "I like to study Chinese."';
-      case 'translation':
-        return 'Translate: "Where is the nearest restaurant?"';
-      default:
-        return '';
-    }
   }
 }

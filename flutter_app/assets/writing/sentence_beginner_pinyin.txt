@@ -1,0 +1,25 @@
+初级句子完成 / Beginner Sentence Completion
+--------------------
+
+Complete sentences with appropriate words
+
+1. 我 ____ 中文。(study)
+Answer: 学习 (xuéxí)
+Full sentence: 我学习中文。
+
+2. 他 ____ 咖啡。(drink)
+Answer: 喝 (hē)
+Full sentence: 他喝咖啡。
+
+3. 我们 ____ 去北京。(want)
+Answer: 想 (xiǎng)
+Full sentence: 我们想去北京。
+
+4. 她 ____ 看书。(like)
+Answer: 喜欢 (xǐhuan)
+Full sentence: 她喜欢看书。
+
+5. 你 ____ 多少岁？(be)
+Answer: 是 (shì)
+Full sentence: 你是多少岁？
+

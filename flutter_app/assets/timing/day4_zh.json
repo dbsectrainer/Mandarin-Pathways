@@ -1,0 +1,79 @@
+{
+    "version": 1,
+    "day": 4,
+    "lang": "zh",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Common Verbs",
+            "start": 0.0,
+            "end": 1.128
+        },
+        {
+            "i": 1,
+            "section": "Common Verbs",
+            "start": 1.128,
+            "end": 2.184
+        },
+        {
+            "i": 2,
+            "section": "Common Verbs",
+            "start": 2.184,
+            "end": 3.312
+        },
+        {
+            "i": 3,
+            "section": "Common Verbs",
+            "start": 3.312,
+            "end": 4.416
+        },
+        {
+            "i": 4,
+            "section": "Common Verbs",
+            "start": 4.416,
+            "end": 5.472
+        },
+        {
+            "i": 5,
+            "section": "Common Verbs",
+            "start": 5.472,
+            "end": 6.552
+        },
+        {
+            "i": 6,
+            "section": "Common Verbs",
+            "start": 6.552,
+            "end": 7.608
+        },
+        {
+            "i": 7,
+            "section": "Common Verbs",
+            "start": 7.608,
+            "end": 8.736
+        },
+        {
+            "i": 8,
+            "section": "Simple Sentences",
+            "start": 8.736,
+            "end": 10.392
+        },
+        {
+            "i": 9,
+            "section": "Simple Sentences",
+            "start": 10.392,
+            "end": 12.048
+        },
+        {
+            "i": 10,
+            "section": "Simple Sentences",
+            "start": 12.048,
+            "end": 13.824
+        },
+        {
+            "i": 11,
+            "section": "Simple Sentences",
+            "start": 13.824,
+            "end": 15.312
+        }
+    ]
+}

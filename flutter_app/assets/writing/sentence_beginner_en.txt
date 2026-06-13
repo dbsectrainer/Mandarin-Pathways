@@ -1,0 +1,25 @@
+Beginner Sentence Completion
+--------------------
+
+Complete sentences with appropriate words
+
+1. 我 ____ 中文。(study)
+Answer: 学习 (xuéxí)
+Full sentence: I study Chinese.
+
+2. 他 ____ 咖啡。(drink)
+Answer: 喝 (hē)
+Full sentence: He drinks coffee.
+
+3. 我们 ____ 去北京。(want)
+Answer: 想 (xiǎng)
+Full sentence: We want to go to Beijing.
+
+4. 她 ____ 看书。(like)
+Answer: 喜欢 (xǐhuan)
+Full sentence: She likes to read books.
+
+5. 你 ____ 多少岁？(be)
+Answer: 是 (shì)
+Full sentence: How old are you?
+

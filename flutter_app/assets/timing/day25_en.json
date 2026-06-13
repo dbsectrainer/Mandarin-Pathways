@@ -1,0 +1,67 @@
+{
+    "version": 1,
+    "day": 25,
+    "lang": "en",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Remote Work Terms",
+            "start": 0.0,
+            "end": 1.8
+        },
+        {
+            "i": 1,
+            "section": "Remote Work Terms",
+            "start": 1.8,
+            "end": 3.696
+        },
+        {
+            "i": 2,
+            "section": "Remote Work Terms",
+            "start": 3.696,
+            "end": 6.168
+        },
+        {
+            "i": 3,
+            "section": "Remote Work Terms",
+            "start": 6.168,
+            "end": 8.304
+        },
+        {
+            "i": 4,
+            "section": "Remote Work Terms",
+            "start": 8.304,
+            "end": 10.44
+        },
+        {
+            "i": 5,
+            "section": "Remote Work Phrases",
+            "start": 10.44,
+            "end": 13.056
+        },
+        {
+            "i": 6,
+            "section": "Remote Work Phrases",
+            "start": 13.056,
+            "end": 15.168
+        },
+        {
+            "i": 7,
+            "section": "Remote Work Phrases",
+            "start": 15.168,
+            "end": 17.976
+        },
+        {
+            "i": 8,
+            "section": "Remote Work Phrases",
+            "start": 17.976,
+            "end": 19.92
+        },
+        {
+            "i": 9,
+            "section": "Remote Work Phrases",
+            "start": 19.92,
+            "end": 22.056
+        }
+    ]
+}

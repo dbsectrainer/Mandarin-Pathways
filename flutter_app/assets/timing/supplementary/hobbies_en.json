@@ -1,0 +1,97 @@
+{
+    "version": 1,
+    "phrases": [
+        {
+            "section": "Sports",
+            "i": 0,
+            "start": 0.0,
+            "end": 2.28
+        },
+        {
+            "section": "Sports",
+            "i": 1,
+            "start": 2.28,
+            "end": 4.08
+        },
+        {
+            "section": "Sports",
+            "i": 2,
+            "start": 4.08,
+            "end": 5.664
+        },
+        {
+            "section": "Sports",
+            "i": 3,
+            "start": 5.664,
+            "end": 7.248
+        },
+        {
+            "section": "Sports",
+            "i": 4,
+            "start": 7.248,
+            "end": 8.76
+        },
+        {
+            "section": "Arts & Entertainment",
+            "i": 5,
+            "start": 8.76,
+            "end": 10.704
+        },
+        {
+            "section": "Arts & Entertainment",
+            "i": 6,
+            "start": 10.704,
+            "end": 12.768
+        },
+        {
+            "section": "Arts & Entertainment",
+            "i": 7,
+            "start": 12.768,
+            "end": 14.376
+        },
+        {
+            "section": "Arts & Entertainment",
+            "i": 8,
+            "start": 14.376,
+            "end": 16.224
+        },
+        {
+            "section": "Arts & Entertainment",
+            "i": 9,
+            "start": 16.224,
+            "end": 18.072
+        },
+        {
+            "section": "Reading & Literature",
+            "i": 10,
+            "start": 18.072,
+            "end": 19.608
+        },
+        {
+            "section": "Reading & Literature",
+            "i": 11,
+            "start": 19.608,
+            "end": 21.288
+        },
+        {
+            "section": "Reading & Literature",
+            "i": 12,
+            "start": 21.288,
+            "end": 22.992
+        },
+        {
+            "section": "Reading & Literature",
+            "i": 13,
+            "start": 22.992,
+            "end": 24.672
+        },
+        {
+            "section": "Reading & Literature",
+            "i": 14,
+            "start": 24.672,
+            "end": 26.712
+        }
+    ],
+    "category": "hobbies",
+    "lang": "en"
+}

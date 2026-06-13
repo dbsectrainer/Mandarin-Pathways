@@ -44,5 +44,12 @@ flutter:
 
     assets:
         - assets/audio/
+        - assets/audio/supplementary/
+        - assets/audio/reading/
+        - assets/audio/writing/
         - assets/icons/
         - assets/text/
+        - assets/text/supplementary/
+        - assets/reading/
+        - assets/writing/
+        - assets/timing/

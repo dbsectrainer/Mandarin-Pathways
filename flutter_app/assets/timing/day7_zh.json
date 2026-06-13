@@ -1,0 +1,79 @@
+{
+    "version": 1,
+    "day": 7,
+    "lang": "zh",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Common Radicals",
+            "start": 0.0,
+            "end": 1.032
+        },
+        {
+            "i": 1,
+            "section": "Common Radicals",
+            "start": 1.032,
+            "end": 2.088
+        },
+        {
+            "i": 2,
+            "section": "Common Radicals",
+            "start": 2.088,
+            "end": 3.12
+        },
+        {
+            "i": 3,
+            "section": "Common Radicals",
+            "start": 3.12,
+            "end": 4.248
+        },
+        {
+            "i": 4,
+            "section": "Common Radicals",
+            "start": 4.248,
+            "end": 5.28
+        },
+        {
+            "i": 5,
+            "section": "Common Radicals",
+            "start": 5.28,
+            "end": 6.384
+        },
+        {
+            "i": 6,
+            "section": "Common Radicals",
+            "start": 6.384,
+            "end": 7.488
+        },
+        {
+            "i": 7,
+            "section": "Character Components",
+            "start": 7.488,
+            "end": 9.432
+        },
+        {
+            "i": 8,
+            "section": "Character Components",
+            "start": 9.432,
+            "end": 11.352
+        },
+        {
+            "i": 9,
+            "section": "Character Components",
+            "start": 11.352,
+            "end": 13.248
+        },
+        {
+            "i": 10,
+            "section": "Character Components",
+            "start": 13.248,
+            "end": 15.192
+        },
+        {
+            "i": 11,
+            "section": "Character Components",
+            "start": 15.192,
+            "end": 17.664
+        }
+    ]
+}

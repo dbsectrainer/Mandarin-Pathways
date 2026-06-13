@@ -1,0 +1,67 @@
+{
+    "version": 1,
+    "day": 37,
+    "lang": "zh",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Restaurant Dialogue 1",
+            "start": 0.0,
+            "end": 2.688
+        },
+        {
+            "i": 1,
+            "section": "Restaurant Dialogue 1",
+            "start": 2.688,
+            "end": 5.328
+        },
+        {
+            "i": 2,
+            "section": "Restaurant Dialogue 1",
+            "start": 5.328,
+            "end": 7.632
+        },
+        {
+            "i": 3,
+            "section": "Restaurant Dialogue 1",
+            "start": 7.632,
+            "end": 9.864
+        },
+        {
+            "i": 4,
+            "section": "Restaurant Dialogue 1",
+            "start": 9.864,
+            "end": 12.744
+        },
+        {
+            "i": 5,
+            "section": "Restaurant Dialogue 2",
+            "start": 12.744,
+            "end": 15.024
+        },
+        {
+            "i": 6,
+            "section": "Restaurant Dialogue 2",
+            "start": 15.024,
+            "end": 17.52
+        },
+        {
+            "i": 7,
+            "section": "Restaurant Dialogue 2",
+            "start": 17.52,
+            "end": 21.456
+        },
+        {
+            "i": 8,
+            "section": "Restaurant Dialogue 2",
+            "start": 21.456,
+            "end": 24.576
+        },
+        {
+            "i": 9,
+            "section": "Restaurant Dialogue 2",
+            "start": 24.576,
+            "end": 27.696
+        }
+    ]
+}

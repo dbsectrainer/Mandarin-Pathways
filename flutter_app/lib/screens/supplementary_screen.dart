@@ -1,48 +1,111 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../models/audio_cue.dart';
+import '../models/lesson.dart';
+import '../models/phrase_section.dart';
+import '../l10n/strings.dart';
+import '../services/app_state.dart';
+import '../widgets/lesson_audio_player.dart';
+import '../widgets/phrase_list.dart';
 
-class SupplementaryScreen extends StatelessWidget {
+class SupplementaryScreen extends StatefulWidget {
   const SupplementaryScreen({super.key});
 
   @override
+  State<SupplementaryScreen> createState() => _SupplementaryScreenState();
+}
+
+class _SupplementaryScreenState extends State<SupplementaryScreen> {
+  String? _category;
+  List<PhraseSection> _sections = [];
+  List<AudioCue> _cues = [];
+  int? _activeCue;
+  bool _loading = true;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _category = ModalRoute.of(context)?.settings.arguments as String?;
+    _load();
+  }
+
+  Future<void> _load() async {
+    if (_category == null) return;
+    setState(() => _loading = true);
+    final appState = context.read<AppState>();
+    final lang = appState.currentLanguage;
+    final text = await appState.contentService.loadAssetText(
+      appState.contentService.supplementaryTextPath(_category!, lang),
+    );
+    final timing = await appState.contentService.loadTiming(
+      appState.contentService.supplementaryTimingPath(_category!, lang),
+    );
+    if (mounted) {
+      setState(() {
+        _sections = appState.contentService.parsePhraseSections(text);
+        _cues = timing?.phrases ?? [];
+        _loading = false;
+      });
+    }
+  }
+
+  void _updateCue() {
+    final appState = context.read<AppState>();
+    appState.audioService.currentPosition.then((p) {
+      if (!mounted || p == null) return;
+      setState(() {
+        _activeCue = appState.contentService.activeCueIndex(p, _cues);
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final String? category =
-        ModalRoute.of(context)?.settings.arguments as String?;
+    final appState = context.watch<AppState>();
+    final lang = appState.currentLanguage;
+    final title = _titleFor(_category);
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(_getCategoryTitle(category)),
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  _getCategoryTitle(category),
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.bold,
+      appBar: AppBar(title: Text(title)),
+      body: _loading
+          ? const Center(child: CircularProgressIndicator())
+          : SingleChildScrollView(
+              child: Column(
+                children: [
+                  LessonAudioPlayer(
+                    audioPath: appState.contentService
+                        .supplementaryAudioPath(_category!, lang),
+                    showPinyinNote: lang == Language.pinyin,
+                    onPositionTick: _updateCue,
+                  ),
+                  PhraseListView(
+                    sections: _sections,
+                    day: 0,
+                    activeCueIndex: _activeCue,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: ElevatedButton.icon(
+                      onPressed: appState.isSupplementaryCompleted(_category!)
+                          ? null
+                          : () => appState.markSupplementaryComplete(_category!),
+                      icon: const Icon(Icons.check),
+                      label: Text(
+                        appState.isSupplementaryCompleted(_category!)
+                            ? AppStrings.t(lang, zh: '已完成', en: 'Completed')
+                            : AppStrings.t(lang,
+                                zh: '标记完成', en: 'Mark complete'),
                       ),
-                ),
-                const SizedBox(height: 16),
-                Text(
-                  _getCategoryContent(category),
-                  style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                        height: 1.8,
-                      ),
-                ),
-              ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ),
-      ),
     );
   }
 
-  String _getCategoryTitle(String? category) {
-    switch (category) {
+  String _titleFor(String? cat) {
+    switch (cat) {
       case 'education':
         return 'Education & Academic Life';
       case 'hobbies':
@@ -55,43 +118,6 @@ class SupplementaryScreen extends StatelessWidget {
         return 'Comparison Structures';
       default:
         return 'Supplementary Materials';
-    }
-  }
-
-  String _getCategoryContent(String? category) {
-    switch (category) {
-      case 'education':
-        return 'Learn vocabulary and phrases for academic settings:\n\n'
-            '• Classroom interactions\n'
-            '• Study-related terms\n'
-            '• Educational institutions\n'
-            '• Academic discussions';
-      case 'hobbies':
-        return 'Express your interests and hobbies:\n\n'
-            '• Sports and activities\n'
-            '• Arts and crafts\n'
-            '• Music and entertainment\n'
-            '• Leisure activities';
-      case 'emotions':
-        return 'Communicate your feelings effectively:\n\n'
-            '• Basic emotions\n'
-            '• Complex feelings\n'
-            '• Emotional expressions\n'
-            '• Empathy and understanding';
-      case 'daily_life':
-        return 'Essential phrases for everyday life:\n\n'
-            '• Weather descriptions\n'
-            '• Daily routines\n'
-            '• Time expressions\n'
-            '• Common activities';
-      case 'comparisons':
-        return 'Master comparison structures:\n\n'
-            '• Basic comparisons (比)\n'
-            '• Superlatives (最)\n'
-            '• Equal comparisons (跟...一样)\n'
-            '• Preference expressions';
-      default:
-        return 'Select a category to view supplementary learning materials.';
     }
   }
 }

@@ -1,0 +1,79 @@
+{
+    "version": 1,
+    "phrases": [
+        {
+            "section": "School Subjects",
+            "i": 0,
+            "start": 0.0,
+            "end": 1.368
+        },
+        {
+            "section": "School Subjects",
+            "i": 1,
+            "start": 1.368,
+            "end": 2.592
+        },
+        {
+            "section": "School Subjects",
+            "i": 2,
+            "start": 2.592,
+            "end": 3.912
+        },
+        {
+            "section": "School Subjects",
+            "i": 3,
+            "start": 3.912,
+            "end": 5.208
+        },
+        {
+            "section": "School Subjects",
+            "i": 4,
+            "start": 5.208,
+            "end": 6.528
+        },
+        {
+            "section": "School Subjects",
+            "i": 5,
+            "start": 6.528,
+            "end": 7.752
+        },
+        {
+            "section": "School Subjects",
+            "i": 6,
+            "start": 7.752,
+            "end": 9.048
+        },
+        {
+            "section": "Classroom Phrases",
+            "i": 7,
+            "start": 9.048,
+            "end": 10.512
+        },
+        {
+            "section": "Classroom Phrases",
+            "i": 8,
+            "start": 10.512,
+            "end": 12.024
+        },
+        {
+            "section": "Classroom Phrases",
+            "i": 9,
+            "start": 12.024,
+            "end": 14.016
+        },
+        {
+            "section": "Classroom Phrases",
+            "i": 10,
+            "start": 14.016,
+            "end": 15.48
+        },
+        {
+            "section": "Classroom Phrases",
+            "i": 11,
+            "start": 15.48,
+            "end": 16.8
+        }
+    ],
+    "category": "education",
+    "lang": "zh"
+}

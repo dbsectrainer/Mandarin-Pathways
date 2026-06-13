@@ -1,0 +1,45 @@
+Numbers
+--------------------
+
+Practice writing Chinese numbers
+
+一 - yī - one
+Stroke count: 1
+Stroke order: horizontal
+
+Write each number 5 times, paying attention to stroke order:
+
+一: _ _ _ _ _
+
+二 - èr - two
+Stroke count: 2
+Stroke order: top horizontal, bottom horizontal
+
+Write each number 5 times, paying attention to stroke order:
+
+二: _ _ _ _ _
+
+三 - sān - three
+Stroke count: 3
+Stroke order: top horizontal, middle horizontal, bottom horizontal
+
+Write each number 5 times, paying attention to stroke order:
+
+三: _ _ _ _ _
+
+四 - sì - four
+Stroke count: 5
+Stroke order: left horizontal, top horizontal, right vertical, middle horizontal, bottom box
+
+Write each number 5 times, paying attention to stroke order:
+
+四: _ _ _ _ _
+
+五 - wǔ - five
+Stroke count: 4
+Stroke order: horizontal, vertical, left horizontal, right horizontal
+
+Write each number 5 times, paying attention to stroke order:
+
+五: _ _ _ _ _
+

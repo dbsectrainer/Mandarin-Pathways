@@ -1,0 +1,79 @@
+{
+    "version": 1,
+    "day": 27,
+    "lang": "zh",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Email Vocabulary",
+            "start": 0.0,
+            "end": 1.584
+        },
+        {
+            "i": 1,
+            "section": "Email Vocabulary",
+            "start": 1.584,
+            "end": 3.072
+        },
+        {
+            "i": 2,
+            "section": "Email Vocabulary",
+            "start": 3.072,
+            "end": 4.512
+        },
+        {
+            "i": 3,
+            "section": "Email Vocabulary",
+            "start": 4.512,
+            "end": 5.784
+        },
+        {
+            "i": 4,
+            "section": "Email Vocabulary",
+            "start": 5.784,
+            "end": 7.08
+        },
+        {
+            "i": 5,
+            "section": "Email Vocabulary",
+            "start": 7.08,
+            "end": 8.328
+        },
+        {
+            "i": 6,
+            "section": "Email Phrases",
+            "start": 8.328,
+            "end": 10.392
+        },
+        {
+            "i": 7,
+            "section": "Email Phrases",
+            "start": 10.392,
+            "end": 12.24
+        },
+        {
+            "i": 8,
+            "section": "Email Phrases",
+            "start": 12.24,
+            "end": 14.04
+        },
+        {
+            "i": 9,
+            "section": "Email Phrases",
+            "start": 14.04,
+            "end": 15.936
+        },
+        {
+            "i": 10,
+            "section": "Email Phrases",
+            "start": 15.936,
+            "end": 17.232
+        },
+        {
+            "i": 11,
+            "section": "Email Phrases",
+            "start": 17.232,
+            "end": 18.48
+        }
+    ]
+}

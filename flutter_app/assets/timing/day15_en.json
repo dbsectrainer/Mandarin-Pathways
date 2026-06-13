@@ -1,0 +1,103 @@
+{
+    "version": 1,
+    "day": 15,
+    "lang": "en",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Immediate Family",
+            "start": 0.0,
+            "end": 1.584
+        },
+        {
+            "i": 1,
+            "section": "Immediate Family",
+            "start": 1.584,
+            "end": 3.096
+        },
+        {
+            "i": 2,
+            "section": "Immediate Family",
+            "start": 3.096,
+            "end": 4.896
+        },
+        {
+            "i": 3,
+            "section": "Immediate Family",
+            "start": 4.896,
+            "end": 6.84
+        },
+        {
+            "i": 4,
+            "section": "Immediate Family",
+            "start": 6.84,
+            "end": 8.664
+        },
+        {
+            "i": 5,
+            "section": "Immediate Family",
+            "start": 8.664,
+            "end": 10.608
+        },
+        {
+            "i": 6,
+            "section": "Immediate Family",
+            "start": 10.608,
+            "end": 12.12
+        },
+        {
+            "i": 7,
+            "section": "Immediate Family",
+            "start": 12.12,
+            "end": 13.632
+        },
+        {
+            "i": 8,
+            "section": "Extended Family",
+            "start": 13.632,
+            "end": 15.84
+        },
+        {
+            "i": 9,
+            "section": "Extended Family",
+            "start": 15.84,
+            "end": 17.952
+        },
+        {
+            "i": 10,
+            "section": "Extended Family",
+            "start": 17.952,
+            "end": 20.16
+        },
+        {
+            "i": 11,
+            "section": "Extended Family",
+            "start": 20.16,
+            "end": 22.296
+        },
+        {
+            "i": 12,
+            "section": "Extended Family",
+            "start": 22.296,
+            "end": 25.128
+        },
+        {
+            "i": 13,
+            "section": "Extended Family",
+            "start": 25.128,
+            "end": 27.576
+        },
+        {
+            "i": 14,
+            "section": "Extended Family",
+            "start": 27.576,
+            "end": 29.832
+        },
+        {
+            "i": 15,
+            "section": "Extended Family",
+            "start": 29.832,
+            "end": 32.088
+        }
+    ]
+}

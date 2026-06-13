@@ -1,0 +1,67 @@
+{
+    "version": 1,
+    "day": 24,
+    "lang": "zh",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Meeting Etiquette",
+            "start": 0.0,
+            "end": 1.32
+        },
+        {
+            "i": 1,
+            "section": "Meeting Etiquette",
+            "start": 1.32,
+            "end": 2.952
+        },
+        {
+            "i": 2,
+            "section": "Meeting Etiquette",
+            "start": 2.952,
+            "end": 4.224
+        },
+        {
+            "i": 3,
+            "section": "Meeting Etiquette",
+            "start": 4.224,
+            "end": 5.904
+        },
+        {
+            "i": 4,
+            "section": "Meeting Etiquette",
+            "start": 5.904,
+            "end": 7.128
+        },
+        {
+            "i": 5,
+            "section": "Business Phrases",
+            "start": 7.128,
+            "end": 8.976
+        },
+        {
+            "i": 6,
+            "section": "Business Phrases",
+            "start": 8.976,
+            "end": 10.584
+        },
+        {
+            "i": 7,
+            "section": "Business Phrases",
+            "start": 10.584,
+            "end": 12.24
+        },
+        {
+            "i": 8,
+            "section": "Business Phrases",
+            "start": 12.24,
+            "end": 14.688
+        },
+        {
+            "i": 9,
+            "section": "Business Phrases",
+            "start": 14.688,
+            "end": 16.08
+        }
+    ]
+}

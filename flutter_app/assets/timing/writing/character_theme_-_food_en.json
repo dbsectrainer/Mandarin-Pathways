@@ -1,0 +1,21 @@
+{
+    "version": 1,
+    "phrases": [
+        {
+            "section": "title",
+            "i": 0,
+            "start": 0.0,
+            "end": 1.92
+        },
+        {
+            "section": "description",
+            "i": 1,
+            "start": 1.92,
+            "end": 5.376
+        }
+    ],
+    "activity_type": "character",
+    "level": "theme_-_food",
+    "lang": "en",
+    "kind": "writing"
+}

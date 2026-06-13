@@ -1,0 +1,91 @@
+{
+    "version": 1,
+    "day": 5,
+    "lang": "zh",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Common Adjectives",
+            "start": 0.0,
+            "end": 1.032
+        },
+        {
+            "i": 1,
+            "section": "Common Adjectives",
+            "start": 1.032,
+            "end": 2.136
+        },
+        {
+            "i": 2,
+            "section": "Common Adjectives",
+            "start": 2.136,
+            "end": 3.192
+        },
+        {
+            "i": 3,
+            "section": "Common Adjectives",
+            "start": 3.192,
+            "end": 4.296
+        },
+        {
+            "i": 4,
+            "section": "Common Adjectives",
+            "start": 4.296,
+            "end": 5.328
+        },
+        {
+            "i": 5,
+            "section": "Common Adjectives",
+            "start": 5.328,
+            "end": 6.456
+        },
+        {
+            "i": 6,
+            "section": "Common Adjectives",
+            "start": 6.456,
+            "end": 7.536
+        },
+        {
+            "i": 7,
+            "section": "Common Adjectives",
+            "start": 7.536,
+            "end": 8.568
+        },
+        {
+            "i": 8,
+            "section": "Common Adjectives",
+            "start": 8.568,
+            "end": 9.672
+        },
+        {
+            "i": 9,
+            "section": "Common Adjectives",
+            "start": 9.672,
+            "end": 10.752
+        },
+        {
+            "i": 10,
+            "section": "Descriptive Phrases",
+            "start": 10.752,
+            "end": 12.048
+        },
+        {
+            "i": 11,
+            "section": "Descriptive Phrases",
+            "start": 12.048,
+            "end": 13.464
+        },
+        {
+            "i": 12,
+            "section": "Descriptive Phrases",
+            "start": 13.464,
+            "end": 15.096
+        },
+        {
+            "i": 13,
+            "section": "Descriptive Phrases",
+            "start": 15.096,
+            "end": 16.56
+        }
+    ]
+}

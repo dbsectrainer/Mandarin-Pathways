@@ -1,0 +1,79 @@
+{
+    "version": 1,
+    "day": 36,
+    "lang": "en",
+    "phrases": [
+        {
+            "i": 0,
+            "section": "Persuasion Techniques",
+            "start": 0.0,
+            "end": 1.632
+        },
+        {
+            "i": 1,
+            "section": "Persuasion Techniques",
+            "start": 1.632,
+            "end": 3.432
+        },
+        {
+            "i": 2,
+            "section": "Persuasion Techniques",
+            "start": 3.432,
+            "end": 5.088
+        },
+        {
+            "i": 3,
+            "section": "Persuasion Techniques",
+            "start": 5.088,
+            "end": 6.936
+        },
+        {
+            "i": 4,
+            "section": "Persuasion Techniques",
+            "start": 6.936,
+            "end": 8.712
+        },
+        {
+            "i": 5,
+            "section": "Persuasion Techniques",
+            "start": 8.712,
+            "end": 10.416
+        },
+        {
+            "i": 6,
+            "section": "Persuasive Phrases",
+            "start": 10.416,
+            "end": 12.816
+        },
+        {
+            "i": 7,
+            "section": "Persuasive Phrases",
+            "start": 12.816,
+            "end": 14.76
+        },
+        {
+            "i": 8,
+            "section": "Persuasive Phrases",
+            "start": 14.76,
+            "end": 16.68
+        },
+        {
+            "i": 9,
+            "section": "Persuasive Phrases",
+            "start": 16.68,
+            "end": 18.768
+        },
+        {
+            "i": 10,
+            "section": "Persuasive Phrases",
+            "start": 18.768,
+            "end": 20.976
+        },
+        {
+            "i": 11,
+            "section": "Persuasive Phrases",
+            "start": 20.976,
+            "end": 23.04
+        }
+    ]
+}

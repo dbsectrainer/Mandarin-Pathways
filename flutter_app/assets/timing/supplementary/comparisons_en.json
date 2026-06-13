@@ -1,0 +1,55 @@
+{
+    "version": 1,
+    "phrases": [
+        {
+            "section": "Basic Comparisons",
+            "i": 0,
+            "start": 0.0,
+            "end": 2.088
+        },
+        {
+            "section": "Basic Comparisons",
+            "i": 1,
+            "start": 2.088,
+            "end": 4.296
+        },
+        {
+            "section": "Basic Comparisons",
+            "i": 2,
+            "start": 4.296,
+            "end": 6.048
+        },
+        {
+            "section": "Basic Comparisons",
+            "i": 3,
+            "start": 6.048,
+            "end": 7.68
+        },
+        {
+            "section": "Example Sentences",
+            "i": 4,
+            "start": 7.68,
+            "end": 10.32
+        },
+        {
+            "section": "Example Sentences",
+            "i": 5,
+            "start": 10.32,
+            "end": 13.032
+        },
+        {
+            "section": "Example Sentences",
+            "i": 6,
+            "start": 13.032,
+            "end": 15.48
+        },
+        {
+            "section": "Example Sentences",
+            "i": 7,
+            "start": 15.48,
+            "end": 17.88
+        }
+    ],
+    "category": "comparisons",
+    "lang": "en"
+}

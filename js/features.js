@@ -367,6 +367,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initDarkMode();
     initHighContrast();
     initScriptToggle();
+    initCantoneseButton();
     renderXpPanel();
     renderHskDashboard();
     renderAnalyticsPanel();

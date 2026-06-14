@@ -315,6 +315,25 @@ class StorageService {
     }
   }
 
+  // --- XP / Level system ---
+
+  int getXpPoints() => _prefs.getInt('xpPoints') ?? 0;
+
+  Future<int> awardXp(int amount) async {
+    final current = getXpPoints();
+    final next = current + amount;
+    await _prefs.setInt('xpPoints', next);
+    return next;
+  }
+
+  // --- Chinese script preference ---
+
+  String getChineseScript() => _prefs.getString('chineseScript') ?? 'simplified';
+
+  Future<void> setChineseScript(String script) async {
+    await _prefs.setString('chineseScript', script);
+  }
+
   // --- Language / settings ---
 
   String getPreferredLanguage() {

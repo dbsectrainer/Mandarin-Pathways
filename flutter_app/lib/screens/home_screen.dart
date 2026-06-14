@@ -7,6 +7,33 @@ import '../widgets/learning_dashboard.dart';
 import '../widgets/language_card.dart';
 import '../widgets/section_card.dart';
 import '../widgets/benefit_card.dart';
+import '../widgets/hsk_dashboard.dart';
+
+String _cefrForDay(int day) {
+  if (day <= 7) return 'A1';
+  if (day <= 14) return 'A2';
+  if (day <= 22) return 'B1';
+  if (day <= 30) return 'B2';
+  return 'C1';
+}
+
+Color _cefrColor(String cefr) {
+  switch (cefr) {
+    case 'A1': return const Color(0xFFE74C3C);
+    case 'A2': return const Color(0xFFE67E22);
+    case 'B1': return const Color(0xFFF39C12);
+    case 'B2': return const Color(0xFF2980B9);
+    default:   return const Color(0xFF8E44AD);
+  }
+}
+
+int _durationForDay(int day) {
+  if (day <= 7) return 10;
+  if (day <= 14) return 12;
+  if (day <= 22) return 15;
+  if (day <= 30) return 15;
+  return 20;
+}
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -43,6 +70,8 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 _buildHeroSection(context),
                 _buildLanguageCards(appState),
+                const SizedBox(height: 24),
+                const HskDashboard(),
                 const SizedBox(height: 32),
                 const LearningDashboard(),
                 const SizedBox(height: 32),
@@ -239,6 +268,9 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildDayButton(BuildContext context, Lesson lesson, bool isCompleted) {
+    final cefr = _cefrForDay(lesson.day);
+    final cefrColor = _cefrColor(cefr);
+    final duration = _durationForDay(lesson.day);
     return InkWell(
       onTap: () {
         Navigator.pushNamed(
@@ -262,23 +294,51 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Stack(
           children: [
             Center(
-              child: Text(
-                '${lesson.day}',
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                      fontWeight: FontWeight.bold,
-                      color: isCompleted
-                          ? Theme.of(context).colorScheme.primary
-                          : Colors.grey[700],
-                    ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '${lesson.day}',
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: isCompleted
+                              ? Theme.of(context).colorScheme.primary
+                              : Colors.grey[700],
+                        ),
+                  ),
+                  Text(
+                    '${duration}m',
+                    style: const TextStyle(fontSize: 9, color: Colors.grey),
+                  ),
+                ],
+              ),
+            ),
+            Positioned(
+              top: 3,
+              left: 3,
+              child: Container(
+                padding: const EdgeInsets.symmetric(horizontal: 3, vertical: 1),
+                decoration: BoxDecoration(
+                  color: cefrColor,
+                  borderRadius: BorderRadius.circular(3),
+                ),
+                child: Text(
+                  cefr,
+                  style: const TextStyle(
+                    fontSize: 7,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
             if (isCompleted)
               Positioned(
-                top: 4,
-                right: 4,
+                top: 3,
+                right: 3,
                 child: Icon(
                   Icons.check_circle,
-                  size: 16,
+                  size: 14,
                   color: Theme.of(context).colorScheme.primary,
                 ),
               ),
@@ -301,23 +361,19 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
           ),
           const SizedBox(height: 16),
-          Row(
+          GridView.count(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            crossAxisCount: 2,
+            mainAxisSpacing: 16,
+            crossAxisSpacing: 16,
+            childAspectRatio: 1.6,
             children: [
-              Expanded(
-                child: _buildSkillCard(
-                  'Reading Skills',
-                  FontAwesomeIcons.bookOpen,
-                  '/reading',
-                ),
-              ),
-              const SizedBox(width: 16),
-              Expanded(
-                child: _buildSkillCard(
-                  'Writing Skills',
-                  FontAwesomeIcons.pen,
-                  '/writing',
-                ),
-              ),
+              _buildSkillCard('Reading Skills', FontAwesomeIcons.bookOpen, '/reading'),
+              _buildSkillCard('Writing Skills', FontAwesomeIcons.pen, '/writing'),
+              _buildSkillCard('Grammar 语法', FontAwesomeIcons.chalkboardUser, '/grammar'),
+              _buildSkillCard('Culture 文化', FontAwesomeIcons.earthAsia, '/culture'),
+              _buildSkillCard('Dictionary 词典', FontAwesomeIcons.book, '/dictionary'),
             ],
           ),
         ],

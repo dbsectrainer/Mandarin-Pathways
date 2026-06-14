@@ -8,9 +8,9 @@
         />
         <meta
             name="description"
-            content="Learn Mandarin Chinese with structured daily lessons and supplementary materials - 通过结构化的每日课程和补充材料学习中文"
+            content="Learn Mandarin & Cantonese Chinese with structured daily lessons, grammar, cultural content, and SRS - 通过结构化的每日课程和补充材料学习中文和粤语"
         />
-        <meta name="theme-color" content="#e74c3c" />
+        <meta name="theme-color" content="#1a2733" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta
             name="apple-mobile-web-app-status-bar-style"
@@ -42,6 +42,7 @@
             media="print"
             onload="this.media = 'all'"
         />
+        <link rel="stylesheet" href="css/features.css" />
         <noscript>
             <link
                 href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
@@ -52,11 +53,27 @@
                 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
             />
             <link rel="stylesheet" href="css/styles.min.css" />
+            <link rel="stylesheet" href="css/features.css" />
         </noscript>
+        <script>
+            // Apply dark mode / high contrast before first paint to prevent flash
+            (function () {
+                var dm = localStorage.getItem("darkMode");
+                if (dm === "true") document.documentElement.setAttribute("data-theme", "dark");
+                if (localStorage.getItem("highContrast") === "true")
+                    document.documentElement.classList.add("high-contrast");
+            })();
+        </script>
     </head>
     <body>
-        <header>
-            <div class="language-selector">
+        <a href="#main-content" class="skip-link">Skip to main content</a>
+
+        <header role="banner">
+            <div class="header-toolbar">
+                <button id="dark-mode-toggle" class="toolbar-btn" aria-label="Toggle dark mode">🌙 Dark mode</button>
+                <button id="high-contrast-toggle" class="toolbar-btn" aria-label="Toggle high contrast">⚡ High contrast</button>
+            </div>
+            <div class="language-selector" role="navigation" aria-label="Language selection">
                 <button
                     class="language-btn"
                     data-lang="zh"
@@ -78,6 +95,19 @@
                 >
                     <span class="flag">🇺🇸</span> English
                 </button>
+                <button
+                    class="language-btn"
+                    data-lang="yue"
+                    aria-label="Switch to Cantonese / Jyutping"
+                >
+                    <span class="flag">🇭🇰</span> 粵語 Yue
+                </button>
+            </div>
+            <div class="script-toggle" role="group" aria-label="Chinese script preference">
+                <input type="radio" name="script" id="script-simplified" value="simplified" checked />
+                <label for="script-simplified">简体</label>
+                <input type="radio" name="script" id="script-traditional" value="traditional" />
+                <label for="script-traditional">繁體</label>
             </div>
             <h1>Mandarin Pathways</h1>
             <p>
@@ -86,7 +116,7 @@
                     >Your Journey to Chinese Language Mastery</span
                 >
             </p>
-            <p class="site-nav-links">
+            <nav class="site-nav-links" role="navigation" aria-label="Site navigation">
                 <a href="review.html"
                     ><span class="zh">复习清单</span
                     ><span class="en">Review starred phrases</span></a
@@ -99,7 +129,23 @@
                     ><span class="zh">水平测试</span
                     ><span class="en">Placement test</span></a
                 >
-            </p>
+                <a href="grammar.html"
+                    ><span class="zh">语法</span
+                    ><span class="en">Grammar</span></a
+                >
+                <a href="culture.html"
+                    ><span class="zh">文化</span
+                    ><span class="en">Culture</span></a
+                >
+                <a href="dictionary.html"
+                    ><span class="zh">词典</span
+                    ><span class="en">Dictionary</span></a
+                >
+                <a href="cantonese-track.html"
+                    ><span class="flag">🇭🇰</span
+                    ><span class="en">Cantonese</span></a
+                >
+            </nav>
         </header>
 
         <section class="hero-section">
@@ -118,7 +164,7 @@
             </div>
         </section>
 
-        <main>
+        <main id="main-content" role="main">
             <!-- Return to top button -->
             <div class="return-to-top" id="returnToTop">
                 <i class="fas fa-arrow-up"></i>
@@ -332,6 +378,34 @@
                         data-achievements-list
                         aria-label="Achievements"
                     ></ul>
+                </div>
+            </section>
+
+            <!-- XP Level Panel -->
+            <div id="xp-panel" class="xp-panel" aria-label="XP and level progress" style="margin:0 20px 16px;border-radius:10px;"></div>
+
+            <!-- Section divider with visual anchor -->
+            <div class="section-divider"></div>
+
+            <!-- HSK Proficiency Dashboard -->
+            <section class="hsk-dashboard" aria-labelledby="hsk-heading">
+                <h2 id="hsk-heading">
+                    <span class="zh">HSK 等级进度</span>
+                    <span class="en">HSK Proficiency Progress</span>
+                </h2>
+                <div id="hsk-dashboard-grid" class="hsk-grid">
+                    <!-- Rendered by features.js -->
+                </div>
+            </section>
+
+            <!-- Learning Analytics Panel -->
+            <section class="analytics-panel" aria-labelledby="analytics-heading">
+                <h2 id="analytics-heading">
+                    <span class="zh">学习分析</span>
+                    <span class="en">Learning Analytics</span>
+                </h2>
+                <div id="analytics-panel-content" class="analytics-grid">
+                    <!-- Rendered by features.js -->
                 </div>
             </section>
 
@@ -1026,6 +1100,7 @@
         </div>
 
         <script src="js/sw-register.js"></script>
+        <script src="js/features.js" defer></script>
         <script>
             document.addEventListener("DOMContentLoaded", function () {
                 // Initialize progress tracking

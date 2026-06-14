@@ -4,6 +4,22 @@ import '../l10n/strings.dart';
 import '../models/achievement.dart';
 import '../services/app_state.dart';
 
+const _xpThresholds = [0, 100, 300, 600, 1000, 2000, 5000];
+const _levelTitles = ['Beginner', 'Apprentice', 'Student', 'Scholar', 'Expert', 'Master', 'Grand Master'];
+
+Map<String, dynamic> _getLevelInfo(int xp) {
+  var level = 0;
+  for (var i = _xpThresholds.length - 1; i >= 0; i--) {
+    if (xp >= _xpThresholds[i]) { level = i; break; }
+  }
+  final nextXp = level < _xpThresholds.length - 1 ? _xpThresholds[level + 1] : _xpThresholds.last;
+  final curXp = _xpThresholds[level];
+  final progress = level < _xpThresholds.length - 1
+      ? (xp - curXp) / (nextXp - curXp)
+      : 1.0;
+  return {'level': level + 1, 'title': _levelTitles[level], 'progress': progress, 'nextXp': nextXp};
+}
+
 class LearningDashboard extends StatelessWidget {
   const LearningDashboard({super.key});
 
@@ -12,6 +28,8 @@ class LearningDashboard extends StatelessWidget {
     final appState = context.watch<AppState>();
     final lang = appState.currentLanguage;
     final earned = appState.earnedAchievements.toSet();
+    final xp = appState.xpPoints;
+    final lvl = _getLevelInfo(xp);
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -46,6 +64,70 @@ class LearningDashboard extends StatelessWidget {
                         : '--',
                     label: AppStrings.t(lang,
                         zh: '推荐起点', en: 'Recommended start'),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.primary,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Text(
+                          'Lv.${lvl['level']}',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        lvl['title'] as String,
+                        style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                              fontWeight: FontWeight.w600,
+                            ),
+                      ),
+                      const Spacer(),
+                      Text(
+                        '$xp XP',
+                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                              color: Theme.of(context).colorScheme.primary,
+                              fontWeight: FontWeight.bold,
+                            ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 6),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(4),
+                    child: LinearProgressIndicator(
+                      value: lvl['progress'] as double,
+                      minHeight: 6,
+                      backgroundColor: Colors.grey[200],
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        Theme.of(context).colorScheme.primary,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    lvl['level'] < 7
+                        ? 'Next level: ${lvl['nextXp']} XP'
+                        : 'Max level reached!',
+                    style: Theme.of(context).textTheme.bodySmall,
                   ),
                 ],
               ),

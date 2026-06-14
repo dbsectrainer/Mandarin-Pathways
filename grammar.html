@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+        <meta name="description" content="Mandarin Chinese grammar instruction — CEFR A1 to C1 structured grammar lessons with examples and cultural notes" />
+        <meta name="theme-color" content="#1a2733" />
+        <title>Grammar 语法 — Mandarin Pathways</title>
+        <link rel="manifest" href="manifest.json" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'" />
+        <link rel="stylesheet" href="css/styles.min.css" media="print" onload="this.media='all'" />
+        <link rel="stylesheet" href="css/features.css" />
+        <noscript>
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+            <link rel="stylesheet" href="css/styles.min.css" />
+            <link rel="stylesheet" href="css/features.css" />
+        </noscript>
+    </head>
+    <body>
+        <a href="#main-content" class="skip-link">Skip to main content</a>
+
+        <header role="banner">
+            <div class="header-toolbar">
+                <button id="dark-mode-toggle" class="toolbar-btn" aria-label="Toggle dark mode">🌙 Dark mode</button>
+            </div>
+            <div class="language-selector" role="navigation" aria-label="Language selection">
+                <button class="language-btn" data-lang="zh" aria-label="Switch to Simplified Chinese"><span class="flag">🇨🇳</span> 简体中文</button>
+                <button class="language-btn" data-lang="pinyin" aria-label="Switch to Pinyin"><span class="flag">🔤</span> Pinyin</button>
+                <button class="language-btn" data-lang="en" aria-label="Switch to English"><span class="flag">🇺🇸</span> English</button>
+            </div>
+            <h1>Mandarin Pathways</h1>
+            <nav class="site-nav-links" role="navigation" aria-label="Site navigation">
+                <a href="index.html"><span class="zh">首页</span><span class="en">Home</span></a>
+                <a href="grammar.html" aria-current="page"><span class="zh">语法</span><span class="en">Grammar</span></a>
+                <a href="culture.html"><span class="zh">文化</span><span class="en">Culture</span></a>
+                <a href="dictionary.html"><span class="zh">词典</span><span class="en">Dictionary</span></a>
+                <a href="srs.html"><span class="zh">间隔复习</span><span class="en">SRS</span></a>
+            </nav>
+        </header>
+
+        <div class="grammar-hero">
+            <h1>
+                <span class="zh">语法课</span>
+                <span class="en">Grammar Lessons</span>
+            </h1>
+            <p>
+                <span class="zh">从A1到C1，系统掌握中文语法规律和实用句型。</span>
+                <span class="en">Systematic grammar instruction from CEFR A1 to C1 — patterns, examples, and cultural notes.</span>
+            </p>
+        </div>
+
+        <main id="main-content" role="main">
+            <div class="grammar-content">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+                    <span class="zh">学习进度：</span>
+                    <span class="en">Progress:</span>
+                    <span id="grammar-progress-label" style="font-size:0.9rem;color:#666;">0/0 completed</span>
+                </div>
+                <div class="grammar-progress-bar">
+                    <div class="grammar-progress-fill" id="grammar-progress-bar" style="width:0%"></div>
+                </div>
+
+                <div id="grammar-container">
+                    <!-- Grammar sections rendered by JS -->
+                </div>
+            </div>
+        </main>
+
+        <footer role="contentinfo">
+            <p>
+                &copy; 2026 Mandarin Pathways |
+                <a href="index.html"><span class="zh">返回首页</span><span class="en">Back to Home</span></a>
+            </p>
+        </footer>
+
+        <script src="js/sw-register.js"></script>
+        <script src="js/i18n.js" defer></script>
+        <script src="js/lang-switcher.js" defer></script>
+        <script src="js/srs.js" defer></script>
+        <script src="js/grammar.js" defer></script>
+        <script>
+            // Dark mode init before page render
+            (function() {
+                var dm = localStorage.getItem("darkMode");
+                if (dm === "true") document.documentElement.setAttribute("data-theme", "dark");
+                if (localStorage.getItem("highContrast") === "true")
+                    document.documentElement.classList.add("high-contrast");
+                document.addEventListener("DOMContentLoaded", function() {
+                    var btn = document.getElementById("dark-mode-toggle");
+                    if (btn) {
+                        btn.addEventListener("click", function() {
+                            var isDark = document.documentElement.getAttribute("data-theme") === "dark";
+                            var next = isDark ? "light" : "dark";
+                            document.documentElement.setAttribute("data-theme", next);
+                            localStorage.setItem("darkMode", String(next === "dark"));
+                            btn.textContent = next === "dark" ? "☀️ Light mode" : "🌙 Dark mode";
+                        });
+                    }
+                });
+            })();
+        </script>
+    </body>
+</html>

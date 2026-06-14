@@ -122,7 +122,8 @@ class Progress {
 enum Language {
   chinese('zh', '简体中文', '🇨🇳'),
   pinyin('pinyin', 'Pinyin', '🔤'),
-  english('en', 'English', '🇺🇸');
+  english('en', 'English', '🇺🇸'),
+  cantonese('yue', '粵語 Cantonese', '🇭🇰');
 
   final String code;
   final String displayName;
@@ -135,5 +136,19 @@ enum Language {
       (e) => e.code == code,
       orElse: () => Language.chinese,
     );
+  }
+}
+
+enum ChineseScript {
+  simplified,
+  traditional;
+
+  String get displayName {
+    switch (this) {
+      case ChineseScript.simplified:
+        return '简体 Simplified';
+      case ChineseScript.traditional:
+        return '繁體 Traditional';
+    }
   }
 }

@@ -1,0 +1,101 @@
+class DictionaryEntry {
+  final String zh;
+  final String pinyin;
+  final String en;
+  final int hsk;
+  final String example;
+
+  const DictionaryEntry({
+    required this.zh,
+    required this.pinyin,
+    required this.en,
+    required this.hsk,
+    required this.example,
+  });
+}
+
+const dictionaryEntries = [
+  // HSK 1
+  DictionaryEntry(zh: '你好', pinyin: 'nǐ hǎo', en: 'hello / how do you do', hsk: 1, example: '你好！很高兴认识你。— Hello! Nice to meet you.'),
+  DictionaryEntry(zh: '谢谢', pinyin: 'xièxiè', en: 'thank you', hsk: 1, example: '谢谢你的帮助。— Thank you for your help.'),
+  DictionaryEntry(zh: '对不起', pinyin: 'duìbuqǐ', en: "sorry / excuse me", hsk: 1, example: '对不起，我迟到了。— Sorry, I\'m late.'),
+  DictionaryEntry(zh: '没关系', pinyin: 'méiguānxi', en: "it doesn't matter / never mind", hsk: 1, example: '没关系，请坐。— Never mind, please sit down.'),
+  DictionaryEntry(zh: '是', pinyin: 'shì', en: 'to be / is / yes', hsk: 1, example: '我是学生。— I am a student.'),
+  DictionaryEntry(zh: '不', pinyin: 'bù', en: 'no / not', hsk: 1, example: '我不喜欢。— I don\'t like it.'),
+  DictionaryEntry(zh: '我', pinyin: 'wǒ', en: 'I / me', hsk: 1, example: '我是中国人。— I am Chinese.'),
+  DictionaryEntry(zh: '你', pinyin: 'nǐ', en: 'you (singular)', hsk: 1, example: '你叫什么名字？— What is your name?'),
+  DictionaryEntry(zh: '他', pinyin: 'tā', en: 'he / him', hsk: 1, example: '他是我的朋友。— He is my friend.'),
+  DictionaryEntry(zh: '她', pinyin: 'tā', en: 'she / her', hsk: 1, example: '她很漂亮。— She is beautiful.'),
+  DictionaryEntry(zh: '我们', pinyin: 'wǒmen', en: 'we / us', hsk: 1, example: '我们一起去吧。— Let\'s go together.'),
+  DictionaryEntry(zh: '什么', pinyin: 'shénme', en: 'what', hsk: 1, example: '这是什么？— What is this?'),
+  DictionaryEntry(zh: '哪', pinyin: 'nǎ', en: 'which / where', hsk: 1, example: '你在哪里？— Where are you?'),
+  DictionaryEntry(zh: '好', pinyin: 'hǎo', en: 'good / well / fine', hsk: 1, example: '今天天气很好。— The weather is very good today.'),
+  DictionaryEntry(zh: '大', pinyin: 'dà', en: 'big / large', hsk: 1, example: '那座楼很大。— That building is very big.'),
+  DictionaryEntry(zh: '小', pinyin: 'xiǎo', en: 'small / little', hsk: 1, example: '这个包太小了。— This bag is too small.'),
+  DictionaryEntry(zh: '多', pinyin: 'duō', en: 'many / much / a lot', hsk: 1, example: '这里人很多。— There are many people here.'),
+  DictionaryEntry(zh: '来', pinyin: 'lái', en: 'to come', hsk: 1, example: '请进来。— Please come in.'),
+  DictionaryEntry(zh: '去', pinyin: 'qù', en: 'to go', hsk: 1, example: '我去图书馆。— I am going to the library.'),
+  DictionaryEntry(zh: '吃', pinyin: 'chī', en: 'to eat', hsk: 1, example: '你吃饭了吗？— Have you eaten?'),
+  DictionaryEntry(zh: '喝', pinyin: 'hē', en: 'to drink', hsk: 1, example: '我喝茶。— I drink tea.'),
+  DictionaryEntry(zh: '水', pinyin: 'shuǐ', en: 'water', hsk: 1, example: '请给我一杯水。— Please give me a glass of water.'),
+  DictionaryEntry(zh: '人', pinyin: 'rén', en: 'person / people', hsk: 1, example: '中国人很友好。— Chinese people are very friendly.'),
+  DictionaryEntry(zh: '请问', pinyin: 'qǐngwèn', en: 'may I ask / excuse me', hsk: 1, example: '请问，厕所在哪里？— Excuse me, where is the restroom?'),
+  DictionaryEntry(zh: '没有', pinyin: 'méiyǒu', en: "don't have / there isn't / no", hsk: 1, example: '我没有钱。— I don\'t have money.'),
+  DictionaryEntry(zh: '喜欢', pinyin: 'xǐhuān', en: 'to like / to enjoy', hsk: 1, example: '我喜欢中国菜。— I like Chinese food.'),
+  DictionaryEntry(zh: '朋友', pinyin: 'péngyou', en: 'friend', hsk: 1, example: '他是我最好的朋友。— He is my best friend.'),
+  DictionaryEntry(zh: '学习', pinyin: 'xuéxí', en: 'to study / to learn', hsk: 1, example: '我在学习中文。— I am studying Chinese.'),
+  DictionaryEntry(zh: '学校', pinyin: 'xuéxiào', en: 'school', hsk: 1, example: '这所学校很有名。— This school is very famous.'),
+  DictionaryEntry(zh: '家', pinyin: 'jiā', en: 'home / family / house', hsk: 1, example: '我们回家吧。— Let\'s go home.'),
+  DictionaryEntry(zh: '老师', pinyin: 'lǎoshī', en: 'teacher', hsk: 1, example: '这位老师很有经验。— This teacher is very experienced.'),
+  DictionaryEntry(zh: '钱', pinyin: 'qián', en: 'money', hsk: 1, example: '这个多少钱？— How much is this?'),
+  DictionaryEntry(zh: '天气', pinyin: 'tiānqì', en: 'weather', hsk: 1, example: '今天天气怎么样？— What is the weather like today?'),
+  // HSK 2
+  DictionaryEntry(zh: '但是', pinyin: 'dànshì', en: 'but / however', hsk: 2, example: '我很累，但是我还要工作。— I\'m tired, but I still have to work.'),
+  DictionaryEntry(zh: '因为', pinyin: 'yīnwèi', en: 'because', hsk: 2, example: '因为下雨，我没去。— Because it rained, I didn\'t go.'),
+  DictionaryEntry(zh: '所以', pinyin: 'suǒyǐ', en: 'therefore / so', hsk: 2, example: '他生病了，所以没来。— He was sick, so he didn\'t come.'),
+  DictionaryEntry(zh: '已经', pinyin: 'yǐjīng', en: 'already', hsk: 2, example: '我已经吃了。— I have already eaten.'),
+  DictionaryEntry(zh: '还是', pinyin: 'háishì', en: 'or (in questions) / still', hsk: 2, example: '你喝茶还是咖啡？— Do you drink tea or coffee?'),
+  DictionaryEntry(zh: '只', pinyin: 'zhǐ', en: 'only / just', hsk: 2, example: '我只有一本书。— I have only one book.'),
+  DictionaryEntry(zh: '一起', pinyin: 'yīqǐ', en: 'together', hsk: 2, example: '我们一起走吧。— Let\'s walk together.'),
+  DictionaryEntry(zh: '知道', pinyin: 'zhīdào', en: 'to know', hsk: 2, example: '你知道吗？— Do you know?'),
+  DictionaryEntry(zh: '觉得', pinyin: 'juéde', en: 'to feel / to think', hsk: 2, example: '我觉得这个很好。— I think this is very good.'),
+  DictionaryEntry(zh: '想', pinyin: 'xiǎng', en: 'to want / to think / to miss', hsk: 2, example: '我想学中文。— I want to learn Chinese.'),
+  DictionaryEntry(zh: '帮助', pinyin: 'bāngzhù', en: 'to help / help', hsk: 2, example: '谢谢你的帮助。— Thank you for your help.'),
+  DictionaryEntry(zh: '快', pinyin: 'kuài', en: 'fast / quick', hsk: 2, example: '请快一点。— Please hurry up a bit.'),
+  DictionaryEntry(zh: '慢', pinyin: 'màn', en: 'slow / slowly', hsk: 2, example: '请说慢一点。— Please speak more slowly.'),
+  DictionaryEntry(zh: '工作', pinyin: 'gōngzuò', en: 'work / job / to work', hsk: 2, example: '他的工作很忙。— His work is very busy.'),
+  DictionaryEntry(zh: '医院', pinyin: 'yīyuàn', en: 'hospital', hsk: 2, example: '医院在哪里？— Where is the hospital?'),
+  DictionaryEntry(zh: '商店', pinyin: 'shāngdiàn', en: 'shop / store', hsk: 2, example: '那个商店卖什么？— What does that shop sell?'),
+  DictionaryEntry(zh: '银行', pinyin: 'yínháng', en: 'bank', hsk: 2, example: '我要去银行取钱。— I need to go to the bank to withdraw money.'),
+  DictionaryEntry(zh: '飞机', pinyin: 'fēijī', en: 'airplane', hsk: 2, example: '飞机几点起飞？— What time does the plane depart?'),
+  DictionaryEntry(zh: '火车', pinyin: 'huǒchē', en: 'train', hsk: 2, example: '我坐火车去北京。— I\'m taking the train to Beijing.'),
+  DictionaryEntry(zh: '医生', pinyin: 'yīshēng', en: 'doctor / physician', hsk: 2, example: '我需要看医生。— I need to see a doctor.'),
+  DictionaryEntry(zh: '孩子', pinyin: 'háizi', en: 'child / children', hsk: 2, example: '你有几个孩子？— How many children do you have?'),
+  DictionaryEntry(zh: '手机', pinyin: 'shǒujī', en: 'mobile phone / cell phone', hsk: 2, example: '你的手机号码是多少？— What is your phone number?'),
+  DictionaryEntry(zh: '电脑', pinyin: 'diànnǎo', en: 'computer', hsk: 2, example: '我用电脑工作。— I use a computer for work.'),
+  DictionaryEntry(zh: '时间', pinyin: 'shíjiān', en: 'time', hsk: 2, example: '请问现在几点？— Excuse me, what time is it now?'),
+  // HSK 3
+  DictionaryEntry(zh: '虽然', pinyin: 'suīrán', en: 'although / even though', hsk: 3, example: '虽然很难，但是我会努力。— Although it\'s difficult, I will work hard.'),
+  DictionaryEntry(zh: '而且', pinyin: 'érqiě', en: 'furthermore / moreover', hsk: 3, example: '他聪明，而且勤奋。— He is smart, and moreover hardworking.'),
+  DictionaryEntry(zh: '根据', pinyin: 'gēnjù', en: 'according to / based on', hsk: 3, example: '根据天气预报，明天会下雨。— According to the forecast, it will rain tomorrow.'),
+  DictionaryEntry(zh: '关系', pinyin: 'guānxi', en: 'relationship / connection', hsk: 3, example: '我们的关系很好。— Our relationship is very good.'),
+  DictionaryEntry(zh: '感觉', pinyin: 'gǎnjué', en: 'feeling / sense / to feel', hsk: 3, example: '我感觉很好。— I feel very good.'),
+  DictionaryEntry(zh: '同意', pinyin: 'tóngyì', en: 'to agree / to approve', hsk: 3, example: '我同意你的意见。— I agree with your opinion.'),
+  DictionaryEntry(zh: '经验', pinyin: 'jīngyàn', en: 'experience', hsk: 3, example: '他有丰富的工作经验。— He has rich work experience.'),
+  DictionaryEntry(zh: '方法', pinyin: 'fāngfǎ', en: 'method / way / means', hsk: 3, example: '这个方法很有效。— This method is very effective.'),
+  DictionaryEntry(zh: '发展', pinyin: 'fāzhǎn', en: 'to develop / development', hsk: 3, example: '中国经济快速发展。— China\'s economy is developing rapidly.'),
+  DictionaryEntry(zh: '地铁', pinyin: 'dìtiě', en: 'subway / metro', hsk: 3, example: '地铁很方便。— The subway is very convenient.'),
+  DictionaryEntry(zh: '父母', pinyin: 'fùmǔ', en: 'parents', hsk: 3, example: '我很爱我的父母。— I love my parents very much.'),
+  // HSK 4
+  DictionaryEntry(zh: '逐渐', pinyin: 'zhújiàn', en: 'gradually / step by step', hsk: 4, example: '她的中文逐渐进步了。— Her Chinese gradually improved.'),
+  DictionaryEntry(zh: '促进', pinyin: 'cùjìn', en: 'to promote / to accelerate', hsk: 4, example: '这个政策促进了经济发展。— This policy promoted economic development.'),
+  DictionaryEntry(zh: '具体', pinyin: 'jùtǐ', en: 'concrete / specific', hsk: 4, example: '请给我一个具体的例子。— Please give me a specific example.'),
+  DictionaryEntry(zh: '尽管', pinyin: 'jǐnguǎn', en: 'despite / even though', hsk: 4, example: '尽管困难重重，他还是坚持了下来。— Despite many difficulties, he persisted.'),
+  DictionaryEntry(zh: '通过', pinyin: 'tōngguò', en: 'through / by means of / to pass', hsk: 4, example: '通过努力，他成功了。— Through hard work, he succeeded.'),
+  // HSK 5
+  DictionaryEntry(zh: '确实', pinyin: 'quèshí', en: 'indeed / certainly / really', hsk: 5, example: '这个问题确实很复杂。— This issue is indeed very complex.'),
+  DictionaryEntry(zh: '尽管如此', pinyin: 'jǐnguǎn rúcǐ', en: 'even so / nevertheless', hsk: 5, example: '尽管如此，我们仍然坚持。— Even so, we persist.'),
+  // HSK 6
+  DictionaryEntry(zh: '鉴于', pinyin: 'jiànyú', en: 'in view of / considering', hsk: 6, example: '鉴于以上情况，我们决定推迟。— In view of the above, we decided to postpone.'),
+  DictionaryEntry(zh: '缘故', pinyin: 'yuángù', en: 'reason / cause', hsk: 6, example: '正是由于这个缘故。— It is precisely for this reason.'),
+];

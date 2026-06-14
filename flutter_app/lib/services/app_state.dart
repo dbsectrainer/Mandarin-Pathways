@@ -19,6 +19,7 @@ class AppState extends ChangeNotifier {
   late final SrsService srsService;
 
   Language _currentLanguage = Language.chinese;
+  ChineseScript _chineseScript = ChineseScript.simplified;
   bool _isLoading = true;
 
   AppState({
@@ -33,10 +34,12 @@ class AppState extends ChangeNotifier {
   }
 
   Language get currentLanguage => _currentLanguage;
+  ChineseScript get chineseScript => _chineseScript;
   bool get isLoading => _isLoading;
 
   int get streakCount => storage.streakCount;
   int get srsDueCount => srsService.getDueCards().length;
+  int get xpPoints => storage.getXpPoints();
   PlacementResult? get placementResult => storage.getPlacementResult();
   List<String> get earnedAchievements => storage.getEarnedAchievements();
 
@@ -47,6 +50,9 @@ class AppState extends ChangeNotifier {
       await storage.init();
       await notificationService.init();
       _currentLanguage = Language.fromCode(storage.getPreferredLanguage());
+      _chineseScript = storage.getChineseScript() == 'traditional'
+          ? ChineseScript.traditional
+          : ChineseScript.simplified;
       final audioSettings = await storage.getAudioSettings();
       await audioService.setPlaybackSpeed(audioSettings['playbackSpeed']);
       await audioService.setLooping(audioSettings['loopEnabled']);
@@ -65,9 +71,22 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> setChineseScript(ChineseScript script) async {
+    _chineseScript = script;
+    await storage.setChineseScript(script.name);
+    notifyListeners();
+  }
+
+  Future<int> awardXp(int amount) async {
+    final result = await storage.awardXp(amount);
+    notifyListeners();
+    return result;
+  }
+
   Future<void> markDayComplete(int day) async {
     await storage.markDayComplete(day, _currentLanguage.code);
     await streakService.recordLearningActivity();
+    await storage.awardXp(50);
     await notificationService.showCompletionNotification(day);
     notifyListeners();
   }

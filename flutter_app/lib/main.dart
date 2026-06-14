@@ -10,6 +10,9 @@ import 'screens/srs_screen.dart';
 import 'screens/placement_screen.dart';
 import 'screens/quiz_screen.dart';
 import 'screens/supplementary_screen.dart';
+import 'screens/grammar_screen.dart';
+import 'screens/culture_screen.dart';
+import 'screens/dictionary_screen.dart';
 import 'services/app_state.dart';
 import 'services/storage_service.dart';
 import 'services/audio_service.dart';
@@ -37,6 +40,7 @@ class MandarinPathwaysApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Mandarin Pathways',
         debugShowCheckedModeBanner: false,
+        themeMode: ThemeMode.system,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
             seedColor: const Color(0xFFE74C3C),
@@ -86,6 +90,35 @@ class MandarinPathwaysApp extends StatelessWidget {
             fillColor: Colors.grey[100],
           ),
         ),
+        darkTheme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color(0xFF1A6BA0),
+            brightness: Brightness.dark,
+          ),
+          useMaterial3: true,
+          textTheme: GoogleFonts.poppinsTextTheme(
+            ThemeData(brightness: Brightness.dark).textTheme,
+          ),
+          appBarTheme: AppBarTheme(
+            backgroundColor: const Color(0xFF0D1B2A),
+            foregroundColor: Colors.white,
+            elevation: 0,
+            centerTitle: true,
+            titleTextStyle: GoogleFonts.poppins(
+              fontSize: 20,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+            ),
+          ),
+          cardTheme: CardThemeData(
+            elevation: 2,
+            color: const Color(0xFF1E2A3A),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+            ),
+          ),
+          scaffoldBackgroundColor: const Color(0xFF1A1A2E),
+        ),
         initialRoute: '/',
         routes: {
           '/': (context) => const HomeScreen(),
@@ -97,6 +130,9 @@ class MandarinPathwaysApp extends StatelessWidget {
           '/srs': (context) => const SrsScreen(),
           '/placement': (context) => const PlacementScreen(),
           '/quiz': (context) => const QuizScreen(),
+          '/grammar': (context) => const GrammarScreen(),
+          '/culture': (context) => const CultureScreen(),
+          '/dictionary': (context) => const DictionaryScreen(),
         },
       ),
     );

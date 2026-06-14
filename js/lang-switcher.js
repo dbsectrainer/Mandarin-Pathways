@@ -6,8 +6,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.querySelectorAll(".language-btn").forEach(function (btn) {
         btn.addEventListener("click", function () {
+            const rawLang = btn.dataset.lang;
+            // Cantonese button navigates to the Cantonese track page
+            if (rawLang === "yue") {
+                window.location.href = "cantonese-track.html";
+                return;
+            }
             const lang = normalizePreferredLanguage(
-                btn.dataset.lang === "zh" ? "zh-CN" : btn.dataset.lang,
+                rawLang === "zh" ? "zh-CN" : rawLang,
             );
             localStorage.setItem("preferredLanguage", lang);
             applyLang(lang);

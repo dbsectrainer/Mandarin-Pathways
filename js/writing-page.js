@@ -401,6 +401,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "completedWritings",
                 JSON.stringify(completedWritings),
             );
+            if (typeof awardXp === "function") awardXp("writing");
 
             completeBtn.classList.add("completed");
             renderCompleteButtonCompleted3(completeBtn);

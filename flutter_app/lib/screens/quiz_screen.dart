@@ -110,14 +110,15 @@ class _QuizScreenState extends State<QuizScreen> {
                         ),
                       );
                       await appState.saveQuizScore(result);
+                      await appState.awardXp(20);
                       setState(() => _submitted = true);
                       if (mounted) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
                               AppStrings.t(lang,
-                                  zh: '得分 ${result.score}/${result.total}',
-                                  en: 'Score ${result.score}/${result.total}'),
+                                  zh: '得分 ${result.score}/${result.total} · +20 XP',
+                                  en: 'Score ${result.score}/${result.total} · +20 XP'),
                             ),
                           ),
                         );

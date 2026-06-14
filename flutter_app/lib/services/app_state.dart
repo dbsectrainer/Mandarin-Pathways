@@ -228,6 +228,7 @@ class AppState extends ChangeNotifier {
   Future<void> markReadingComplete(String level, String topic) async {
     await storage.markReadingComplete(level, topic, _currentLanguage.code);
     await streakService.recordLearningActivity();
+    await storage.awardXp(15);
     notifyListeners();
   }
 
@@ -237,6 +238,7 @@ class AppState extends ChangeNotifier {
   Future<void> markWritingComplete(String type, String level) async {
     await storage.markWritingComplete(type, level, _currentLanguage.code);
     await streakService.recordLearningActivity();
+    await storage.awardXp(15);
     notifyListeners();
   }
 

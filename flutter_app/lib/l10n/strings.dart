@@ -9,6 +9,8 @@ class AppStrings {
         return pinyin ?? en;
       case Language.english:
         return en;
+      case Language.cantonese:
+        return zh;
     }
   }
 }

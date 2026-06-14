@@ -137,6 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
         const result = scoreQuiz(activeDay, new FormData(form));
         saveQuizScore(result);
+        if (typeof awardXp === "function") awardXp("quiz");
         renderQuizResult(resultEl, result);
         resultEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
     });

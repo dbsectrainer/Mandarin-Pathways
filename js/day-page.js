@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     completeBtn.addEventListener("click", () => {
         completedDays[`${day}_${lang}`] = true;
         localStorage.setItem("completedDays", JSON.stringify(completedDays));
+        if (typeof awardXp === "function") awardXp("day");
 
         completeBtn.classList.add("completed");
         renderCompleteButtonCompleted(completeBtn);

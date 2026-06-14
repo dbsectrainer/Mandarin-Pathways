@@ -177,11 +177,13 @@ function renderSrsPage() {
         }
 
         if (currentIndex >= dueCards.length) {
+            if (typeof awardXp === "function") awardXp("srs");
             const done = document.createElement("div");
             done.className = "review-card";
             done.innerHTML =
                 '<p class="review-phrase"><span class="zh">复习完成！</span><span class="en">Session complete!</span></p>' +
-                '<p class="review-meta"><span class="zh">今日所有到期卡片已复习完毕。明天继续保持！</span><span class="en">All cards due today have been reviewed. Keep it up!</span></p>';
+                '<p class="review-meta"><span class="zh">今日所有到期卡片已复习完毕。明天继续保持！</span><span class="en">All cards due today have been reviewed. Keep it up!</span></p>' +
+                '<p class="review-meta" style="color:#e67e22;font-weight:bold">+10 XP</p>';
             const doneActions = document.createElement("div");
             doneActions.className = "lesson-actions";
             const homeLink = document.createElement("a");

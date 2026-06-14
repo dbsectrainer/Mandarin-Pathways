@@ -150,6 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 "completedReadings",
                 JSON.stringify(completedReadings),
             );
+            if (typeof awardXp === "function") awardXp("reading");
 
             completeBtn.classList.add("completed");
             renderCompleteButtonCompleted(completeBtn);

@@ -67,12 +67,17 @@ class _SrsScreenState extends State<SrsScreen> {
   }
 
   Widget _doneState(Language lang) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) context.read<AppState>().awardXp(10);
+    });
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(AppStrings.t(lang, zh: '复习完成！', en: 'Session complete!'),
               style: Theme.of(context).textTheme.headlineSmall),
+          const SizedBox(height: 8),
+          const Text('+10 XP', style: TextStyle(color: Color(0xFFE67E22), fontWeight: FontWeight.bold)),
           const SizedBox(height: 16),
           ElevatedButton(
             onPressed: () => Navigator.pushNamed(context, '/'),

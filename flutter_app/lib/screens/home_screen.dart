@@ -517,58 +517,79 @@ class _HomeScreenState extends State<HomeScreen> {
   void _showNotificationSettings() {
     showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Notification Settings'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Text('Set your daily reminder time'),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () async {
-                final TimeOfDay? time = await showTimePicker(
-                  context: context,
-                  initialTime: const TimeOfDay(hour: 9, minute: 0),
-                );
-                if (time != null) {
-                  final appState = context.read<AppState>();
-                  await appState.scheduleDailyReminder(time.hour, time.minute);
-                  if (context.mounted) {
-                    Navigator.pop(context);
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Daily reminder scheduled!'),
-                      ),
-                    );
-                  }
-                }
-              },
-              child: const Text('Schedule Daily Reminder'),
-            ),
-            const SizedBox(height: 8),
-            TextButton(
-              onPressed: () async {
-                final appState = context.read<AppState>();
-                await appState.cancelNotifications();
-                if (context.mounted) {
-                  Navigator.pop(context);
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Notifications cancelled'),
+      builder: (context) => Consumer<AppState>(
+        builder: (context, appState, _) => AlertDialog(
+          title: const Text('Settings'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text('Chinese Script', style: TextStyle(fontWeight: FontWeight.w600)),
+              Row(
+                children: ChineseScript.values.map((script) => Expanded(
+                  child: RadioListTile<ChineseScript>(
+                    title: Text(
+                      script == ChineseScript.simplified ? '简体' : '繁體',
+                      style: const TextStyle(fontSize: 13),
                     ),
-                  );
-                }
-              },
-              child: const Text('Cancel Notifications'),
+                    value: script,
+                    groupValue: appState.chineseScript,
+                    contentPadding: EdgeInsets.zero,
+                    onChanged: (v) {
+                      if (v != null) appState.setChineseScript(v);
+                    },
+                  ),
+                )).toList(),
+              ),
+              const Divider(),
+              const Text('Notifications', style: TextStyle(fontWeight: FontWeight.w600)),
+              const SizedBox(height: 8),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () async {
+                    final TimeOfDay? time = await showTimePicker(
+                      context: context,
+                      initialTime: const TimeOfDay(hour: 9, minute: 0),
+                    );
+                    if (time != null) {
+                      await appState.scheduleDailyReminder(time.hour, time.minute);
+                      if (context.mounted) {
+                        Navigator.pop(context);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Daily reminder scheduled!')),
+                        );
+                      }
+                    }
+                  },
+                  child: const Text('Schedule Daily Reminder'),
+                ),
+              ),
+              const SizedBox(height: 8),
+              SizedBox(
+                width: double.infinity,
+                child: TextButton(
+                  onPressed: () async {
+                    await appState.cancelNotifications();
+                    if (context.mounted) {
+                      Navigator.pop(context);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Notifications cancelled')),
+                      );
+                    }
+                  },
+                  child: const Text('Cancel Notifications'),
+                ),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Close'),
             ),
           ],
         ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Close'),
-          ),
-        ],
       ),
     );
   }

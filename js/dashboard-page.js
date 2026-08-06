@@ -15,10 +15,16 @@ document.addEventListener("DOMContentLoaded", function () {
         applyLang(urlLang === "zh" ? "zh-CN" : urlLang);
     }
 
+    function readStoredJson(key) {
+        try {
+            return JSON.parse(localStorage.getItem(key) || "{}");
+        } catch (e) {
+            return {};
+        }
+    }
+
     function initializeProgress() {
-        const completedDays = JSON.parse(
-            localStorage.getItem("completedDays") || "{}",
-        );
+        const completedDays = readStoredJson("completedDays");
         ["zh", "pinyin", "en"].forEach((lang) => {
             const completed = Object.keys(completedDays).filter((key) =>
                 key.endsWith(`_${lang}`),
@@ -29,10 +35,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Listen for progress updates from day.html open in another tab
     window.addEventListener("storage", function (e) {
-        if (e.key === "currentProgress") {
-            const progress = JSON.parse(e.newValue);
-            updateLanguageProgress(progress.lang, progress.completed);
+        if (e.key !== "currentProgress" || !e.newValue) return;
+        let progress;
+        try {
+            progress = JSON.parse(e.newValue);
+        } catch (err) {
+            return;
         }
+        if (!progress || typeof progress.lang !== "string") return;
+        updateLanguageProgress(progress.lang, progress.completed);
     });
 
     function updateLanguageProgress(lang, completed) {

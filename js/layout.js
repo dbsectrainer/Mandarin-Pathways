@@ -110,9 +110,7 @@
             '<button class="language-btn" data-lang="en" aria-label="Switch to English">' +
             '<span class="flag">🇺🇸</span> English</button>' +
             "</div>" +
-            "</header>" +
-            "<noscript><p>JavaScript is required for navigation and lessons. " +
-            'Start from <a href="index.html">the home page</a>.</p></noscript>'
+            "</header>"
         );
     }
 

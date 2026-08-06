@@ -68,27 +68,8 @@ function importProgressReplaceAll(jsonText) {
 
 document.addEventListener("DOMContentLoaded", () => {
     const modal = document.getElementById("data-portability-modal");
-    const header = document.querySelector("header");
-    if (!modal || !header) return;
-
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "data-portability-btn";
-    btn.setAttribute("aria-label", "Backup or restore progress");
-    btn.innerHTML = '<i class="fas fa-database"></i>';
-    btn.style.cssText = `
-    position: absolute;
-    right: 3.35rem;
-    top: 1rem;
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 1.2rem;
-    cursor: pointer;
-    padding: 0.5rem;
-  `;
-    header.style.position = header.style.position || "relative";
-    header.appendChild(btn);
+    const btn = document.getElementById("open-data-portability");
+    if (!modal || !btn) return;
 
     const closeBtn = document.getElementById("close-data-portability");
     const exportBtn = document.getElementById("export-progress-btn");

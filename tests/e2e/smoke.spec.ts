@@ -9,6 +9,63 @@ test.describe("PWA smoke", () => {
         await expect(page.locator("header .language-btn")).toHaveCount(3);
     });
 
+    test("injected site nav is present and localized", async ({ page }) => {
+        // Guards the layout.js-before-i18n.js defer-order contract: with
+        // ?lang=en the injected nav labels must show English spans only.
+        await page.goto("/dashboard.html?lang=en", { waitUntil: "load" });
+        const storiesLink = page.locator('header .site-nav a[href="stories.html"]');
+        await expect(storiesLink.locator(".en")).toHaveText("Stories");
+        await expect(storiesLink.locator(".zh")).toBeHidden();
+        await expect(page.locator("header .site-nav a")).toHaveCount(7);
+    });
+
+    test("stories index renders 40 day cards across 5 stages", async ({
+        page,
+    }) => {
+        await page.goto("/stories.html", { waitUntil: "load" });
+        await expect(page.locator("[data-day-grid]")).toHaveCount(5);
+        await expect(page.locator("[data-day-grid] .story-card")).toHaveCount(
+            40,
+        );
+        await expect(
+            page.locator("#reading-card-grid .story-card"),
+        ).toHaveCount(5);
+        await expect(
+            page.locator("#supplementary-card-grid .story-card"),
+        ).toHaveCount(5);
+    });
+
+    test("new static pages load with shared chrome", async ({ page }) => {
+        for (const path of [
+            "/course.html",
+            "/learn.html",
+            "/teachers.html",
+            "/faq.html",
+            "/contact.html",
+        ]) {
+            await page.goto(path, { waitUntil: "domcontentloaded" });
+            await expect(page.locator("header h1")).toContainText(
+                "Mandarin Pathways",
+            );
+            await expect(page.locator("footer .site-footer-columns")).toBeAttached();
+        }
+    });
+
+    test("completing a day marks its story card", async ({ page }) => {
+        await page.goto("/stories.html", { waitUntil: "load" });
+        await page.evaluate(() => {
+            localStorage.setItem(
+                "completedDays",
+                JSON.stringify({ "1_zh": true }),
+            );
+            localStorage.setItem("preferredLanguage", "zh-CN");
+        });
+        await page.reload({ waitUntil: "load" });
+        await expect(
+            page.locator("[data-day-grid] .story-card").first(),
+        ).toHaveClass(/completed/);
+    });
+
     test("lesson text asset is reachable", async ({ request }) => {
         const res = await request.get("/text_files/day1_zh.txt");
         expect(res.ok()).toBeTruthy();

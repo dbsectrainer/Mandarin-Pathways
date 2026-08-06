@@ -1,10 +1,10 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("page localization", () => {
-    test("index language card progress follows lang from URL", async ({
+    test("dashboard language card progress follows lang from URL", async ({
         page,
     }) => {
-        await page.goto("/index.html?lang=zh", { waitUntil: "load" });
+        await page.goto("/dashboard.html?lang=zh", { waitUntil: "load" });
         await expect(page.locator("html")).toHaveAttribute("lang", "zh-CN");
         const zhCard = page.locator(".language-card").first();
         await expect(zhCard.locator(".progress-container .zh")).toBeVisible();

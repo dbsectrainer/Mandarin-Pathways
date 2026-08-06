@@ -80,10 +80,15 @@ function getUrlLang(defaultLang = "zh") {
 }
 
 function applyWritingLangVisibility(lang, root = document) {
+    // Shared header/footer ([data-site-chrome], injected by layout.js) only
+    // carries zh/en spans and is toggled via the [lang] CSS rules — leave it
+    // out of the inline-style pass so it never gets blanked in pinyin mode.
     root.querySelectorAll(".zh, .pinyin, .en").forEach((el) => {
+        if (el.closest("[data-site-chrome]")) return;
         el.style.display = "none";
     });
     root.querySelectorAll("." + lang).forEach((el) => {
+        if (el.closest("[data-site-chrome]")) return;
         el.style.display = "";
     });
 }

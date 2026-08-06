@@ -10,7 +10,7 @@
             name="description"
             content="Supplementary Mandarin Chinese learning materials - 中文补充学习材料"
         />
-        <meta name="theme-color" content="#e74c3c" />
+        <meta name="theme-color" content="#1a2733" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta
             name="apple-mobile-web-app-status-bar-style"
@@ -31,23 +31,12 @@
             href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         />
         <link rel="stylesheet" href="css/styles.min.css" />
+        <link rel="stylesheet" href="css/layout.css" />
     </head>
     <body>
-        <header>
-            <h1>Mandarin Pathways</h1>
-            <p>
-                <span class="zh">开启您的中文学习之旅</span
-                ><span class="en"
-                    >Your Journey to Chinese Language Mastery</span
-                >
-            </p>
-        </header>
+        <div id="site-header"></div>
 
         <main>
-            <!-- Return to top button -->
-            <div class="return-to-top" id="returnToTop">
-                <i class="fas fa-arrow-up"></i>
-            </div>
 
             <!-- Visual anchor pattern -->
             <div class="visual-anchor" style="top: 5%; right: 5%"></div>
@@ -61,32 +50,6 @@
                             ><span class="en">Supplementary Content: </span
                             ><span id="category-name"></span>
                         </h2>
-                    </div>
-                    <div class="language-selector">
-                        <button
-                            type="button"
-                            class="language-btn"
-                            data-lang="zh"
-                            aria-label="Switch to Simplified Chinese"
-                        >
-                            <span class="flag">🇨🇳</span> 简体中文
-                        </button>
-                        <button
-                            type="button"
-                            class="language-btn"
-                            data-lang="pinyin"
-                            aria-label="Switch to Pinyin"
-                        >
-                            <span class="flag">🔤</span> Pinyin
-                        </button>
-                        <button
-                            type="button"
-                            class="language-btn"
-                            data-lang="en"
-                            aria-label="Switch to English"
-                        >
-                            <span class="flag">🇺🇸</span> English
-                        </button>
                     </div>
                 </div>
 
@@ -142,13 +105,7 @@
             <div class="visual-anchor" style="bottom: 10%; left: 5%"></div>
         </main>
 
-        <footer>
-            <p>
-                &copy; 2026 Mandarin Pathways |
-                <span class="zh">赋能中文学习</span
-                ><span class="en">Empowering Chinese Language Learning</span>
-            </p>
-        </footer>
+        <div id="site-footer"></div>
 
         <div class="copy-notification" id="copy-notification">
             <span class="zh">短语已复制到剪贴板！</span
@@ -156,6 +113,7 @@
         </div>
 
         <script src="js/sw-register.js"></script>
+        <script src="js/layout.js" defer></script>
         <script src="js/i18n.js" defer></script>
         <script src="js/lang-switcher.js" defer></script>
         <script src="js/content-error.js" defer></script>

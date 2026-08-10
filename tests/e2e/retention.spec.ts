@@ -44,8 +44,10 @@ test.describe("retention loop", () => {
             .toBe("1");
     });
 
-    test("home dashboard surfaces SRS and streak state", async ({ page }) => {
-        await page.goto("/");
+    test("progress dashboard surfaces SRS and streak state", async ({
+        page,
+    }) => {
+        await page.goto("/dashboard.html");
         await page.evaluate(() => {
             localStorage.setItem("streakCount", "3");
             localStorage.setItem(

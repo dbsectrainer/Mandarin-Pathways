@@ -10,7 +10,7 @@
             name="description"
             content="Review starred Mandarin phrases - 复习收藏的短语"
         />
-        <meta name="theme-color" content="#e74c3c" />
+        <meta name="theme-color" content="#1a2733" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta
             name="apple-mobile-web-app-status-bar-style"
@@ -35,6 +35,7 @@
             onload="this.media = 'all'"
         />
         <link rel="stylesheet" href="css/styles.min.css" />
+        <link rel="stylesheet" href="css/layout.css" />
         <noscript>
             <link
                 href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
@@ -47,41 +48,9 @@
         </noscript>
     </head>
     <body>
-        <header>
-            <div class="language-selector">
-                <button
-                    class="language-btn"
-                    data-lang="zh"
-                    aria-label="Switch to Simplified Chinese"
-                >
-                    <span class="flag">🇨🇳</span> 简体中文
-                </button>
-                <button
-                    class="language-btn"
-                    data-lang="pinyin"
-                    aria-label="Switch to Pinyin"
-                >
-                    <span class="flag">🔤</span> Pinyin
-                </button>
-                <button
-                    class="language-btn"
-                    data-lang="en"
-                    aria-label="Switch to English"
-                >
-                    <span class="flag">🇺🇸</span> English
-                </button>
-            </div>
-            <h1>Mandarin Pathways</h1>
-            <p>
-                <span class="zh">复习收藏的短语</span
-                ><span class="en">Review starred phrases</span>
-            </p>
-        </header>
+        <div id="site-header"></div>
 
         <main>
-            <div class="return-to-top" id="returnToTop">
-                <i class="fas fa-arrow-up"></i>
-            </div>
 
             <div class="lesson-container">
                 <div class="navigation">
@@ -100,14 +69,9 @@
             </div>
         </main>
 
-        <footer>
-            <p>
-                &copy; 2026 Mandarin Pathways |
-                <span class="zh">赋能中文学习</span
-                ><span class="en">Empowering Chinese Language Learning</span>
-            </p>
-        </footer>
+        <div id="site-footer"></div>
 
+        <script src="js/layout.js" defer></script>
         <script src="js/sw-register.js" defer></script>
         <script src="js/i18n.js" defer></script>
         <script src="js/lang-switcher.js" defer></script>

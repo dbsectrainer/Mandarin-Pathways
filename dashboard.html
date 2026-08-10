@@ -1,0 +1,456 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
+        />
+        <meta
+            name="description"
+            content="Your Mandarin Pathways progress: streaks, flashcards due, achievements, per-language progress, and data backup."
+        />
+        <meta name="theme-color" content="#1a2733" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="black-translucent"
+        />
+        <meta name="apple-mobile-web-app-title" content="Mandarin Pathways" />
+        <title>Mandarin Pathways - My Progress</title>
+        <link rel="manifest" href="manifest.json" />
+        <link rel="apple-touch-icon" href="icons/icon-192x192.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+            media="print"
+            onload="this.media = 'all'"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            media="print"
+            onload="this.media = 'all'"
+        />
+        <link rel="stylesheet" href="css/styles.min.css" />
+        <link rel="stylesheet" href="css/layout.css" />
+        <noscript>
+            <link
+                href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+                rel="stylesheet"
+            />
+            <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            />
+        </noscript>
+    </head>
+    <body>
+        <div id="site-header"></div>
+
+        <main>
+            <section class="page-hero">
+                <h2>
+                    <span class="zh">我的进度</span
+                    ><span class="en">My Progress</span>
+                </h2>
+                <p>
+                    <span class="zh"
+                        >所有进度都保存在本设备上——使用下方的备份与恢复按钮在设备之间迁移。</span
+                    ><span class="en"
+                        >Everything is stored on this device — use the Backup
+                        &amp; restore button below to move progress between
+                        devices.</span
+                    >
+                </p>
+            </section>
+
+            <section class="learning-dashboard">
+                <div class="dashboard-panel">
+                    <h2>
+                        <span class="zh">学习仪表盘</span
+                        ><span class="en">Learning Dashboard</span>
+                    </h2>
+                    <div class="dashboard-grid">
+                        <div class="dashboard-stat">
+                            <span class="dashboard-number" data-streak-count
+                                >0</span
+                            >
+                            <span class="dashboard-label"
+                                ><span class="zh">连续学习天数</span
+                                ><span class="en">Day streak</span></span
+                            >
+                        </div>
+                        <div class="dashboard-stat">
+                            <span class="dashboard-number" id="srs-due-count"
+                                >0</span
+                            >
+                            <span class="dashboard-label"
+                                ><span class="zh">今日复习卡片</span
+                                ><span class="en">Cards due today</span></span
+                            >
+                        </div>
+                        <div class="dashboard-stat">
+                            <span
+                                class="dashboard-number"
+                                id="placement-start-day"
+                                >--</span
+                            >
+                            <span class="dashboard-label"
+                                ><span class="zh">推荐起点</span
+                                ><span class="en">Recommended start</span></span
+                            >
+                        </div>
+                    </div>
+                    <div class="review-actions">
+                        <a href="srs.html" class="home-btn">
+                            <i class="fas fa-layer-group"></i>
+                            <span class="zh">开始复习</span
+                            ><span class="en">Start SRS</span>
+                        </a>
+                        <a href="placement.html" class="nav-btn">
+                            <i class="fas fa-compass"></i>
+                            <span class="zh">水平测试</span
+                            ><span class="en">Placement</span>
+                        </a>
+                        <a href="review.html" class="nav-btn">
+                            <i class="fas fa-star"></i>
+                            <span class="zh">收藏短语</span
+                            ><span class="en">Starred phrases</span>
+                        </a>
+                        <button
+                            type="button"
+                            id="open-data-portability"
+                            class="nav-btn"
+                        >
+                            <i class="fas fa-database"></i>
+                            <span class="zh">备份与恢复</span
+                            ><span class="en">Backup &amp; restore</span>
+                        </button>
+                        <button
+                            type="button"
+                            id="open-notification-settings"
+                            class="nav-btn"
+                        >
+                            <i class="fas fa-bell"></i>
+                            <span class="zh">提醒设置</span
+                            ><span class="en">Reminders</span>
+                        </button>
+                    </div>
+                    <ul
+                        class="achievement-list"
+                        data-achievements-list
+                        aria-label="Achievements"
+                    ></ul>
+                </div>
+            </section>
+
+            <section class="page-section">
+                <h2>
+                    <span class="zh">各语言模式进度</span
+                    ><span class="en">Progress by language mode</span>
+                </h2>
+                <p class="section-lead">
+                    <span class="zh"
+                        >点击卡片以该语言模式继续学习故事。</span
+                    ><span class="en"
+                        >Click a card to continue the stories in that language
+                        mode.</span
+                    >
+                </p>
+                <div class="language-cards">
+                    <div
+                        class="language-card animate-fade-in"
+                        title="Simplified Chinese - Most widely used writing system in mainland China"
+                    >
+                        <div
+                            class="card-header"
+                            style="
+                                background: linear-gradient(
+                                    135deg,
+                                    #e74c3c,
+                                    #c0392b
+                                );
+                            "
+                        >
+                            <h3>
+                                <span class="flag">🇨🇳</span>
+                                简体中文
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="progress-container">
+                                <p>
+                                    <span class="zh">进度：第0/40天</span
+                                    ><span class="en">Progress: Day 0/40</span>
+                                </p>
+                                <div class="progress-bar">
+                                    <div
+                                        class="progress-fill"
+                                        style="width: 0%"
+                                    ></div>
+                                </div>
+                            </div>
+                            <div class="stats">
+                                <div class="stat-item">
+                                    <div class="stat-number">40</div>
+                                    <div class="stat-label">
+                                        <span class="zh">天</span
+                                        ><span class="en">Days</span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">5</div>
+                                    <div class="stat-label">
+                                        <span class="zh">级别</span
+                                        ><span class="en">Levels</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="language-card animate-fade-in"
+                        title="Pinyin - Phonetic system for learning Mandarin pronunciation"
+                    >
+                        <div
+                            class="card-header"
+                            style="
+                                background: linear-gradient(
+                                    135deg,
+                                    #27ae60,
+                                    #2ecc71
+                                );
+                            "
+                        >
+                            <h3>
+                                <span class="flag">🔤</span>
+                                Pinyin
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="progress-container">
+                                <p>
+                                    <span class="zh">进度：第0/40天</span
+                                    ><span class="en">Progress: Day 0/40</span>
+                                </p>
+                                <div class="progress-bar">
+                                    <div
+                                        class="progress-fill"
+                                        style="width: 0%"
+                                    ></div>
+                                </div>
+                            </div>
+                            <div class="stats">
+                                <div class="stat-item">
+                                    <div class="stat-number">40</div>
+                                    <div class="stat-label">
+                                        <span class="zh">天</span
+                                        ><span class="en">Days</span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">5</div>
+                                    <div class="stat-label">
+                                        <span class="zh">级别</span
+                                        ><span class="en">Levels</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="language-card animate-fade-in"
+                        title="English - Translation of Mandarin phrases"
+                    >
+                        <div
+                            class="card-header"
+                            style="
+                                background: linear-gradient(
+                                    135deg,
+                                    #9b59b6,
+                                    #8e44ad
+                                );
+                            "
+                        >
+                            <h3>
+                                <span class="flag">🇺🇸</span>
+                                English
+                            </h3>
+                        </div>
+                        <div class="card-content">
+                            <div class="progress-container">
+                                <p>
+                                    <span class="zh">进度：第0/40天</span
+                                    ><span class="en">Progress: Day 0/40</span>
+                                </p>
+                                <div class="progress-bar">
+                                    <div
+                                        class="progress-fill"
+                                        style="width: 0%"
+                                    ></div>
+                                </div>
+                            </div>
+                            <div class="stats">
+                                <div class="stat-item">
+                                    <div class="stat-number">40</div>
+                                    <div class="stat-label">
+                                        <span class="zh">天</span
+                                        ><span class="en">Days</span>
+                                    </div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-number">5</div>
+                                    <div class="stat-label">
+                                        <span class="zh">级别</span
+                                        ><span class="en">Levels</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="page-section text-center">
+                <div class="cta-row">
+                    <a href="stories.html" class="cta-btn cta-primary">
+                        <i class="fas fa-book-open"></i>
+                        <span class="zh">继续学习故事</span
+                        ><span class="en">Continue the stories</span>
+                    </a>
+                </div>
+            </section>
+        </main>
+
+        <div id="site-footer"></div>
+
+        <!-- Backup / restore progress -->
+        <div id="data-portability-modal" class="modal" style="display: none">
+            <div class="modal-content">
+                <h3>
+                    <span class="zh">备份与恢复</span
+                    ><span class="en">Backup & restore</span>
+                </h3>
+                <p>
+                    <span class="zh"
+                        >将进度导出为 JSON
+                        文件，或在另一台设备上导入备份（将替换本设备上的进度数据）。</span
+                    ><span class="en"
+                        >Export your progress as JSON, or import a backup from
+                        another device (replaces progress on this
+                        browser).</span
+                    >
+                </p>
+                <div class="button-group">
+                    <button
+                        type="button"
+                        id="export-progress-btn"
+                        class="primary-btn"
+                        aria-label="Export progress JSON"
+                    >
+                        <span class="zh">导出</span
+                        ><span class="en">Export</span>
+                    </button>
+                    <label
+                        class="primary-btn"
+                        style="
+                            cursor: pointer;
+                            display: inline-block;
+                            margin: 0;
+                        "
+                    >
+                        <span class="zh">导入</span
+                        ><span class="en">Import</span>
+                        <input
+                            type="file"
+                            id="import-progress-file"
+                            accept="application/json,.json"
+                            style="display: none"
+                        />
+                    </label>
+                    <button
+                        type="button"
+                        id="close-data-portability"
+                        class="secondary-btn"
+                    >
+                        <span class="zh">关闭</span
+                        ><span class="en">Close</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notification Settings Modal -->
+        <div
+            id="notification-settings-modal"
+            class="modal"
+            style="display: none"
+        >
+            <div class="modal-content">
+                <h3>
+                    <span class="zh">通知设置</span
+                    ><span class="en">Notification Settings</span>
+                </h3>
+                <div class="settings-form">
+                    <div class="form-group">
+                        <label>
+                            <input
+                                type="checkbox"
+                                id="notifications-enabled"
+                                checked
+                            />
+                            <span class="zh">启用每日提醒</span
+                            ><span class="en">Enable Daily Reminders</span>
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label>
+                            <span class="zh">提醒时间：</span
+                            ><span class="en">Reminder Time: </span>
+                            <input
+                                type="time"
+                                id="reminder-time"
+                                value="09:00"
+                            />
+                        </label>
+                    </div>
+                    <div class="button-group">
+                        <button
+                            id="save-notification-settings"
+                            class="primary-btn"
+                            aria-label="Save notification settings"
+                        >
+                            <span class="zh">保存设置</span
+                            ><span class="en">Save Settings</span>
+                        </button>
+                        <button
+                            id="close-notification-settings"
+                            class="secondary-btn"
+                            aria-label="Close settings modal"
+                        >
+                            <span class="zh">关闭</span
+                            ><span class="en">Close</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="js/layout.js" defer></script>
+        <script src="js/sw-register.js" defer></script>
+        <script src="js/i18n.js" defer></script>
+        <script src="js/lang-switcher.js" defer></script>
+        <script src="js/starred-phrases.js" defer></script>
+        <script src="js/streaks.js" defer></script>
+        <script src="js/srs.js" defer></script>
+        <script src="js/dashboard-page.js" defer></script>
+        <script src="js/notifications.js" defer></script>
+        <script src="js/data-portability.js" defer></script>
+        <script src="js/return-to-top.js" defer></script>
+    </body>
+</html>

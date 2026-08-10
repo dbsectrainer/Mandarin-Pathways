@@ -124,9 +124,46 @@ document.addEventListener("DOMContentLoaded", function () {
         quizLink.href = `quiz.html?day=${day}&lang=${lang}`;
     }
 
+    // Story-header chrome: breadcrumb, stage badge, day counter
+    const sectionNum =
+        day <= 7 ? 1 : day <= 14 ? 2 : day <= 22 ? 3 : day <= 30 ? 4 : 5;
+    const breadcrumbSection = document.getElementById("breadcrumb-section");
+    if (breadcrumbSection) {
+        breadcrumbSection.href = `stories.html#section-${sectionNum}`;
+        breadcrumbSection.innerHTML = localizedTextHtml(sectionInfo.title);
+    }
+    const breadcrumbDay = document.getElementById("breadcrumb-day");
+    if (breadcrumbDay) {
+        breadcrumbDay.textContent = day;
+    }
+    const levelBadge = document.getElementById("lesson-level-badge");
+    if (levelBadge) {
+        levelBadge.classList.add(`badge-section-${sectionNum}`);
+        levelBadge.innerHTML = localizedTextHtml(sectionInfo.title);
+    }
+    const dayOf40 = document.getElementById("day-of-40");
+    if (dayOf40) {
+        dayOf40.textContent = day;
+    }
+
     const audio = document.getElementById("audio-player");
     const audioLang = lang === "pinyin" ? "zh" : lang;
     audio.src = `audio_files/day${day}_${audioLang}.mp3`;
+
+    const durationEl = document.getElementById("lesson-duration");
+    if (durationEl) {
+        audio.addEventListener("loadedmetadata", () => {
+            if (!Number.isFinite(audio.duration)) return;
+            const minutes = Math.max(1, Math.round(audio.duration / 60));
+            durationEl.innerHTML =
+                '<i class="fas fa-clock" aria-hidden="true"></i> ' +
+                localizedTextHtml({
+                    zh: `约${minutes}分钟音频`,
+                    en: `~${minutes} min audio`,
+                });
+            durationEl.hidden = false;
+        });
+    }
 
     const audioFallback = document.getElementById("audio-fallback");
     if (lang === "pinyin") {

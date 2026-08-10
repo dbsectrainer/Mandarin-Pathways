@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
+        />
+        <meta
+            name="description"
+            content="A beginner's guide to Chinese characters: strokes, stroke order rules, radicals, and an animated stroke-order demo."
+        />
+        <meta name="theme-color" content="#1a2733" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="black-translucent"
+        />
+        <meta name="apple-mobile-web-app-title" content="Mandarin Pathways" />
+        <title>
+            A Beginner's Guide to Chinese Characters - Mandarin Pathways
+        </title>
+        <link rel="manifest" href="manifest.json" />
+        <link rel="apple-touch-icon" href="icons/icon-192x192.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+            media="print"
+            onload="this.media = 'all'"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            media="print"
+            onload="this.media = 'all'"
+        />
+        <link rel="stylesheet" href="css/styles.min.css" />
+        <link rel="stylesheet" href="css/layout.css" />
+        <noscript>
+            <link
+                href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+                rel="stylesheet"
+            />
+            <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            />
+        </noscript>
+    </head>
+    <body>
+        <div id="site-header"></div>
+
+        <main>
+            <div class="article-hero">
+                <h2>
+                    <span class="zh">汉字入门指南</span
+                    ><span class="en"
+                        >A beginner's guide to Chinese characters</span
+                    >
+                </h2>
+                <p>
+                    <span class="zh"
+                        >汉字不是随机的图画——它是由笔画和部首组成的、有逻辑的系统。</span
+                    ><span class="en"
+                        >Characters aren't random pictures — they're a logical
+                        system built from strokes and reusable parts.</span
+                    >
+                </p>
+            </div>
+
+            <article class="article-container">
+                <h2>
+                    <span class="zh">简体还是繁体？</span
+                    ><span class="en">Simplified or traditional?</span>
+                </h2>
+                <p>
+                    <span class="zh"
+                        >简体字是中国大陆和新加坡的标准，繁体字通行于台湾和香港。本课程使用简体字——它笔画更少，也是大多数学习者的起点。两套系统的底层逻辑相同，学会一套后再认另一套并不难。</span
+                    ><span class="en"
+                        >Simplified characters are the standard in mainland
+                        China and Singapore; traditional characters are used in
+                        Taiwan and Hong Kong. This course uses simplified —
+                        fewer strokes, and the usual starting point. The
+                        underlying logic is the same, so picking up the other
+                        set later is far easier than starting over.</span
+                    >
+                </p>
+
+                <h2>
+                    <span class="zh">一切从笔画开始</span
+                    ><span class="en">It all starts with strokes</span>
+                </h2>
+                <p>
+                    <span class="zh"
+                        >每个汉字都由有限的几种基本笔画组成：横、竖、撇、捺、点、钩等。笔画按固定的顺序书写——这不是形式主义，正确的笔顺让字形自然、书写更快，也帮助你记住字的结构。</span
+                    ><span class="en"
+                        >Every character is assembled from a small set of basic
+                        strokes: horizontal, vertical, left-falling,
+                        right-falling, dots, hooks. Strokes are written in a
+                        fixed order — not as a formality, but because correct
+                        order makes the shape flow, speeds up writing, and
+                        anchors the character in memory.</span
+                    >
+                </p>
+                <ul>
+                    <li>
+                        <span class="zh">先横后竖（十：先一后丨）。</span
+                        ><span class="en"
+                            >Horizontal before vertical (in 十, the bar comes
+                            before the down-stroke).</span
+                        >
+                    </li>
+                    <li>
+                        <span class="zh">从上到下，从左到右。</span
+                        ><span class="en">Top to bottom, left to right.</span>
+                    </li>
+                    <li>
+                        <span class="zh">先外后内，最后封口（如：口）。</span
+                        ><span class="en"
+                            >Outside before inside, closing the box last (as in
+                            口).</span
+                        >
+                    </li>
+                </ul>
+
+                <div class="guide-demo">
+                    <div
+                        id="stroke-demo"
+                        style="
+                            display: flex;
+                            justify-content: center;
+                            gap: 24px;
+                            flex-wrap: wrap;
+                        "
+                    ></div>
+                    <p class="demo-caption">
+                        <span class="zh"
+                            >笔顺动画：大（big）和 口（mouth）。点击任意一个重新播放。</span
+                        ><span class="en"
+                            >Animated stroke order: 大 (big) and 口 (mouth).
+                            Click either character to replay.</span
+                        >
+                    </p>
+                </div>
+
+                <h2>
+                    <span class="zh">部首：汉字的积木</span
+                    ><span class="en">Radicals: the building blocks</span>
+                </h2>
+                <p>
+                    <span class="zh"
+                        >大部分汉字是组合字：一个部首提示意义类别，另一部分常提示读音。比如带"氵"（三点水）的字多与水有关：河、海、洗。认识最常用的一百来个部首后，陌生字会开始"讲道理"——你能猜出它大概的意思和读音。</span
+                    ><span class="en"
+                        >Most characters are compounds: a radical hints at the
+                        meaning category, and another component often hints at
+                        the sound. Characters with 氵 (the "water" radical)
+                        tend to involve water: 河 river, 海 sea, 洗 wash. Once
+                        you know the hundred or so most common radicals, new
+                        characters start to make sense — you can guess roughly
+                        what they mean and how they sound.</span
+                    >
+                </p>
+
+                <h2>
+                    <span class="zh">什么时候开始写？</span
+                    ><span class="en">When should you start writing?</span>
+                </h2>
+                <p>
+                    <span class="zh"
+                        >不必第一天就写字。建议先用一两周建立发音基础（课程第1-7天），从第二周起每天练几个字。本站的写作练习提供笔顺动画和手写画布，从基本笔画和常用部首开始，逐步过渡到HSK词汇和主题汉字。</span
+                    ><span class="en"
+                        >You don't need to write on day one. Spend your first
+                        week or two building pronunciation (Days 1-7 of the
+                        course), then add a few characters a day from week two.
+                        The writing practice here gives you stroke-order
+                        animations and a drawing canvas, starting with basic
+                        strokes and common radicals and building toward HSK
+                        vocabulary and themed sets.</span
+                    >
+                </p>
+
+                <div class="cta-row">
+                    <a href="writing.html" class="cta-btn cta-primary">
+                        <i class="fas fa-pen"></i>
+                        <span class="zh">开始写字练习</span
+                        ><span class="en">Try the writing practice</span>
+                    </a>
+                    <a href="course.html" class="cta-btn cta-secondary">
+                        <span class="zh">查看完整课程</span
+                        ><span class="en">See the full course</span>
+                    </a>
+                </div>
+            </article>
+        </main>
+
+        <div id="site-footer"></div>
+
+        <script src="js/layout.js" defer></script>
+        <script src="js/sw-register.js" defer></script>
+        <script src="js/i18n.js" defer></script>
+        <script src="js/lang-switcher.js" defer></script>
+        <script src="js/hanzi-writer-lite.js" defer></script>
+        <script src="js/return-to-top.js" defer></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                if (
+                    !window.HanziWriterLite ||
+                    typeof window.HanziWriterLite.create !== "function"
+                ) {
+                    return;
+                }
+                var container = document.getElementById("stroke-demo");
+                if (!container) return;
+
+                ["大", "口"].forEach(function (character) {
+                    var slot = document.createElement("div");
+                    slot.style.width = "140px";
+                    slot.style.height = "140px";
+                    slot.style.cursor = "pointer";
+                    slot.setAttribute(
+                        "aria-label",
+                        "Stroke order animation for " + character,
+                    );
+                    container.appendChild(slot);
+
+                    var writer = window.HanziWriterLite.create(
+                        slot,
+                        character,
+                    );
+                    writer.animateCharacter();
+                    slot.addEventListener("click", function () {
+                        writer.animateCharacter();
+                    });
+                });
+            });
+        </script>
+    </body>
+</html>

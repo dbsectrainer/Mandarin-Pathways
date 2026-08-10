@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
+        />
+        <meta
+            name="description"
+            content="Pinyin and tones for beginners: how Mandarin's sound system works, a live demo of the four tones, and common pronunciation pitfalls."
+        />
+        <meta name="theme-color" content="#1a2733" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta
+            name="apple-mobile-web-app-status-bar-style"
+            content="black-translucent"
+        />
+        <meta name="apple-mobile-web-app-title" content="Mandarin Pathways" />
+        <title>Pinyin and Tones for Beginners - Mandarin Pathways</title>
+        <link rel="manifest" href="manifest.json" />
+        <link rel="apple-touch-icon" href="icons/icon-192x192.png" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+            media="print"
+            onload="this.media = 'all'"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            media="print"
+            onload="this.media = 'all'"
+        />
+        <link rel="stylesheet" href="css/styles.min.css" />
+        <link rel="stylesheet" href="css/layout.css" />
+        <noscript>
+            <link
+                href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+                rel="stylesheet"
+            />
+            <link
+                rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+            />
+        </noscript>
+    </head>
+    <body>
+        <div id="site-header"></div>
+
+        <main>
+            <div class="article-hero">
+                <h2>
+                    <span class="zh">拼音与声调入门</span
+                    ><span class="en">Pinyin and tones for beginners</span>
+                </h2>
+                <p>
+                    <span class="zh"
+                        >中文发音没有想象中难——它只是一个规则清晰的系统。这篇指南带你认识它。</span
+                    ><span class="en"
+                        >Mandarin pronunciation is less scary than it looks —
+                        it's a small, regular system. This guide walks you
+                        through it.</span
+                    >
+                </p>
+            </div>
+
+            <article class="article-container">
+                <h2>
+                    <span class="zh">拼音是什么？</span
+                    ><span class="en">What is pinyin?</span>
+                </h2>
+                <p>
+                    <span class="zh"
+                        >拼音是用拉丁字母标注普通话发音的官方系统。它不是另一种文字，而是一张"发音地图"：每个汉字对应一个音节，每个音节由声母（开头的辅音）、韵母（后面的元音部分）和声调组成。</span
+                    ><span class="en"
+                        >Pinyin is the official system for writing Mandarin
+                        sounds with Latin letters. It isn't a separate writing
+                        system — it's a pronunciation map. Every character maps
+                        to one syllable, and every syllable is built from an
+                        initial (the opening consonant), a final (the vowel
+                        part), and a tone.</span
+                    >
+                </p>
+                <p>
+                    <span class="zh"
+                        >普通话只有大约400个基本音节——远少于英语。这意味着发音系统小到可以在一两周内熟悉。</span
+                    ><span class="en"
+                        >Mandarin has only about 400 basic syllables — far
+                        fewer than English. The whole sound system is small
+                        enough to get familiar with in a week or two.</span
+                    >
+                </p>
+
+                <h2>
+                    <span class="zh">四个声调（加轻声）</span
+                    ><span class="en">The four tones (plus neutral)</span>
+                </h2>
+                <p>
+                    <span class="zh"
+                        >声调决定意思：同一个音节"ma"，四个声调是四个不同的词。下面是同一音节在五种声调下的轮廓，图形显示音高如何变化：</span
+                    ><span class="en"
+                        >Tones change meaning: the same syllable "ma" is a
+                        different word in each tone. Below is the same syllable
+                        in all five tones — the glyphs show how the pitch
+                        moves:</span
+                    >
+                </p>
+
+                <div class="guide-demo">
+                    <div id="tones-demo"></div>
+                    <p class="demo-caption">
+                        <span class="zh"
+                            >mā（妈 mother）· má（麻 hemp）· mǎ（马 horse）·
+                            mà（骂 scold）· ma（吗 question particle）</span
+                        ><span class="en"
+                            >mā (mother) · má (hemp) · mǎ (horse) · mà (scold)
+                            · ma (question particle)</span
+                        >
+                    </p>
+                </div>
+
+                <ul>
+                    <li>
+                        <strong
+                            ><span class="zh">一声（ā）：</span
+                            ><span class="en">First tone (ā): </span></strong
+                        ><span class="zh">高而平，像唱歌时拖住一个音。</span
+                        ><span class="en"
+                            >high and flat, like holding a sung note.</span
+                        >
+                    </li>
+                    <li>
+                        <strong
+                            ><span class="zh">二声（á）：</span
+                            ><span class="en">Second tone (á): </span></strong
+                        ><span class="zh">从中音升到高音，像疑问的"啊？"。</span
+                        ><span class="en"
+                            >rising from mid to high, like a questioning
+                            "huh?".</span
+                        >
+                    </li>
+                    <li>
+                        <strong
+                            ><span class="zh">三声（ǎ）：</span
+                            ><span class="en">Third tone (ǎ): </span></strong
+                        ><span class="zh">先降后升，日常语速中常常只降不升。</span
+                        ><span class="en"
+                            >dips down then rises; at natural speed it often
+                            just stays low.</span
+                        >
+                    </li>
+                    <li>
+                        <strong
+                            ><span class="zh">四声（à）：</span
+                            ><span class="en">Fourth tone (à): </span></strong
+                        ><span class="zh">从高音干脆地降下来，像下命令。</span
+                        ><span class="en"
+                            >a sharp fall from high, like giving a command.</span
+                        >
+                    </li>
+                    <li>
+                        <strong
+                            ><span class="zh">轻声（a）：</span
+                            ><span class="en">Neutral tone (a): </span></strong
+                        ><span class="zh">短促、轻巧，跟着前一个音节走。</span
+                        ><span class="en"
+                            >short and light, riding on the syllable before
+                            it.</span
+                        >
+                    </li>
+                </ul>
+
+                <h2>
+                    <span class="zh">练声调的技巧</span
+                    ><span class="en">Tips for training your tones</span>
+                </h2>
+                <ul>
+                    <li>
+                        <span class="zh"
+                            >两两成对练习（声调对），因为真实词语大多是双音节。</span
+                        ><span class="en"
+                            >Drill tones in pairs — most real words are two
+                            syllables, so tone pairs are what you'll actually
+                            say.</span
+                        >
+                    </li>
+                    <li>
+                        <span class="zh"
+                            >夸张地模仿音频，宁可过头也不要含糊。</span
+                        ><span class="en"
+                            >Exaggerate when you shadow the audio; too much is
+                            better than too flat.</span
+                        >
+                    </li>
+                    <li>
+                        <span class="zh"
+                            >在课程的拼音模式里打开声调轮廓，把耳朵听到的和眼睛看到的对上。</span
+                        ><span class="en"
+                            >Use Pinyin mode in the lessons — the tone contours
+                            let your eyes confirm what your ears hear.</span
+                        >
+                    </li>
+                </ul>
+
+                <h2>
+                    <span class="zh">常见发音误区</span
+                    ><span class="en">Common pitfalls</span>
+                </h2>
+                <ul>
+                    <li>
+                        <strong>q / x / j:</strong>
+                        <span class="zh"
+                            >都比英语更靠前、更"尖"，舌尖抵下齿。</span
+                        ><span class="en"
+                            >all sharper and more forward than English —
+                            tongue tip behind the lower teeth.</span
+                        >
+                    </li>
+                    <li>
+                        <strong>zh / ch / sh vs z / c / s:</strong>
+                        <span class="zh"
+                            >前者卷舌，后者平舌。慢慢对比着练。</span
+                        ><span class="en"
+                            >the first set curls the tongue back; the second
+                            keeps it flat. Practice them side by side,
+                            slowly.</span
+                        >
+                    </li>
+                    <li>
+                        <strong>ü:</strong>
+                        <span class="zh"
+                            >嘴唇圆起来发"i"。在 ju/qu/xu 中虽然写作 u，读的仍是
+                            ü。</span
+                        ><span class="en"
+                            >say "ee" with rounded lips. In ju/qu/xu it's
+                            spelled u but still pronounced ü.</span
+                        >
+                    </li>
+                    <li>
+                        <span class="zh"
+                            >不要用英语重音代替声调——中文每个音节的声调都算数。</span
+                        ><span class="en"
+                            >Don't map English stress onto Mandarin — every
+                            syllable's tone counts.</span
+                        >
+                    </li>
+                </ul>
+
+                <div class="cta-row">
+                    <a href="day.html?day=1" class="cta-btn cta-primary">
+                        <i class="fas fa-play"></i>
+                        <span class="zh">第1-7天专讲发音，从第1天开始</span
+                        ><span class="en"
+                            >Days 1-7 cover all of this — start Day 1</span
+                        >
+                    </a>
+                    <a
+                        href="learn-characters.html"
+                        class="cta-btn cta-secondary"
+                    >
+                        <span class="zh">下一篇：汉字入门</span
+                        ><span class="en">Next guide: Characters</span>
+                    </a>
+                </div>
+            </article>
+        </main>
+
+        <div id="site-footer"></div>
+
+        <script src="js/layout.js" defer></script>
+        <script src="js/sw-register.js" defer></script>
+        <script src="js/i18n.js" defer></script>
+        <script src="js/lang-switcher.js" defer></script>
+        <script src="js/tone-visualizer.js" defer></script>
+        <script src="js/return-to-top.js" defer></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                if (
+                    window.MandarinTones &&
+                    typeof window.MandarinTones.renderInto === "function"
+                ) {
+                    window.MandarinTones.renderInto(
+                        "#tones-demo",
+                        "mā má mǎ mà ma",
+                    );
+                }
+            });
+        </script>
+    </body>
+</html>

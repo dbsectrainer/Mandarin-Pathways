@@ -201,6 +201,7 @@ function setupNotificationSettingsUI(notificationManager) {
     const reminderTimeInput = document.getElementById("reminder-time");
     const saveButton = document.getElementById("save-notification-settings");
     const closeButton = document.getElementById("close-notification-settings");
+    if (!modal || !enabledCheckbox || !reminderTimeInput) return;
 
     // Load current settings
     const preferences = notificationManager.getStoredPreferences() || {
@@ -212,28 +213,15 @@ function setupNotificationSettingsUI(notificationManager) {
     enabledCheckbox.checked = preferences.enabled;
     reminderTimeInput.value = preferences.reminderTime;
 
-    // Add settings button to the header
-    const header = document.querySelector("header");
-    const settingsButton = document.createElement("button");
-    settingsButton.className = "notification-settings-btn";
-    settingsButton.innerHTML = '<i class="fas fa-bell"></i>';
-    settingsButton.style.cssText = `
-    position: absolute;
-    right: 1rem;
-    top: 1rem;
-    background: transparent;
-    border: none;
-    color: white;
-    font-size: 1.2rem;
-    cursor: pointer;
-    padding: 0.5rem;
-  `;
-    header.appendChild(settingsButton);
-
-    // Show modal when settings button is clicked
-    settingsButton.addEventListener("click", () => {
-        modal.style.display = "flex";
-    });
+    // Open the modal from the page's trigger button (dashboard.html)
+    const settingsButton = document.getElementById(
+        "open-notification-settings",
+    );
+    if (settingsButton) {
+        settingsButton.addEventListener("click", () => {
+            modal.style.display = "flex";
+        });
+    }
 
     // Save settings
     saveButton.addEventListener("click", async () => {

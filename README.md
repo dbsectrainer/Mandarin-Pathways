@@ -80,17 +80,34 @@ A focused Mandarin Chinese learning platform designed to take learners from foun
 
 ## Project Structure
 
-- `index.html`: Main dashboard with progress tracking
-- `day.html`: Daily lesson interface with audio and text content
+Pages:
+
+- `index.html`: Marketing-style landing page (hero, how-it-works, featured lessons, FAQ teaser)
+- `stories.html`: All-lessons index — 40 day cards grouped into five stages, plus reading passages and supplementary topics
+- `day.html`: Daily story lesson with audio, karaoke text, quiz/writing/flashcard links
+- `course.html`: The free 40-day course syllabus and outcomes
+- `dashboard.html`: My Progress — streaks, SRS due count, achievements, per-language progress, backup/restore and notification settings
+- `learn.html`: Guides hub, linking to `learn-method.html`, `learn-pinyin.html`, and `learn-characters.html`
+- `teachers.html`: For Teachers / classroom guide
+- `faq.html`: Frequently asked questions
+- `contact.html`: Contact and contribution pointers
 - `supplementary.html`: Additional learning resources and practice materials
 - `reading.html`: Interactive reading practice with comprehension exercises
 - `writing.html`: Character writing practice with canvas-based drawing
+- `quiz.html`, `placement.html`, `srs.html`, `review.html`: Quiz, placement test, spaced-repetition flashcards, starred-phrase review
+
+Shared layout: every page loads `js/layout.js` (with `defer`, **before** `js/i18n.js` and `js/lang-switcher.js`) which injects the shared header nav, language selector, and footer sitemap into `#site-header`/`#site-footer` placeholders.
+
+**Checklist for adding a new top-level page:** add it to `NAV_LINKS`/`FOOTER_COLUMNS` in `js/layout.js` (if it belongs in the nav), add the file to `STATIC_ASSETS` in `sw.js`, and bump `CACHE_VERSION` there.
+
 - `css/`: Stylesheets for the web interface
-    - `styles.css`: Main stylesheet
+    - `styles.min.css`: Main stylesheet
+    - `layout.css`: Shared header/footer chrome and components for the newer pages
     - `reading.css`: Styles for reading practice interface
     - `writing.css`: Styles for writing practice interface
 - `js/`: JavaScript functionality and interactive features
-    - `script.js`: Core application functionality
+    - `layout.js`: Injected site-wide header/nav/footer
+    - `home-page.js`, `stories-page.js`, `dashboard-page.js`, `day-page.js`, etc.: Per-page controllers
     - `character-drawing.js`: Canvas-based drawing system for character practice
 - `audio_files/`:
     - Daily lesson audio files in both English (`day{n}_en.mp3`) and Mandarin (`day{n}_zh.mp3`)
